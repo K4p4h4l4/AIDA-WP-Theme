@@ -1,0 +1,274 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
+/*************************\
+     cart table section
+\*************************/
+.cart__container{
+    width: 100%;
+    padding: 1rem 10rem;   
+}
+
+.cart__table-holder{
+    width: 100%;
+}
+
+
+/*************************\
+       cart table
+\*************************/
+table{
+    width: 100%;
+    background-color: var(--default-white);
+    border-collapse: collapse;
+    border-spacing: 2rem;
+    display: table;
+    text-indent: initial;
+}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+tr th {
+    text-transform: capitalize;
+    font-size: var(--font-size12);
+    font-weight: bold;
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+th, td {
+    text-align: left;
+    padding: 1rem;
+    border: .1rem solid var(--dark-gray);
+}
+
+tbody th, td {
+    text-align: center;
+    font-size: var(--font-size12);
+    cursor: default;
+}
+
+td img{
+    width: 5rem;
+    height: 5rem;
+}
+
+.qtde__number{
+    width: 3rem;
+    height: 3rem;
+    border: solid 0.1rem var(--dark-gray);
+    border-radius: 0.5rem;
+    outline: none;
+    text-align: center;
+    color: var(--default-dark);
+    font-size: var(--font-size10);
+}
+
+.action__remove i{
+    font-size: var(--font-size12);
+}
+
+.action__remove:hover{
+    color:var(--default-red);
+    cursor: pointer;
+}
+
+/*tbody tr:nth-child(even){
+    background-color: #f5f5f5;
+}*/
+
+/*************************\
+       cart totals
+\*************************/
+.cart__totals{
+    width: 100%;
+    padding: 2rem 0;
+    position: relative;
+}
+
+.cart__totals-table{
+    width: 50%;
+    margin: 2rem 0;
+    margin-top: 2rem;
+    margin-bottom: 10rem;
+    background-color: var(--default-white);
+    border: solid 0.1rem var(--dark-gray);
+    border-radius: 0.5rem;
+    float: right;
+}
+
+.totals__resume-title{
+    width: 100%;
+    padding: 1rem;
+    font-size: var(--font-size14);
+    font-weight: 700;
+    border: solid 0.1rem var(--dark-gray);
+    text-transform: capitalize;
+}
+
+.subtotals__holder, .shippement__holder, .totals__holder{
+    width: 100%;
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    cursor: default;
+}
+
+.subtotals__title, .shippement__title, .totals__title{
+    width: 50%;
+    padding: 1rem;
+    font-size: var(--font-size13);
+    text-transform: capitalize;
+    text-align: left;
+    cursor: default;
+}
+
+.totals__title{
+    width: 50%;
+    padding: 1rem;
+    font-size: var(--font-size14);
+    text-transform: capitalize;
+    text-align: left;
+    cursor: default;
+    font-weight: 700;
+}
+
+.subtotals__number, .shippement__number{
+    width: 50%;
+    padding: 1rem;
+    font-size: var(--font-size13);
+    text-transform: capitalize;
+    text-align: right;
+    font-weight: 550;
+}
+
+.totals__number{
+    width: 50%;
+    padding: 1rem;
+    font-size: var(--font-size14);
+    text-transform: capitalize;
+    text-align: right;
+    font-weight: bolder;
+}
+
+.cart__buttons-holder{
+    width: 100%;
+    padding: 1rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+}
+
+.button__actions{
+    border: none;
+    background-color: var(--default-black);
+    color: var(--default-white);
+    padding: .8rem 1rem;
+    margin:  .5rem 0 .5rem 1rem;
+    border-radius: .4rem;
+    font-size: var(--font-size12);
+    cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.button__actions:hover{
+    background-color: var(--default-red);
+}
+
+.button__actions i{
+    font-size: var(--font-size11);
+    margin-right: .5rem;
+}
+
+/********************************************************\
+  Responsividade para tablets e pcs com baixa resolução 
+\********************************************************/
+@media only screen and (max-width:1200px){
+    /*************************\
+         cart table section
+    \*************************/
+    .cart__container{
+        padding: 1rem 5rem;   
+    }
+}
+
+/*********************************************\
+         Responsividade para telemóvel
+\*********************************************/
+@media only screen and (max-width:700px){
+    /*************************\
+         cart table section
+    \*************************/
+    .cart__container{
+        padding: 1rem;   
+    }
+    
+    .cart__totals-table{
+        width: 100%;
+    }
+    
+    /*************************\
+           cart table
+    \*************************/
+    thead {
+        display: none;
+    }
+    
+    tbody tr, tbody td{
+        width: 100%;
+        display: block;
+    }
+    
+    tbody td{
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+    
+    tbody td::before{
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        text-align: left;
+        padding-left: 1.5rem;
+        font-weight: bold;
+    }
+    
+    .cart__buttons-holder{
+        -webkit-box-pack: space-evenly;
+            -ms-flex-pack: space-evenly;
+                justify-content: space-evenly;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    }
+    
+    .button__actions{
+        width: 100%;
+        margin-left: 0;
+    }
+
+}

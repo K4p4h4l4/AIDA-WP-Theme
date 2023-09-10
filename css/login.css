@@ -1,0 +1,290 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
+/*************************\
+      secção de login
+\*************************/
+.login__section{
+    width: 100%;
+    padding: 1rem 10rem;
+}
+
+.login__holder{
+    width: 100%;
+    position: relative;
+    margin: 6rem 0;
+}
+
+/*************************\
+    formulário de login
+\*************************/
+.login__container{
+    width: 45%;
+    background-color: var(--default-white);
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    border-radius: .3rem;
+}
+
+.login__container-header{
+    width: 100%;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: var(--font-size14);
+}
+
+.login__title{
+    width: 100%;
+    margin-bottom: 1rem;
+    font-size: var(--font-size18);
+}
+
+.login__data{
+    width: 100%;
+    margin: 2rem 0;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    position: relative;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+.login__username-container{
+    width: 60%;
+    margin: 1rem 0;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    position: relative;
+}
+
+.login__user-data{
+    width: 100%;
+    padding: 1.2rem 1rem;
+    border: solid .1rem var(--light-gray);
+    border-radius: .3rem;
+    outline: none;
+    font-size: var(--font-size13);
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+.login__user-data:focus{
+    border: solid .1rem var(--default-black);
+}
+
+.login__user-data::-webkit-input-placeholder{
+    font-size: var(--font-size10);
+    opacity: 0;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+
+.login__user-data::-moz-placeholder{
+    font-size: var(--font-size10);
+    opacity: 0;
+    -moz-transition: all .3s;
+    transition: all .3s;
+}
+
+.login__user-data:-ms-input-placeholder{
+    font-size: var(--font-size10);
+    opacity: 0;
+    -ms-transition: all .3s;
+    transition: all .3s;
+}
+
+.login__user-data::-ms-input-placeholder{
+    font-size: var(--font-size10);
+    opacity: 0;
+    -ms-transition: all .3s;
+    transition: all .3s;
+}
+
+.login__user-data::placeholder{
+    font-size: var(--font-size10);
+    opacity: 0;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+.input_icon{
+    position: absolute;
+    right: 10%;
+    color: var(--light-gray);
+}
+
+.input_icon i{
+    font-size: var(--font-size12);
+}
+
+.account__label{
+    position: absolute;
+    -webkit-transition: all .2s;
+    -o-transition: all .2s;
+    transition: all .2s;
+    color: var(--default-black);
+    z-index: 1;
+    left: 10%;
+    top: 35%;
+    font-size: var(--font-size12);
+}
+
+.account__label::before{
+    content: "";
+    height: 1rem;
+    background-color: var(--default-white);
+    position: absolute;
+    left: 0%;
+    top: 40%;
+    z-index: -1;
+    width: 100%;
+}
+
+.login__user-data:not(:-moz-placeholder-shown).login__user-data:not(:focus)~.account__label{
+    top:-16%;
+    color: var(--default-black);
+    font-size: var(--font-size10);
+}
+
+.login__user-data:not(:-ms-input-placeholder).login__user-data:not(:focus)~.account__label{
+    top:-16%;
+    color: var(--default-black);
+    font-size: var(--font-size10);
+}
+
+.login__user-data:focus + .account__label , 
+.login__user-data:not(:placeholder-shown).login__user-data:not(:focus)~.account__label{
+    top:-16%;
+    color: var(--default-black);
+    font-size: var(--font-size10);
+}
+
+.login__user-data:focus::-webkit-input-placeholder{
+    opacity: 1;
+    -webkit-animation-delay: .2s;
+            animation-delay: .2s;
+}
+
+.login__user-data:focus::-moz-placeholder{
+    opacity: 1;
+    animation-delay: .2s;
+}
+
+.login__user-data:focus:-ms-input-placeholder{
+    opacity: 1;
+    animation-delay: .2s;
+}
+
+.login__user-data:focus::-ms-input-placeholder{
+    opacity: 1;
+    animation-delay: .2s;
+}
+
+.login__user-data:focus::placeholder{
+    opacity: 1;
+    -webkit-animation-delay: .2s;
+            animation-delay: .2s;
+}
+
+.login__btn-container{
+    width: 100%;
+    margin: 1rem 0;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    cursor: pointer;
+}
+
+.btn__login{
+    width: 60%;
+    border: none;
+    background-color: var(--default-black);
+    color: var(--default-white);
+    border-radius: .3rem;
+    padding: 1rem 0;
+    font-size: var(--font-size14);
+    cursor: pointer;
+}
+
+.btn__login:hover{
+    background-color: var(--default-red);
+}
+
+.other__options{
+    width: 100%;
+    text-align: center;
+    line-height: 2rem;
+    font-size: var(--font-size11);
+}
+
+.other__options p a{
+    text-decoration: none;
+}
+
+/********************************************************\
+  Responsividade para tablets e pcs com baixa resolução 
+\********************************************************/
+@media only screen and (max-width:1200px){
+    /*************************\
+        formulário de login
+    \*************************/
+    .login__container{
+        width: 60%;
+    }
+}
+
+/*********************************************\
+         Responsividade para telemóvel
+\*********************************************/
+@media only screen and (max-width:700px){
+    /*************************\
+          secção de login
+    \*************************/
+    .login__section{
+        padding: 1rem;
+    }
+    
+    /*************************\
+        formulário de login
+    \*************************/
+    .login__container{
+        width: 100%;
+    }
+    
+    .login__username-container{
+        width: 90%;
+    }
+    
+    .btn__login{
+        width: 90%;
+    }
+
+}
