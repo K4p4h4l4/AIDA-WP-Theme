@@ -1,0 +1,221 @@
+/********************************************************\
+  Responsividade para pcs de alta resolução > 1401
+\********************************************************/
+@media only screen and (min-width:1401px){
+    html{
+        font-size: 80%;
+    }  
+}
+
+/********************************************************\
+  Responsividade para pcs de alta resolução > 1401
+\********************************************************/
+@media only screen and (max-width:1400px){
+    html{
+        font-size: 70%;
+    }  
+}
+
+/********************************************************\
+  Responsividade para tablets e pcs com baixa resolução 
+\********************************************************/
+@media only screen and (max-width:1200px){
+    /*************************\
+            Main Menu
+    \*************************/
+    .main__header{
+        padding: 0rem 5rem;
+    }
+    
+    /*************************\
+            Main products
+    \*************************/    
+    .main__products{
+        padding: 1rem;
+    }
+} 
+
+/*********************************************\
+         Responsividade para telemóvel
+\*********************************************/
+@media only screen and (max-width:700px){
+    /*******************\
+       Botão Menu Topo
+    \*******************/
+    .menu__button{
+        display: block;
+    }
+    
+    /*************************\
+            Main Menu
+    \*************************/
+    .main__header{
+        padding: 1rem 1rem;
+    }
+
+    .main__menu{
+        width: 100%;
+        padding: 1rem 0;
+        position: absolute;
+        z-index: 2;
+        left: -100%;
+        top:15%;
+        position: fixed;
+        opacity: 1;
+        /*transition: width ease-in-out .7s;*/
+    }
+    
+    .main__options-informatic, .main__options-tvbox, .main__options-tablet, .main__options-paper, .main__options-games, .main__options-printer{
+        width: 100%;
+        left: 0;
+        position: relative;
+        max-height: 0;
+        overflow-y: hidden;
+        -webkit-transition: all .5s ease;
+        -o-transition: all .5s ease;
+        transition: all .5s ease;
+        padding: 0;
+    }
+    
+    .submenu__active{
+        max-height: 100rem;
+    }
+    
+    .expand{
+        position:relative;
+        padding: 1rem 0 0 0;
+        -webkit-transition: all .2s ease-in-out;
+        -o-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out;
+        z-index: 2;
+        float: right;
+        -webkit-transform: rotate(-90deg);
+            -ms-transform: rotate(-90deg);
+                transform: rotate(-90deg);
+        
+    }
+    
+    .main__options:hover .expand{
+        -webkit-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    
+    .show__menu{
+        display: block;
+        -webkit-animation: moveInRight ease-out .5s;
+                animation: moveInRight ease-out .5s;
+        left:0%;
+    }
+    
+    /*******************\
+      Topo
+    \*******************/
+    .info__header{
+        padding: 1rem 1rem;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+    }
+    
+    .info__header-contacts{
+        width: 100%;
+        
+    }
+    
+    .header__contact{
+        margin: .5rem;
+    }
+    
+    /*************************\
+         Meus interesses
+    \*************************/
+
+    .my__interests{
+        padding: 1.5rem;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+    }
+    
+    .my__logo{
+        width: 30%;
+        margin: 1.5rem 0;
+    }
+    
+    
+    .my__insterests-search{
+        width: 80%;
+        margin: 1.5rem 0;
+    }
+    
+    .my__interests-wishes{
+        width: 45%;
+        margin: 1.5rem 0;
+    }
+    
+    /*************************\
+            Menu
+    \*************************/
+    .menu{
+        padding: 0 1rem;
+    }
+    
+    .nav__bar .menu__btn-container{
+        margin: 0 .6rem;
+    }
+    
+    /*************************\
+         Produtos Populares
+    \*************************/
+    .popular__products-section{
+        width: 100%;
+        -webkit-box-ordinal-group: 3;
+            -ms-flex-order: 2;
+                order: 2;
+    }
+    
+    /*************************\
+         Produtos Novos
+    \*************************/
+    .new__products-section{
+        width: 100%;
+        margin: 0rem;
+        padding: 1rem 1rem;
+    }
+
+    .product__card{
+        width: 45%;
+        margin: 1.5rem .5rem;
+    }
+    
+    /*************************\
+            Footer
+    \*************************/
+    .footer{
+        padding: 2rem 4rem;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+    }
+    
+    .footer__card{
+        width: 100%;
+        padding: 1.5rem 0;
+    }
+    
+    /*************************\
+            Footer bottom
+    \*************************/
+    .footer__bottom{
+        padding: 3rem 4rem;
+    }
+    
+    .footer__bottom-details{
+        width: 100%;
+    }
+    
+}
