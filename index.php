@@ -229,7 +229,7 @@
                        <h1>Imagem II</h1>
                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam culpa illum.</p>
                    </div>
-                   <img src="./img/Netflix-ok.jpg" alt="">
+                   <img src="<?php echo get_theme_file_uri('assets/img/Netflix-ok.jpg')?>" alt="">
                </div>
                
                <div class="caroussel__imgs fade">
@@ -237,7 +237,7 @@
                        <h1>Imagem III</h1>
                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam culpa illum.</p>
                    </div>
-                   <img src="./img/Artg-Android-TV-3-1.jpg" alt="">
+                   <img src="<?php echo get_theme_file_uri('assets/img/Artg-Android-TV-3-1.jpg')?>" alt="">
                </div>
                
                <div class="caroussel__imgs fade">
@@ -245,7 +245,7 @@
                        <h1>Imagem IV</h1>
                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam culpa illum.</p>
                    </div>
-                   <img src="./img/Slider2.jpg" alt="">
+                   <img src="<?php echo get_theme_file_uri('assets/img/Slider2.jpg')?>" alt="">
                </div>
                
                <a href="#" class="prev" onclick="plusSlides(-1)">&#10094</a>
@@ -277,7 +277,7 @@
                     <div class="popular__products-list">
                         <div class="popular__product-card">
                             <div class="popular__product-img">
-                                <img src="./img/macbook%20Pro.png" alt="">
+                                <img src="<?php echo get_theme_file_uri('assets/img/macbook%20Pro.png')?>" alt="">
                             </div>
                             <div class="popular__product-details">
                                 <div class="popular__product-name">
@@ -298,7 +298,7 @@
                         
                         <div class="popular__product-card">
                             <div class="popular__product-img">
-                                <img src="./img/iPhone%20X.png" alt="">
+                                <img src="<?php echo get_theme_file_uri('assets/img/iPhone%20X.png')?>" alt="">
                             </div>
                             <div class="popular__product-details">
                                 <div class="popular__product-name">
@@ -319,7 +319,7 @@
                         
                         <div class="popular__product-card">
                             <div class="popular__product-img">
-                                <img src="./img/HP%20OMEN.png" alt="">
+                                <img src="<?php echo get_theme_file_uri('assets/img/HP%20OMEN.png')?>" alt="">
                             </div>
                             <div class="popular__product-details">
                                 <div class="popular__product-name">
@@ -340,7 +340,7 @@
                         
                         <div class="popular__product-card">
                             <div class="popular__product-img">
-                                <img src="./img/nikko camera.png" alt="">
+                                <img src="<?php echo get_theme_file_uri('assets/img/nikko camera.png')?>" alt="">
                             </div>
                             <div class="popular__product-details">
                                 <div class="popular__product-name">
@@ -361,7 +361,7 @@
                         
                         <div class="popular__product-card">
                             <div class="popular__product-img">
-                                <img src="./img/product02.png" alt="">
+                                <img src="<?php echo get_theme_file_uri('assets/img/product02.png')?>" alt="">
                             </div>
                             <div class="popular__product-details">
                                 <div class="popular__product-name">
@@ -392,7 +392,7 @@
                             <h3>Smartphone</h3>
                             <p>Até 30% de desconto</p>
                         </div>
-                        <img src="./img/Left-banner-3.jpg" alt="">
+                        <img src="<?php echo get_theme_file_uri('assets/img/Left-banner-3.jpg')?>" alt="">
                     </div>
                 </div>
                 
@@ -406,7 +406,7 @@
                     <div class="bestsold__product-list">
                         <div class="bestsold__product-card">
                             <div class="bestsold__product-img">
-                                <img src="./img/37-300x300.jpg" alt="">
+                                <img src="<?php echo get_theme_file_uri('assets/img/37-300x300.jpg')?>" alt="">
                             </div>
                             <div class="bestsold__product-details">
                                 <div class="bestsold__product-name">
@@ -427,7 +427,7 @@
                         
                         <div class="bestsold__product-card">
                             <div class="bestsold__product-img">
-                                <img src="./img/22-300x300.jpg" alt="">
+                                <img src="<?php echo get_theme_file_uri('assets/img/22-300x300.jpg')?>" alt="">
                             </div>
                             <div class="bestsold__product-details">
                                 <div class="bestsold__product-name">
@@ -463,7 +463,7 @@
                             <div class="product__img">
                                 <a href="./produto.php">
                                     <div class="product__discount">10%</div>
-                                    <img src="./img/product09.png" alt="">
+                                    <img src="<?php echo get_theme_file_uri('assets/img/product09.png')?>" alt="">
                                 </a>
                                 
                             </div>
@@ -495,7 +495,7 @@
                          <div class="product__card">
                             <div class="product__img">
                                 <div class="product__discount" style="display:none">10%</div>
-                                <img src="./img/product08.png" alt="">
+                                <img src="<?php echo get_theme_file_uri('assets/img/product08.png')?>" alt="">
                             </div>
                             <div class="product__details">
                                 <span>ASUS Laptop</span>
@@ -524,7 +524,7 @@
                          <div class="product__card">
                             <div class="product__img">
                                 <div class="product__discount" style="display:none">10%</div>
-                                <img src="./img/product07.png" alt="">
+                                <img src="<?php echo get_theme_file_uri('assets/img/product07.png')?>" alt="">
                             </div>
                             <div class="product__details">
                                 <span>Samsung A3</span>
@@ -553,7 +553,7 @@
                          <div class="product__card">
                             <div class="product__img">
                                 <div class="product__discount" style="display:none">10%</div>
-                                <img src="./img/product06.png" alt="">
+                                <img src="<?php echo get_theme_file_uri('assets/img/product06.png')?>" alt="">
                             </div>
                             <div class="product__details">
                                 <span>Gaming Laptop</span>
@@ -582,7 +582,7 @@
                          <div class="product__card">
                             <div class="product__img">
                                 <div class="product__discount">33%</div>
-                                <img src="./img/product05.png" alt="">
+                                <img src="<?php echo get_theme_file_uri('assets/img/product05.png')?>" alt="">
                             </div>
                             <div class="product__details">
                                 <span>Best Beats</span>
@@ -611,7 +611,7 @@
                          <div class="product__card">
                             <div class="product__img">
                                 <div class="product__discount">15%</div>
-                                <img src="./img/product04.png" alt="">
+                                <img src="<?php echo get_theme_file_uri('assets/img/product04.png')?>" alt="">
                             </div>
                             <div class="product__details">
                                 <span>Good Tablet</span>
@@ -640,7 +640,7 @@
                         <div class="product__card">
                             <div class="product__img">
                                 <div class="product__discount">10%</div>
-                                <img src="./img/product03.png" alt="">
+                                <img src="<?php echo get_theme_file_uri('assets/img/product03.png')?>" alt="">
                             </div>
                             <div class="product__details">
                                 <span>Macbook Pro</span>
@@ -669,7 +669,7 @@
                          <div class="product__card">
                             <div class="product__img">
                                 <div class="product__discount" style="display:none">10%</div>
-                                <img src="./img/product02.png" alt="">
+                                <img src="<?php echo get_theme_file_uri('assets/img/product02.png')?>" alt="">
                             </div>
                             <div class="product__details">
                                 <span>Pro Headset</span>
@@ -698,7 +698,7 @@
                          <div class="product__card">
                             <div class="product__img">
                                 <div class="product__discount" style="display:none">10%</div>
-                                <img src="./img/product01.png" alt="">
+                                <img src="<?php echo get_theme_file_uri('assets/img/product01.png')?>" alt="">
                             </div>
                             <div class="product__details">
                                 <span>Macbook Pro Air</span>
@@ -729,7 +729,7 @@
                 <div class="new__products-container">
                    
                     <div class="new__product-advertising">
-                        <img src="./img/1530x300_e63ad3f2-5417-47ac-bbe2-8027e34d83c6.webp" alt="">
+                        <img src="<?php echo get_theme_file_uri('assets/img/1530x300_e63ad3f2-5417-47ac-bbe2-8027e34d83c6.webp')?>" alt="">
                     </div>
                     <div class="new__products-header">
                         <span class="products__header-title">Melhores avaliados</span>
@@ -738,7 +738,7 @@
                         <div class="product__card">
                             <div class="product__img">
                                 <div class="product__discount">10%</div>
-                                <img src="./img/1-300x300.jpg" alt="">
+                                <img src="<?php echo get_theme_file_uri('assets/img/1-300x300.jpg')?>" alt="">
                             </div>
                             <div class="product__details">
                                 <span>Canon Canonet</span>
@@ -767,7 +767,7 @@
                          <div class="product__card">
                             <div class="product__img">
                                 <div class="product__discount" style="display:none">10%</div>
-                                <img src="./img/7.jpg" alt="">
+                                <img src="<?php echo get_theme_file_uri('assets/img/7.jpg')?>" alt="">
                             </div>
                             <div class="product__details">
                                 <span>ASUS Laptop</span>
@@ -796,7 +796,7 @@
                          <div class="product__card">
                             <div class="product__img">
                                 <div class="product__discount" style="display:none">10%</div>
-                                <img src="./img/12-300x300.jpg" alt="">
+                                <img src="<?php echo get_theme_file_uri('assets/img/12-300x300.jpg')?>" alt="">
                             </div>
                             <div class="product__details">
                                 <span>Samsung A3</span>
@@ -825,7 +825,7 @@
                          <div class="product__card">
                             <div class="product__img">
                                 <div class="product__discount" style="display:none">10%</div>
-                                <img src="./img/26.jpg" alt="">
+                                <img src="<?php echo get_theme_file_uri('assets/img/26.jpg')?>" alt="">
                             </div>
                             <div class="product__details">
                                 <span>Gaming Laptop</span>
@@ -854,7 +854,7 @@
                          <div class="product__card">
                             <div class="product__img">
                                 <div class="product__discount">33%</div>
-                                <img src="./img/Left-banner-1-1.jpg" alt="">
+                                <img src="<?php echo get_theme_file_uri('assets/img/Left-banner-1-1.jpg')?>" alt="">
                             </div>
                             <div class="product__details">
                                 <span>Best Beats</span>
@@ -883,7 +883,7 @@
                          <div class="product__card">
                             <div class="product__img">
                                 <div class="product__discount">15%</div>
-                                <img src="./img/product03.png" alt="">
+                                <img src="<?php echo get_theme_file_uri('assets/img/product03.png')?>" alt="">
                             </div>
                             <div class="product__details">
                                 <span>Good Tablet</span>
@@ -925,7 +925,7 @@
             </div>
             <div class="modal__container-info">
                 <div class="modal__product-img">
-                    <img src="./img/8.jpg" alt="">
+                    <img src="<?php echo get_theme_file_uri('assets/img/8.jpg')?>" alt="">
                 </div>
                 <div class="modal__product-info">
                     <div class="modal__product-title">

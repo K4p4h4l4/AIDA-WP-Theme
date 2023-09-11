@@ -105,7 +105,7 @@
                         <div class="wish__list-container">
                             <div class="wish__list-card">
                                 <div class="wish__list-img">
-                                    <img src="./img/13-300x300.jpg" alt="">
+                                    <img src="<?php echo get_theme_file_uri('assets/img/13-300x300.jpg')?>" alt="">
                                 </div>
                                 <div class="wish__txt-container">
                                     <div class="wish__poduct-name">
@@ -125,7 +125,7 @@
                             
                             <div class="wish__list-card">
                                 <div class="wish__list-img">
-                                    <img src="./img/33-300x300.jpg" alt="">
+                                    <img src="<?php echo get_theme_file_uri('assets/img/33-300x300.jpg')?>" alt="">
                                 </div>
                                 <div class="wish__txt-container">
                                     <div class="wish__poduct-name">
@@ -171,7 +171,7 @@
                         <div class="cart__list-container">
                             <div class="cart__list-card">
                                 <div class="cart__list-img">
-                                    <img src="./img/12-300x300.jpg" alt="">
+                                    <img src="<?php echo get_theme_file_uri('assets/img/12-300x300.jpg')?>" alt="">
                                 </div>
                                 <div class="cart__txt-container">
                                     <div class="cart__poduct-name">
@@ -190,7 +190,7 @@
                             </div>
                             <div class="cart__list-card">
                                 <div class="cart__list-img">
-                                    <img src="./img/7-300x300.jpg" alt="">
+                                    <img src="<?php echo get_theme_file_uri('assets/img/7-300x300.jpg')?>" alt="">
                                 </div>
                                 <div class="cart__txt-container">
                                     <div class="cart__poduct-name">
@@ -209,7 +209,7 @@
                             </div>
                             <div class="cart__list-card">
                                 <div class="cart__list-img">
-                                    <img src="./img/1-300x300.jpg" alt="">
+                                    <img src="<?php echo get_theme_file_uri('assets/img/1-300x300.jpg')?>" alt="">
                                 </div>
                                 <div class="cart__txt-container">
                                     <div class="cart__poduct-name">
@@ -228,7 +228,7 @@
                             </div>
                             <div class="cart__list-card">
                                 <div class="cart__list-img">
-                                    <img src="./img/product03.png" alt="">
+                                    <img src="<?php echo get_theme_file_uri('assets/img/product03.png')?>" alt="">
                                 </div>
                                 <div class="cart__txt-container">
                                     <div class="cart__poduct-name">
@@ -247,7 +247,7 @@
                             </div>
                             <div class="cart__list-card">
                                 <div class="cart__list-img">
-                                    <img src="./img/iPhone%20X.png" alt="">
+                                    <img src="<?php echo get_theme_file_uri('assets/img/iPhone%20X.png')?>" alt="">
                                 </div>
                                 <div class="cart__txt-container">
                                     <div class="cart__poduct-name">
@@ -286,11 +286,21 @@
     \******************************/-->
     <div class="menu">
         <div class="menu__container">
-            <ul class="nav__bar">
+            <?php 
+                //display primary menu
+                if(has_nav_menu('primary-menu')){
+                    wp_nav_menu(array(
+                        'theme_location'=>'primary-menu',
+                        'container'=>'',
+                        'items_wrap'=>'<ul class="nav__bar">%3$s</ul>'
+                    ));
+                }
+            ?>
+            <!--ul class="nav__bar">
                 <li class="menu__btn-container"><a href="#" class="menu__btn active">Home</a></li>
                 <li class="menu__btn-container"><a href="promocao.php" class="menu__btn">Em promoção</a></li>
                 <li class="menu__btn-container"><a href="sobre.php" class="menu__btn">Sobre Nós</a></li>
                 <li class="menu__btn-container"><a href="contactos.php" class="menu__btn">Contacte-nos</a></li>
-            </ul>
+            </ul-->
         </div>
     </div>

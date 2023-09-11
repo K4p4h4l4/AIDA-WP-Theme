@@ -24,7 +24,7 @@
          wp_enqueue_style('media_responsive', get_template_directory_uri().'/assets/css/_media.css');
 
          //css do resto da página home
-         wp_enqueue_style('media_responsive', get_template_directory_uri().'/assets/css/_home.css');
+         wp_enqueue_style('media_home', get_template_directory_uri().'/assets/css/_home.css');
      }
 
     add_action('wp_enqueue_scripts', 'fn_theme_scripts');
@@ -38,4 +38,15 @@
     }
 
     add_action('after_setup_theme', 'fn_theme_supports');
+
+
+    //register navigation menus
+    function fn_nav_menu(){
+        register_nav_menus(array(
+            'primary-menu'=>__('Primary Menu', 'text_domain'),
+            'footer-menu'=>__('Footer Menu', 'text_domain')
+        ));
+    }
+
+    add_action('init', 'fn_nav_menu');
 ?>
