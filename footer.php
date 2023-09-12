@@ -92,8 +92,8 @@
         </div>
     </div>
     
-    <script src="./js/home.js"></script>
-    <script src="js/default.js"></script>
+    <!--script src="./js/home.js"></script>
+    <script src="js/default.js"></script-->
 </body>
 
 </html>

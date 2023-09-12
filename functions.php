@@ -9,6 +9,7 @@
         /******************************************\
                  Inclui os ficheiros de style    
         \******************************************/
+        
 
         //google fonts
         wp_enqueue_style('google_fonts', '//fonts.googleapis.com/css?family=Montserrat|Nunito|PT+Serif|Roboto&display=swap');
@@ -25,6 +26,13 @@
 
          //css do resto da página home
          wp_enqueue_style('media_home', get_template_directory_uri().'/assets/css/_home.css');
+        
+         //home js 
+         wp_enqueue_script('home_js', get_theme_file_uri('/assets/js/home.js'), NULL, '1.0', true);
+        
+         //default js
+         wp_enqueue_script('default_js', get_theme_file_uri('/assets/js/default.js'), NULL, '1.0', true);
+        
      }
 
     add_action('wp_enqueue_scripts', 'fn_theme_scripts');
@@ -49,4 +57,11 @@
     }
 
     add_action('init', 'fn_nav_menu');
+
+    function add_link_atts($atts){
+        $atts['class']='menu__btn';
+        return $atts; 
+    }
+
+    add_filter('nav_menu_link_attributes', 'add_link_atts');
 ?>
