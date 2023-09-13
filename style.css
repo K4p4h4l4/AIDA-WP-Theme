@@ -782,7 +782,7 @@ html{
             align-items: center;
 }
 
-.nav__bar .menu__btn-container{
+.nav__bar li{
     height: 100%;
     display: inline-block;
     margin: 0 3rem;
@@ -790,7 +790,7 @@ html{
     cursor: pointer;
 }
 
-.nav__bar .menu__btn-container .menu__btn{
+.nav__bar li .menu__btn{
     color: var(--default-black);
     text-decoration: none;
     font-size: var(--font-size12);
@@ -803,7 +803,7 @@ html{
    color: var(--default-red) !important; 
 }
 
-.nav__bar .menu__btn-container .menu__btn:before{
+.nav__bar li .menu__btn:before{
     content: '';
     width: 0;
     height: .2rem;
@@ -816,14 +816,14 @@ html{
     transition: .5s;
 }
 
-.nav__bar .menu__btn-container:hover .menu__btn:before{
+.nav__bar li:hover .menu__btn:before{
     width: 50%;
     -webkit-transform: translateX(100%);
         -ms-transform: translateX(100%);
             transform: translateX(100%); 
 }
 
-.nav__bar .menu__btn-container:hover .menu__btn{
+.nav__bar li:hover .menu__btn{
     color: var(--default-red) !important;
 }
 

@@ -5,7 +5,7 @@
              Description: Adiciona funcionalidades ao Tema Wordpress     
     \************************************************************************/
 
-    function fn_theme_scripts(){
+    function fn_theme_style(){
         /******************************************\
                  Inclui os ficheiros de style    
         \******************************************/
@@ -22,18 +22,28 @@
          wp_enqueue_style('custom-style',get_stylesheet_uri());
 
          // @media responsividade dos ficheiros css
-         wp_enqueue_style('media_responsive', get_template_directory_uri().'/assets/css/_media.css');
+         wp_register_style('media_responsive', get_template_directory_uri().'/assets/css/_media.css', array(), 1, 'all');
+         wp_enqueue_style('media_responsive');
 
          //css do resto da página home
-         wp_enqueue_style('media_home', get_template_directory_uri().'/assets/css/_home.css');
+         wp_register_style('media_home', get_template_directory_uri().'/assets/css/_home.css', array(), 1, 'all');
+         wp_enqueue_style('media_home');
         
-         //home js 
-         wp_enqueue_script('home_js', get_theme_file_uri('/assets/js/home.js'), NULL, '1.0', true);
-        
-         //default js
-         wp_enqueue_script('default_js', get_theme_file_uri('/assets/js/default.js'), NULL, '1.0', true);
+         
         
      }
+
+    add_action('wp_enqueue_scripts', 'fn_theme_style');
+
+    function fn_theme_scripts(){
+         //home js 
+         wp_register_script('home_js', get_template_directory_uri().'/assets/js/home.js', array(), 1, 1, 1); //get_theme_file_uri
+         wp_enqueue_script('home_js');
+        
+         //default js
+         wp_register_script('default_js', get_template_directory_uri().'/assets/js/default.js', array(), 1, 1, 1); //get_theme_file_uri
+         wp_enqueue_script('default_js');
+    }
 
     add_action('wp_enqueue_scripts', 'fn_theme_scripts');
 
@@ -56,7 +66,7 @@
         ));
     }
 
-    add_action('init', 'fn_nav_menu');
+    add_action('init','fn_nav_menu');
 
     function add_link_atts($atts){
         $atts['class']='menu__btn';

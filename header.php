@@ -53,7 +53,7 @@
     \******************************/-->
     <div class="my__interests">
         <a href="index.php" class="my__logo">
-            <img src="<?php echo get_theme_file_uri('assets/img/logo/aid_logo.png') ?>" alt="AIDA">
+            <img src="<?php bloginfo('template_directory');?>/assets/img/logo/aid_logo.png'" alt="AIDA">
             <!--?php
                 if(function_exists('the_custom_logo')){
                     the_custom_logo();
@@ -281,12 +281,12 @@
         </div>
     </div>
     
-    <!-- *****************************\
+   <!-- *****************************\
              Menu
     \******************************/-->
     <div class="menu">
         <div class="menu__container">
-            <?php 
+            <!--?php 
                 //display primary menu
                 if(has_nav_menu('primary-menu')){
                     wp_nav_menu(array(
@@ -295,12 +295,12 @@
                         'items_wrap'=>'<ul class="nav__bar">%3$s</ul>'
                     ));
                 }
-            ?>
-            <!--ul class="nav__bar">
-                <li class="menu__btn-container"><a href="#" class="menu__btn active">Home</a></li>
+            ?-->
+            <ul class="nav__bar">
+                <li class="menu__btn-container"><a href="#" class="menu__btn">Home</a></li>
                 <li class="menu__btn-container"><a href="promocao.php" class="menu__btn">Em promoção</a></li>
                 <li class="menu__btn-container"><a href="sobre.php" class="menu__btn">Sobre Nós</a></li>
                 <li class="menu__btn-container"><a href="contactos.php" class="menu__btn">Contacte-nos</a></li>
-            </ul-->
+            </ul>
         </div>
     </div>
