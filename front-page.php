@@ -219,8 +219,8 @@
             <div class="main__caroussel">
                <div class="caroussel__imgs fade" style="display: block">
                    <div class="img_txt">
-                       <h1><?php echo $carrossel['titulo_carrossel']; ?></h1>
-                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam culpa illum.</p>
+                       <h1><?php echo $carrossel['carrossel_grupo1']['titulo_carrossel']; ?></h1>
+                       <p><?php echo $carrossel['carrossel_grupo1']['paragrafo_carrossel']; ?>.</p>
                    </div>
                    <img src="<?php echo get_theme_file_uri('assets/img/S1.webp')?>" alt="">
                </div>
