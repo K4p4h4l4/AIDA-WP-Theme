@@ -74,4 +74,8 @@
     }
 
     add_filter('nav_menu_link_attributes', 'add_link_atts');
+
+    //custom images
+    add_image_size('product_image_small', 300, 300, false);
+    add_image_size('product_image_small', 700, 700, false);
 ?>

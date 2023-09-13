@@ -227,24 +227,24 @@
                
                <div class="caroussel__imgs fade">
                    <div class="img_txt">
-                       <h1>Imagem II</h1>
-                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam culpa illum.</p>
+                       <h1><?php echo $carrossel['carrossel_grupo2']['titulo_carrossel']; ?></h1>
+                       <p><?php echo $carrossel['carrossel_grupo2']['paragrafo_carrossel']; ?></p>
                    </div>
                    <img src="<?php echo get_theme_file_uri('assets/img/Netflix-ok.jpg')?>" alt="">
                </div>
                
                <div class="caroussel__imgs fade">
                    <div class="img_txt">
-                       <h1>Imagem III</h1>
-                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam culpa illum.</p>
+                       <h1><?php echo $carrossel['carrossel_grupo3']['titulo_carrossel']; ?></h1>
+                       <p><?php echo $carrossel['carrossel_grupo3']['paragrafo_carrossel']; ?></p>
                    </div>
                    <img src="<?php echo get_theme_file_uri('assets/img/Artg-Android-TV-3-1.jpg')?>" alt="">
                </div>
                
                <div class="caroussel__imgs fade">
                    <div class="img_txt">
-                       <h1>Imagem IV</h1>
-                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam culpa illum.</p>
+                       <h1><?php echo $carrossel['carrossel_grupo4']['titulo_carrossel']; ?></h1>
+                       <p><?php echo $carrossel['carrossel_grupo4']['paragrafo_carrossel']; ?></p>
                    </div>
                    <img src="<?php echo get_theme_file_uri('assets/img/Slider2.jpg')?>" alt="">
                </div>
@@ -462,270 +462,72 @@
                         <span class="products__header-title">Novos Produtos</span>
                     </div>
                     <div class="new__products-list">
-                        <div class="product__card">
-                            <div class="product__img">
-                                <a href="./produto.php">
-                                    <div class="product__discount">10%</div>
-                                    <img src="<?php echo get_theme_file_uri('assets/img/product09.png')?>" alt="">
-                                </a>
-                                
-                            </div>
-                            <div class="product__details">
-                                <a href="./produto.php">
-                                    <span>Canon Canonet</span>
-                                    <div class="rating">
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star_half</i>
-                                    </div>
-                                    <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
-                                    <div class="price__holder">
-                                        <div class="product__price">AOA 90.000</div>
-                                        <div class="product__price-old"><del>AOA 100.000</del></div>
-                                    </div>
-                                </a>
-                                <div class="product__buttons">
-                                    <button class="product__btn" id="infoProductModal"><i class="material-icons">remove_red_eye</i></button>
-                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
-                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        
-                         <div class="product__card">
-                            <div class="product__img">
-                                <div class="product__discount" style="display:none">10%</div>
-                                <img src="<?php echo get_theme_file_uri('assets/img/product08.png')?>" alt="">
-                            </div>
-                            <div class="product__details">
-                                <span>ASUS Laptop</span>
-                                <div class="rating">
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star_half</i>
-                                </div>
-                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
-                                <div class="price__holder">
-                                    <div class="product__price">AOA 495.000</div>
-                                    <div class="product__price-old" style="display:none"><del>AOA 100.000</del></div>
-                                </div>
-                                
-                                <div class="product__buttons">
-                                    <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
-                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
-                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        
-                         <div class="product__card">
-                            <div class="product__img">
-                                <div class="product__discount" style="display:none">10%</div>
-                                <img src="<?php echo get_theme_file_uri('assets/img/product07.png')?>" alt="">
-                            </div>
-                            <div class="product__details">
-                                <span>Samsung A3</span>
-                                <div class="rating">
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star_half</i>
-                                </div>
-                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
-                                <div class="price__holder">
-                                    <div class="product__price">AOA 220.000</div>
-                                    <div class="product__price-old" style="display:none"><del>AOA 100.000</del></div>
-                                </div>
-                                
-                                <div class="product__buttons">
-                                    <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
-                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
-                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        
-                         <div class="product__card">
-                            <div class="product__img">
-                                <div class="product__discount" style="display:none">10%</div>
-                                <img src="<?php echo get_theme_file_uri('assets/img/product06.png')?>" alt="">
-                            </div>
-                            <div class="product__details">
-                                <span>Gaming Laptop</span>
-                                <div class="rating">
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                </div>
-                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
-                                <div class="price__holder">
-                                    <div class="product__price">AOA 1.090.000</div>
-                                    <div class="product__price-old" style="display:none"><del>AOA 100.000</del></div>
-                                </div>
-                                
-                                <div class="product__buttons">
-                                    <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
-                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
-                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        
-                         <div class="product__card">
-                            <div class="product__img">
-                                <div class="product__discount">33%</div>
-                                <img src="<?php echo get_theme_file_uri('assets/img/product05.png')?>" alt="">
-                            </div>
-                            <div class="product__details">
-                                <span>Best Beats</span>
-                                <div class="rating">
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star_half</i>
-                                </div>
-                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
-                                <div class="price__holder">
-                                    <div class="product__price">AOA 110.000</div>
-                                    <div class="product__price-old"><del>AOA 180.000</del></div>
-                                </div>
-                                
-                                <div class="product__buttons">
-                                    <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
-                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
-                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        
-                         <div class="product__card">
-                            <div class="product__img">
-                                <div class="product__discount">15%</div>
-                                <img src="<?php echo get_theme_file_uri('assets/img/product04.png')?>" alt="">
-                            </div>
-                            <div class="product__details">
-                                <span>Good Tablet</span>
-                                <div class="rating">
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star_half</i>
-                                </div>
-                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
-                                <div class="price__holder">
-                                    <div class="product__price">AOA 100.000</div>
-                                    <div class="product__price-old"><del>AOA 120.000</del></div>
-                                </div>
-                                
-                                <div class="product__buttons">
-                                    <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
-                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
-                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="product__card">
-                            <div class="product__img">
-                                <div class="product__discount">10%</div>
-                                <img src="<?php echo get_theme_file_uri('assets/img/product03.png')?>" alt="">
-                            </div>
-                            <div class="product__details">
-                                <span>Macbook Pro</span>
-                                <div class="rating">
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star_half</i>
-                                </div>
-                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
-                                <div class="price__holder">
-                                    <div class="product__price">AOA 2.090.000</div>
-                                    <div class="product__price-old"><del>AOA 100.000</del></div>
-                                </div>
-                                
-                                <div class="product__buttons">
-                                    <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
-                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
-                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        
-                         <div class="product__card">
-                            <div class="product__img">
-                                <div class="product__discount" style="display:none">10%</div>
-                                <img src="<?php echo get_theme_file_uri('assets/img/product02.png')?>" alt="">
-                            </div>
-                            <div class="product__details">
-                                <span>Pro Headset</span>
-                                <div class="rating">
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star_half</i>
-                                </div>
-                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
-                                <div class="price__holder">
-                                    <div class="product__price">AOA 495.000</div>
-                                    <div class="product__price-old" style="display:none"><del>AOA 100.000</del></div>
-                                </div>
-                                
-                                <div class="product__buttons">
-                                    <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
-                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
-                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        
-                         <div class="product__card">
-                            <div class="product__img">
-                                <div class="product__discount" style="display:none">10%</div>
-                                <img src="<?php echo get_theme_file_uri('assets/img/product01.png')?>" alt="">
-                            </div>
-                            <div class="product__details">
-                                <span>Macbook Pro Air</span>
-                                <div class="rating">
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star_half</i>
-                                </div>
-                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
-                                <div class="price__holder">
-                                    <div class="product__price">AOA 1.200.000</div>
-                                    <div class="product__price-old" style="display:none"><del>AOA 100.000</del></div>
-                                </div>
-                                
-                                <div class="product__buttons">
-                                    <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
-                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
-                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
-                                    
-                                </div>
-                            </div>
-                        </div>
+                        <?php
+
+                            // Check rows existexists.
+                            if( have_rows('new_products') ):
+
+                                // Loop through rows.
+                                while( have_rows('new_products') ) : the_row();
+
+                                    // Load sub field value.
+                                    $product_img = get_sub_field('product_img');
+                                    $product_name = get_sub_field('product_name');
+                                    $product_price = get_sub_field('product_price');
+                                    $product_link = get_sub_field('product_link');
+                                    $product_discount = get_sub_field('product_discount');
+                                    $product_old_price = get_sub_field('product_old_price');
+                                    $product_link = get_sub_field('product_link');
+                                    // Do something...
+                                     ?>
+                                     <div class="product__card">
+                                        <div class="product__img">
+                                            <a href="<?php echo $product_link; ?>">
+                                                <div class="product__discount">
+                                                    <?php if($product_discount):
+                                                       echo $product_discount ?>%
+                                                    <?php endif?>
+                                                </div>
+                                                <img src="<?php echo $product_img['sizes']['product_image_small'];?>" alt="">
+                                            </a>
+
+                                        </div>
+                                        <div class="product__details">
+                                             <a href="<?php echo $product_link; ?>">
+                                                 <span><?php echo $product_name; ?></span>
+                                                 <div class="rating">
+                                                     <i class="material-icons">star</i>
+                                                     <i class="material-icons">star</i>
+                                                     <i class="material-icons">star</i>
+                                                     <i class="material-icons">star</i>
+                                                     <i class="material-icons">star_half</i>
+                                                 </div>
+                                                 <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
+                                                 <div class="price__holder">
+                                                     <div class="product__price"><?php echo $product_price; ?></div>
+                                                     <?php if($product_old_price):?>
+                                                         <div class="product__price-old"><del>AOA <?php echo $product_old_price; ?></del></div>
+                                                     <?php endif?>
+                                                 </div>
+                                             </a>
+                                             <div class="product__buttons">
+                                                 <button class="product__btn" id="infoProductModal"><i class="material-icons">remove_red_eye</i></button>
+                                                 <button class="product__btn"><i class="material-icons">favorite_border</i></button>
+                                                 <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
+
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <?php
+
+                                // End loop.
+                                endwhile;
+
+                            // No value.
+                            else :
+                                // Do something...
+                            endif;
+                         ?>                        
                     </div>
                 </div>
                 
