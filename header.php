@@ -54,14 +54,7 @@
     <div class="my__interests">
         <a href="index.php" class="my__logo">
             <img src="<?php bloginfo('template_directory');?>/assets/img/logo/aid_logo.png'" alt="AIDA">
-            <!--?php
-                if(function_exists('the_custom_logo')){
-                    the_custom_logo();
-                }else{
-                    bloginfo('name');
-                }
-                
-            ?-->
+            
         </a>
 
         <div class="my__insterests-search">
@@ -299,10 +292,12 @@
             <?php 
                 wp_nav_menu(
                     array(
-                        'theme_location' => 'top_menu',
-                        'container' => 'ul',
+                        'theme_location' => 'top-menu',
+                        'container' => '',
                         'menu_class' => 'nav__bar',
-                        'link_after'=>'menu__btn',
+                        'itens_wrap' => '<li class="menu__btn-container">%3$s</li>',
+                        'add_li_class' => 'menu__btn-container',
+                        'items_wrap'=>'<ul class="nav__bar">%3$s</ul>'
                     )
                 );
             ?>

@@ -17,9 +17,11 @@
 
          //google material icons
          wp_enqueue_style('google_material_icons', '//fonts.googleapis.com/icon?family=Material+Icons');
+        
+        //google material symbols
+         wp_enqueue_style('google_material_symbols', '//fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
-         //custom stylesheet
-         wp_enqueue_style('custom-style',get_stylesheet_uri());
+         
 
          // @media responsividade dos ficheiros css
          wp_register_style('media_responsive', get_template_directory_uri().'/assets/css/_media.css', array(), 1, 'all');
@@ -30,7 +32,20 @@
          wp_enqueue_style('media_home');
         
          
+         //css do resto da página home
+         wp_register_style('promocao_css', get_template_directory_uri().'/assets/css/promocao.css', array(), 1, 'all');
+         wp_enqueue_style('promocao_css');
         
+         //css do resto da página sobre nós
+         wp_register_style('sobrenos_css', get_template_directory_uri().'/assets/css/sobrenos.css', array(), 1, 'all');
+         wp_enqueue_style('sobrenos_css');
+        
+         //css do resto da página contacte-nos
+         wp_register_style('contactos_css', get_template_directory_uri().'/assets/css/contactos.css', array(), 1, 'all');
+         wp_enqueue_style('contactos_css');
+        
+         //custom stylesheet
+         wp_enqueue_style('custom-style',get_stylesheet_uri());
      }
 
     add_action('wp_enqueue_scripts', 'fn_theme_style');
@@ -83,6 +98,15 @@
             'top-menu' => __('Top Menu', 'theme'),
         )
     );
+
+    function add_additional_class_on_li($classes, $item, $args){
+        if(isset($args->add_li_class)){
+            $classes[] = $args->add_li_class;
+        }
+        return $classes;
+    }
+
+    add_filter('nav_menu_css_class', 'add_additional_class_on_li', 1, 3);
 
     function add_link_atts($atts){
         $atts['class']='menu__btn';
