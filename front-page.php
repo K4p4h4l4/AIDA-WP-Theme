@@ -483,11 +483,11 @@
                                      <div class="product__card">
                                         <div class="product__img">
                                             <a href="<?php echo $product_link; ?>">
-                                                <div class="product__discount">
-                                                    <?php if($product_discount):
-                                                       echo $product_discount ?>%
-                                                    <?php endif?>
-                                                </div>
+                                                <?php if($product_discount):?>
+                                                    <div class="product__discount">
+                                                           <?php echo $product_discount ?>%
+                                                    </div>
+                                                <?php endif?>
                                                 <img src="<?php echo $product_img['sizes']['product_image_small'];?>" alt="">
                                             </a>
 

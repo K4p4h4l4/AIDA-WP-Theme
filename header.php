@@ -286,21 +286,31 @@
     \******************************/-->
     <div class="menu">
         <div class="menu__container">
-            <!--?php 
+            <?php 
                 //display primary menu
                 if(has_nav_menu('primary-menu')){
                     wp_nav_menu(array(
-                        'theme_location'=>'primary-menu',
+                        'theme_location'=>'top_menu',
                         'container'=>'',
                         'items_wrap'=>'<ul class="nav__bar">%3$s</ul>'
                     ));
                 }
+            ?>
+            <!--?php 
+                wp_nav_menu(
+                    array(
+                        'theme_location' => 'top_menu',
+                        'container' => 'ul',
+                        'menu_class' => 'nav__bar',
+                        'items_wrap'=>'<ul class="nav__bar">%3$s</ul>',
+                    )
+                );
             ?-->
-            <ul class="nav__bar">
+            <!--ul class="nav__bar">
                 <li class="menu__btn-container"><a href="#" class="menu__btn">Home</a></li>
                 <li class="menu__btn-container"><a href="promocao.php" class="menu__btn">Em promoção</a></li>
                 <li class="menu__btn-container"><a href="sobre.php" class="menu__btn">Sobre Nós</a></li>
                 <li class="menu__btn-container"><a href="contactos.php" class="menu__btn">Contacte-nos</a></li>
-            </ul>
+            </ul-->
         </div>
     </div>

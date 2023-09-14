@@ -61,12 +61,28 @@
     //register navigation menus
     function fn_nav_menu(){
         register_nav_menus(array(
-            'primary-menu'=>__('Primary Menu', 'text_domain'),
-            'footer-menu'=>__('Footer Menu', 'text_domain')
+            'top_menu'=>__('Top Menu', 'text_domain'),
+            
         ));
     }
 
     add_action('init','fn_nav_menu');
+
+
+    //custom images
+    add_image_size('product_image_small', 300, 300, false);
+    add_image_size('product_image_small', 700, 700, false);
+
+    
+    //Suporte de Menus
+    add_theme_support('menus');
+
+    //Registo de menus
+    register_nav_menus(
+        array(
+            'top-menu' => __('Top Menu', 'theme'),
+        )
+    );
 
     function add_link_atts($atts){
         $atts['class']='menu__btn';
@@ -74,8 +90,4 @@
     }
 
     add_filter('nav_menu_link_attributes', 'add_link_atts');
-
-    //custom images
-    add_image_size('product_image_small', 300, 300, false);
-    add_image_size('product_image_small', 700, 700, false);
 ?>

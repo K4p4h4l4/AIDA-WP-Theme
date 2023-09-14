@@ -323,9 +323,14 @@
 
 .product__details a{
     text-decoration: none;
+    color: var(--default-black);
 }
 
 .product__details a:visited{
+    color: var(--default-black);
+}
+
+a:visited{
     color: var(--default-black);
 }
 
