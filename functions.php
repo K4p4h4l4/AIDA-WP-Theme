@@ -59,14 +59,14 @@
 
 
     //register navigation menus
-    function fn_nav_menu(){
+    /*function fn_nav_menu(){
         register_nav_menus(array(
             'top_menu'=>__('Top Menu', 'text_domain'),
             
         ));
     }
 
-    add_action('init','fn_nav_menu');
+    add_action('init','fn_nav_menu');*/
 
 
     //custom images
