@@ -286,7 +286,7 @@
             </div>
         </div>
     </section>
-    
+    <?php echo get_permalink( get_the_ID() );?>
     <!-- *****************************\
              Detalhes do produto
     \******************************/-->
