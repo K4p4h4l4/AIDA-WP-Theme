@@ -59,7 +59,7 @@
          wp_enqueue_script('home_js');
         
         //home js 
-         wp_register_script('produto_js', get_template_directory_uri().'/assets/js/produto.js', array(), 1, 1, 1); //get_theme_file_uri
+         wp_register_script('produto_js', get_template_directory_uri().'/assets/js/product.js', array(), 1, 1, 1); //get_theme_file_uri
          wp_enqueue_script('produto_js');
         
          //default js

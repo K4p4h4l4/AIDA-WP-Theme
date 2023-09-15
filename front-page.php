@@ -483,7 +483,7 @@
                                     //Obter os dados do vector
                                     $product_id = $product->get_id();
                                     $product_name = $product->get_name();
-                                    $product_price = $product->get_price();
+                                    $product_price = $product->get_regular_price();
                                     $product_sale_price = $product->get_sale_price();
                                     $product_img_id = $product->get_image_id();
                                     /*echo $val;*/

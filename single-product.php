@@ -213,11 +213,17 @@
                 </ul>
             </div>
             
+            <?php 
+            
+                $product = wc_get_product( get_the_ID());
+            
+                echo $product;
+            ?>
             <div class="product__container">
                 <div class="product__sumary-info">
                     <div class="product__imgs">
                         <div class="main__img">
-                            <img src="<?php bloginfo('template_directory')?>/assets/img/8.jpg" alt="" id="main__img">
+                            <?php echo wp_get_attachment_image($product->get_image_id());?>
                         </div>
                         <div class="other__imgs">
                             <div class="other__img">
@@ -233,7 +239,7 @@
                     </div>
                     <div class="product__sumary">
                         <div class="product__name-holder">
-                            <h2>New Apple Watch SE (GPS, 44mm)</h2>
+                            <h2><?php echo $product->get_name();?></h2>
                         </div>
                         <div class="product__overallRating-holder">
                             <div class="product__overallRating">
@@ -254,8 +260,13 @@
                         </div>
                         <div class="produt__status">
                             <div class="product__price-holder">
-                                <h3>AOA 120.000</h3>
-                                <del>AOA 210.000</del>
+                                
+                                <?php if($product->get_sale_price()):?>
+                                    <h3>Kz <?php echo $product->get_sale_price();?></h3>
+                                    <del>Kz <?php echo $product->get_regular_price(); ?></del>
+                                <?php else:?>
+                                    <h3>Kz <?php echo $product->get_regular_price();?></h3>
+                                <?php endif?>
                             </div>
                             <div class="product__stock">
                                 <h4>Em Estoque</h4>
@@ -286,10 +297,10 @@
             </div>
         </div>
     </section>
-    <?php echo get_permalink( get_the_ID() );?>
-    <!-- *****************************\
-             Detalhes do produto
-    \******************************/-->
+    
+    <!-- **************************************\
+        Detalhes e especificações do produto
+    \***************************************/-->
     <section class="products__details">
         <div class="details__holder">
             <div class="popular__products-section">                
@@ -373,238 +384,17 @@
                     
                     <div class="product__details-tab" id="content1">
                         <div class="product__details-title">
-                            <h3>Apple Watch SE (GPS, 44mm) - Detalhes</h3>
+                            <h3><?php echo $product->get_name();?> - Detalhes</h3>
                         </div>
                         <div class="product__details-body">
-                            <ul class="product__description-list">
-                                <li>44mm</li>
-                                <li>Display Retina LTPO OLED, de até 100 nits</li>
-                                <li>Display de vidro Ion-X</li>
-                                <li>Modelo GPS e GPS + CELULAR</li>
-                                <li>Processador S8 SiP de 64 bits Dual-Core</li>
-                                <li>32 GB</li>
-                                <li>Resistente a água até uma profundidade de 50 metros</li>
-                                <li>Sensor cardíaco óptico de segunda geração</li>
-                            </ul>
+                            <?php echo $product->get_short_description();?>
                         </div>
                     </div>
                     <div class="product__details-tab" id="content2">
                         <div class="product__details-title">
-                            <h3>Apple Watch SE (GPS, 44mm) - Especificações</h3>
+                            <h3><?php echo $product->get_name();?> - Especificações</h3>
                         </div>
-                        <div class="product__details-body">
-                            <div class="product__details-holder">
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        Assistente de voz
-                                    </div>
-                                    <div class="product__specification-name">
-                                        Sim
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        Versão Compatível de Bluetooth 
-                                    </div>
-                                    <div class="product__specification-name">
-                                        5.0
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        Métricas mensuráveis
-                                    </div>
-                                    <div class="product__specification-name">
-                                        Batimentos cardíacos, Monitor de sono
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        Rastreador de Actividades
-                                    </div>
-                                    <div class="product__specification-name">
-                                        Reastreador de passos, distância, calorias e actividades
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        Categoria
-                                    </div>
-                                    <div class="product__specification-name">
-                                        Smarth Wathes
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        Band Detachable 
-                                    </div>
-                                    <div class="product__specification-name">
-                                        Sim
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        Possibilidade de Download de APPs
-                                    </div>
-                                    <div class="product__specification-name">
-                                        Sim
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        Batery Detachable
-                                    </div>
-                                    <div class="product__specification-name">
-                                        Não
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        Tipo de Movimento
-                                    </div>
-                                    <div class="product__specification-name">
-                                        Electrônico
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        Estilo 
-                                    </div>
-                                    <div class="product__specification-name">
-                                        Desportivo
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        Formatoa de Tela
-                                    </div>
-                                    <div class="product__specification-name">
-                                        Quadrado
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        Waterproof Grade
-                                    </div>
-                                    <div class="product__specification-name">
-                                        Perpétuo
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        Disponibilidade de Cartão SIM
-                                    </div>
-                                    <div class="product__specification-name">
-                                        Não
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        Mecanismo
-                                    </div>
-                                    <div class="product__specification-name">
-                                        Não
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        Multiple Dials
-                                    </div>
-                                    <div class="product__specification-name">
-                                        Sim
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        GPS
-                                    </div>
-                                    <div class="product__specification-name">
-                                        Sim
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        Modo de Rede
-                                    </div>
-                                    <div class="product__specification-name">
-                                        Nenhum
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        Capacidade de bateria
-                                    </div>
-                                    <div class="product__specification-name">
-                                        120mAh
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        Camera traseira
-                                    </div>
-                                    <div class="product__specification-name">
-                                        Nenhuma
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        RAM
-                                    </div>
-                                    <div class="product__specification-name">
-                                        128MB
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        ROM
-                                    </div>
-                                    <div class="product__specification-name">
-                                        128MB
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        Sistema
-                                    </div>
-                                    <div class="product__specification-name">
-                                        IOS
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        Tipo
-                                    </div>
-                                    <div class="product__specification-name">
-                                        Pulso
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        Compatibilidade
-                                    </div>
-                                    <div class="product__specification-name">
-                                        IOS
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        Linguagens
-                                    </div>
-                                    <div class="product__specification-name">
-                                        Inglês, Russo, Espanhol, Polonês, Português, Turco, Italiano, Francês, Alemão, Norueguês, Coreano, Japonês, Ucraniano, Hebráico, Holandês, Árabe
-                                    </div>
-                                </div>
-                                <div class="product__details-card">
-                                    <div class="product__specification-title">
-                                        Funcionalidades
-                                    </div>
-                                    <div class="product__specification-name">
-                                        Passômetro, Fitness tracker, sonímetro, Mood tracker, mensagem, lembrete, Call reminder, Controle remoto, Push Message, Alarme, rastreador de batimentos cardíacos, Música, Calendário e Calculadora 
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
+                        <?php echo $product->get_description();?>
                     </div>
                     <div class="product__details-tab" id="content3">
                         <div class="product__details-title">
