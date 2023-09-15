@@ -59,6 +59,10 @@
          wp_register_script('home_js', get_template_directory_uri().'/assets/js/home.js', array(), 1, 1, 1); //get_theme_file_uri
          wp_enqueue_script('home_js');
         
+        //home js 
+         wp_register_script('home_js', get_template_directory_uri().'/assets/js/home.js', array(), 1, 1, 1); //get_theme_file_uri
+         wp_enqueue_script('home_js');
+        
          //default js
          wp_register_script('default_js', get_template_directory_uri().'/assets/js/default.js', array(), 1, 1, 1); //get_theme_file_uri
          wp_enqueue_script('default_js');
