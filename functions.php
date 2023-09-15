@@ -21,7 +21,8 @@
         //google material symbols
          wp_enqueue_style('google_material_symbols', '//fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
-         
+         //custom stylesheet
+         wp_enqueue_style('custom-style',get_stylesheet_uri());
 
          // @media responsividade dos ficheiros css
          wp_register_style('media_responsive', get_template_directory_uri().'/assets/css/_media.css', array(), 1, 'all');
@@ -48,8 +49,6 @@
          wp_register_style('produto_css', get_template_directory_uri().'/assets/css/produto.css', array(), 1, 'all');
          wp_enqueue_style('produto_css');
         
-         //custom stylesheet
-         wp_enqueue_style('custom-style',get_stylesheet_uri());
      }
 
     add_action('wp_enqueue_scripts', 'fn_theme_style');
@@ -60,8 +59,8 @@
          wp_enqueue_script('home_js');
         
         //home js 
-         wp_register_script('home_js', get_template_directory_uri().'/assets/js/home.js', array(), 1, 1, 1); //get_theme_file_uri
-         wp_enqueue_script('home_js');
+         wp_register_script('produto_js', get_template_directory_uri().'/assets/js/produto.js', array(), 1, 1, 1); //get_theme_file_uri
+         wp_enqueue_script('produto_js');
         
          //default js
          wp_register_script('default_js', get_template_directory_uri().'/assets/js/default.js', array(), 1, 1, 1); //get_theme_file_uri
