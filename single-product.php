@@ -226,15 +226,22 @@
                             <?php echo wp_get_attachment_image($product->get_image_id());?>
                         </div>
                         <div class="other__imgs">
-                            <div class="other__img">
-                                <img src="<?php bloginfo('template_directory')?>/assets/img/7.jpg" alt="" onclick="changeImage('<?php bloginfo('template_directory')?>/assets/img/7.jpg')">
-                            </div>
-                            <div class="other__img">
-                                <img src="<?php bloginfo('template_directory')?>/assets/img/8.jpg" alt="" onclick="changeImage('<?php bloginfo('template_directory')?>/assets/img/8.jpg')">
-                            </div>
-                            <div class="other__img">
-                                <img src="<?php bloginfo('template_directory')?>/assets/img/26.jpg" alt="" onclick="changeImage('<?php bloginfo('template_directory')?>/assets/img/26.jpg')">
-                            </div>
+                            <?php
+                                $i = 0;
+                                $images = $product->get_gallery_image_ids();
+                                
+                                while($i < count($product->get_gallery_image_ids())){
+                                    
+                                
+                            ?>
+                                    <div class="other__img">
+                                        <?php echo wp_get_attachment_image($images[$i]); ?>
+                                    </div>
+                            <?php
+                                    $i++;
+                                }
+                            ?>
+                            
                         </div>
                     </div>
                     <div class="product__sumary">
@@ -251,7 +258,7 @@
                             </div>
                             <div class="product__totalReviews">
                                 <a href="" class="product__reviews-link">
-                                    10 Avaliações
+                                    <?php echo $product->get_review_count()?> Avaliações
                                 </a>
                             </div>
                             <div class="product__reviewButton-holder">
@@ -269,7 +276,18 @@
                                 <?php endif?>
                             </div>
                             <div class="product__stock">
-                                <h4>Em Estoque</h4>
+                                <h4><?php
+                                        
+                                        if($product->get_stock_status()=="instock"){
+                                            echo "Em Estoque"; 
+                                        }elseif($product->get_stock_status()=="outofstock"){
+                                            echo "Esgotado"; 
+                                        }elseif($product->get_stock_status()=="onbackorder"){
+                                            echo "Por Encomenda"; 
+                                        }
+                                    ?> 
+                                    
+                                </h4>
                             </div>
                         </div>
                         <div class="product__quantities-holder">
@@ -379,7 +397,7 @@
                     <div class="tab__header">
                         <button class="tab__button" id="btn1" onclick="openProductDetails()">Detalhes</button >
                         <button class="tab__button" id="btn2" onclick="openProductSpecs()">Especificações</button >
-                        <button class="tab__button" id="btn3" onclick="openProductReviews()">Avaliações <span>(10)</span></button >
+                        <button class="tab__button" id="btn3" onclick="openProductReviews()">Avaliações <span>(<?php echo $product->get_review_count()?>)</span></button >
                     </div>
                     
                     <div class="product__details-tab" id="content1">
@@ -398,7 +416,7 @@
                     </div>
                     <div class="product__details-tab" id="content3">
                         <div class="product__details-title">
-                            <h3>Apple Watch SE (GPS, 44mm) - Avaliações</h3>
+                            <h3><?php echo $product->get_name();?> - Avaliações</h3>
                         </div>
                         <div class="product__details-body">
                             <div class="overall__ratting-container">
