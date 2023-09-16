@@ -217,7 +217,7 @@
             
                 $product = wc_get_product( get_the_ID());
             
-                echo $product;
+                /*echo $product;*/
             ?>
             <div class="product__container">
                 <div class="product__sumary-info">

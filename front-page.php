@@ -456,7 +456,7 @@
                      New Products section
             \******************************/-->
         <div class="new__products-section">
-            <div class="new__products-container">
+            <div class="new__products-containerHome">
                 <div class="new__products-header">
                     <span class="products__header-title">Novos Produtos</span>
                 </div>
@@ -538,7 +538,7 @@
 
             </div>
 
-            <div class="new__products-container">
+            <div class="new__products-containerHome">
 
                 <div class="new__product-advertising">
                     <img src="<?php echo get_theme_file_uri('assets/img/1530x300_e63ad3f2-5417-47ac-bbe2-8027e34d83c6.webp')?>" alt="">
