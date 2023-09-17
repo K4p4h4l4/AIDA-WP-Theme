@@ -875,6 +875,10 @@ html{
     margin: 0 .4rem;
 }
 
+.main__options .atest{
+    text-decoration: none !important;
+}
+
 .expand{
     text-align: center;
     position:absolute;

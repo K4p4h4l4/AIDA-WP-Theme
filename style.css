@@ -89,6 +89,11 @@ html{
     font-size: 62.5%;
 }
 
+a: -webkit-any-link{
+    color: var(--default-black) !important;
+    text-decoration: none !important;
+}
+
 @-webkit-keyframes moveInRight{
     0%{
         opacity: 0;
@@ -879,6 +884,11 @@ html{
 .main__options i{
     font-size: var(--font-size11);
     margin: 0 .4rem;
+}
+
+.menu__options .main__options a: -webkit-any-link{
+    color: var(--default-black) !important;
+    text-decoration: none !important;
 }
 
 .expand{

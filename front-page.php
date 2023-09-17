@@ -11,11 +11,48 @@
         <!-- *****************************\
                      Menu Principal
             \******************************/-->
+        <?php
+            
+            //$orderby = 'name';
+            //$order = 'asc';
+            //$hide_empty = false ;
+            $cat_args = array(
+                //'orderby'    => $orderby,
+                //'order'      => $order,
+                'taxonomy'    => 'product_cat',
+                //'hide_empty' => $hide_empty,
+            );
+
+            $product_categories = get_terms( ['taxonomy' => 'product_cat'] );
+            //echo '<pre>'; print_r( $product_categories); echo '</pre>';
+            //echo '<pre>'; $product_categories[17]->name ; echo '</pre>';
+
+            /*if( !empty($product_categories) ){
+                echo '
+
+                <ul>';
+                    foreach ($product_categories as $key => $category) {
+                        echo '
+
+                <li>';
+                        echo '<a href="'.get_term_link($category).'" >';
+                        echo $category->name;
+                        echo '</a>';
+                        echo '</li>';
+                    }
+                    echo '</ul>
+
+
+                ';
+            }*/
+        ?>
         <div class="main__menu">
             <ul class="menu__options">
                 <li class="main__options informatic">
-                    <i class="material-icons">computer</i>
-                    Informática
+                    <a href="<?php echo get_term_link($product_categories[28]->name, 'product_cat'); ?>">
+                        <i class="material-icons">computer</i>
+                        <?php echo $product_categories[28]->name ?>
+                    </a>
                     <i class="material-icons expand">expand_more</i>
                     <ul class="main__options-informatic ">
                         <li class="main__category-holder informatic-submenu">
@@ -775,7 +812,10 @@
     </div>
 </div>
 
+
 <?php 
     //get footer.php file
     get_footer();
+                         $product_categories = get_terms( ['taxonomy' => 'product_cat'] );
+            echo '<pre>'; print_r( $product_categories[28]); echo '</pre>';
 ?>
