@@ -1,6 +1,9 @@
-<?php 
+<?php
+    /* Template Name: categorias */
+    defined( 'ABSPATH' ) || exit;
     //get header.php file
     get_header();
+    do_action( 'woocommerce_before_main_content' );
 ?>
     
     <!-- *****************************\
@@ -216,9 +219,9 @@
             <?php 
                 //$category = get_category(get_query_var('product_cat'));
                 //print_r($category);
-                $terms = get_the_ID();
+                $terms = get_the_terms();
                 //echo get_query_var('cat'));
-                echo $terms;
+                 print_r( get_terms(['taxonomy'=>'product_cat']) ); 
             ?>
             <div class="catgories__container">
                 <div class="categories__container-header">
