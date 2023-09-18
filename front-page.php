@@ -817,6 +817,5 @@
 <?php 
     //get footer.php file
     get_footer();
-                         $product_categories = get_terms( ['taxonomy' => 'product_cat'] );
-            echo '<pre>'; print_r( $product_categories[28]); echo '</pre>';
+            
 ?>
