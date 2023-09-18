@@ -1,105 +1,611 @@
 <?php
-/**
- * The Template for displaying product archives, including the main shop page which is a post type archive
- *
- * This template can be overridden by copying it to yourtheme/woocommerce/archive-product.php.
- *
- * HOWEVER, on occasion WooCommerce will need to update template files and you
- * (the theme developer) will need to copy the new files to your theme to
- * maintain compatibility. We try to do this as little as possible, but it does
- * happen. When this occurs the version of the template file will be bumped and
- * the readme will list any important changes.
- *
- * @see https://docs.woocommerce.com/document/template-structure/
- * @package WooCommerce\Templates
- * @version 3.4.0
- */
-
-defined( 'ABSPATH' ) || exit;
-
-get_header( 'shop' );
-
-/**
- * Hook: woocommerce_before_main_content.
- *
- * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
- * @hooked woocommerce_breadcrumb - 20
- * @hooked WC_Structured_Data::generate_website_data() - 30
- */
-do_action( 'woocommerce_before_main_content' );
-
+    /* Template Name: product category */
+    //get header.php file
+    get_header();
+    
 ?>
-<header class="woocommerce-products-header">
-	<?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
-		<h1 class="woocommerce-products-header__title page-title"><?php woocommerce_page_title(); ?></h1>
-	<?php endif; ?>
-
-	<?php
-	/**
-	 * Hook: woocommerce_archive_description.
-	 *
-	 * @hooked woocommerce_taxonomy_archive_description - 10
-	 * @hooked woocommerce_product_archive_description - 10
-	 */
-	do_action( 'woocommerce_archive_description' );
-	?>
-</header>
-<?php
-if ( woocommerce_product_loop() ) {
-
-	/**
-	 * Hook: woocommerce_before_shop_loop.
-	 *
-	 * @hooked woocommerce_output_all_notices - 10
-	 * @hooked woocommerce_result_count - 20
-	 * @hooked woocommerce_catalog_ordering - 30
-	 */
-	do_action( 'woocommerce_before_shop_loop' );
-
-	woocommerce_product_loop_start();
-
-	if ( wc_get_loop_prop( 'total' ) ) {
-		while ( have_posts() ) {
-			the_post();
-
-			/**
-			 * Hook: woocommerce_shop_loop.
-			 */
-			do_action( 'woocommerce_shop_loop' );
-
-			wc_get_template_part( 'content', 'product' );
-		}
-	}
-
-	woocommerce_product_loop_end();
-
-	/**
-	 * Hook: woocommerce_after_shop_loop.
-	 *
-	 * @hooked woocommerce_pagination - 10
-	 */
-	do_action( 'woocommerce_after_shop_loop' );
-} else {
-	/**
-	 * Hook: woocommerce_no_products_found.
-	 *
-	 * @hooked wc_no_products_found - 10
-	 */
-	do_action( 'woocommerce_no_products_found' );
-}
-
-/**
- * Hook: woocommerce_after_main_content.
- *
- * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
- */
-do_action( 'woocommerce_after_main_content' );
-
-/**
- * Hook: woocommerce_sidebar.
- *
- * @hooked woocommerce_get_sidebar - 10
- */
-do_action( 'woocommerce_sidebar' );
-
-get_footer( 'shop' );
+    
+    <!-- *****************************\
+             Main header
+    \******************************/-->
+    <section class="main__header-container">
+        <div class="header__container">
+            <!-- *****************************\
+                     Menu Principal
+            \******************************/-->
+            <div class="main__menu">
+                <ul class="menu__options">
+                    <li class="main__options informatic">
+                        <i class="material-icons">computer</i> 
+                        Informática
+                        <i class="material-icons expand">expand_more</i>
+                        <ul class="main__options-informatic ">
+                            <li class="main__category-holder informatic-submenu">
+                                <a href="" class="main__category">Computadores</a>
+                                <div class="main__category-submenu">
+                                    <ul class="category__submenu-product">
+                                        <li class="poduct__submenu"><a href="" class="product__type">Computadores Portáteis</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">Computadores de Mesa</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="main__category-holder">
+                                <a href="" class="main__category">Armazenamento</a>
+                                <div class="main__category-submenu">
+                                    <ul class="category__submenu-product">
+                                        <li class="poduct__submenu"><a href="" class="product__type">Disco Externo</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">Pen USB</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="main__category-holder">
+                                <a href="" class="main__category">Rede</a>
+                                <div class="main__category-submenu">
+                                    <ul class="category__submenu-product">
+                                        <li class="poduct__submenu"><a href="" class="product__type">Extensor de Sinal</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">Router</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">Switch</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">Telefone</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="main__options tvbox">
+                        <i class="material-icons">airplay</i>
+                        TV Box
+                        <i class="material-icons expand">expand_more</i>
+                        <ul class="main__options-tvbox">
+                            <li class="main__category-holder tvbox-submenu">
+                                <a href="" class="main__category">Android Box</a>
+                                <div class="main__category-submenu">
+                                    <ul class="category__submenu-product">
+                                        <li class="poduct__submenu"><a href="" class="product__type">Android box 1</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">Android box 2</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="main__category-holder">
+                                <a href="" class="main__category">Amazon</a>
+                                <div class="main__category-submenu">
+                                    <ul class="category__submenu-product">
+                                        <li class="poduct__submenu"><a href="" class="product__type">Fire Stick</a></li>
+                                        
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="main__options tablet">
+                        <i class="material-icons">stay_current_portrait</i>
+                        Smartphones e Tablets
+                        <i class="material-icons expand">expand_more</i>
+                        <ul class="main__options-tablet">
+                            <li class="main__category-holder tablet-submenu">
+                                <a href="" class="main__category">Smartphones</a>
+                                <div class="main__category-submenu">
+                                    <ul class="category__submenu-product">
+                                        <li class="poduct__submenu"><a href="" class="product__type">iPhone</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">Android</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="main__category-holder">
+                                <a href="" class="main__category">Smart Wathes</a>
+                                <div class="main__category-submenu">
+                                    <ul class="category__submenu-product">
+                                        <li class="poduct__submenu"><a href="" class="product__type">Apple</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">Android</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="main__category-holder">
+                                <a href="" class="main__category">Tablet</a>
+                                <div class="main__category-submenu">
+                                    <ul class="category__submenu-product">
+                                        <li class="poduct__submenu"><a href="" class="product__type">iPad</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">Android</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">Surface</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="main__options paper">
+                        <i class="material-icons">library_books</i>
+                        Consumívies e Papel
+                        <i class="material-icons expand">expand_more</i>
+                        <ul class="main__options-paper">
+                            <li class="main__category-holder paper-submenu">
+                                <a href="" class="main__category">Tinteiros</a>
+                                <div class="main__category-submenu">
+                                    <ul class="category__submenu-product">
+                                        <li class="poduct__submenu"><a href="" class="product__type">HP</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">Cannon</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="main__category-holder">
+                                <a href="" class="main__category">Toner</a>
+                                <div class="main__category-submenu">
+                                    <ul class="category__submenu-product">
+                                        <li class="poduct__submenu"><a href="" class="product__type">HP</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">Ricoh</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">Kyocera</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="main__category-holder">
+                                <a href="" class="main__category">Papel</a>
+                                <div class="main__category-submenu">
+                                    <ul class="category__submenu-product">
+                                        <li class="poduct__submenu"><a href="" class="product__type">Papel A4</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">Papel A3</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="main__options games">
+                        <i class="material-icons">sports_esports</i>
+                        Jogos e Consola
+                        <i class="material-icons expand">expand_more</i>
+                        <ul class="main__options-games">
+                            <li class="main__category-holder games-submenu">
+                                <a href="" class="main__category">Jogos</a>
+                                <div class="main__category-submenu">
+                                    <ul class="category__submenu-product">
+                                        <li class="poduct__submenu"><a href="" class="product__type">PS5</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">PS4</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="main__category-holder">
+                                <a href="" class="main__category">Consolas</a>
+                                <div class="main__category-submenu">
+                                    <ul class="category__submenu-product">
+                                        <li class="poduct__submenu"><a href="" class="product__type">PS5</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">XBOX</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">PS4</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="main__category-holder">
+                                <a href="" class="main__category">Acessórios</a>
+                                <div class="main__category-submenu">
+                                    <ul class="category__submenu-product">
+                                        <li class="poduct__submenu"><a href="" class="product__type">Headphones</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">Capas PS5</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">Capas PS4</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">Comandos PS5</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">Comandos PS4</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="main__options printer">
+                        <i class="material-icons">adf_scanner</i>
+                        Impressoras e Scaners
+                        <i class="material-icons expand">expand_more</i>
+                        <ul class="main__options-printer">
+                            <li class="main__category-holder printer-submenu">
+                                <a href="" class="main__category">Impressoras</a>
+                                <div class="main__category-submenu">
+                                    <ul class="category__submenu-product">
+                                        <li class="poduct__submenu"><a href="" class="product__type">HP</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">Ricoh</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">Kyocera</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="main__category-holder">
+                                <a href="" class="main__category">Scanners</a>
+                                <div class="main__category-submenu">
+                                    <ul class="category__submenu-product">
+                                        <li class="poduct__submenu"><a href="" class="product__type">HP</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">Brother</a></li>
+                                        <li class="poduct__submenu"><a href="" class="product__type">Fujitsu</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                
+            </div>
+            
+            <?php 
+                //$category = get_category(get_query_var('product_cat'));
+                //print_r($category);
+                //$terms = get_the_terms();
+                //echo get_query_var('cat'));
+                 //print_r( get_terms(['taxonomy'=>'product_cat']) ); 
+            ?>
+            <div class="catgories__container">
+                <div class="categories__container-header">
+                    <span class="categories__container-title">Computadores</span>
+                    
+                    <div class="categories__buttons-holder">
+                        <button class="button__view">
+                            <i class="material-icons">grid_view</i>
+                        </button>
+                        <button class="button__view">
+                            <i class="material-icons">view_list</i>
+                        </button>
+                        <select name="ordenar" id="" class="orderBy">
+                            <option value="0">Ordenar por</option>
+                            <option value="1">Preço: mais barato primeiro</option>
+                            <option value="2">Preço: mais caro primeiro</option>
+                            <option value="3">Data: mais recente primeiro</option>
+                            <option value="4">Data: mais antigo primeiro</option>
+                            <option value="3">Mais vendidos</option>
+                            <option value="4">Melhores avaliados</option>
+                        </select>
+                    </div>
+                </div>
+                
+                
+                <div class="new__products-list">
+                        <div class="product__card">
+                            <div class="product__img">
+                                <div class="product__discount">10%</div>
+                                <a href="produto.php">
+                                    <img src="./img/1-300x300.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="product__details">
+                                <a href="produto.php">
+                                    <span>Canon Canonet</span>
+                                    <div class="rating">
+                                        <i class="material-icons">star</i>
+                                        <i class="material-icons">star</i>
+                                        <i class="material-icons">star</i>
+                                        <i class="material-icons">star</i>
+                                        <i class="material-icons">star_half</i>
+                                    </div>
+                                    <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
+                                    <div class="price__holder">
+                                        <div class="product__price">AOA 90.000</div>
+                                        <div class="product__price-old"><del>AOA 100.000</del></div>
+                                    </div>
+                                </a>
+                                <div class="product__buttons">
+                                    <button class="product__btn" id="infoProductModal"><i class="material-icons">remove_red_eye</i></button>
+                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
+                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                         <div class="product__card">
+                            <div class="product__img">
+                                <div class="product__discount" style="display:none">10%</div>
+                                <img src="./img/7.jpg" alt="">
+                            </div>
+                            <div class="product__details">
+                                <span>ASUS Laptop</span>
+                                <div class="rating">
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                </div>
+                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
+                                <div class="price__holder">
+                                    <div class="product__price">AOA 495.000</div>
+                                    <div class="product__price-old" style="display:none"><del>AOA 100.000</del></div>
+                                </div>
+                                
+                                <div class="product__buttons">
+                                    <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
+                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
+                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                         <div class="product__card">
+                            <div class="product__img">
+                                <div class="product__discount" style="display:none">10%</div>
+                                <img src="./img/12-300x300.jpg" alt="">
+                            </div>
+                            <div class="product__details">
+                                <span>Samsung A3</span>
+                                <div class="rating">
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                </div>
+                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
+                                <div class="price__holder">
+                                    <div class="product__price">AOA 220.000</div>
+                                    <div class="product__price-old" style="display:none"><del>AOA 100.000</del></div>
+                                </div>
+                                
+                                <div class="product__buttons">
+                                    <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
+                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
+                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                         <div class="product__card">
+                            <div class="product__img">
+                                <div class="product__discount" style="display:none">10%</div>
+                                <img src="./img/26.jpg" alt="">
+                            </div>
+                            <div class="product__details">
+                                <span>Gaming Laptop</span>
+                                <div class="rating">
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                </div>
+                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
+                                <div class="price__holder">
+                                    <div class="product__price">AOA 1.090.000</div>
+                                    <div class="product__price-old" style="display:none"><del>AOA 100.000</del></div>
+                                </div>
+                                
+                                <div class="product__buttons">
+                                    <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
+                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
+                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                         <div class="product__card">
+                            <div class="product__img">
+                                <div class="product__discount">33%</div>
+                                <img src="./img/Left-banner-1-1.jpg" alt="">
+                            </div>
+                            <div class="product__details">
+                                <span>Best Beats</span>
+                                <div class="rating">
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                </div>
+                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
+                                <div class="price__holder">
+                                    <div class="product__price">AOA 110.000</div>
+                                    <div class="product__price-old"><del>AOA 180.000</del></div>
+                                </div>
+                                
+                                <div class="product__buttons">
+                                    <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
+                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
+                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                         <div class="product__card">
+                            <div class="product__img">
+                                <div class="product__discount">15%</div>
+                                <img src="./img/product03.png" alt="">
+                            </div>
+                            <div class="product__details">
+                                <span>Good Tablet</span>
+                                <div class="rating">
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                </div>
+                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
+                                <div class="price__holder">
+                                    <div class="product__price">AOA 100.000</div>
+                                    <div class="product__price-old"><del>AOA 120.000</del></div>
+                                </div>
+                                
+                                <div class="product__buttons">
+                                    <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
+                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
+                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product__card">
+                            <div class="product__img">
+                                <div class="product__discount" style="display:none">10%</div>
+                                <img src="./img/7.jpg" alt="">
+                            </div>
+                            <div class="product__details">
+                                <span>ASUS Laptop</span>
+                                <div class="rating">
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                </div>
+                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
+                                <div class="price__holder">
+                                    <div class="product__price">AOA 495.000</div>
+                                    <div class="product__price-old" style="display:none"><del>AOA 100.000</del></div>
+                                </div>
+                                
+                                <div class="product__buttons">
+                                    <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
+                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
+                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                         <div class="product__card">
+                            <div class="product__img">
+                                <div class="product__discount" style="display:none">10%</div>
+                                <img src="./img/12-300x300.jpg" alt="">
+                            </div>
+                            <div class="product__details">
+                                <span>Samsung A3</span>
+                                <div class="rating">
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                </div>
+                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
+                                <div class="price__holder">
+                                    <div class="product__price">AOA 220.000</div>
+                                    <div class="product__price-old" style="display:none"><del>AOA 100.000</del></div>
+                                </div>
+                                
+                                <div class="product__buttons">
+                                    <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
+                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
+                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                         <div class="product__card">
+                            <div class="product__img">
+                                <div class="product__discount" style="display:none">10%</div>
+                                <img src="./img/26.jpg" alt="">
+                            </div>
+                            <div class="product__details">
+                                <span>Gaming Laptop</span>
+                                <div class="rating">
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                </div>
+                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
+                                <div class="price__holder">
+                                    <div class="product__price">AOA 1.090.000</div>
+                                    <div class="product__price-old" style="display:none"><del>AOA 100.000</del></div>
+                                </div>
+                                
+                                <div class="product__buttons">
+                                    <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
+                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
+                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                         <div class="product__card">
+                            <div class="product__img">
+                                <div class="product__discount">33%</div>
+                                <img src="./img/Left-banner-1-1.jpg" alt="">
+                            </div>
+                            <div class="product__details">
+                                <span>Best Beats</span>
+                                <div class="rating">
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                </div>
+                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
+                                <div class="price__holder">
+                                    <div class="product__price">AOA 110.000</div>
+                                    <div class="product__price-old"><del>AOA 180.000</del></div>
+                                </div>
+                                
+                                <div class="product__buttons">
+                                    <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
+                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
+                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                         <div class="product__card">
+                            <div class="product__img">
+                                <div class="product__discount">15%</div>
+                                <img src="./img/product03.png" alt="">
+                            </div>
+                            <div class="product__details">
+                                <span>Good Tablet</span>
+                                <div class="rating">
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                </div>
+                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
+                                <div class="price__holder">
+                                    <div class="product__price">AOA 100.000</div>
+                                    <div class="product__price-old"><del>AOA 120.000</del></div>
+                                </div>
+                                
+                                <div class="product__buttons">
+                                    <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
+                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
+                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product__card">
+                            <div class="product__img">
+                                <div class="product__discount">15%</div>
+                                <img src="./img/product03.png" alt="">
+                            </div>
+                            <div class="product__details">
+                                <span>Good Tablet</span>
+                                <div class="rating">
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                </div>
+                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
+                                <div class="price__holder">
+                                    <div class="product__price">AOA 100.000</div>
+                                    <div class="product__price-old"><del>AOA 120.000</del></div>
+                                </div>
+                                
+                                <div class="product__buttons">
+                                    <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
+                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
+                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
+                                    
+                                </div>
+                            </div>
+                        </div>                      
+                         
+                    </div>
+            </div>
+            
+        </div>
+    </section>
+    
+    
+    
+ <?php 
+    //get footer.php file
+    get_footer();                         
+?>

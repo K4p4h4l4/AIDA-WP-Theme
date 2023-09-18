@@ -238,6 +238,7 @@
                 
                 
                 <div class="new__products-list">
+                      
                        <?php
 
                             // Check rows existexists.

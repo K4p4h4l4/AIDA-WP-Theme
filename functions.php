@@ -45,9 +45,13 @@
          wp_register_style('contactos_css', get_template_directory_uri().'/assets/css/contactos.css', array(), 1, 'all');
          wp_enqueue_style('contactos_css');
         
-        //css do resto da página produto
+         //css do resto da página produto
          wp_register_style('produto_css', get_template_directory_uri().'/assets/css/produto.css', array(), 1, 'all');
          wp_enqueue_style('produto_css');
+        
+         //css do resto da página produto
+         wp_register_style('categorias_css', get_template_directory_uri().'/assets/css/categorias.css', array(), 1, 'all');
+         wp_enqueue_style('categorias_css');
         
      }
 
@@ -121,4 +125,21 @@
     }
 
     add_filter('nav_menu_link_attributes', 'add_link_atts');
+
+    //Woocommerce Support
+    add_theme_support('woocommerce');
+
+    /*add_filter( 'template_include', 'woocommerce_archive_template', 99 );
+
+    function woocommerce_archive_template( $template ) {
+
+        if ( is_woocommerce() && is_archive() ) {
+            $new_template = get_stylesheet_directory() . '/woocommerce/archive-product.php';
+            if ( !empty( $new_template ) ) {
+                return $new_template;
+            }
+        }
+
+        return $template;
+    }*/
 ?>

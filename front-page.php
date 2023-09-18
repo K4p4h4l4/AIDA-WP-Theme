@@ -16,14 +16,15 @@
             //$orderby = 'name';
             //$order = 'asc';
             //$hide_empty = false ;
-            $cat_args = array(
+            $args = array(
                 //'orderby'    => $orderby,
                 //'order'      => $order,
                 'taxonomy'    => 'product_cat',
-                //'hide_empty' => $hide_empty,
+                'hide_empty' => 'false',
             );
 
-            $product_categories = get_terms( ['taxonomy' => 'product_cat'] );
+            $product_categories = get_terms( $args );
+           
             //echo '<pre>'; print_r( $product_categories); echo '</pre>';
             //echo '<pre>'; $product_categories[17]->name ; echo '</pre>';
 
@@ -49,7 +50,7 @@
         <div class="main__menu">
             <ul class="menu__options">
                 <li class="main__options informatic">
-                    <a href="<?php echo get_term_link($product_categories[28]->name, 'product_cat'); ?>">
+                    <a href="<?php echo get_term_link($product_categories[28], 'product_cat'); ?>">
                         <i class="material-icons">computer</i>
                         <?php echo $product_categories[28]->name ?>
                     </a>
