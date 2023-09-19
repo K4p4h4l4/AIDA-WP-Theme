@@ -17,8 +17,8 @@
             //$order = 'asc';
             //$hide_empty = false ;
             $args = array(
-                //'orderby'    => $orderby,
-                //'order'      => $order,
+                'orderby'    => 'name',
+                'order'      => 'DESC',
                 'taxonomy'    => 'product_cat',
                 'hide_empty' => 'false',
             );
@@ -46,13 +46,14 @@
 
                 ';
             }*/
+            print_r($product_categories);
         ?>
         <div class="main__menu">
             <ul class="menu__options">
                 <li class="main__options informatic">
-                    <a href="<?php echo get_term_link($product_categories[28], 'product_cat'); ?>">
+                    <a href="<?php //echo get_term_link($product_categories[28], 'product_cat'); ?>">
                         <i class="material-icons">computer</i>
-                        <?php echo $product_categories[28]->name ?>
+                        <?php //echo $product_categories[28]->name ?>
                     </a>
                     <i class="material-icons expand">expand_more</i>
                     <ul class="main__options-informatic ">
@@ -817,5 +818,6 @@
 <?php 
     //get footer.php file
     get_footer();
+    //print_r($product_categories);
             
 ?>
