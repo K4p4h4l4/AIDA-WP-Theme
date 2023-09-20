@@ -273,7 +273,11 @@
                                     ?>
                                     <div class="product__card">
                                         <div class="product__img">
-                                            <div class="product__discount">10%</div>
+                                            <?php if($product->get_sale_price()):?>
+                                                <div class="product__discount">
+                                                    <?php echo round((1-($product->get_sale_price()/$product->get_regular_price()))*100); ?>%
+                                                </div>
+                                            <?php endif?>
                                             <a href="<?php echo get_the_permalink() ?>">
                                                 <?php the_post_thumbnail(); ?>
                                                 <!--img src="./img/1-300x300.jpg" alt=""-->
@@ -291,8 +295,14 @@
                                                 </div>
                                                 <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
                                                 <div class="price__holder">
-                                                    <div class="product__price">AOA 90.000</div>
-                                                    <div class="product__price-old"><del>AOA 100.000</del></div>
+                                                    <?php if($product->get_sale_price()):?>
+                                                        <div class="product__price">Kz <?php echo $product->get_sale_price();?></div>
+                                                        <div class="product__price-old"><del>Kz <?php echo $product->get_regular_price(); ?></del></div>
+                                                    <?php else:?>
+                                                        <div class="product__price">Kz <?php echo $product->get_regular_price();?></div>
+                                                    <?php endif?>
+                                                    <!--div class="product__price">AOA 90.000</div>
+                                                    <div class="product__price-old"><del>AOA 100.000</del></div-->
                                                 </div>
                                             </a>
                                             <div class="product__buttons">

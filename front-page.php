@@ -520,6 +520,7 @@
                             $products = $query->get_products();
                             
                             if(! empty($products)){
+                                 $i= 1;
                                 //Loop para listar todos os produtos        
                                 foreach( $products as $product){
                                     //Obter os dados do vector
@@ -529,9 +530,11 @@
                                     $product_sale_price = $product->get_sale_price();
                                     $product_img_id = $product->get_image_id();
                                     /*echo $val;*/
+                                    
+                                    
                                     ?>
 
-                                    <div class="product__card">
+                                    <div class="product__card" data-name="p-<?php echo $i;?>">
                                         <div class="product__img">
                                             <a href="<?php echo get_permalink($product_id); ?>">
                                                 <?php if($product_sale_price):?>
@@ -563,7 +566,7 @@
                                                 </div>
                                             </a>
                                             <div class="product__buttons">
-                                                <button class="product__btn" id="infoProductModal"><i class="material-icons">remove_red_eye</i></button>
+                                                <button class="product__btn info" id="infoProductModal"><i class="material-icons">remove_red_eye</i></button>
                                                 <button class="product__btn"><i class="material-icons">favorite_border</i></button>
                                                 <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
 
@@ -571,6 +574,7 @@
                                         </div>
                                     </div>
                                     <?php
+                                        $i++;
                                 }
                             }   
                             
@@ -773,48 +777,65 @@
 
 
 <div class="bg-modal">
-    <div class="modal__content">
-        <div class="modal__close">
-            <div class="modal__close-btn">+</div>
-        </div>
-        <div class="modal__container-info">
-            <div class="modal__product-img">
-                <img src="<?php echo get_theme_file_uri('assets/img/8.jpg')?>" alt="">
-            </div>
-            <div class="modal__product-info">
-                <div class="modal__product-title">
-                    <h3>New Apple Watch SE (GPS, 44mm)</h3>
-                </div>
-                <div class="modal__product-rating">
-                    <i class="material-icons">star</i>
-                    <i class="material-icons">star</i>
-                    <i class="material-icons">star</i>
-                    <i class="material-icons">star</i>
-                    <i class="material-icons">star_half</i>
+    <?php
+        $i=1;
+        foreach( $products as $product){
+            //Obter os dados do vector
+            $product_id = $product->get_id();
+            $product_name = $product->get_name();
+            $product_price = $product->get_regular_price();
+            $product_sale_price = $product->get_sale_price();
+            $product_img_id = $product->get_image_id();
+            /*echo $val;*/
 
-                    <span class="modal__rating-value">4.4</span>
-                    <span class="modal__rating-total"> 75 Avaliações</span>
+
+            ?>
+            <div class="modal__content" data-target="p-<?php echo $i;?>">
+                <div class="modal__close">
+                    <div class="modal__close-btn">+</div>
                 </div>
-                <div class="modal__product-price">
-                    <h3>AOA 300.000</h3>
-                </div>
-                <div class="modal__product-stock">
-                    <span class="modal__stock-txt">Em Estoque</span>
-                </div>
-                <div class="modal__product-qtde">
-                    <label for="Quantidade">Qtde:</label>
-                    <input type="number" min="0" value="1" max="100">
-                    <button class="modal__product-cart">
-                        <i class="material-icons">shopping_cart</i>
-                        Adicionar ao carrinho
-                    </button>
-                </div>
-                <div class="modal__product-description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe ex iure fugit minus nihil recusandae, beatae perspiciatis aut quibusdam architecto sapiente sed harum! Quae, consectetur?</p>
+                <div class="modal__container-info">
+                    <div class="modal__product-img">
+                        <!--img src="< ?php echo get_theme_file_uri('assets/img/8.jpg')?>" alt=""-->
+                        <?php echo wp_get_attachment_image($product_img_id);?>
+                    </div>
+                    <div class="modal__product-info">
+                        <div class="modal__product-title">
+                            <h3><?php echo $product_name;?></h3>
+                        </div>
+                        <div class="modal__product-rating">
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star_half</i>
+
+                            <span class="modal__rating-value">4.4</span>
+                            <span class="modal__rating-total"> 75 Avaliações</span>
+                        </div>
+                        <div class="modal__product-price">
+                            <h3>AOA 300.000</h3>
+                        </div>
+                        <div class="modal__product-stock">
+                            <span class="modal__stock-txt">Em Estoque</span>
+                        </div>
+                        <div class="modal__product-qtde">
+                            <label for="Quantidade">Qtde:</label>
+                            <input type="number" min="0" value="1" max="100">
+                            <button class="modal__product-cart">
+                                <i class="material-icons">shopping_cart</i>
+                                Adicionar ao carrinho
+                            </button>
+                        </div>
+                        <div class="modal__product-description">
+                            <?php echo $product->get_short_description();?>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+            <?php
+            $i++;
+        } ?>
 </div>
 
 

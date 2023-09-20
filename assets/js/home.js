@@ -47,14 +47,30 @@ function slidefun(n){
     dot[counter - 1].classList.add('dotactive');
 }
 
-const modal = document.querySelector('dialog');
+//let modal = document.querySelector('.bg-modal');
 
-document.getElementById('infoProductModal').addEventListener('click', function(){
+/*document.getElementById('infoProductModal').addEventListener('click', function(){
    document.querySelector('.bg-modal').style.display='flex';
 });
 
 document.querySelector('.modal__close-btn').addEventListener('click', function(){
     document.querySelector('.bg-modal').style.display='none';
+});*/
+
+let modal = document.querySelector('.bg-modal');
+let infoPreview = modal.querySelectorAll('.modal__content');
+
+document.querySelectorAll('.product__buttons .info').forEach(product =>{
+    product.onclick = () =>{
+        modal.style.display = 'flex';
+        let name = product.getAttribute('data-name');
+        infoPreview.forEach(preview =>{
+            let target = preview.getAttribute('data-target');
+            if(name == target){
+                preview.classList.add('modalactive');
+            }
+        });
+    }
 });
 
 /*document.querySelector('.bg-modal').addEventListener('click', function(){

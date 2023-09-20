@@ -448,6 +448,11 @@ a:visited{
     background-color: var(--default-white);
     position: relative;
     border-radius: 1rem;
+    display: none;
+}
+
+.modal__content .modalactive{
+    display: inline-block;
 }
 
 .modal__close{

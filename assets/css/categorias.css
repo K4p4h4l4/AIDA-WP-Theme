@@ -302,6 +302,11 @@
     background-color: var(--default-white);
     position: relative;
     border-radius: 1rem;
+    display: none;
+}
+
+.modal__content.active{
+    display: inline-block;
 }
 
 .modal__close{
