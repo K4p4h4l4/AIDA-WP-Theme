@@ -332,5 +332,4 @@
 <?php 
     //get footer.php file
     get_footer(); 
-    print_r($loop);
 ?>

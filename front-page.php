@@ -534,7 +534,7 @@
                                     
                                     ?>
 
-                                    <div class="product__card" data-name="p-<?php echo $i;?>">
+                                    <div class="product__card" >
                                         <div class="product__img">
                                             <a href="<?php echo get_permalink($product_id); ?>">
                                                 <?php if($product_sale_price):?>
@@ -566,7 +566,7 @@
                                                 </div>
                                             </a>
                                             <div class="product__buttons">
-                                                <button class="product__btn info" id="infoProductModal"><i class="material-icons">remove_red_eye</i></button>
+                                                <button class="product__btn info" id="infoProductModal" data-name="p-<?php echo $i;?>"><i class="material-icons">remove_red_eye</i></button>
                                                 <button class="product__btn"><i class="material-icons">favorite_border</i></button>
                                                 <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
 
@@ -777,24 +777,24 @@
 
 
 <div class="bg-modal">
-    <?php
-        $i=1;
-        foreach( $products as $product){
-            //Obter os dados do vector
-            $product_id = $product->get_id();
-            $product_name = $product->get_name();
-            $product_price = $product->get_regular_price();
-            $product_sale_price = $product->get_sale_price();
-            $product_img_id = $product->get_image_id();
-            /*echo $val;*/
+    <div class="modal__content">
+        <div class="modal__close">
+            <div class="modal__close-btn">+</div>
+        </div>
+         <?php
+            $i=1;
+            foreach( $products as $product){
+                //Obter os dados do vector
+                $product_id = $product->get_id();
+                $product_name = $product->get_name();
+                $product_price = $product->get_regular_price();
+                $product_sale_price = $product->get_sale_price();
+                $product_img_id = $product->get_image_id();
+                /*echo $val;*/
 
 
-            ?>
-            <div class="modal__content" data-target="p-<?php echo $i;?>">
-                <div class="modal__close">
-                    <div class="modal__close-btn">+</div>
-                </div>
-                <div class="modal__container-info">
+                ?>
+                <div class="modal__container-info" data-target="p-<?php echo $i;?>">
                     <div class="modal__product-img">
                         <!--img src="< ?php echo get_theme_file_uri('assets/img/8.jpg')?>" alt=""-->
                         <?php echo wp_get_attachment_image($product_img_id);?>
@@ -813,11 +813,27 @@
                             <span class="modal__rating-value">4.4</span>
                             <span class="modal__rating-total"> 75 Avaliações</span>
                         </div>
-                        <div class="modal__product-price">
-                            <h3>AOA 300.000</h3>
+                        <div class="modal__product-price">                            
+                            <?php 
+                                if($product->get_sale_price()):?>
+                                    <h3>Kz <?php echo $product->get_sale_price();?></h3>
+                                    <del>Kz <?php echo $product->get_regular_price(); ?></del>
+                                <?php else:?>
+                                    <h3>Kz <?php echo $product->get_regular_price();?></h3>
+                                <?php endif?>
                         </div>
                         <div class="modal__product-stock">
-                            <span class="modal__stock-txt">Em Estoque</span>
+                            <span class="modal__stock-txt">
+                                <?php                                        
+                                    if($product->get_stock_status()=="instock"){
+                                        echo "Em Estoque"; 
+                                    }elseif($product->get_stock_status()=="outofstock"){
+                                        echo "Esgotado"; 
+                                    }elseif($product->get_stock_status()=="onbackorder"){
+                                        echo "Por Encomenda"; 
+                                    }
+                                ?> 
+                            </span>
                         </div>
                         <div class="modal__product-qtde">
                             <label for="Quantidade">Qtde:</label>
@@ -832,10 +848,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
             <?php
-            $i++;
-        } ?>
+                $i++;
+            } ?>
+    </div>        
 </div>
 
 
