@@ -17,8 +17,8 @@
             //$order = 'asc';
             //$hide_empty = false ;
             $args = array(
-                'orderby'    => 'name',
-                'order'      => 'DESC',
+                //'orderby'    => 'name',
+                //'order'      => 'DESC',
                 'taxonomy'    => 'product_cat',
                 'hide_empty' => 'false',
             );
@@ -46,32 +46,32 @@
 
                 ';
             }*/
-            print_r($product_categories);
+            //print_r($product_categories);
         ?>
         <div class="main__menu">
             <ul class="menu__options">
                 <li class="main__options informatic">
-                    <a href="<?php //echo get_term_link($product_categories[28], 'product_cat'); ?>">
+                    <a href="<?php echo get_term_link($product_categories[28], 'product_cat'); ?>">
                         <i class="material-icons">computer</i>
-                        <?php //echo $product_categories[28]->name ?>
+                        <?php echo $product_categories[28]->name ?><!--Informática-->
                     </a>
                     <i class="material-icons expand">expand_more</i>
                     <ul class="main__options-informatic ">
                         <li class="main__category-holder informatic-submenu">
-                            <a href="categorias.php" class="main__category">Computadores</a>
+                            <a href="<?php echo get_term_link($product_categories[14], 'product_cat'); ?>" class="main__category"><?php echo $product_categories[14]->name ?><!--Computadores--></a>
                             <div class="main__category-submenu">
                                 <ul class="category__submenu-product">
-                                    <li class="poduct__submenu"><a href="categorias.php" class="product__type">Computadores Portáteis</a></li>
-                                    <li class="poduct__submenu"><a href="categorias.php" class="product__type">Computadores de Mesa</a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[16], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[16]->name ?><!--Computadores Portáteis--></a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[15], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[15]->name ?><!--Computadores de Mesa--></a></li>
                                 </ul>
                             </div>
                         </li>
                         <li class="main__category-holder">
-                            <a href="" class="main__category">Armazenamento</a>
+                            <a href="<?php echo get_term_link($product_categories[11], 'product_cat'); ?>" class="main__category"><?php echo $product_categories[11]->name ?> <!--Armazenamento--> </a>
                             <div class="main__category-submenu">
                                 <ul class="category__submenu-product">
                                     <li class="poduct__submenu"><a href="" class="product__type">Disco Externo</a></li>
-                                    <li class="poduct__submenu"><a href="" class="product__type">Pen USB</a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[35], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[35]->name ?> <!--Pen Drive USB--></a></li>
                                 </ul>
                             </div>
                         </li>
@@ -79,10 +79,10 @@
                             <a href="" class="main__category">Rede</a>
                             <div class="main__category-submenu">
                                 <ul class="category__submenu-product">
-                                    <li class="poduct__submenu"><a href="" class="product__type">Extensor de Sinal</a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[19], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[19]->name ?> <!--Extensor de sinal--></a></li>
                                     <li class="poduct__submenu"><a href="" class="product__type">Router</a></li>
                                     <li class="poduct__submenu"><a href="" class="product__type">Switch</a></li>
-                                    <li class="poduct__submenu"><a href="" class="product__type">Telefone</a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[47], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[47]->name ?> <!--Extensor de sinal--></a></li>
                                 </ul>
                             </div>
                         </li>
@@ -114,8 +114,11 @@
                     </ul>
                 </li>
                 <li class="main__options tablet">
-                    <i class="material-icons">stay_current_portrait</i>
-                    Smartphones e Tablets
+                    <a href="<?php echo get_term_link($product_categories[42], 'product_cat'); ?>">
+                        <i class="material-icons">stay_current_portrait</i>
+                        <?php echo $product_categories[42]->name ?> <!--Smartphones e tables-->
+                    </a>
+                    
                     <i class="material-icons expand">expand_more</i>
                     <ul class="main__options-tablet">
                         <li class="main__category-holder tablet-submenu">
@@ -128,10 +131,10 @@
                             </div>
                         </li>
                         <li class="main__category-holder">
-                            <a href="" class="main__category">Smart Wathes</a>
+                            <a href="<?php echo get_term_link($product_categories[41], 'product_cat'); ?>" class="main__category"><?php echo $product_categories[41]->name ?> <!--Smart Watches--></a>
                             <div class="main__category-submenu">
                                 <ul class="category__submenu-product">
-                                    <li class="poduct__submenu"><a href="" class="product__type">Apple</a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[10], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[10]->name ?> <!--Apple--></a></li>
                                     <li class="poduct__submenu"><a href="" class="product__type">Android</a></li>
                                 </ul>
                             </div>
