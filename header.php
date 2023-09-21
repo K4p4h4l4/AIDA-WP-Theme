@@ -148,9 +148,14 @@
                 <!-- *****************************\
                          Lista de compras
                 \******************************/-->
+                <?php
+                    global $woocommerce;
+                    $products = $woocommerce->cart->get_cart();
+                    $total =0;
+                ?>
                 <div class="wishes__content">
                     <div class="wishes__number">
-                        <span>6</span>
+                        <span><?php echo WC()->cart->get_cart_contents_count();?></span>
                     </div>
                     <a href="#" class="wishes__content-btn" id="products__cart">
                         <i class="material-icons">local_grocery_store</i>
@@ -159,109 +164,49 @@
                      
                     <!-- ************************************\
                           Lista de produtos das compras
-                    \*************************************/--> 
+                    \*************************************/-->
+                     
                     <div class="cart__list-holder">
                         <div class="cart__list-container">
+                            <?php 
+                                foreach($products as $product => $values){
+                                    $_product = wc_get_product($values['data']->get_id());
+                            ?>
                             <div class="cart__list-card">
                                 <div class="cart__list-img">
-                                    <img src="<?php echo get_theme_file_uri('assets/img/12-300x300.jpg')?>" alt="">
+                                    <?php echo wp_get_attachment_image($_product->get_image_id());?>
+                                    <!--img src="< ?php echo get_theme_file_uri('assets/img/12-300x300.jpg')?>" alt=""-->
                                 </div>
                                 <div class="cart__txt-container">
                                     <div class="cart__poduct-name">
-                                        <span>Sony Beats</span>
+                                        <span><?php echo $_product->get_name(); ?></span>
+                                        <span>(<?php echo $values['quantity']; ?>)</span>
                                     </div>
                                     <div class="cart__product-price">
                                         <div class="cart__product-qtde">
-                                            <span>1</span>X
+                                            
                                         </div>
-                                        <span>AOA 90.000</span>
+                                        <span>
+                                            Kz 
+                                            <?php 
+                                                echo $values['line_subtotal'];
+                                                $total+=$values['line_subtotal'];
+                                            ?>
+                                        </span>
                                     </div>   
                                 </div>
                                 <div class="cart__close-btn">
                                     +
                                 </div>
                             </div>
-                            <div class="cart__list-card">
-                                <div class="cart__list-img">
-                                    <img src="<?php echo get_theme_file_uri('assets/img/7-300x300.jpg')?>" alt="">
-                                </div>
-                                <div class="cart__txt-container">
-                                    <div class="cart__poduct-name">
-                                        <span>Apple Watch M4</span>
-                                    </div>
-                                    <div class="cart__product-price">
-                                        <div class="cart__product-qtde">
-                                            <span>1</span>X
-                                        </div>
-                                        <span>AOA 350.000</span>
-                                    </div>   
-                                </div>
-                                <div class="cart__close-btn">
-                                    +
-                                </div>
-                            </div>
-                            <div class="cart__list-card">
-                                <div class="cart__list-img">
-                                    <img src="<?php echo get_theme_file_uri('assets/img/1-300x300.jpg')?>" alt="">
-                                </div>
-                                <div class="cart__txt-container">
-                                    <div class="cart__poduct-name">
-                                        <span>Pie Headsets</span>
-                                    </div>
-                                    <div class="cart__product-price">
-                                        <div class="cart__product-qtde">
-                                            <span>1</span>X
-                                        </div>
-                                        <span>AOA 35.000</span>
-                                    </div>   
-                                </div>
-                                <div class="cart__close-btn">
-                                    +
-                                </div>
-                            </div>
-                            <div class="cart__list-card">
-                                <div class="cart__list-img">
-                                    <img src="<?php echo get_theme_file_uri('assets/img/product03.png')?>" alt="">
-                                </div>
-                                <div class="cart__txt-container">
-                                    <div class="cart__poduct-name">
-                                        <span>Macbook Pro</span>
-                                    </div>
-                                    <div class="cart__product-price">
-                                        <div class="cart__product-qtde">
-                                            <span>1</span>X
-                                        </div>
-                                        <span>AOA 2.390.000</span>
-                                    </div>   
-                                </div>
-                                <div class="cart__close-btn">
-                                    +
-                                </div>
-                            </div>
-                            <div class="cart__list-card">
-                                <div class="cart__list-img">
-                                    <img src="<?php echo get_theme_file_uri('assets/img/iPhone%20X.png')?>" alt="">
-                                </div>
-                                <div class="cart__txt-container">
-                                    <div class="cart__poduct-name">
-                                        <span>iPhone 14</span>
-                                    </div>
-                                    <div class="cart__product-price">
-                                        <div class="cart__product-qtde">
-                                            <span>1</span>X
-                                        </div>
-                                        <span>AOA 1.200.000</span>
-                                    </div>   
-                                </div>
-                                <div class="cart__close-btn">
-                                    +
-                                </div>
-                            </div>
+                            <?php 
+                                }
+                            ?>                             
                         </div>
                         <div class="cart__btn-holder">
                             <div class="cart__total-container">
                                 <span class="cart__total-txt">Valor Total:</span>
-                                <span class="cart__total-value" id="total">AOA 4.065.000</span>
+                                <span class="cart__total-value" id="total">Kz <?php echo $total; ?></span>
                             </div>
                             <div class="cart__btn-container">
                                 <button class="cart__view" id="cart__view" onclick="location.href='carrinho.php'">Ver carrinho</button>

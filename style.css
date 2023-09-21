@@ -490,7 +490,7 @@ a: -webkit-any-link{
 }
 
 .cart__poduct-name span{
-    font-size: var(--font-size10);
+    font-size: var(--font-size12);
     font-weight: 600;
 }
 
@@ -502,16 +502,16 @@ a: -webkit-any-link{
 }
 
 .cart__product-qtde{
-    font-size: var(--font-size8);
+    font-size: var(--font-size10);
 }
 
 .cart__product-qtde span{
-    font-size: var(--font-size9);
+    font-size: var(--font-size11);
     margin-right: .5rem;
 }
 
 .cart__product-price span{
-    font-size: var(--font-size9);
+    font-size: var(--font-size11);
     margin-left: .5rem;
 }
 
@@ -547,12 +547,12 @@ a: -webkit-any-link{
 }
 
 .cart__total-txt{
-    font-size: var(--font-size10);
+    font-size: var(--font-size12);
     font-weight: bold;
 }
 
 .cart__total-value{
-    font-size: var(--font-size10);
+    font-size: var(--font-size12);
     font-weight: 500;
 }
 
@@ -570,7 +570,7 @@ a: -webkit-any-link{
 
 .cart__view{
     width: 9.5rem; 
-    font-size: var(--font-size8);
+    font-size: var(--font-size10);
     border: none;
     padding: .6rem .3rem;
     cursor: pointer;

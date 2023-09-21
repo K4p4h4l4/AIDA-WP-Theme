@@ -568,7 +568,7 @@
                                             <div class="product__buttons">
                                                 <button class="product__btn info" id="infoProductModal" data-name="p-<?php echo $i;?>"><i class="material-icons">remove_red_eye</i></button>
                                                 <button class="product__btn"><i class="material-icons">favorite_border</i></button>
-                                                <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
+                                                <a class="product__btn" href="http://localhost:81/wordpress/?add-to-cart=<?php echo $product_id; ?>&quantity=1"><i class="material-icons">shopping_cart</i></a>
 
                                             </div>
                                         </div>
@@ -838,10 +838,10 @@
                         <div class="modal__product-qtde">
                             <label for="Quantidade">Qtde:</label>
                             <input type="number" min="0" value="1" max="100">
-                            <button class="modal__product-cart">
+                            <a class="modal__product-cart" href="https://localhost:81/wordpress/?add-to-cart=<?php echo $product_id; ?>&quantity=1">
                                 <i class="material-icons">shopping_cart</i>
                                 Adicionar ao carrinho
-                            </button>
+                            </a>
                         </div>
                         <div class="modal__product-description">
                             <?php echo $product->get_short_description();?>
@@ -859,5 +859,5 @@
     //get footer.php file
     get_footer();
     //print_r($product_categories);
-            
+    print_r($woocommerce->cart->get_cart());        
 ?>
