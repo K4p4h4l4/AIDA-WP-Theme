@@ -126,6 +126,7 @@
     -o-transition: all .3s ease;
     transition: all .3s ease;
     margin: 1.5rem .6rem;
+    box-shadow: 0 1rem 1rem #a5a5a5;
 }
 
 .product__card:hover{
