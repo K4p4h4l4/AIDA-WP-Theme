@@ -568,8 +568,8 @@
                                             <div class="product__buttons">
                                                 <button class="product__btn info" id="infoProductModal" data-name="p-<?php echo $i;?>"><i class="material-icons">remove_red_eye</i></button>
                                                 <button class="product__btn"><i class="material-icons">favorite_border</i></button>
-                                                <a class="product__btn" href="http://localhost:81/wordpress/?add-to-cart=<?php echo $product_id; ?>&quantity=1"><i class="material-icons">shopping_cart</i></a>
-
+                                                <button class="product__btn" onclick="rudrAddToCart(<?php echo $product_id; ?>, 1)"><i class="material-icons">shopping_cart</i></button >
+<!--href="http://localhost:81/wordpress/?add-to-cart=< ?php echo $product_id; ?>&quantity=1"-->
                                             </div>
                                         </div>
                                     </div>

@@ -195,8 +195,10 @@
                                         </span>
                                     </div>   
                                 </div>
-                                <div class="cart__close-btn">
-                                    +
+                                <div class="cart__close-btn" >
+                                   <button onclick="rudrRemoveCartItem(<?php echo $_product->get_id(); ?>)">+</button>
+                                    
+                                    <!--href="https://localhost:81/wordpress/?remove-to-cart=< ?php echo $product_id; ?>"-->
                                 </div>
                             </div>
                             <?php 
