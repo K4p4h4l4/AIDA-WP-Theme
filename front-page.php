@@ -25,88 +25,70 @@
 
             $product_categories = get_terms( $args );
            
-            //echo '<pre>'; print_r( $product_categories); echo '</pre>';
-            //echo '<pre>'; $product_categories[17]->name ; echo '</pre>';
-
-            /*if( !empty($product_categories) ){
-                echo '
-
-                <ul>';
-                    foreach ($product_categories as $key => $category) {
-                        echo '
-
-                <li>';
-                        echo '<a href="'.get_term_link($category).'" >';
-                        echo $category->name;
-                        echo '</a>';
-                        echo '</li>';
-                    }
-                    echo '</ul>
-
-
-                ';
-            }*/
             //print_r($product_categories);
         ?>
         <div class="main__menu">
             <ul class="menu__options">
                 <li class="main__options informatic">
-                    <a href="<?php echo get_term_link($product_categories[28], 'product_cat'); ?>">
+                    <a href="<?php echo get_term_link($product_categories[32], 'product_cat'); ?>" class="main__category-link">
                         <i class="material-icons">computer</i>
-                        <?php echo $product_categories[28]->name ?><!--Informática-->
+                        <?php echo $product_categories[32]->name; ?><!--Informática-->
                     </a>
                     <i class="material-icons expand">expand_more</i>
                     <ul class="main__options-informatic ">
                         <li class="main__category-holder informatic-submenu">
-                            <a href="<?php echo get_term_link($product_categories[14], 'product_cat'); ?>" class="main__category"><?php echo $product_categories[14]->name ?><!--Computadores--></a>
+                            <a href="<?php echo get_term_link($product_categories[16], 'product_cat'); ?>" class="main__category"><?php echo $product_categories[16]->name; ?><!--Computadores--></a>
                             <div class="main__category-submenu">
                                 <ul class="category__submenu-product">
-                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[16], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[16]->name ?><!--Computadores Portáteis--></a></li>
-                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[15], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[15]->name ?><!--Computadores de Mesa--></a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[17], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[17]->name; ?><!--Computadores de Mesa--></a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[18], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[18]->name; ?><!--Computadores Portáteis--></a></li>
                                 </ul>
                             </div>
                         </li>
                         <li class="main__category-holder">
-                            <a href="<?php echo get_term_link($product_categories[11], 'product_cat'); ?>" class="main__category"><?php echo $product_categories[11]->name ?> <!--Armazenamento--> </a>
+                            <a href="<?php echo get_term_link($product_categories[12], 'product_cat'); ?>" class="main__category"><?php echo $product_categories[12]->name ?> <!--Armazenamento--> </a>
                             <div class="main__category-submenu">
                                 <ul class="category__submenu-product">
                                     <li class="poduct__submenu"><a href="" class="product__type">Disco Externo</a></li>
-                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[35], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[35]->name ?> <!--Pen Drive USB--></a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[40], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[40]->name; ?> <!--Pen Drive USB--></a></li>
                                 </ul>
                             </div>
                         </li>
                         <li class="main__category-holder">
-                            <a href="" class="main__category">Rede</a>
+                            <a href="<?php echo get_term_link($product_categories[43], 'product_cat'); ?>" class="main__category"><?php echo $product_categories[43]->name; ?> <!--Todos os equipamentos de Rede--></a>
                             <div class="main__category-submenu">
                                 <ul class="category__submenu-product">
-                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[19], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[19]->name ?> <!--Extensor de sinal--></a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[22], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[22]->name; ?> <!--Extensor de sinal--></a></li>
                                     <li class="poduct__submenu"><a href="" class="product__type">Router</a></li>
                                     <li class="poduct__submenu"><a href="" class="product__type">Switch</a></li>
-                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[47], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[47]->name ?> <!--Extensor de sinal--></a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[54], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[54]->name; ?> <!--Telefone--></a></li>
                                 </ul>
                             </div>
                         </li>
                     </ul>
                 </li>
                 <li class="main__options tvbox">
-                    <i class="material-icons">airplay</i>
-                    TV Box
+                    <a href="<?php echo get_term_link($product_categories[57], 'product_cat'); ?>" class="main__category-link">
+                        <i class="material-icons">airplay</i>
+                        <?php echo $product_categories[57]->name ;?> <!--TV Box--> 
+                    </a>
+                    
                     <i class="material-icons expand">expand_more</i>
                     <ul class="main__options-tvbox">
                         <li class="main__category-holder tvbox-submenu">
-                            <a href="" class="main__category">Android Box</a>
+                            <a href="<?php echo get_term_link($product_categories[8], 'product_cat'); ?>" class="main__category"><?php echo $product_categories[8]->name ;?> <!--Android Box--></a>
                             <div class="main__category-submenu">
                                 <ul class="category__submenu-product">
                                     <li class="poduct__submenu"><a href="" class="product__type">Android box 1</a></li>
-                                    <li class="poduct__submenu"><a href="" class="product__type">Android box 2</a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[10], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[10]->name ;?> <!--Android Box 2--></a></li>
                                 </ul>
                             </div>
                         </li>
                         <li class="main__category-holder">
-                            <a href="" class="main__category">Amazon</a>
+                            <a href="<?php echo get_term_link($product_categories[4], 'product_cat'); ?>" class="main__category"><?php echo $product_categories[4]->name ;?> <!--Amazon--></a>
                             <div class="main__category-submenu">
                                 <ul class="category__submenu-product">
-                                    <li class="poduct__submenu"><a href="" class="product__type">Fire Stick</a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[23], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[4]->name ;?> <!--Fire Stick--></a></li>
 
                                 </ul>
                             </div>
@@ -114,9 +96,9 @@
                     </ul>
                 </li>
                 <li class="main__options tablet">
-                    <a href="<?php echo get_term_link($product_categories[42], 'product_cat'); ?>">
+                    <a href="<?php echo get_term_link($product_categories[49], 'product_cat'); ?>" class="main__category-link">
                         <i class="material-icons">stay_current_portrait</i>
-                        <?php echo $product_categories[42]->name ?> <!--Smartphones e tables-->
+                        <?php echo $product_categories[49]->name ;?> <!--Smartphones e tables-->
                     </a>
                     
                     <i class="material-icons expand">expand_more</i>
@@ -131,10 +113,10 @@
                             </div>
                         </li>
                         <li class="main__category-holder">
-                            <a href="<?php echo get_term_link($product_categories[41], 'product_cat'); ?>" class="main__category"><?php echo $product_categories[41]->name ?> <!--Smart Watches--></a>
+                            <a href="<?php echo get_term_link($product_categories[48], 'product_cat'); ?>" class="main__category">  <?php echo $product_categories[48]->name; ?> <!--Smart Watches--></a>
                             <div class="main__category-submenu">
                                 <ul class="category__submenu-product">
-                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[10], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[10]->name ?> <!--Apple--></a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[11], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[11]->name ;?> <!--Apple--></a></li>
                                     <li class="poduct__submenu"><a href="" class="product__type">Android</a></li>
                                 </ul>
                             </div>
@@ -152,8 +134,11 @@
                     </ul>
                 </li>
                 <li class="main__options paper">
-                    <i class="material-icons">library_books</i>
-                    Consumívies e Papel
+                    <a href="<?php echo get_term_link($product_categories[20], 'product_cat'); ?>" class="main__category-link">
+                        <i class="material-icons">library_books</i>
+                        <?php echo $product_categories[20]->name ;?> <!--Consumívies e Papel-->
+                    </a>
+                    
                     <i class="material-icons expand">expand_more</i>
                     <ul class="main__options-paper">
                         <li class="main__category-holder paper-submenu">
@@ -176,10 +161,10 @@
                             </div>
                         </li>
                         <li class="main__category-holder">
-                            <a href="" class="main__category">Papel</a>
+                            <a href="<?php echo get_term_link($product_categories[39], 'product_cat'); ?>" class="main__category"><?php echo $product_categories[2]->name ;?> <!--Papel--></a>
                             <div class="main__category-submenu">
                                 <ul class="category__submenu-product">
-                                    <li class="poduct__submenu"><a href="" class="product__type">Papel A4</a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[2], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[2]->name ;?> <!--Papel A4--></a></li>
                                     <li class="poduct__submenu"><a href="" class="product__type">Papel A3</a></li>
                                 </ul>
                             </div>
@@ -187,15 +172,19 @@
                     </ul>
                 </li>
                 <li class="main__options games">
-                    <i class="material-icons">sports_esports</i>
-                    Jogos e Consola
+                    <a href="<?php echo get_term_link($product_categories[36], 'product_cat'); ?>" class="main__category-link">
+                        <i class="material-icons">sports_esports</i>
+                        <?php echo $product_categories[36]->name ;?> <!--Jogos e Consola-->
+                    </a>
+                    
+                    
                     <i class="material-icons expand">expand_more</i>
                     <ul class="main__options-games">
                         <li class="main__category-holder games-submenu">
-                            <a href="" class="main__category">Jogos</a>
+                            <a href="<?php echo get_term_link($product_categories[35], 'product_cat'); ?>" class="main__category"><?php echo $product_categories[35]->name ;?> <!--Todos os jogos--></a>
                             <div class="main__category-submenu">
                                 <ul class="category__submenu-product">
-                                    <li class="poduct__submenu"><a href="" class="product__type">PS5</a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[42], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[42]->name ;?> <!--PS5--></a></li>
                                     <li class="poduct__submenu"><a href="" class="product__type">PS4</a></li>
                                 </ul>
                             </div>
@@ -225,27 +214,30 @@
                     </ul>
                 </li>
                 <li class="main__options printer">
-                    <i class="material-icons">adf_scanner</i>
-                    Impressoras e Scaners
+                    <a href="<?php echo get_term_link($product_categories[31], 'product_cat'); ?>" class="main__category-link">
+                        <i class="material-icons">adf_scanner</i>
+                        <?php echo $product_categories[31]->name ;?> <!--Impressoras e Scaners-->
+                    </a>
+                    
                     <i class="material-icons expand">expand_more</i>
                     <ul class="main__options-printer">
                         <li class="main__category-holder printer-submenu">
-                            <a href="" class="main__category">Impressoras</a>
+                            <a href="<?php echo get_term_link($product_categories[30], 'product_cat'); ?>" class="main__category"><?php echo $product_categories[30]->name ;?> <!--Todas Impressoras--></a>
                             <div class="main__category-submenu">
                                 <ul class="category__submenu-product">
-                                    <li class="poduct__submenu"><a href="" class="product__type">HP</a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[29], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[29]->name ;?> <!--Impressoras HP--></a></li>
                                     <li class="poduct__submenu"><a href="" class="product__type">Ricoh</a></li>
                                     <li class="poduct__submenu"><a href="" class="product__type">Kyocera</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li class="main__category-holder">
-                            <a href="" class="main__category">Scanners</a>
+                            <a href="<?php echo get_term_link($product_categories[47], 'product_cat'); ?>" class="main__category"><?php echo $product_categories[47]->name ;?> <!--todas as Scanners--></a>
                             <div class="main__category-submenu">
                                 <ul class="category__submenu-product">
                                     <li class="poduct__submenu"><a href="" class="product__type">HP</a></li>
                                     <li class="poduct__submenu"><a href="" class="product__type">Brother</a></li>
-                                    <li class="poduct__submenu"><a href="" class="product__type">Fujitsu</a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[24], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[24]->name ;?> <!--Fujitsu--></a></li>
                                 </ul>
                             </div>
                         </li>
@@ -559,9 +551,9 @@
                                                 </div>
                                                 <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
                                                 <div class="price__holder">
-                                                    <div class="product__price">Kz <?php echo $product_price; ?></div>
+                                                    <div class="product__price">Kz <?php echo number_format($product_price, 2, ',', '.'); ?></div>
                                                     <?php if($product_sale_price):?>
-                                                    <div class="product__price-old"><del>Kz <?php echo $product_sale_price; ?></del></div>
+                                                    <div class="product__price-old"><del>Kz <?php echo number_format($product_sale_price, 2, ',', '.'); ?></del></div>
                                                     <?php endif?>
                                                 </div>
                                             </a>
@@ -569,7 +561,7 @@
                                                 <button class="product__btn info" id="infoProductModal" data-name="p-<?php echo $i;?>"><i class="material-icons">remove_red_eye</i></button>
                                                 <button class="product__btn"><i class="material-icons">favorite_border</i></button>
                                                 <button class="product__btn" onclick="rudrAddToCart(<?php echo $product_id; ?>, 1)"><i class="material-icons">shopping_cart</i></button >
-<!--href="http://localhost:81/wordpress/?add-to-cart=< ?php echo $product_id; ?>&quantity=1"-->
+
                                             </div>
                                         </div>
                                     </div>
@@ -816,10 +808,10 @@
                         <div class="modal__product-price">                            
                             <?php 
                                 if($product->get_sale_price()):?>
-                                    <h3>Kz <?php echo $product->get_sale_price();?></h3>
-                                    <del>Kz <?php echo $product->get_regular_price(); ?></del>
+                                    <h3>Kz <?php echo number_format($product->get_sale_price(), 2, ',', '.');?></h3>
+                                    <del>Kz <?php echo number_format($product->get_regular_price(),  2, ',', '.'); ?></del>
                                 <?php else:?>
-                                    <h3>Kz <?php echo $product->get_regular_price();?></h3>
+                                    <h3>Kz <?php echo number_format($product->get_regular_price(),  2, ',', '.');?></h3>
                                 <?php endif?>
                         </div>
                         <div class="modal__product-stock">
@@ -859,5 +851,5 @@
     //get footer.php file
     get_footer();
     //print_r($product_categories);
-    print_r($woocommerce->cart->get_cart());        
+    //print_r($woocommerce->cart->get_cart());        
 ?>

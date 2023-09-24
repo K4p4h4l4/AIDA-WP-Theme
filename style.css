@@ -416,7 +416,7 @@ a: -webkit-any-link{
      Produtos do carrinho
 \*************************/
 .cart__list-holder{
-    width: 23rem;
+    width: 27rem;
     padding: 1rem;
     background-color: var(--default-white);
     z-index: 1;
@@ -516,8 +516,8 @@ a: -webkit-any-link{
 }
 
 .cart__close-btn{
-    width: 1rem;
-    height: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
     border-radius: 50%;
     background-color: var(--default-black);
     color: var(--default-white);
@@ -533,6 +533,7 @@ a: -webkit-any-link{
     -webkit-transform: rotate(45deg);
         -ms-transform: rotate(45deg);
             transform: rotate(45deg);
+    text-align: center;
 }
 
 .cart__total-container{
@@ -881,14 +882,20 @@ a: -webkit-any-link{
     position: relative;
 }
 
-.main__options i{
-    font-size: var(--font-size11);
+.main__options .main__category-link i{
+    font-size: var(--font-size13);
     margin: 0 .4rem;
+    
 }
 
 .menu__options .main__options a: -webkit-any-link{
     color: var(--default-black) !important;
     text-decoration: none !important;
+}
+
+.main__category-link{
+    text-decoration: none;
+    color: var(--default-black);
 }
 
 .expand{
@@ -902,7 +909,7 @@ a: -webkit-any-link{
     z-index: 4;
 }
 
-.main__options:hover{
+.main__options:hover .main__category-link{
     cursor: pointer;
     color: var(--default-red);
 }
@@ -911,6 +918,7 @@ a: -webkit-any-link{
     -webkit-transform: rotate(-90deg);
         -ms-transform: rotate(-90deg);
             transform: rotate(-90deg);
+    color: var(--default-red);
 }
 
 

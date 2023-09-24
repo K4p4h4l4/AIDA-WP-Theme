@@ -139,17 +139,18 @@
     //Woocommerce Support
     add_theme_support('woocommerce');
 
-    /*add_filter( 'template_include', 'woocommerce_archive_template', 99 );
-
-    function woocommerce_archive_template( $template ) {
-
-        if ( is_woocommerce() && is_archive() ) {
-            $new_template = get_stylesheet_directory() . '/woocommerce/archive-product.php';
-            if ( !empty( $new_template ) ) {
-                return $new_template;
-            }
+    function remove_cart_item_callback() {
+        if (isset($_POST['cart_item_key'])) {
+            $cart_item_key = sanitize_text_field($_POST['cart_item_key']);
+            WC()->cart->remove_cart_item($cart_item_key);
+            echo 'success';
+        } else {
+            echo 'error';
         }
+        die();
+    }
 
-        return $template;
-    }*/
+    add_action('wp_ajax_remove_cart_item', 'remove_cart_item_callback'); // For logged-in users
+    add_action('wp_ajax_nopriv_remove_cart_item', 'remove_cart_item_callback'); // For non-logged-in users
+
 ?>

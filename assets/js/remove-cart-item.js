@@ -1,34 +1,24 @@
-function rudrRemoveCartItem( product_id ) {
- 
-	// let's check is add-to-cart.min.js is enqueued and parameters are presented
-	if ( 'undefined' === typeof wc_add_to_cart_params ) {
-		return false;
-	}
-
-	jQuery.post( 
-		wc_add_to_cart_params.wc_ajax_url.toString().replace( '%%endpoint%%', 'product_remove' ), 
-		{
-			product_id: product_id, 
-			//quantity: quantity, // quantity is hardcoced her
-            
-		}, 
-		function( response ) {
-			if ( ! response ) {
-				return;
-			}
-			// redirect is optional and it depends on what is set in WooCommerce configuration
-			if ( response.error && response.product_url ) {
-				window.location = response.product_url;
-				return;
-			}
-			if ( 'yes' === wc_add_to_cart_params.cart_redirect_after_add ) {
-				window.location = wc_add_to_cart_params.cart_url;
-				return;
-			}
-            console.log('aqui');
-			// refresh cart fragments etc
-			jQuery( document.body ).trigger( 'remove_cart_item', [ response.fragments, response.cart_hash ] );
-            window.location.reload();
-		}
-	);
-}
+//jQuery(document).ready(function($) {
+    document.querySelectorAll('.cart__close-btn').forEach(remove_product_btn => {
+        remove_product_btn.onclick = ()=>{
+            var cartItemKey = remove_product_btn.getAttribute('data-product-id');
+            jQuery.ajax({
+                type: 'POST',
+                url: wc_add_to_cart_params.ajax_url, //'http://localhost/wordpress/wp-admin/admin-ajax.php' ajaxurl WordPress AJAX URL (automatically defined)
+                data: {
+                    action: 'remove_cart_item', // Action hook for the AJAX handler
+                    cart_item_key: cartItemKey // The key of the cart item to remove
+                },
+                success: function(response) {
+                    if (response === 'success') {
+                        // Handle success - you can update the cart display or perform other actions
+                        window.location.reload();
+                    } else {
+                        // Handle error
+                        alert('An error occurred while removing the product from the cart.');
+                    }
+                }
+            });
+        }
+    });
+//});

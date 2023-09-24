@@ -296,10 +296,10 @@
                                                 <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
                                                 <div class="price__holder">
                                                     <?php if($product->get_sale_price()):?>
-                                                        <div class="product__price">Kz <?php echo $product->get_sale_price();?></div>
-                                                        <div class="product__price-old"><del>Kz <?php echo $product->get_regular_price(); ?></del></div>
+                                                        <div class="product__price">Kz <?php echo number_format($product->get_sale_price(), 2, ',', '.');?></div>
+                                                        <div class="product__price-old"><del>Kz <?php echo number_format($product->get_regular_price(), 2, ',', '.'); ?></del></div>
                                                     <?php else:?>
-                                                        <div class="product__price">Kz <?php echo $product->get_regular_price();?></div>
+                                                        <div class="product__price">Kz <?php echo number_format($product->get_regular_price(), 2, ',', '.');?></div>
                                                     <?php endif?>
                                                     <!--div class="product__price">AOA 90.000</div>
                                                     <div class="product__price-old"><del>AOA 100.000</del></div-->

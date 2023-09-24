@@ -189,16 +189,18 @@
                                         <span>
                                             Kz 
                                             <?php 
-                                                echo $values['line_subtotal'];
+                                                echo number_format($values['line_subtotal'],  2, ',', '.');
                                                 $total+=$values['line_subtotal'];
                                             ?>
                                         </span>
                                     </div>   
                                 </div>
-                                <div class="cart__close-btn" >
-                                   <button onclick="rudrRemoveCartItem(<?php echo $_product->get_id(); ?>)">+</button>
-                                    
-                                    <!--href="https://localhost:81/wordpress/?remove-to-cart=< ?php echo $product_id; ?>"-->
+                                <?php
+                                    $product_cart_id = WC()->cart->generate_cart_id( $_product->get_id() );
+                                    $cart_item_key = WC()->cart->find_product_in_cart($product_cart_id); 
+                                ?>
+                                <div class="cart__close-btn" data-product-id="<?php echo $cart_item_key; ?>" >
+                                   +                         
                                 </div>
                             </div>
                             <?php 
@@ -208,7 +210,7 @@
                         <div class="cart__btn-holder">
                             <div class="cart__total-container">
                                 <span class="cart__total-txt">Valor Total:</span>
-                                <span class="cart__total-value" id="total">Kz <?php echo $total; ?></span>
+                                <span class="cart__total-value" id="total">Kz <?php echo number_format($total, 2, ',', '.'); ?></span>
                             </div>
                             <div class="cart__btn-container">
                                 <button class="cart__view" id="cart__view" onclick="location.href='carrinho.php'">Ver carrinho</button>
