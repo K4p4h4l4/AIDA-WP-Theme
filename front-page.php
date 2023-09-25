@@ -225,7 +225,7 @@
                             <a href="<?php echo get_term_link($product_categories[30], 'product_cat'); ?>" class="main__category"><?php echo $product_categories[30]->name ;?> <!--Todas Impressoras--></a>
                             <div class="main__category-submenu">
                                 <ul class="category__submenu-product">
-                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[29], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[29]->name ;?> <!--Impressoras HP--></a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[26], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[26]->name ;?> <!--Impressoras HP--></a></li>
                                     <li class="poduct__submenu"><a href="" class="product__type">Ricoh</a></li>
                                     <li class="poduct__submenu"><a href="" class="product__type">Kyocera</a></li>
                                 </ul>
@@ -767,7 +767,9 @@
 </section>
 
 
-
+<!-- *****************************\
+        Modal de produtos
+\******************************/-->
 <div class="bg-modal">
     <div class="modal__content">
         <div class="modal__close">
@@ -830,10 +832,10 @@
                         <div class="modal__product-qtde">
                             <label for="Quantidade">Qtde:</label>
                             <input type="number" min="0" value="1" max="100">
-                            <a class="modal__product-cart" href="https://localhost:81/wordpress/?add-to-cart=<?php echo $product_id; ?>&quantity=1">
+                            <button class="modal__product-cart" onclick="rudrAddToCart(<?php echo $product->get_ID(); ?>, 1)">
                                 <i class="material-icons">shopping_cart</i>
                                 Adicionar ao carrinho
-                            </a>
+                            </button>
                         </div>
                         <div class="modal__product-description">
                             <?php echo $product->get_short_description();?>

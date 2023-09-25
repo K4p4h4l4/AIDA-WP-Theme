@@ -226,7 +226,7 @@
                             <a href="<?php echo get_term_link($product_categories[30], 'product_cat'); ?>" class="main__category"><?php echo $product_categories[30]->name ;?> <!--Todas Impressoras--></a>
                             <div class="main__category-submenu">
                                 <ul class="category__submenu-product">
-                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[29], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[29]->name ;?> <!--Impressoras HP--></a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[26], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[26]->name ;?> <!--Impressoras HP--></a></li>
                                     <li class="poduct__submenu"><a href="" class="product__type">Ricoh</a></li>
                                     <li class="poduct__submenu"><a href="" class="product__type">Kyocera</a></li>
                                 </ul>
@@ -337,7 +337,7 @@
                                 <i class="material-icons">favorite_border</i>
                                 eu desejo
                             </button>
-                            <button class="product__addlist-button">
+                            <button class="product__addlist-button" onclick="rudrAddToCart(<?php echo $product->get_ID(); ?>, 1)">
                                 <i class="material-icons">shopping_cart</i>
                                 adicionar ao carrinho
                             </button>
@@ -766,127 +766,69 @@
                 <!-- *****************************\
                         Produtos relacionados
                 \******************************/-->
+                <?php 
+                    //print_r($product->get_upsell_ids());
+                    $related_products = $product->get_upsell_ids(); 
+                ?>
                 <div class="new__products-container">
                     <div class="new__products-header">
                         <span class="products__header-title">Pode também gostar ...</span>
                     </div>
+                    
                     <div class="new__products-list">
-                        <div class="product__card">
-                            <div class="product__img">
-                                <div class="product__discount">10%</div>
-                                <img src="<?php bloginfo('template_directory')?>/assets/img/1-300x300.jpg" alt="">
-                            </div>
-                            <div class="product__details">
-                                <span>Canon Canonet</span>
-                                <div class="rating">
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star_half</i>
-                                </div>
-                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
-                                <div class="price__holder">
-                                    <div class="product__price">AOA 90.000</div>
-                                    <div class="product__price-old"><del>AOA 100.000</del></div>
-                                </div>
-                                
-                                <div class="product__buttons">
-                                    <button class="product__btn" id="infoProductModal"><i class="material-icons">remove_red_eye</i></button>
-                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
-                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
-                                    
-                                </div>
-                            </div>
-                        </div>
+                        <?php
                         
-                         <div class="product__card">
-                            <div class="product__img">
-                                <div class="product__discount" style="display:none">10%</div>
-                                <img src="<?php bloginfo('template_directory')?>/assets/img/7.jpg" alt="">
-                            </div>
-                            <div class="product__details">
-                                <span>ASUS Laptop</span>
-                                <div class="rating">
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                </div>
-                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
-                                <div class="price__holder">
-                                    <div class="product__price">AOA 495.000</div>
-                                    <div class="product__price-old" style="display:none"><del>AOA 100.000</del></div>
-                                </div>
+                            if(! empty($related_products)){
+                                $i= 1;
+
+                                //loop para listar os produtos relacionados
+                                foreach($related_products as $related_product){ 
+                                    $upsell_product = wc_get_product($related_product);
                                 
-                                <div class="product__buttons">
-                                    <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
-                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
-                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        
-                         <div class="product__card">
-                            <div class="product__img">
-                                <div class="product__discount" style="display:none">10%</div>
-                                <img src="<?php bloginfo('template_directory')?>/assets/img/12-300x300.jpg" alt="">
-                            </div>
-                            <div class="product__details">
-                                <span>Samsung A3</span>
-                                <div class="rating">
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                </div>
-                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
-                                <div class="price__holder">
-                                    <div class="product__price">AOA 220.000</div>
-                                    <div class="product__price-old" style="display:none"><del>AOA 100.000</del></div>
-                                </div>
-                                
-                                <div class="product__buttons">
-                                    <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
-                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
-                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        
-                         <div class="product__card">
-                            <div class="product__img">
-                                <div class="product__discount" style="display:none">10%</div>
-                                <img src="<?php bloginfo('template_directory')?>/assets/img/26.jpg" alt="">
-                            </div>
-                            <div class="product__details">
-                                <span>Gaming Laptop</span>
-                                <div class="rating">
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                </div>
-                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
-                                <div class="price__holder">
-                                    <div class="product__price">AOA 1.090.000</div>
-                                    <div class="product__price-old" style="display:none"><del>AOA 100.000</del></div>
-                                </div>
-                                
-                                <div class="product__buttons">
-                                    <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
-                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
-                                    <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
-                                    
-                                </div>
-                            </div>
-                        </div>                     
-                         
+                        ?>
+                                    <div class="product__card">
+                                        <div class="product__img">
+                                            <a href="<?php echo get_permalink($upsell_product->get_ID()); ?>">
+                                                <?php if($upsell_product->get_sale_price()):?>
+                                                <div class="product__discount">
+                                                    <?php echo round((1-($upsell_product->get_sale_price()/$upsell_product->get_regular_price()))*100); ?>%
+                                                </div>
+                                                <?php endif?>
+                                                <?php echo wp_get_attachment_image($upsell_product->get_image_id());?> 
+
+                                            </a>
+                                        </div>
+                                        <div class="product__details">
+                                            <a href="<?php echo get_permalink($upsell_product->get_ID()); ?>">
+                                                <span><?php echo $upsell_product->get_name(); ?></span>
+                                                <div class="rating">
+                                                    <i class="material-icons">star</i>
+                                                    <i class="material-icons">star</i>
+                                                    <i class="material-icons">star</i>
+                                                    <i class="material-icons">star</i>
+                                                    <i class="material-icons">star_half</i>
+                                                </div>
+                                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
+                                                <div class="price__holder">
+                                                    <div class="product__price">Kz <?php echo number_format($upsell_product->get_regular_price(), 2, ',', '.'); ?></div>
+                                                    <?php if($upsell_product->get_sale_price()):?>
+                                                    <div class="product__price-old"><del>Kz <?php echo number_format($upsell_product->get_sale_price(), 2, ',', '.'); ?></del></div>
+                                                    <?php endif?>
+                                                </div>
+                                            </a>
+                                            <div class="product__buttons">
+                                                <button class="product__btn info" id="infoProductModal" data-name="p-<?php echo $i;?>"><i class="material-icons">remove_red_eye</i></button>
+                                                <button class="product__btn"><i class="material-icons">favorite_border</i></button>
+                                                <button class="product__btn" onclick="rudrAddToCart(<?php echo $upsell_product->get_ID(); ?>, 1)"><i class="material-icons">shopping_cart</i></button >
+
+                                            </div>
+                                        </div>
+                                    </div>
+                        <?php
+                                    $i++;
+                                }
+                            }
+                        ?>                        
                     </div>
                 </div>
                 
@@ -899,8 +841,85 @@
         </div>
     </section>
 
+<!-- *****************************\
+        Modal de produtos
+\******************************/-->
+<div class="bg-modal">
+    <div class="modal__content">
+        <div class="modal__close">
+            <div class="modal__close-btn">+</div>
+        </div>
+         <?php
+            $i=1;
+            foreach($related_products as $related_product){ 
+                //Obter os dados do vector
+                $upsell_product = wc_get_product($related_product);
+                /*echo $val;*/
+
+
+                ?>
+                <div class="modal__container-info" data-target="p-<?php echo $i;?>">
+                    <div class="modal__product-img">
+                        
+                        <?php echo wp_get_attachment_image($upsell_product->get_image_id());?>
+                    </div>
+                    <div class="modal__product-info">
+                        <div class="modal__product-title">
+                            <h3><?php echo $upsell_product->get_name();?></h3>
+                        </div>
+                        <div class="modal__product-rating">
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star_half</i>
+
+                            <span class="modal__rating-value">4.4</span>
+                            <span class="modal__rating-total"> 75 Avaliações</span>
+                        </div>
+                        <div class="modal__product-price">                            
+                            <?php 
+                                if($upsell_product->get_sale_price()):?>
+                                    <h3>Kz <?php echo number_format($upsell_product->get_sale_price(), 2, ',', '.');?></h3>
+                                    <del>Kz <?php echo number_format($upsell_product->get_regular_price(),  2, ',', '.'); ?></del>
+                                <?php else:?>
+                                    <h3>Kz <?php echo number_format($upsell_product->get_regular_price(),  2, ',', '.');?></h3>
+                                <?php endif?>
+                        </div>
+                        <div class="modal__product-stock">
+                            <span class="modal__stock-txt">
+                                <?php                                        
+                                    if($upsell_product->get_stock_status()=="instock"){
+                                        echo "Em Estoque"; 
+                                    }elseif($upsell_product->get_stock_status()=="outofstock"){
+                                        echo "Esgotado"; 
+                                    }elseif($upsell_product->get_stock_status()=="onbackorder"){
+                                        echo "Por Encomenda"; 
+                                    }
+                                ?> 
+                            </span>
+                        </div>
+                        <div class="modal__product-qtde">
+                            <label for="Quantidade">Qtde:</label>
+                            <input type="number" min="0" value="1" max="100">
+                            <button class="modal__product-cart" onclick="rudrAddToCart(<?php echo $upsell_product->get_ID(); ?>, 1)">
+                                <i class="material-icons">shopping_cart</i>
+                                Adicionar ao carrinho
+                            </button>
+                        </div>
+                        <div class="modal__product-description">
+                            <?php echo $upsell_product->get_short_description();?>
+                        </div>
+                    </div>
+                </div>
+            <?php
+                $i++;
+            } ?>
+    </div>        
+</div>
 
 <?php 
     //get footer.php file
     get_footer();
+    print_r($product);
 ?>

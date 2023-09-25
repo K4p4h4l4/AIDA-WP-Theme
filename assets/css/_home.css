@@ -429,7 +429,7 @@ a:visited{
     position: absolute;
     position: fixed;
     top:0;
-    z-index: 2;
+    z-index: 4;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
