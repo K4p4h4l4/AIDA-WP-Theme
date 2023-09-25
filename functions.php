@@ -53,7 +53,18 @@
          wp_register_style('categorias_css', get_template_directory_uri().'/assets/css/categorias.css', array(), 1, 'all');
          wp_enqueue_style('categorias_css');
         
-     }
+        //css da página do carrinho
+        wp_register_style('carrinho_css', get_template_directory_uri().'/assets/css/carrinho.css', array(), 1, 'all');
+        wp_enqueue_style('carrinho_css');
+        
+        //css da página para finalizar a compra
+        wp_register_style('checkout_css', get_template_directory_uri().'/assets/css/checkout.css', array(), 1, 'all');
+        wp_enqueue_style('checkout_css');
+        
+        //css da página de envio
+        wp_register_style('envio_css', get_template_directory_uri().'/assets/css/envio.css', array(), 1, 'all');
+        wp_enqueue_style('envio_css');
+    }
 
     add_action('wp_enqueue_scripts', 'fn_theme_style');
 
@@ -85,6 +96,10 @@
         //remove cart item js 
         wp_register_script('remove_cart_item_js', get_template_directory_uri().'/assets/js/remove-cart-item.js', array(), 1, 1, 1); //get_theme_file_uri
         wp_enqueue_script('remove_cart_item_js');
+        
+        //Envio js 
+        wp_register_script('envio_js', get_template_directory_uri().'/assets/js/envio.js', array(), 1, 1, 1); //get_theme_file_uri
+        wp_enqueue_script('envio_js');
     }
 
     add_action('wp_enqueue_scripts', 'fn_theme_scripts');

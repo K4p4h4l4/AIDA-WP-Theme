@@ -175,7 +175,7 @@
                             <div class="cart__list-card">
                                 <div class="cart__list-img">
                                     <?php echo wp_get_attachment_image($_product->get_image_id());?>
-                                    <!--img src="< ?php echo get_theme_file_uri('assets/img/12-300x300.jpg')?>" alt=""-->
+                                    
                                 </div>
                                 <div class="cart__txt-container">
                                     <div class="cart__poduct-name">
@@ -213,8 +213,8 @@
                                 <span class="cart__total-value" id="total">Kz <?php echo number_format($total, 2, ',', '.'); ?></span>
                             </div>
                             <div class="cart__btn-container">
-                                <button class="cart__view" id="cart__view" onclick="location.href='carrinho.php'">Ver carrinho</button>
-                                <button class="cart__view" onclick="location.href='checkout.php'">Finalizar Compra</button>
+                                <button class="cart__view" id="cart__view" onclick="location.href='<?php echo get_permalink(190); ?>'">Ver carrinho</button>
+                                <button class="cart__view" onclick="location.href='<?php echo get_permalink(63); ?>'">Finalizar Compra</button>
                             </div>
                         </div>
                     </div>

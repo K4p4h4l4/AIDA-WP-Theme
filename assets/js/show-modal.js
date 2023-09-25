@@ -1,4 +1,4 @@
-
+ 
 let modal = document.querySelector('.bg-modal');
 let infoPreview = modal.querySelectorAll('.modal__container-info');
 console.log('chegou aqui');

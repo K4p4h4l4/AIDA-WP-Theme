@@ -226,7 +226,7 @@
                             <a href="<?php echo get_term_link($product_categories[30], 'product_cat'); ?>" class="main__category"><?php echo $product_categories[30]->name ;?> <!--Todas Impressoras--></a>
                             <div class="main__category-submenu">
                                 <ul class="category__submenu-product">
-                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[26], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[26]->name ;?> <!--Impressoras HP--></a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[27], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[27]->name ;?> <!--Impressoras HP--></a></li>
                                     <li class="poduct__submenu"><a href="" class="product__type">Ricoh</a></li>
                                     <li class="poduct__submenu"><a href="" class="product__type">Kyocera</a></li>
                                 </ul>
