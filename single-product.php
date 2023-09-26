@@ -226,7 +226,7 @@
                             <a href="<?php echo get_term_link($product_categories[30], 'product_cat'); ?>" class="main__category"><?php echo $product_categories[30]->name ;?> <!--Todas Impressoras--></a>
                             <div class="main__category-submenu">
                                 <ul class="category__submenu-product">
-                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[27], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[27]->name ;?> <!--Impressoras HP--></a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[26], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[26]->name ;?> <!--Impressoras HP--></a></li>
                                     <li class="poduct__submenu"><a href="" class="product__type">Ricoh</a></li>
                                     <li class="poduct__submenu"><a href="" class="product__type">Kyocera</a></li>
                                 </ul>
@@ -238,7 +238,7 @@
                                 <ul class="category__submenu-product">
                                     <li class="poduct__submenu"><a href="" class="product__type">HP</a></li>
                                     <li class="poduct__submenu"><a href="" class="product__type">Brother</a></li>
-                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[24], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[24]->name ;?> <!--Fujitsu--></a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[28], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[28]->name ;?> <!--Fujitsu--></a></li>
                                 </ul>
                             </div>
                         </li>
@@ -817,7 +817,7 @@
                                                 </div>
                                             </a>
                                             <div class="product__buttons">
-                                                <button class="product__btn info" id="infoProductModal" data-name="p-<?php echo $i;?>"><i class="material-icons">remove_red_eye</i></button>
+                                                <button class="product__btn info" id="infoProductModal" data-name="p-<?php echo $i;?>" type="submit" name="add"><i class="material-icons">remove_red_eye</i></button>
                                                 <button class="product__btn"><i class="material-icons">favorite_border</i></button>
                                                 <button class="product__btn" onclick="rudrAddToCart(<?php echo $upsell_product->get_ID(); ?>, 1)"><i class="material-icons">shopping_cart</i></button >
 

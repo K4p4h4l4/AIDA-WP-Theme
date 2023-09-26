@@ -167,7 +167,7 @@
                     \*************************************/-->
                      
                     <div class="cart__list-holder">
-                        <div class="cart__list-container">
+                        <div class="cart__list-container" >
                             <?php 
                                 foreach($products as $product => $values){
                                     $_product = wc_get_product($values['data']->get_id());

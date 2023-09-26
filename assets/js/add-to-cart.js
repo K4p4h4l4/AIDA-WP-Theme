@@ -26,7 +26,40 @@ function rudrAddToCart( product_id, quantity = 1 ) {
 			}
 			// refresh cart fragments etc
 			jQuery( document.body ).trigger( 'added_to_cart', [ response.fragments, response.cart_hash ] );
-            window.location.reload();
+            //window.location.reload();
+            reloadCard();
 		}
 	);
 }
+
+function reloadCard(){
+    
+}
+
+jQuery(document).ready(function($) {
+    // Function to update the cart display
+    function updateCartDisplay() {
+        $.ajax({
+            type: 'POST', // Use the POST method
+            url: wc_add_to_cart_params.ajaxurl, // WordPress AJAX URL (automatically defined)
+            data: {
+                action: 'get_cart_contents', // Action hook for the AJAX handler
+            },
+            success: function(response) {
+                console.log($('#cart-contents').html(response));
+            },
+            error: function() {
+                alert('An error occurred while fetching the cart contents.');
+            }
+        });
+    }
+
+    // Call the function to initially load the cart contents
+    updateCartDisplay();
+
+    // Optional: Use this code to update the cart display when items are added/removed from the cart
+    // WooCommerce triggers a 'cart updated' event when the cart changes
+    $(document.body).on('added_to_cart removed_from_cart', function() {
+        updateCartDisplay();
+    });
+});

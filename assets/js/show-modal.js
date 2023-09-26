@@ -1,7 +1,6 @@
  
 let modal = document.querySelector('.bg-modal');
 let infoPreview = modal.querySelectorAll('.modal__container-info');
-console.log('chegou aqui');
 
 document.querySelectorAll('.product__buttons .info').forEach(product =>{
     product.onclick = () =>{

@@ -225,7 +225,7 @@
                             <a href="<?php echo get_term_link($product_categories[30], 'product_cat'); ?>" class="main__category"><?php echo $product_categories[30]->name ;?> <!--Todas Impressoras--></a>
                             <div class="main__category-submenu">
                                 <ul class="category__submenu-product">
-                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[27], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[27]->name ;?> <!--Impressoras HP--></a></li>
+                                    <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[28], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[28]->name ;?> <!--Impressoras HP--></a></li>
                                     <li class="poduct__submenu"><a href="" class="product__type">Ricoh</a></li>
                                     <li class="poduct__submenu"><a href="" class="product__type">Kyocera</a></li>
                                 </ul>
@@ -527,43 +527,46 @@
                                     ?>
 
                                     <div class="product__card" >
-                                        <div class="product__img">
-                                            <a href="<?php echo get_permalink($product_id); ?>">
-                                                <?php if($product_sale_price):?>
-                                                <div class="product__discount">
-                                                    <?php echo round((1-($product_sale_price/$product_price))*100); ?>%
-                                                </div>
-                                                <?php endif?>
-                                                <?php echo wp_get_attachment_image($product_img_id);?> 
-
-                                            </a>
-
-                                        </div>
-                                        <div class="product__details">
-                                            <a href="<?php echo get_permalink($product_id); ?>">
-                                                <span><?php echo $product_name; ?></span>
-                                                <div class="rating">
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star_half</i>
-                                                </div>
-                                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
-                                                <div class="price__holder">
-                                                    <div class="product__price">Kz <?php echo number_format($product_price, 2, ',', '.'); ?></div>
+                                        <form action="" method="post">
+                                            <div class="product__img">
+                                                <a href="<?php echo get_permalink($product_id); ?>">
                                                     <?php if($product_sale_price):?>
-                                                    <div class="product__price-old"><del>Kz <?php echo number_format($product_sale_price, 2, ',', '.'); ?></del></div>
+                                                    <div class="product__discount">
+                                                        <?php echo round((1-($product_sale_price/$product_price))*100); ?>%
+                                                    </div>
                                                     <?php endif?>
-                                                </div>
-                                            </a>
-                                            <div class="product__buttons">
-                                                <button class="product__btn info" id="infoProductModal" data-name="p-<?php echo $i;?>"><i class="material-icons">remove_red_eye</i></button>
-                                                <button class="product__btn"><i class="material-icons">favorite_border</i></button>
-                                                <button class="product__btn" onclick="rudrAddToCart(<?php echo $product_id; ?>, 1)"><i class="material-icons">shopping_cart</i></button >
+                                                    <?php echo wp_get_attachment_image($product_img_id);?> 
+
+                                                </a>
 
                                             </div>
-                                        </div>
+                                            <div class="product__details">
+                                                <a href="<?php echo get_permalink($product_id); ?>">
+                                                    <span><?php echo $product_name; ?></span>
+                                                    <div class="rating">
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_half</i>
+                                                    </div>
+                                                    <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
+                                                    <div class="price__holder">
+                                                        <div class="product__price">Kz <?php echo number_format($product_price, 2, ',', '.'); ?></div>
+                                                        <?php if($product_sale_price):?>
+                                                        <div class="product__price-old"><del>Kz <?php echo number_format($product_sale_price, 2, ',', '.'); ?></del></div>
+                                                        <?php endif?>
+                                                    </div>
+                                                </a>
+                                                <div class="product__buttons">
+                                                    <button class="product__btn info" id="infoProductModal" data-name="p-<?php echo $i;?>"><i class="material-icons">remove_red_eye</i></button>
+                                                    <button class="product__btn"><i class="material-icons">favorite_border</i></button>
+                                                    <button class="product__btn" onclick="rudrAddToCart(<?php echo $product_id; ?>, 1)"><i class="material-icons">shopping_cart</i></button >
+
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+                                        </form>
                                     </div>
                                     <?php
                                         $i++;
@@ -848,7 +851,7 @@
     </div>        
 </div>
 
-
+<div id="cart-contents"></div>
 <?php 
     //get footer.php file
     get_footer();
