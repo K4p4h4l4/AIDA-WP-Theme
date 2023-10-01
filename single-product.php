@@ -303,10 +303,10 @@
                             <div class="product__price-holder">
                                 
                                 <?php if($product->get_sale_price()):?>
-                                    <h3>Kz <?php echo number_format($product->get_sale_price(), 2, ',', '.');?></h3>
-                                    <del>Kz <?php echo number_format($product->get_regular_price(), 2, ',', '.'); ?></del>
+                                    <h3>AKZ <?php echo number_format($product->get_sale_price(), 2, ',', '.');?></h3>
+                                    <del>AKZ <?php echo number_format($product->get_regular_price(), 2, ',', '.'); ?></del>
                                 <?php else:?>
-                                    <h3>Kz <?php echo number_format($product->get_regular_price(), 2, ',', '.');?></h3>
+                                    <h3>AKZ <?php echo number_format($product->get_regular_price(), 2, ',', '.');?></h3>
                                 <?php endif?>
                             </div>
                             <div class="product__stock">
@@ -810,9 +810,9 @@
                                                 </div>
                                                 <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
                                                 <div class="price__holder">
-                                                    <div class="product__price">Kz <?php echo number_format($upsell_product->get_regular_price(), 2, ',', '.'); ?></div>
+                                                    <div class="product__price">AKZ <?php echo number_format($upsell_product->get_regular_price(), 2, ',', '.'); ?></div>
                                                     <?php if($upsell_product->get_sale_price()):?>
-                                                    <div class="product__price-old"><del>Kz <?php echo number_format($upsell_product->get_sale_price(), 2, ',', '.'); ?></del></div>
+                                                    <div class="product__price-old"><del>AKZ <?php echo number_format($upsell_product->get_sale_price(), 2, ',', '.'); ?></del></div>
                                                     <?php endif?>
                                                 </div>
                                             </a>
@@ -880,10 +880,10 @@
                         <div class="modal__product-price">                            
                             <?php 
                                 if($upsell_product->get_sale_price()):?>
-                                    <h3>Kz <?php echo number_format($upsell_product->get_sale_price(), 2, ',', '.');?></h3>
-                                    <del>Kz <?php echo number_format($upsell_product->get_regular_price(),  2, ',', '.'); ?></del>
+                                    <h3>AKZ <?php echo number_format($upsell_product->get_sale_price(), 2, ',', '.');?></h3>
+                                    <del>AKZ <?php echo number_format($upsell_product->get_regular_price(),  2, ',', '.'); ?></del>
                                 <?php else:?>
-                                    <h3>Kz <?php echo number_format($upsell_product->get_regular_price(),  2, ',', '.');?></h3>
+                                    <h3>AKZ <?php echo number_format($upsell_product->get_regular_price(),  2, ',', '.');?></h3>
                                 <?php endif?>
                         </div>
                         <div class="modal__product-stock">

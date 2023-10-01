@@ -143,3 +143,20 @@ menu.addEventListener('click', function(e){
    window.open("http://localhost:81/aida3/carrinho.php"); 
     console.log('Clicado');
 });*/
+
+function updateTotal(){
+    let cartContent = document.getElementsByClassName('cart__list-container')[0];
+    let cartBoxes = cart.getElementsByClassName('cart__list-card');
+    let total = 0;
+    
+    for(let i=0; i < cartBoxes.length; i++){
+        let carBox = cartBoxes[i];
+        let priceElement = cartBox.getElementsByClassName('product__price')[0];
+        let quantityElement = cartBox.getElementsByClassName('product__quantity')[0];
+        let price = parseFloat(priceElement.innerText.replace("Kz", ""));
+        let quantity = quantityElement.value;
+        total = total + (price + quantity);
+        
+        document.getElementsByClassName('cart__total-value')[0].innerText = 'Kz ' + total;
+    }
+}

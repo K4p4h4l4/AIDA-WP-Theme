@@ -502,7 +502,7 @@ a: -webkit-any-link{
 }
 
 .cart__product-qtde{
-    font-size: var(--font-size10);
+    margin: 1rem 0;
 }
 
 .cart__product-qtde span{
@@ -513,6 +513,14 @@ a: -webkit-any-link{
 .cart__product-price span{
     font-size: var(--font-size11);
     margin-left: .5rem;
+}
+
+.product__quantity{
+    width: 32%;
+    padding: .8rem .5rem;
+    font-size: var(--font-size12);
+    border: solid .2rem var(--very-light-gray);
+    border-radius: 0.3rem;
 }
 
 .cart__close-btn{

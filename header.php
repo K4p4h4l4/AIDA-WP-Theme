@@ -167,7 +167,7 @@
                     \*************************************/-->
                      
                     <div class="cart__list-holder">
-                        <div class="cart__list-container" >
+                        <div class="cart__list-container" id="cart-contents" >
                             <?php 
                                 foreach($products as $product => $values){
                                     $_product = wc_get_product($values['data']->get_id());
@@ -182,14 +182,15 @@
                                         <span><?php echo $_product->get_name(); ?></span>
                                         <span>(<?php echo $values['quantity']; ?>)</span>
                                     </div>
-                                    <div class="cart__product-price">
-                                        <div class="cart__product-qtde">
-                                            
-                                        </div>
-                                        <span>
-                                            Kz 
+                                    <div class="cart__product-qtde">
+                                        <input type="number" value="1" min="1" class="product__quantity">
+                                    </div>
+                                    <div class="cart__product-price">                                        
+                                        <span class="product__price">
+                                            AKZ 
                                             <?php 
-                                                echo number_format($values['line_subtotal'],  2, ',', '.');
+                                                //echo number_format($values['line_subtotal'],  2, ',', '.');
+                                                echo $values['line_subtotal'];
                                                 $total+=$values['line_subtotal'];
                                             ?>
                                         </span>
@@ -210,7 +211,7 @@
                         <div class="cart__btn-holder">
                             <div class="cart__total-container">
                                 <span class="cart__total-txt">Valor Total:</span>
-                                <span class="cart__total-value" id="total">Kz <?php echo number_format($total, 2, ',', '.'); ?></span>
+                                <span class="cart__total-value" id="total">AKZ 0<!--?php echo number_format($total, 2, ',', '.'); ?--> </span>
                             </div>
                             <div class="cart__btn-container">
                                 <button class="cart__view" id="cart__view" onclick="location.href='<?php echo get_permalink(190); ?>'">Ver carrinho</button>

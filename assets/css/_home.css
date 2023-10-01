@@ -330,10 +330,6 @@
     color: var(--default-black);
 }
 
-a:visited{
-    color: var(--default-black);
-}
-
 .product__details span{
     font-size: var(--font-size14);
 }

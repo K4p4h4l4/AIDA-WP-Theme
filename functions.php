@@ -193,20 +193,25 @@
     add_action('wp_ajax_remove_cart_item', 'remove_cart_item_callback'); // For logged-in users
     add_action('wp_ajax_nopriv_remove_cart_item', 'remove_cart_item_callback'); // For non-logged-in users
 
-    function get_cart_contents() {
-        ob_start();
-        wc_get_template('cart/mini-cart.php');
-        $cart_contents = ob_get_clean();
-        echo $cart_contents;
+   /*function get_cart_contents() {
+        $cart_items = WC()->cart->get_cart();
+        $cart_output = '<ul>';
+
+        foreach ($cart_items as $cart_item_key => $cart_item) {
+            $product_name = $cart_item['data']->get_name();
+            $product_price = wc_price($cart_item['data']->get_price());
+            $cart_output .= "<li>$product_name - $product_price</li>";
+        }
+
+        $cart_output .= '</ul>';
+        echo $cart_output;
         die();
     }
 
-    add_action('wp_ajax_get_cart_contents', 'get_cart_contents'); // For logged-in users
-    add_action('wp_ajax_nopriv_get_cart_contents', 'get_cart_contents'); // For non-logged-in users
+add_action('wp_ajax_get_cart_contents', 'get_cart_contents'); // For logged-in users
+add_action('wp_ajax_nopriv_get_cart_contents', 'get_cart_contents'); // For non-logged-in users*/
 
-    // This line is required to handle POST requests as well
-    add_action('wp_ajax_post_get_cart_contents', 'get_cart_contents'); // For POST requests
-    add_action('wp_ajax_nopriv_post_get_cart_contents', 'get_cart_contents'); // For POST requests from non-logged-in users
+
 
 
 ?>
