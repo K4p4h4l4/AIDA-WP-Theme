@@ -179,7 +179,7 @@
                                 </div>
                                 <div class="cart__txt-container">
                                     <div class="cart__poduct-name">
-                                        <span><?php echo $_product->get_name(); ?></span>
+                                        <span class="item__name"><?php echo $_product->get_name(); ?></span>
                                         <span>(<?php echo $values['quantity']; ?>)</span>
                                     </div>
                                     <div class="cart__product-qtde">
@@ -214,7 +214,7 @@
                                 <span class="cart__total-value" id="total">AKZ 0<!--?php echo number_format($total, 2, ',', '.'); ?--> </span>
                             </div>
                             <div class="cart__btn-container">
-                                <button class="cart__view" id="cart__view" onclick="location.href='<?php echo get_permalink(190); ?>'">Ver carrinho</button>
+                                <button class="cart__view ver__carrinho" id="cart__view" onclick="location.href='<?php echo get_permalink(190); ?>'">Ver carrinho</button>
                                 <button class="cart__view" onclick="location.href='<?php echo get_permalink(63); ?>'">Finalizar Compra</button>
                             </div>
                         </div>

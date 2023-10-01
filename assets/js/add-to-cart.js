@@ -1,4 +1,4 @@
-function rudrAddToCart( product_id, quantity = 1 ) {
+/*function rudrAddToCart( product_id, quantity = 1 ) {
 
 	// let's check is add-to-cart.min.js is enqueued and parameters are presented
 	if ( 'undefined' === typeof wc_add_to_cart_params ) {
@@ -34,7 +34,7 @@ function rudrAddToCart( product_id, quantity = 1 ) {
             console.log('Acabou');
 		}
 	);
-}
+}*/
 
 
 
