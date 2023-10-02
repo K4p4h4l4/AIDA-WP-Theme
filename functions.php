@@ -181,7 +181,9 @@
 
     function remove_cart_item_callback() {
         if (isset($_POST['cart_item_key'])) {
-            $cart_item_key = sanitize_text_field($_POST['cart_item_key']);
+            $product_cart_id = WC()->cart->generate_cart_id( $_POST['cart_item_key'] );
+            $product_item_key = WC()->cart->find_product_in_cart($product_cart_id); 
+            $cart_item_key = sanitize_text_field($product_item_key); 
             WC()->cart->remove_cart_item($cart_item_key);
             echo 'success';
         } else {

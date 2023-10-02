@@ -796,7 +796,7 @@
                     </div>
                     <div class="modal__product-info">
                         <div class="modal__product-title">
-                            <h3><?php echo $product_name;?></h3>
+                            <h3 class="modal__title"><?php echo $product_name;?></h3>
                         </div>
                         <div class="modal__product-rating">
                             <i class="material-icons">star</i>
@@ -811,10 +811,10 @@
                         <div class="modal__product-price">                            
                             <?php 
                                 if($product->get_sale_price()):?>
-                                    <h3>AKZ <?php echo number_format($product->get_sale_price(), 2, ',', '.');?></h3>
+                                    <h3 class="modal__price">AKZ <?php echo number_format($product->get_sale_price(), 2, ',', '.');?></h3>
                                     <del>AKZ <?php echo number_format($product->get_regular_price(),  2, ',', '.'); ?></del>
                                 <?php else:?>
-                                    <h3>AKZ <?php echo number_format($product->get_regular_price(),  2, ',', '.');?></h3>
+                                    <h3 class="modal__price">AKZ <?php echo number_format($product->get_regular_price(),  2, ',', '.');?></h3>
                                 <?php endif?>
                         </div>
                         <div class="modal__product-stock">
@@ -832,8 +832,9 @@
                         </div>
                         <div class="modal__product-qtde">
                             <label for="Quantidade">Qtde:</label>
-                            <input type="number" min="0" value="1" max="100">
-                            <button class="modal__product-cart" onclick="rudrAddToCart(<?php echo $product->get_ID(); ?>, 1)">
+                            <input type="number" min="1" value="1" max="100" class="modal__quantity">
+                            <button class="modal__product-cart" >
+                                <!-- onclick="rudrAddToCart(< ?php echo $product->get_ID(); ?>, 1)"-->
                                 <i class="material-icons">shopping_cart</i>
                                 Adicionar ao carrinho
                             </button>
@@ -842,6 +843,7 @@
                             <?php echo $product->get_short_description();?>
                         </div>
                     </div>
+                    <div class="modal__product-id" id="<?php echo $product->get_ID(); ?>"></div>
                 </div>
             <?php
                 $i++;
@@ -854,5 +856,5 @@
     //get footer.php file
     get_footer();
     //print_r($product_categories);
-    //print_r($woocommerce->cart->get_cart());        
+    print_r($woocommerce->cart->get_cart());        
 ?>

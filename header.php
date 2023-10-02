@@ -155,7 +155,7 @@
                 ?>
                 <div class="wishes__content">
                     <div class="wishes__number">
-                        <span><?php echo WC()->cart->get_cart_contents_count();?></span>
+                        <span class="wishes__count"><?php echo count(WC()->cart->get_cart());?></span>
                     </div>
                     <a href="#" class="wishes__content-btn" id="products__cart">
                         <i class="material-icons">local_grocery_store</i>
@@ -171,6 +171,7 @@
                             <?php 
                                 foreach($products as $product => $values){
                                     $_product = wc_get_product($values['data']->get_id());
+                                    //print_r($_product);
                             ?>
                             <div class="cart__list-card">
                                 <div class="cart__list-img">
@@ -179,28 +180,28 @@
                                 </div>
                                 <div class="cart__txt-container">
                                     <div class="cart__poduct-name">
-                                        <span class="item__name"><?php echo $_product->get_name(); ?></span>
-                                        <span>(<?php echo $values['quantity']; ?>)</span>
+                                        <span class="item__name"><?php echo $_product->get_name(); ?></span>                        
                                     </div>
                                     <div class="cart__product-qtde">
                                         <input type="number" value="1" min="1" class="product__quantity">
+                                        <!--?php echo $_product->get_quantity(); ?-->
                                     </div>
                                     <div class="cart__product-price">                                        
                                         <span class="product__price">
                                             AKZ 
                                             <?php 
-                                                //echo number_format($values['line_subtotal'],  2, ',', '.');
-                                                echo $values['line_subtotal'];
+                                                echo number_format($values['line_subtotal'],  2, ',', '.');
+                                                //echo $values['line_subtotal'];
                                                 $total+=$values['line_subtotal'];
                                             ?>
                                         </span>
                                     </div>   
                                 </div>
-                                <?php
+                                <!--?php
                                     $product_cart_id = WC()->cart->generate_cart_id( $_product->get_id() );
                                     $cart_item_key = WC()->cart->find_product_in_cart($product_cart_id); 
-                                ?>
-                                <div class="cart__close-btn" data-product-id="<?php echo $cart_item_key; ?>" >
+                                ?-->
+                                <div class="cart__close-btn" data-product-id="<?php echo $_product->get_id(); ?>" >
                                    +                         
                                 </div>
                             </div>
@@ -211,7 +212,7 @@
                         <div class="cart__btn-holder">
                             <div class="cart__total-container">
                                 <span class="cart__total-txt">Valor Total:</span>
-                                <span class="cart__total-value" id="total">AKZ 0<!--?php echo number_format($total, 2, ',', '.'); ?--> </span>
+                                <span class="cart__total-value" id="total">AKZ <?php echo number_format($total, 2, ',', '.'); ?> </span>
                             </div>
                             <div class="cart__btn-container">
                                 <button class="cart__view ver__carrinho" id="cart__view" onclick="location.href='<?php echo get_permalink(190); ?>'">Ver carrinho</button>
