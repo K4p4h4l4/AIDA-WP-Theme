@@ -90,7 +90,6 @@
             //get_theme_file_uri
             wp_enqueue_script('carousel_js');
         }
-        
 
         //Show modal js 
         wp_register_script('show_modal_js', get_template_directory_uri().'/assets/js/show-modal.js', array(), 1, 1, 1); 

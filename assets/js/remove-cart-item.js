@@ -29,17 +29,17 @@ if(document.readyState == 'loading'){
 }
 
 //Vector para armazenar os produtos do carrinho
-var cartItems = [];
+var cartItemsArray = [];
 
 //Function ready
 function ready(){
     //remove Items From cart
-    var removeCartButtons = document.getElementsByClassName('cart__close-btn');
+    let removeCartButtons = document.getElementsByClassName('cart__close-btn');
     
     for(let i=0; i < removeCartButtons.length; i++){
-        let removeItem = removeCartButtons[i];
+        var removeItem = removeCartButtons[i];
         //let itemKey = removeCartButtons[i].getAttribute('data-product-id');
-        removeItem.addEventListener('click', removeCartItem());
+        removeItem.addEventListener('click', removeCartItem);
     }
     
     //Mudança das quantidades
@@ -133,7 +133,7 @@ function addProductToCart(title,price,image,id, itemQuantity){
     };
     
     cartItems.push(items);*/
-    setCartItemsToStorage(title,price,image,id, itemQuantity)
+    //setCartItemsToStorage(title,price,image,id, itemQuantity)
     //Convertendo os itens que estão no vector para um string JSON
     //let cartItemsJSON = JSON.stringify(cartItems);
     //Armazenzando a string JSON no localStorage sob uma chave específica
@@ -173,7 +173,7 @@ function addProductToCart(title,price,image,id, itemQuantity){
     
     //Adicionar produtos a base de dados do Wordpress
     rudrAddToCart(id, itemQuantity);
-    console.log(cartItems);
+    //console.log(cartItemsArray);
 }
 
 
@@ -292,7 +292,7 @@ function getCartItemsFromStorage() {
 
 // Function to add a product to the cartItems array
 function setCartItemsToStorage(title,price,image,id, itemQuantity) {
-    cartItems = getCartItemsFromStorage();
+    cartItemsArray = getCartItemsFromStorage();
     let product = {
         title: title,
         price: price,
@@ -300,7 +300,7 @@ function setCartItemsToStorage(title,price,image,id, itemQuantity) {
         id: id,
         itemQuantity: itemQuantity
     };
-    cartItems.push(product);
-    localStorage.setItem('cartData', JSON.stringify(cartItems));
+    cartItemsArray.push(product);
+    localStorage.setItem('cartData', JSON.stringify(cartItemsArray));
 }
 

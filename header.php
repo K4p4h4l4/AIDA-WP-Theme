@@ -183,7 +183,7 @@
                                         <span class="item__name"><?php echo $_product->get_name(); ?></span>                        
                                     </div>
                                     <div class="cart__product-qtde">
-                                        <input type="number" value="1" min="1" class="product__quantity">
+                                        <input type="number" value="<?php echo $values['quantity']; ?>" min="1" class="product__quantity">
                                         <!--?php echo $_product->get_quantity(); ?-->
                                     </div>
                                     <div class="cart__product-price">                                        
