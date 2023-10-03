@@ -213,6 +213,19 @@ add_action('wp_ajax_get_cart_contents', 'get_cart_contents'); // For logged-in u
 add_action('wp_ajax_nopriv_get_cart_contents', 'get_cart_contents'); // For non-logged-in users*/
 
 
+function register_custom_sidebar() {
+    register_sidebar(array(
+        'name' => 'Custom Sidebar',
+        'id' => 'custom-sidebar',
+        'description' => 'This is a custom sidebar widget area.',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h2 class="widget-title">',
+        'after_title' => '</h2>',
+    ));
+}
+
+add_action('widgets_init', 'register_custom_sidebar');
 
 
 ?>

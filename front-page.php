@@ -27,6 +27,13 @@
            
             //print_r($product_categories);
         ?>
+        
+        <!-- ?php if (is_active_sidebar('custom-sidebar')) : ?>
+            <div id="sidebar" class="widget-area">
+                < ?php dynamic_sidebar('custom-sidebar'); ?>
+            </div>
+        < ?php endif; ?-->
+        
         <div class="main__menu">
             <ul class="menu__options">
                 <li class="main__options informatic">
