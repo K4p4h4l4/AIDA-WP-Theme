@@ -632,5 +632,5 @@
     //get footer.php file
     get_footer();
     //print_r($product_categories);
-    print_r($woocommerce->cart->get_cart());        
+    //print_r($woocommerce->cart->get_cart());        
 ?>
