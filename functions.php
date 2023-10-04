@@ -194,24 +194,6 @@
     add_action('wp_ajax_remove_cart_item', 'remove_cart_item_callback'); // For logged-in users
     add_action('wp_ajax_nopriv_remove_cart_item', 'remove_cart_item_callback'); // For non-logged-in users
 
-   /*function get_cart_contents() {
-        $cart_items = WC()->cart->get_cart();
-        $cart_output = '<ul>';
-
-        foreach ($cart_items as $cart_item_key => $cart_item) {
-            $product_name = $cart_item['data']->get_name();
-            $product_price = wc_price($cart_item['data']->get_price());
-            $cart_output .= "<li>$product_name - $product_price</li>";
-        }
-
-        $cart_output .= '</ul>';
-        echo $cart_output;
-        die();
-    }
-
-add_action('wp_ajax_get_cart_contents', 'get_cart_contents'); // For logged-in users
-add_action('wp_ajax_nopriv_get_cart_contents', 'get_cart_contents'); // For non-logged-in users*/
-
 
 function register_custom_sidebar() {
     register_sidebar(array(
