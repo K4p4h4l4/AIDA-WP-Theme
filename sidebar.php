@@ -642,30 +642,126 @@
             </ul>
         </li>
         <li class="main__options printer">
-            <a href="<?php echo get_term_link($product_categories[31], 'product_cat'); ?>" class="main__category-link">
-                <i class="material-icons">adf_scanner</i>
-                <?php echo $product_categories[31]->name ;?> <!--Impressoras e Scaners-->
-            </a>
+            <?php
+                // Loop through product categories and display them as links
+                foreach ($product_categories as $category) {
+                    $category_link = get_term_link($category);
+
+                    if ((!is_wp_error($category_link)) && ($category->name == 'Impressoras e Scanners' ))  {
+            ?>
+                        <a href="<?php echo esc_url($category_link); ?>" class="main__category-link">
+                            <i class="material-icons">adf_scanner</i>
+                            Impressoras e Scanners<!--Impressoras e Scanners-->
+                        </a>
+            <?php
+                    }
+                }
+            ?>
 
             <i class="material-icons expand">expand_more</i>
             <ul class="main__options-printer">
                 <li class="main__category-holder printer-submenu">
-                    <a href="<?php echo get_term_link($product_categories[30], 'product_cat'); ?>" class="main__category"><?php echo $product_categories[30]->name ;?> <!--Todas Impressoras--></a>
+                    <?php
+                        // Loop through product categories and display them as links
+                        foreach ($product_categories as $category) {
+                            $category_link = get_term_link($category);
+
+                            if ((!is_wp_error($category_link)) && ($category->name == 'Impressoras' ))  {
+                    ?>
+                                <a href="<?php echo esc_url($category_link); ?>" class="main__category">
+                                    Impressoras<!--Todas Impressoras-->
+                                </a>
+                    <?php
+                            }
+                        }
+                    ?>
                     <div class="main__category-submenu">
                         <ul class="category__submenu-product">
-                            <li class="poduct__submenu"><a href="<?php echo esc_url($category_link); ?>" class="product__type">Impressoras HP<!--Impressoras HP--></a></li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Impressoras HP' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">Impressoras HP<!--Impressoras HP-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
                             <li class="poduct__submenu"><a href="" class="product__type">Ricoh</a></li>
                             <li class="poduct__submenu"><a href="" class="product__type">Kyocera</a></li>
                         </ul>
                     </div>
                 </li>
                 <li class="main__category-holder">
-                    <a href="<?php echo get_term_link($product_categories[47], 'product_cat'); ?>" class="main__category"><?php echo $product_categories[47]->name ;?> <!--todas as Scanners--></a>
+                    <?php
+                        // Loop through product categories and display them as links
+                        foreach ($product_categories as $category) {
+                            $category_link = get_term_link($category);
+
+                            if ((!is_wp_error($category_link)) && ($category->name == 'Scanners' ))  {
+                    ?>
+                                <a href="<?php echo esc_url($category_link); ?>" class="main__category">
+                                    Scanners<!--todas as Scanners-->
+                                </a>
+                    <?php
+                            }
+                        }
+                    ?>
                     <div class="main__category-submenu">
                         <ul class="category__submenu-product">
-                            <li class="poduct__submenu"><a href="" class="product__type">HP</a></li>
-                            <li class="poduct__submenu"><a href="" class="product__type">Brother</a></li>
-                            <li class="poduct__submenu"><a href="<?php echo esc_url($category_link); ?>" class="product__type">Fujitsu<!--Fujitsu--></a></li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'HP Scanners' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                HP<!--HP Scanners-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Brother' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                Brother<!--Brother-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Fujitsu' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                Fujitsu<!--Fujitsu-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
                         </ul>
                     </div>
                 </li>
