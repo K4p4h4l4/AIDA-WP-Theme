@@ -573,17 +573,88 @@
                     ?>
                     <div class="main__category-submenu">
                         <ul class="category__submenu-product">
-                            <li class="poduct__submenu"><a href="" class="product__type">HP</a></li>
-                            <li class="poduct__submenu"><a href="" class="product__type">Cannon</a></li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Tinteiros HP' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                HP<!--Tinteiros HP-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Tinteiros Cannon' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                Cannon<!--Tinteiros Cannon-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
                         </ul>
                     </div>
                 </li>
                 <li class="main__category-holder">
-                    <a href="" class="main__category">Toner</a>
+                    <?php
+                        // Loop through product categories and display them as links
+                        foreach ($product_categories as $category) {
+                            $category_link = get_term_link($category);
+
+                            if ((!is_wp_error($category_link)) && ($category->name == 'Toner' ))  {
+                    ?>
+                    <a href="" class="main__category">Toner<!--Todos os Toners--></a>
+                    <?php
+                            }
+                        }
+                    ?>
                     <div class="main__category-submenu">
                         <ul class="category__submenu-product">
-                            <li class="poduct__submenu"><a href="" class="product__type">HP</a></li>
-                            <li class="poduct__submenu"><a href="" class="product__type">Ricoh</a></li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Toner HP' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                HP
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Toner HP' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                Ricoh<!--Ricoh-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
                             <li class="poduct__submenu"><a href="" class="product__type">Kyocera</a></li>
                         </ul>
                     </div>
@@ -592,7 +663,22 @@
                     <a href="<?php echo $category_link; ?>" class="main__category">Papel<!--Papel--></a>
                     <div class="main__category-submenu">
                         <ul class="category__submenu-product">
-                            <li class="poduct__submenu"><a href="<?php echo esc_url($category_link); ?>" class="product__type">Papel A4<!--Papel A4--></a></li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Papel A4' ))  {
+                                ?>
+                                <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                    Papel A4<!--Papel A4-->
+                                </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
                             <li class="poduct__submenu"><a href="" class="product__type">Papel A3</a></li>
                         </ul>
                     </div>
@@ -600,20 +686,58 @@
             </ul>
         </li>
         <li class="main__options games">
-            <a href="<?php echo get_term_link($product_categories[36], 'product_cat'); ?>" class="main__category-link">
-                <i class="material-icons">sports_esports</i>
-                <?php echo $product_categories[36]->name ;?> <!--Jogos e Consola-->
-            </a>
+            <?php
+                // Loop through product categories and display them as links
+                foreach ($product_categories as $category) {
+                    $category_link = get_term_link($category);
 
+                    if ((!is_wp_error($category_link)) && ($category->name == 'Jogos e Consola' ))  {
+            ?>
+                        <a href="<?php echo esc_url($category_link); ?>" class="main__category-link">
+                            <i class="material-icons">sports_esports</i>
+                            Jogos e Consola<!--Jogos e Consola-->
+                        </a>
+            <?php
+                    }
+                }
+            ?>
 
             <i class="material-icons expand">expand_more</i>
             <ul class="main__options-games">
                 <li class="main__category-holder games-submenu">
-                    <a href="<?php echo get_term_link($product_categories[35], 'product_cat'); ?>" class="main__category"><?php echo $product_categories[35]->name ;?> <!--Todos os jogos--></a>
+                    <?php
+                        // Loop through product categories and display them as links
+                        foreach ($product_categories as $category) {
+                            $category_link = get_term_link($category);
+
+                            if ((!is_wp_error($category_link)) && ($category->name == 'Jogos' ))  {
+                    ?>
+                                <a href="<?php echo esc_url($category_link); ?>" class="main__category">
+                                    Jogos<!--Todos os jogos-->
+                                </a>
+                    <?php
+                            }
+                        }
+                    ?>
                     <div class="main__category-submenu">
                         <ul class="category__submenu-product">
-                            <li class="poduct__submenu"><a href="<?php echo get_term_link($product_categories[42], 'product_cat'); ?>" class="product__type"><?php echo $product_categories[42]->name ;?> <!--PS5--></a></li>
-                            <li class="poduct__submenu"><a href="" class="product__type">PS4</a></li>
+                            <li class="poduct__submenu">
+                                 <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Jogos PS5' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                PS5<!--Jogos PS5-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu"><a href="" class="product__type">PS4<!--Jogos PS4--></a></li>
                         </ul>
                     </div>
                 </li>
@@ -685,15 +809,46 @@
 
                                         if ((!is_wp_error($category_link)) && ($category->name == 'Impressoras HP' ))  {
                                 ?>
-                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">Impressoras HP<!--Impressoras HP-->
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                Impressoras HP<!--Impressoras HP-->
                                             </a>
                                 <?php
                                         }
                                     }
                                 ?>
                             </li>
-                            <li class="poduct__submenu"><a href="" class="product__type">Ricoh</a></li>
-                            <li class="poduct__submenu"><a href="" class="product__type">Kyocera</a></li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Ricoh' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                Ricoh<!--Ricoh-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Kyocera' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                Kyocera<!--Kyocera-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
                         </ul>
                     </div>
                 </li>
