@@ -174,6 +174,7 @@ function addProductToCart(title,price,image,id, itemQuantity){
     //Adicionar produtos a base de dados do Wordpress
     rudrAddToCart(id, itemQuantity);
     //console.log(cartItemsArray);
+    updateTotal();
 }
 
 
