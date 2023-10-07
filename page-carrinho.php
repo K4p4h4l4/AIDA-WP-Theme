@@ -30,7 +30,7 @@
                             Qtde
                         </th>
                         <th>
-                            Total
+                            Subtotal
                         </th>
                         <th>
                             <div class="cart__action">
@@ -45,7 +45,7 @@
                         foreach($products as $product => $values){
                             $_product = wc_get_product($values['data']->get_id());
                     ?>
-                    <tr>
+                    <tr class="product__cart-table">
                         <td data-label="Produto">
                             <a href="<?php echo get_permalink($_product->get_ID()); ?>">
                                 <?php echo wp_get_attachment_image($_product->get_image_id());?>
@@ -54,7 +54,7 @@
                         <td data-label="Nome">
                             <?php echo $_product->get_name(); ?>
                         </td>
-                        <td data-label="Preço">
+                        <td data-label="Preço" class="cart__table-price">
                             Kz
                             <?php 
                                 if($_product->get_sale_price()):
@@ -67,7 +67,7 @@
                         <td data-label="Qtde">
                             <input type="number" min="1" value="<?php echo $values['quantity']; ?>" class="qtde__number">
                         </td>
-                        <td data-label="Total">
+                        <td data-label="Subtotal" class="cart__table-subtotal">
                             Kz
                             <?php 
                                 echo number_format($values['line_subtotal'],  2, ',', '.');
@@ -75,8 +75,8 @@
                             ?>
                         </td>
                         <td>
-                            <a class="action__remove">
-                                <i class="material-icons">delete</i>
+                            <a class="action__remove" >
+                                <i class="material-icons" data-item-id="<?php echo $_product->get_ID();?>">delete</i>
                             </a>
                         </td>
                     </tr>
