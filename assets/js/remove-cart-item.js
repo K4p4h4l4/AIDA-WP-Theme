@@ -258,27 +258,5 @@ function productCounter(operation){
     document.getElementsByClassName('wishes__count')[0].innerText = productCount;
 }
 
-// Function to get the cart items from localStorage
-function getCartItemsFromStorage() {
-    let storedCartData = localStorage.getItem('cartData');
-    if (storedCartData) {
-        return JSON.parse(storedCartData);
-    } else {
-        return [];
-    }
-}
 
-// Function to add a product to the cartItems array
-function setCartItemsToStorage(title,price,image,id, itemQuantity) {
-    cartItemsArray = getCartItemsFromStorage();
-    let product = {
-        title: title,
-        price: price,
-        image: image,
-        id: id,
-        itemQuantity: itemQuantity
-    };
-    cartItemsArray.push(product);
-    localStorage.setItem('cartData', JSON.stringify(cartItemsArray));
-}
 

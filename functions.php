@@ -90,12 +90,6 @@
             //get_theme_file_uri
             wp_enqueue_script('carousel_js');
         }
-        
-        if(is_page('carrinho')){
-            //Envio js 
-            wp_register_script('carrinho_js', get_template_directory_uri().'/assets/js/carrinho.js', array(), 1, 1, 1); //get_theme_file_uri
-            wp_enqueue_script('carrinho_js');
-        }
 
         //Show modal js 
         wp_register_script('show_modal_js', get_template_directory_uri().'/assets/js/show-modal.js', array(), 1, 1, 1); 
@@ -123,6 +117,18 @@
             //Envio js 
             wp_register_script('envio_js', get_template_directory_uri().'/assets/js/envio.js', array(), 1, 1, 1); //get_theme_file_uri
             wp_enqueue_script('envio_js');
+        }
+        
+        if(is_page('carrinho')){
+            //Envio js 
+            wp_register_script('carrinho_js', get_template_directory_uri().'/assets/js/carrinho.js', array(), 1, 1, 1); //get_theme_file_uri
+            wp_enqueue_script('carrinho_js');
+        }
+        
+        if(is_page('checkout')){
+            //Envio js 
+            wp_register_script('checkout__js', get_template_directory_uri().'/assets/js/checkout.js', array(), 1, 1, 1); //get_theme_file_uri
+            wp_enqueue_script('checkout__js');
         }
         
     }

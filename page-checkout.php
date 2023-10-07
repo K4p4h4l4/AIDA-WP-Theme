@@ -22,6 +22,7 @@
                         </div>
                     </div>
                     <div class="checkout__information-details">
+                       <form name="usrform" method="post" action="http://localhost:81/wordpress/page-envio">
                        <div class="information__links">
                            <div class="information__link-holder">
                                <a href="carrinho.php" class="information__link">Carrinho <i class="material-icons">chevron_right</i></a>
@@ -39,10 +40,10 @@
                        <div class="information__details-holder">
                            <div class="information__contact-holder">
                                <div class="contact__header">
-                                   Contacto *
+                                   Email *
                                </div>
                                <div class="contact__email-holder">
-                                   <input type="email" placeholder="Email" class="information__email" required>
+                                   <input type="email" placeholder="Email" class="information__email" required name="user_email" id="usr_email">
                                </div>
                            </div>
                            <div class="information__contact-holder">
@@ -50,14 +51,14 @@
                                    Método de entrega *
                                </div>
                                <div class="contact__deliver">
-                                   <input type="radio" class="information__radio">
+                                   <input type="radio" class="information__radio" name="encomenda" value="enviar">
                                    <div class="deliver__text-holder">
                                        <i class="material-icons">local_shipping</i>
                                        <p>Enviar</p>
                                    </div>
                                </div>
                                <div class="contact__deliver">
-                                   <input type="radio" class="information__radio">
+                                   <input type="radio" class="information__radio" name="encomenda" value="recolha">
                                    <div class="deliver__text-holder">
                                        <i class="material-icons">home</i>
                                        <p>Recolha</p>
@@ -69,25 +70,25 @@
                                    Endereço de envio *
                                </div>
                                <div class="address__country-holder">
-                                   <select name="Pais" id="pais" class="address__country">
+                                   <select name="Pais" id="usr_country" class="address__country">
                                        <option value="Angola">Angola</option>
                                    </select>
                                </div>
                                <div class="owner__details">
-                                   <input type="text" class="owner__names" placeholder="Nome" required>
-                                   <input type="text" class="owner__names" placeholder="Sobrenome" required>
+                                   <input type="text" class="owner__names" placeholder="Nome" required name="usr_name" id="usr_name">
+                                   <input type="text" class="owner__names" placeholder="Sobrenome" required name="usr_surname" id="usr_surname">
                                </div>
                                
                                <div class="owner__address">
-                                   <input type="text" placeholder="Endereço" required name="sobrenome" class="owner__address-details">
+                                   <input type="text" placeholder="Endereço" required name="usr_address" class="owner__address-details" usr_address>
                                </div>
                                
                                <div class="owner__address">
-                                   <input type="text" placeholder="Cidade" class="owner__address-details" required>
+                                   <input type="text" placeholder="Cidade" class="owner__address-details" required name="usr_city" id="usr_city">
                                </div>
                                
                                <div class="owner__address">
-                                   <input type="number" placeholder="Telefone" class="owner__address-details" min="910000000" value="910000000" required>
+                                   <input type="number" placeholder="Telefone" class="owner__address-details" min="910000000" value="910000000" required name="usr_phone" id="usr_phone">
                                </div>
                             
                            </div>
@@ -96,10 +97,11 @@
                                    Informações adicionais
                                </div>
                                <div class="contact__comment-holder">
-                                   <textarea name="contact__comments" id="" cols="5" rows="5" class="contact__comments" placeholder="Notas adicionais ao pedido (opcional)"></textarea>
+                                   <textarea name="contact__comments" id="" cols="5" rows="5" class="contact__comments" placeholder="Notas adicionais ao pedido (opcional)" name="usr_details" id="usr_details"></textarea>
                                </div>
                            </div>
                        </div>
+                        </form>
                     </div>
                 </div>
                 
@@ -150,7 +152,7 @@
                             Subtotal
                         </div>
                         <div class="subtotal__price-holder">
-                            Kz
+                            AKZ
                             <?php echo number_format($total, 2, ',', '.'); ?>
                         </div>
                     </div>
@@ -167,14 +169,15 @@
                             Total
                         </div>
                         <div class="total__price-holder">
-                            Kz
+                            AKZ
                             <?php echo number_format($total, 2, ',', '.'); ?>
                         </div>
                     </div>
                 </div>
                 
                 <div class="button__shipping-holder">
-                    <button class="button__shipping" onclick="location.href='<?php echo get_permalink(194); ?>'"><i class="material-icons">send</i> Continuar para envio</button>
+                    <button class="button__shipping" type="submit" form="usrform" id="usr_buttonInfo" ><i class="material-icons">send</i> Continuar para envio</button>
+                    <!-- onclick="location.href= '< ? php echo get_permalink(194); ? > ' "-->
                 </div>
             </div>
         </div>

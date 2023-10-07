@@ -40,7 +40,7 @@
                     </tr>
                 </thead>
                 
-                <tbody>
+                <tbody class="cart__table-body">
                     <?php 
                         foreach($products as $product => $values){
                             $_product = wc_get_product($values['data']->get_id());
@@ -55,7 +55,7 @@
                             <?php echo $_product->get_name(); ?>
                         </td>
                         <td data-label="Preço" class="cart__table-price">
-                            Kz
+                            AKZ
                             <?php 
                                 if($_product->get_sale_price()):
                                     echo number_format($_product->get_sale_price(), 2, ',', '.');
@@ -68,7 +68,7 @@
                             <input type="number" min="1" value="<?php echo $values['quantity']; ?>" class="qtde__number">
                         </td>
                         <td data-label="Subtotal" class="cart__table-subtotal">
-                            Kz
+                            AKZ
                             <?php 
                                 echo number_format($values['line_subtotal'],  2, ',', '.');
                                 $total+=$values['line_subtotal'];
@@ -99,7 +99,7 @@
                         Subtotal
                     </div>
                     <div class="subtotals__number">
-                        Kz
+                        AKZ
                         <?php echo number_format($total, 2, ',', '.'); ?>
                     </div>
                 </div>
@@ -116,7 +116,7 @@
                         Total
                     </div>
                     <div class="totals__number">
-                        Kz
+                        AKZ
                         <?php echo number_format($total, 2, ',', '.'); ?>
                     </div>
                 </div>
