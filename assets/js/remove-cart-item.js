@@ -8,6 +8,9 @@ if(document.readyState == 'loading'){
 //Vector para armazenar os produtos do carrinho
 var cartItemsArray = [];
 
+//número da ordem
+//var order_number;
+
 //Function ready
 function ready(){
     //remove Items From cart
@@ -42,6 +45,8 @@ function ready(){
         let button = modalAddCart[i];
         button.addEventListener('click', modalAddCartClicked);
     }
+    
+    document.getElementById('cart__view').addEventListener('click', callCart);
 }
 
 //Função para  remover items do carrinho
@@ -101,21 +106,6 @@ function addProductToCart(title,price,image,id, itemQuantity){
         }        
     }
     
-    /*let items = {
-        title: title,
-        price: price,
-        image: image,
-        id: id,
-        itemQuantity: itemQuantity
-    };
-    
-    cartItems.push(items);*/
-    //setCartItemsToStorage(title,price,image,id, itemQuantity)
-    //Convertendo os itens que estão no vector para um string JSON
-    //let cartItemsJSON = JSON.stringify(cartItems);
-    //Armazenzando a string JSON no localStorage sob uma chave específica
-    //localStorage.setItem('cartData', cartItemsJSON);
-    
     let cartBoxContent = `
         <div class="cart__list-img">
             <img width="150" height="150" src="${image}" alt="" class="attachment-thumbnail size-thumbnail" decoding="async">
@@ -151,7 +141,10 @@ function addProductToCart(title,price,image,id, itemQuantity){
     //Adicionar produtos a base de dados do Wordpress
     rudrAddToCart(id, itemQuantity);
     //console.log(cartItemsArray);
+    
+    createOrderAndAddProduct(id, itemQuantity);
     updateTotal();
+    
 }
 
 
@@ -163,9 +156,32 @@ function quantityChange(event){
     updateTotal();
 }
 
+
+function updateCartItemQuantity(cart_item_key, new_quantity) {
+    jQuery.ajax({
+        type: 'POST',
+        url: wc_add_to_cart_params.ajax_url,
+        data: {
+            action: 'update_cart_item_quantity',
+            cart_item_key: cart_item_key,
+            new_quantity: new_quantity
+        },
+        success: function (response) {
+            // Handle the response from the server, e.g., update the cart totals or display a success message.
+            console.log(response.message);
+        },
+        error: function (error) {
+            console.error('Error updating cart item quantity:', error);
+        }
+    });
+}
+
+
+//Actualiza o preço total em tempo real
 function updateTotal(){
     let cartContent = document.getElementsByClassName('cart__list-container')[0];
     let cartBoxes = cartContent.getElementsByClassName('cart__list-card');
+    let product_ids = document.getElementsByClassName('cart__close-btn');
     let total = 0;
     
     for(let i=0; i < cartBoxes.length; i++){
@@ -174,6 +190,11 @@ function updateTotal(){
         let quantityElement = cartBox.getElementsByClassName('product__quantity')[0];
         let price = parseFloat(priceElement.innerText.replace("AKZ", "").replace(".", "").replace(".", "")); //para remover os pontos e o AKZ do preço
         let quantity = quantityElement.value;
+        let product_id = product_ids[i].getAttribute('data-product-id');
+        //console.log(product_id);
+        let order_number = localStorage.getItem('orderID');
+        
+        updateOrderItemQuantity(order_number, product_id, quantity)
         total = total + (price * quantity);
     }
         //arredondar o valor sem as casas decimais
@@ -189,7 +210,7 @@ function updateTotal(){
 }
 
 //adicionar o produto no backend
-function rudrAddToCart( product_id, quantity = 1 ) {
+function rudrAddToCart( product_id, quantity) {
 
 	// let's check is add-to-cart.min.js is enqueued and parameters are presented
 	if ( 'undefined' === typeof wc_add_to_cart_params ) {
@@ -224,6 +245,9 @@ function rudrAddToCart( product_id, quantity = 1 ) {
 //remover o item do backend
 function removeCartItemBack(chave){
     let cartItemKey = chave;
+    let order_number = localStorage.getItem('orderID');
+    //Função para remover o produto da encomenda
+    //removeProductFromOrder(order_number, cartItemKey);
     jQuery.ajax({
         type: 'POST',
         url: wc_add_to_cart_params.ajax_url, //'http://localhost/wordpress/wp-admin/admin-ajax.php' ajaxurl WordPress AJAX URL (automatically defined)
@@ -238,7 +262,7 @@ function removeCartItemBack(chave){
                 console.log('Removido com sucesso');
             } else {
                 // Handle error
-                alert('An error occurred while removing the product from the cart.');
+                alert('Um erro ocorreu enquanto removia-se um produto do carrinho .');
             }
         }
     });
@@ -258,5 +282,104 @@ function productCounter(operation){
     document.getElementsByClassName('wishes__count')[0].innerText = productCount;
 }
 
+//Javascript para chamar a função de criar uma encomenda e em seguida ir para a página do carrinho
+function callCart(){
+    let itemsList = document.getElementsByClassName('cart__list-card');
+    
+    if(itemsList.length > 0){
+        
+        for(let i = 0; i < itemsList.length; i++){
+            let product_id = itemsList[i].children[2].getAttribute('data-product-id');
+            let product_qtde = itemsList[i].children[1].children[1].children[0].value;
+            //console.log(product_id, product_qtde);
+            let order_number = localStorage.getItem('orderID');
+            //console.log(order_number);
+            //actualizar as quantidades dos produtos do carrinho
+            //updateCartItemQuantity(product_id, product_qtde);
+            
+            //actualizar as quantidades dos produtos da encomenda
+            updateOrderItemQuantity(order_number, product_id, product_qtde);
+            //createOrderAndAddProduct(product_id, product_qtde);
+        }
+        
+        //window.location.assign('http://localhost:81/wordpress/carrinho/')
+        
+    }
+    
+}
+
+// JavaScript para criar uma encomenda e adicionar os produto a mesma
+function createOrderAndAddProduct(productID, quantity) {
+    //console.log(productID, quantity);
+    jQuery.ajax({
+      type: 'POST',
+      url: wc_add_to_cart_params.ajax_url, // Replace with the correct server endpoint
+      data: {
+        action: 'create_order_and_add_product', // Action name defined in WordPress server
+        product_id: productID,
+        quantity: quantity
+      },
+      success: function (data) {
+          // Handle the response from the server (e.g., success or error message)        
+          let order_number = data.order_number;
+          localStorage.setItem('orderID', order_number);
+          console.log(order_number, data.message);
+      },
+      error: function (error) {
+        // Handle errors (e.g., display an error message)
+        console.error('Erro ao adicionar produtos ao carrinho:', error);
+      },
+    });
+}
+
+
+//Javascript para actualizar os produtos da encomenda
+function updateOrderItemQuantity(orderId, productId, newQuantity) {
+    //console.log(orderId, productId, newQuantity);
+    // Send the Ajax request to the server
+    jQuery.ajax({
+        type: 'POST',
+        url: wc_add_to_cart_params.ajaxurl, // WordPress-defined variable for the admin-ajax.php URL
+        data:{
+            action: 'update_order_item_quantity', // Custom action name on the server
+            order_id_update: orderId,
+            product_id_update: productId,
+            quantity_update: newQuantity
+        },
+        success: function(data) {
+            // Handle the server's response (e.g., success or error message)
+            let message = data.message;
+            console.log(message);
+        },
+        error: function(error) {
+            // Handle errors (e.g., display an error message)
+            console.error('Erro ao actualizar as quantidades da encomenda:', error);
+        }
+    });
+}
+
+function removeProductFromOrder(orderId, productId) {
+
+    // Send the Ajax request to the server
+    jQuery.ajax({
+        type: 'POST',
+        url: wc_add_to_cart_params.ajaxurl, // WordPress-defined variable for the admin-ajax.php URL
+        data: {
+            action: 'remove_product_from_order', // Custom action name on the server
+            order_id: orderId,
+            product_id: productId
+        },
+        success: function(data) {
+            // Handle the server's response (e.g., success or error message)
+            
+            console.log(data.message);
+                
+        },
+        error: function(error) {
+            // Handle errors (e.g., display an error message)
+            console.error('Error removing the product:', error);
+        }
+    });
+}
 
 

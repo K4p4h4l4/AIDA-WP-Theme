@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+?>
+    
 <!DOCTYPE html>
 <html  <?php language_attributes(); ?> >
 
@@ -189,8 +193,12 @@
                                     <div class="cart__product-price">                                        
                                         <span class="product__price">
                                             AKZ 
-                                            <?php 
-                                                echo number_format($values['line_subtotal'],  2, ',', '.');
+                                            <?php
+                                                if($_product->get_sale_price()):
+                                                    echo number_format($_product->get_sale_price(),  2, ',', '.');
+                                                else:
+                                                    echo number_format($_product->get_regular_price(),  2, ',', '.');
+                                                endif;
                                                 //echo $values['line_subtotal'];
                                                 $total+=$values['line_subtotal'];
                                             ?>
@@ -215,7 +223,7 @@
                                 <span class="cart__total-value" id="total">AKZ <?php echo number_format($total, 2, ',', '.'); ?> </span>
                             </div>
                             <div class="cart__btn-container">
-                                <button class="cart__view ver__carrinho" id="cart__view" onclick="location.href='<?php echo get_permalink(190); ?>'">Ver carrinho</button>
+                                <button class="cart__view ver__carrinho" id="cart__view">Ver carrinho</button> <!-- onclick="location.href='< ?php echo get_permalink(190); ?>'" -->
                                 <button class="cart__view" onclick="location.href='<?php echo get_permalink(63); ?>'">Finalizar Compra</button>
                             </div>
                         </div>
