@@ -287,7 +287,7 @@ function create_order_and_add_product_callback() {
     if ($order) {
         wp_send_json(['success' => true, 'message' => ' Encomenda criada e produtos adicionados com sucesso', 'order_number' => $order->get_order_number()  ]);//$order->get_order_number()
     } else {
-        wp_send_json(['success' => false, 'message' => 'Erro ao criar a encomenda e a adicionar produtos á mesma ']);
+        wp_send_json(['success' => false, 'message' => 'Erro ao criar a encomenda e ao adicionar produtos á mesma ']);
     }
 
     wp_die();
@@ -299,31 +299,33 @@ add_action('wp_ajax_nopriv_update_order_item_quantity', 'update_order_item_quant
 
 //Função para actualizar a quantidade de produtos na encomenda
 function update_order_item_quantity_callback() {
+    
     // Get the data sent from the client
-    $order_id = $_POST['order_id_update'];
-    $product_id = $_POST['product_id_update'];
-    $new_quantity = $_POST['quantity_update'];
+    $order_id = $_POST['orderId'];
+    $product_id = $_POST['productId'];
+    $new_quantity = $_POST['newQuantity'];
 
     // Update the order item's quantity (you need to implement this logic)
     // Example: $updated = your_update_quantity_function($order_id, $product_id, $new_quantity);
 
     // Retrieve the order number
-    //$order = wc_get_order($order_id);
-    $order = $_SESSION['cart'];
-    $order_number = $order->get_order_number();
-    //print_r($order);//$order_id;
+    $order = wc_get_order($order_id);
     
+    $order_number = $order->get_order_number();
+
+    
+   
+    
+        
     if($order){
         // Loop through order items to find the specific product
         foreach ($order->get_items() as $item_id => $item) {
-            // Replace $product_id with the actual product ID you want to update
-            //$product_id = YOUR_PRODUCT_ID;
+            
 
             // Check if the product in the order matches the product you want to update
             if ($item->get_product_id() == $product_id) {
                 // Set the new quantity (replace with the desired quantity)
-                //$new_quantity = YOUR_NEW_QUANTITY;
-                //var_dump($item_id);
+                
                 // Update the quantity for this item
                 wc_update_order_item($item_id, ['qty' => $new_quantity]);
                 
@@ -333,9 +335,9 @@ function update_order_item_quantity_callback() {
                 $order->save();
 
                 // Optionally, you can add order notes to record the quantity change
-                /*$order->add_order_note(
-                    sprintf(__('Quantity of product updated to %s', 'your-text-domain'), $new_quantity)
-                );*/
+                //$order->add_order_note(
+                //    sprintf(__('Quantity of product updated to %s', 'your-text-domain'), $new_quantity)
+                //);
 
                 // Optionally, you can trigger any necessary actions or hooks here
                 break; // Exit the loop after updating the item
@@ -344,25 +346,11 @@ function update_order_item_quantity_callback() {
     }
 
     if($order){
-        // Prepare the response data including the order number
-        /*$response_data = [
-            'success' => true,
-            'message' => 'Quantidade actualizada com sucesso',
-            'order_number' => $order_number, // Include the order number in the response
-        ];*/
+        
         // Send the response data back to the client
-        wp_send_json([
-            'success' => true,
-            'message' => 'Quantidade actualizada com sucesso',
-            'order_number' => $order_number // Include the order number in the response
-        ]);
+         wp_send_json(['success' => true, 'message' => 'Itens da encomenda actualizados com sucesso', 'order_number' => $order_number] );// Include the order number in the response
     }else{
-        // Prepare the response data including the order number
-        /*$response_data = [
-            'success' => false,
-            'message' => 'Erro ao actualizar a quantidade',
-            'order_number' => $order_number // Include the order number in the response
-        ];*/
+        
         // Send the response data back to the client
         wp_send_json([
             'success' => false,
@@ -370,7 +358,7 @@ function update_order_item_quantity_callback() {
             'order_number' => $order_number // Include the order number in the response
         ]);
     }
-    error_log($order);
+    
     wp_die();
 }
 

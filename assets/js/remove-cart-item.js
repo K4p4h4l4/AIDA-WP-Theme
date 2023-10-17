@@ -194,7 +194,7 @@ function updateTotal(){
         //console.log(product_id);
         let order_number = localStorage.getItem('orderID');
         
-        updateOrderItemQuantity(order_number, product_id, quantity)
+        //updateOrderItemQuantity(order_number, product_id, quantity)
         total = total + (price * quantity);
     }
         //arredondar o valor sem as casas decimais
@@ -291,14 +291,15 @@ function callCart(){
         for(let i = 0; i < itemsList.length; i++){
             let product_id = itemsList[i].children[2].getAttribute('data-product-id');
             let product_qtde = itemsList[i].children[1].children[1].children[0].value;
-            //console.log(product_id, product_qtde);
+            
             let order_number = localStorage.getItem('orderID');
-            //console.log(order_number);
+            //console.log(order_number, product_id, product_qtde);
             //actualizar as quantidades dos produtos do carrinho
-            //updateCartItemQuantity(product_id, product_qtde);
+            updateCartItemQuantity(product_id, product_qtde);
             
             //actualizar as quantidades dos produtos da encomenda
             updateOrderItemQuantity(order_number, product_id, product_qtde);
+            
             //createOrderAndAddProduct(product_id, product_qtde);
         }
         
@@ -335,21 +336,22 @@ function createOrderAndAddProduct(productID, quantity) {
 
 //Javascript para actualizar os produtos da encomenda
 function updateOrderItemQuantity(orderId, productId, newQuantity) {
-    //console.log(orderId, productId, newQuantity);
+    console.log(orderId, productId, newQuantity);
     // Send the Ajax request to the server
     jQuery.ajax({
         type: 'POST',
-        url: wc_add_to_cart_params.ajaxurl, // WordPress-defined variable for the admin-ajax.php URL
-        data:{
+        url: wc_add_to_cart_params.ajax_url, // WordPress-defined variable for the admin-ajax.php URL
+        data: {
             action: 'update_order_item_quantity', // Custom action name on the server
-            order_id_update: orderId,
-            product_id_update: productId,
-            quantity_update: newQuantity
+            orderId: orderId,
+            productId: productId,
+            newQuantity: newQuantity
         },
-        success: function(data) {
+        //dataType: 'json' ,
+        success: function (data) {
             // Handle the server's response (e.g., success or error message)
-            let message = data.message;
-            console.log(message);
+            //let message = data.message;
+            console.log(data.order_number, data.message);
         },
         error: function(error) {
             // Handle errors (e.g., display an error message)
