@@ -311,11 +311,7 @@ function update_order_item_quantity_callback() {
     // Retrieve the order number
     $order = wc_get_order($order_id);
     
-    $order_number = $order->get_order_number();
-
-    
-   
-    
+    $order_number = $order->get_order_number();    
         
     if($order){
         // Loop through order items to find the specific product
@@ -323,11 +319,10 @@ function update_order_item_quantity_callback() {
             
 
             // Check if the product in the order matches the product you want to update
-            if ($item->get_product_id() == $product_id) {
-                // Set the new quantity (replace with the desired quantity)
+            if ($item->get_product_id() == $product_id) {                
                 
-                // Update the quantity for this item
-                wc_update_order_item($item_id, ['qty' => $new_quantity]);
+                // Set the new quantity for this item
+                $item->set_quantity($new_quantity);
                 
                 //Calcular os totais com a alteração das quantidades dos produtos
                 $order->calculate_totals();
@@ -400,6 +395,55 @@ function remove_product_from_order_callback() {
 
     wp_die();
 }
+
+add_action('wp_ajax_update_invoice', 'update_invoice_callback');
+add_action('wp_ajax_nopriv_update_invoice', 'update_invoice_callback');
+
+function update_invoice_callback() {
+    $order_id = intval($_POST['order_id']);
+
+    if ($order_id > 0) {
+        // Get the order by order ID
+        $order = wc_get_order($order_id);
+
+        if ($order) {
+            // Generate or update the invoice based on the order
+            // In this example, we're creating a simple invoice as a PDF file.
+
+            // Example: Include a library or function to generate PDF invoices (e.g., using mPDF or TCPDF)
+            require_once('.\wp-content\plugins\wt-woocommerce-packing-list-mpdf.php');
+
+            // Create a new PDF instance
+            $pdf = new PDF();
+
+            // Set the content for the invoice (you'll customize this based on your needs)
+            $invoice_content = 'Invoice for Order #' . $order_id . "\n";
+            $invoice_content .= 'Order Date: ' . $order->get_date_created() . "\n";
+            $invoice_content .= 'Billing Address: ' . $order->get_formatted_billing_address() . "\n";
+
+            // Add the invoice content to the PDF
+            $pdf->AddPage();
+            $pdf->SetFont('Arial', 'B', 16);
+            $pdf->MultiCell(0, 10, $invoice_content, 0, 'L');
+
+            // Output the PDF (you can save it to a file, send it by email, etc.)
+            $pdf->Output('invoice_' . $order_id . '.pdf', 'I');
+
+            // Optionally, you can add order notes to record the invoice update
+            $order->add_order_note(
+                sprintf(__('Invoice updated on %s', 'your-text-domain'), current_time('mysql'))
+            );
+
+            wp_send_json(['success' => true, 'message' => 'Invoice updated successfully']);
+        } else {
+            wp_send_json(['success' => false, 'message' => 'Order not found']);
+        }
+    } else {
+        wp_send_json(['success' => false, 'message' => 'Invalid order ID']);
+    }
+    wp_die();
+}
+
 
 
 ?>

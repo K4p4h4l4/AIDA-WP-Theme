@@ -296,14 +296,14 @@ function callCart(){
             //console.log(order_number, product_id, product_qtde);
             //actualizar as quantidades dos produtos do carrinho
             updateCartItemQuantity(product_id, product_qtde);
-            
+            setInterval(function (){},3000);
             //actualizar as quantidades dos produtos da encomenda
             updateOrderItemQuantity(order_number, product_id, product_qtde);
-            
-            //createOrderAndAddProduct(product_id, product_qtde);
+            setInterval(function (){},3000);
+            //Actualizar as facturas
         }
         
-        //window.location.assign('http://localhost:81/wordpress/carrinho/')
+        window.location.assign('http://localhost:81/wordpress/carrinho/');
         
     }
     
@@ -360,6 +360,28 @@ function updateOrderItemQuantity(orderId, productId, newQuantity) {
     });
 }
 
+//Função para actulizar a factura
+function updateInvoice(order_id) {
+    $.ajax({
+        type: 'POST',
+        url: ajaxurl, // WordPress-defined variable for the admin-ajax.php URL
+        data: {
+            action: 'update_invoice', // Custom action name on the server
+            order_id: order_id,
+        },
+        success: function (data) {
+            // Handle the server's response (e.g., success or error message)
+            console.log(data.message);
+        },
+        error: function (error) {
+            // Handle errors (e.g., display an error message)
+            console.error('Error updating the invoice:', error);
+        }
+    });
+}
+
+
+//Função para remover item da encomenda
 function removeProductFromOrder(orderId, productId) {
 
     // Send the Ajax request to the server
