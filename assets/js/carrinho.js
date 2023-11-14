@@ -24,7 +24,7 @@ function ready(){
     //Ver factura proforma
     let invoiceButton = document.getElementById('invoice-btn');
     
-    
+    //Verifica se tem itens no carrinho e se sim tenta gerar a factura
     if(quantityInputs.length > 0){
         invoiceButton.addEventListener('click', getInvoice);
     }
@@ -96,24 +96,40 @@ function updateTableTotal(){
 }
 
 //Função para gerar a factura proforma
-function getInvoice(){
-    console.log('factura');
-    jQuery.ajax({
-        type: 'POST',
-        url: wc_add_to_cart_params.ajax_url, // WordPress-defined variable for the admin-ajax.php URL
-        data: {
-            action: 'generate_invoice', // Custom action name for the server
-            orderId: orderId
-        },
-        success: function (data) {
-            // Open the generated invoice URL in a new tab
-            window.open(data.invoice_url, '_blank');
-        },
-        error: function (error) {
-            console.error('Error generating the invoice:', error);
-        },
-    });
+function getInvoice(event) {
+    // Assuming you have an attribute 'data-order' on the clicked element
+    let invoiceClicked = event.target;
+    let invoiceId = invoiceClicked.getAttribute('data-order');
+    console.log(invoiceId);
+    // Check if the order ID is valid
+    if (invoiceId) {
+        // Send an AJAX request to generate the invoice
+        jQuery.ajax({
+            type: 'POST',
+            url: wc_add_to_cart_params.ajax_url,
+            data: {
+                action: 'generate_invoice',
+                orderId: invoiceId
+            },
+            success: function (data) {
+                // Check if the response contains the invoice URL
+                /*if (data.invoice_url) {
+                    // Open the generated invoice URL in a new tab
+                    window.open(data.invoice_url, '_blank');
+                } else {
+                    console.error('Error: Invalid invoice URL', data.invoice_url);
+                }*/
+                console.log(data.invoice_url);
+            },
+            error: function (error) {
+                console.error('Error generating the invoice:', error);
+            },
+        });
+    } else {
+        console.error('Error: Invalid order ID');
+    }
 }
+
 
 //Função para adicionar ou remover itens da contagem de produtos
 /*function productCounter(operation){
