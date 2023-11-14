@@ -122,7 +122,7 @@
                 </div>
                 <div class="cart__buttons-holder">
                     <button class="button__actions" onclick="location.href='<?php echo get_permalink(22); ?>'"> <i class="material-icons">arrow_back</i> Continuar a comprar</button>
-                    <button class="button__actions"> <i class="material-icons">article</i> Consultar preço</button>
+                    <button class="button__actions" id="invoice-btn"> <i class="material-icons">article</i> Consultar preço</button>
                     <button class="button__actions" onclick="location.href='<?php echo get_permalink(63); ?>'"> <i class="material-icons">done</i> Finalizar compra</button>
                 </div>
             </div>

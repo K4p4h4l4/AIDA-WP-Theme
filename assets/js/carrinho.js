@@ -21,6 +21,14 @@ function ready(){
         input.addEventListener('change', quantityChangeTable);
     }
     
+    //Ver factura proforma
+    let invoiceButton = document.getElementById('invoice-btn');
+    
+    
+    if(quantityInputs.length > 0){
+        invoiceButton.addEventListener('click', getInvoice);
+    }
+    
 }
 
 //Função para  remover items do carrinho
@@ -85,6 +93,26 @@ function updateTableTotal(){
     
     console.log(total);
     
+}
+
+//Função para gerar a factura proforma
+function getInvoice(){
+    console.log('factura');
+    jQuery.ajax({
+        type: 'POST',
+        url: wc_add_to_cart_params.ajax_url, // WordPress-defined variable for the admin-ajax.php URL
+        data: {
+            action: 'generate_invoice', // Custom action name for the server
+            orderId: orderId
+        },
+        success: function (data) {
+            // Open the generated invoice URL in a new tab
+            window.open(data.invoice_url, '_blank');
+        },
+        error: function (error) {
+            console.error('Error generating the invoice:', error);
+        },
+    });
 }
 
 //Função para adicionar ou remover itens da contagem de produtos

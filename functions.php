@@ -399,6 +399,7 @@ function remove_product_from_order_callback() {
 add_action('wp_ajax_update_invoice', 'update_invoice_callback');
 add_action('wp_ajax_nopriv_update_invoice', 'update_invoice_callback');
 
+//Função para actulizar a factura
 function update_invoice_callback() {
     $order_id = intval($_POST['order_id']);
 
@@ -443,6 +444,63 @@ function update_invoice_callback() {
     }
     wp_die();
 }
+
+//Função para gerar a factura
+// Your server-side endpoint
+add_action('wp_ajax_generate_invoice', 'generate_invoice_callback');
+add_action('wp_ajax_nopriv_generate_invoice', 'generate_invoice_callback');
+
+function generate_invoice_callback() {
+  // Include the TCPDF library
+  /*require_once(get_template_directory() . '/tcpdf/tcpdf.php');
+
+  // Create a new PDF document
+  $pdf = new TCPDF();
+
+  // Set document information (replace with your own data)
+  $pdf->SetCreator('Your Name');
+  $pdf->SetAuthor('Your Name');
+  $pdf->SetTitle('Invoice');
+  $pdf->SetSubject('I');
+  $pdf->SetKeywords('Invoice, PDF, TCPDF');
+
+  // Add a page
+  $pdf->AddPage();
+
+  // Your invoice content
+  $invoice_content = 'Invoice Details...'; // Replace with your invoice content
+
+  // Output your invoice content to the PDF
+  $pdf->writeHTML($invoice_content, true, false, true, false, '');
+
+  // Close and output the PDF
+  $pdf->Output(get_template_directory() . '/invoices/invoice.pdf', 'F'); // Save the PDF to a file
+
+  // Return the URL of the generated invoice
+  $invoice_url = get_template_directory_uri() . '/invoices/invoice.pdf';
+  wp_send_json(['invoice_url' => $invoice_url]);
+  wp_die();*/
+     // Check if the WooCommerce PDF Invoices plugin is active
+    if (class_exists('WooCommerce_PDF_Invoices')) {
+        // Get the order object
+        $order_id = $_POST['order_id'];
+        $order = wc_get_order($order_id);
+
+        // Check if the order exists
+        if ($order) {
+            // Generate the invoice
+            do_action('wpo_wcpdf_before_pdf', $order);
+            $invoice = new WooCommerce_PDF_Invoices_Packing_Slips_Invoice($order);
+            $invoice->output_invoice();
+            do_action('wpo_wcpdf_after_pdf', $order);
+
+            // Optionally, you can send the invoice to the customer via email
+            // Replace 'customer@example.com' with the customer's email address
+            $invoice->email_invoice('customer@example.com');
+        }
+    }
+}
+
 
 
 

@@ -303,8 +303,8 @@ function callCart(){
             //Actualizar as facturas
         }
         
-        //window.location.assign('http://localhost:81/wordpress/carrinho/');
-        window.location.assign('http://localhost/wordpress/carrinho/');
+        window.location.assign('http://localhost:81/wordpress/carrinho/');
+        //window.location.assign('http://localhost/wordpress/carrinho/');
         
     }
     
