@@ -452,7 +452,7 @@ add_action('wp_ajax_nopriv_generate_invoice', 'generate_invoice_callback');
 
 function generate_invoice_callback() {
      // Check if the WooCommerce PDF Invoices plugin is active
-    //if (class_exists('WooCommerce_PDF_Invoices')) {
+    if (class_exists('WooCommerce_PDF_Invoices')) {
         // Get the order object
         $order_id = $_POST['orderId'];
         $order = wc_get_order($order_id);
@@ -460,25 +460,28 @@ function generate_invoice_callback() {
         // Check if the order exists
         if ($order) {
             // Generate the invoice
-            do_action('wpo_wcpdf_before_pdf', $order);
-            $invoice = new WooCommerce_PDF_Invoices_Packing_Slips_Invoice($order);
-            $invoice->output_invoice();
-            do_action('wpo_wcpdf_after_pdf', $order);
+            //do_action('wpo_wcpdf_before_pdf', $order);
+            //$invoice = new WooCommerce_PDF_Invoices($order);
+            //$invoice = wcpdf_get_document( 'invoice', $order, true );
+            $invoice = wcpdf_get_invoice( $order, true );
+            //$invoicePDF = wcpdf_get_document("PDF", $order, false);
+            //do_action('wpo_wcpdf_after_pdf', $order);
             // Generate the invoice URL using the WooCommerce PDF Invoices plugin
             //$invoice_url = wpo_wcpdf_get_invoice_url($order->get_id());
             //error_log(print_r($order_id, true));
             // Send the invoice URL back to the client
-            wp_send_json(['invoice_url' => $invoice ]);//$invoice->get_invoice_url()
+            //wp_send_json(['invoice_url' => $invoice ]);//$invoice->get_invoice_url()
 
             // Optionally, you can send the invoice to the customer via email
             // Replace 'customer@example.com' with the customer's email address
             //$invoice->email_invoice('customer@example.com');
+            wp_send_json(['invoice_url' => $invoice ]); //
         } else {
             // If the order ID is not valid, send an error response
             wp_send_json(['error' => 'Invalid order ID']);
         }
-        //wp_send_json(['invoice_url' => $order->get_id() ]);
-    //}
+        
+    }
     
     
     // Always use wp_die() at the end of your AJAX functions to terminate the script
