@@ -464,6 +464,14 @@ function generate_invoice_callback() {
             //$invoice = new WooCommerce_PDF_Invoices($order);
             //$invoice = wcpdf_get_document( 'invoice', $order, true );
             $invoice = wcpdf_get_invoice( $order, true );
+            $invoice_url = add_query_arg( array(
+                'action'        => 'generate_wpo_wcpdf',
+                'document_type' => 'invoice',
+                'order_ids'     => $order->get_id(),
+                'order_key'     => $order->get_order_key(),
+            ), admin_url( 'admin-ajax.php' ) );
+            $link_text = 'Download a printable invoice / payment confirmation (PDF format)';
+            $text .= sprintf( '<p><a href="%s">%s</a></p>', esc_attr( $invoice_url ), esc_html( $link_text ) );
             //$invoicePDF = wcpdf_get_document("PDF", $order, false);
             //do_action('wpo_wcpdf_after_pdf', $order);
             // Generate the invoice URL using the WooCommerce PDF Invoices plugin
@@ -475,7 +483,7 @@ function generate_invoice_callback() {
             // Optionally, you can send the invoice to the customer via email
             // Replace 'customer@example.com' with the customer's email address
             //$invoice->email_invoice('customer@example.com');
-            wp_send_json(['invoice_url' => $invoice ]); //
+            wp_send_json(['invoice_url' => $invoice_url ]); //
         } else {
             // If the order ID is not valid, send an error response
             wp_send_json(['error' => 'Invalid order ID']);

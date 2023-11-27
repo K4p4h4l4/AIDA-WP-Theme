@@ -113,13 +113,13 @@ function getInvoice(event) {
             },
             success: function (data) {
                 // Check if the response contains the invoice URL
-                /*if (data.invoice_url) {
+                if (data.invoice_url) {
                     // Open the generated invoice URL in a new tab
                     window.open(data.invoice_url, '_blank');
                 } else {
                     console.error('Error: Invalid invoice URL', data.invoice_url);
-                }*/
-                console.log(data.invoice_url);
+                }
+                //console.log(data.invoice_url);
             },
             error: function (error) {
                 console.error('Error generating the invoice:', error);
