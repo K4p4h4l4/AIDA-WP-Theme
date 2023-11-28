@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="checkout__information-details">
-                       <form name="usrform" method="post" action="http://localhost:81/wordpress/page-envio">
+                       <form name="usrform" method="post" action="http://localhost:81/wordpress/envio/">
                        <div class="information__links">
                            <div class="information__link-holder">
                                <a href="carrinho.php" class="information__link">Carrinho <i class="material-icons">chevron_right</i></a>
@@ -80,7 +80,7 @@
                                </div>
                                
                                <div class="owner__address">
-                                   <input type="text" placeholder="Endereço" required name="usr_address" class="owner__address-details" usr_address>
+                                   <input type="text" placeholder="Endereço" required name="usr_address" class="owner__address-details" id="usr_address">
                                </div>
                                
                                <div class="owner__address">
@@ -97,7 +97,7 @@
                                    Informações adicionais
                                </div>
                                <div class="contact__comment-holder">
-                                   <textarea name="contact__comments" id="" cols="5" rows="5" class="contact__comments" placeholder="Notas adicionais ao pedido (opcional)" name="usr_details" id="usr_details"></textarea>
+                                   <textarea name="contact__comments"  cols="5" rows="5" class="contact__comments" placeholder="Notas adicionais ao pedido (opcional)" name="usr_details" id="usr_details"></textarea>
                                </div>
                            </div>
                        </div>
@@ -176,7 +176,17 @@
                 </div>
                 
                 <div class="button__shipping-holder">
-                    <button class="button__shipping" type="submit" form="usrform" id="usr_buttonInfo" ><i class="material-icons">send</i> Continuar para envio</button>
+                    <?php
+                        // Check if an order (cart) exists in the session
+                        if (isset($_SESSION['cart'])) {
+                            $order = $_SESSION['cart'];
+                        }
+                    ?>
+                    <button class="button__shipping" type="submit" form="usrform" id="usr_buttonInfo" data-order="<?php
+                                    if (isset($order)) {
+                                        echo $order->get_id();
+                                    }
+                                     ?>"><i class="material-icons">send</i> Continuar para envio</button>
                     <!-- onclick="location.href= '< ? php echo get_permalink(194); ? > ' "-->
                 </div>
             </div>

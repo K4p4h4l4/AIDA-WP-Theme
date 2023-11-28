@@ -129,6 +129,11 @@
             //Envio js 
             wp_register_script('checkout__js', get_template_directory_uri().'/assets/js/checkout.js', array(), 1, 1, 1); //get_theme_file_uri
             wp_enqueue_script('checkout__js');
+            
+            //Biblioteca para sanitizar os inputs do form
+             wp_register_script('dompurify__js', 'https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.4/purify.min.js', array(), null, true);
+            //get_theme_file_uri
+            wp_enqueue_script('dompurify__js');
         }
         
     }
@@ -496,6 +501,46 @@ function generate_invoice_callback() {
     wp_die();    
 }
 
+//Função para adicionar os dados do cliente
+add_action('wp_ajax_register_user_order', 'register_user_order_callback');
+add_action('wp_ajax_nopriv_register_user_order', 'register_user_order_callback');
+
+function register_user_order_callback() {
+    // Get the form data from the AJAX request
+     $form_data = isset($_POST['form_data']) ? $_POST['form_data'] : [];
+    // Get the order object
+    $order_id = isset($_POST['orderId']) ? $_POST['orderId'] : 0;
+    $order = wc_get_order($order_id);
+
+    if($order_id > 0){
+    // You can now use $form_data to register the user details to the order
+        // Update billing email
+        update_post_meta($order_id, '_billing_email', sanitize_email($form_data['email']));
+
+        // Update shipping details
+        update_post_meta($order_id, '_shipping_country', sanitize_text_field($form_data['country']));
+        update_post_meta($order_id, '_shipping_first_name', sanitize_text_field($form_data['name']));
+        update_post_meta($order_id, '_shipping_last_name', sanitize_text_field($form_data['surname']));
+        update_post_meta($order_id, '_shipping_address_1', sanitize_text_field($form_data['address']));
+        update_post_meta($order_id, '_shipping_city', sanitize_text_field($form_data['city']));
+
+        // Update billing details
+        update_post_meta($order_id, '_billing_first_name', sanitize_text_field($form_data['name']));
+        update_post_meta($order_id, '_billing_last_name', sanitize_text_field($form_data['surname']));
+        update_post_meta($order_id, '_billing_address_1', sanitize_text_field($form_data['address']));
+        update_post_meta($order_id, '_billing_city', sanitize_text_field($form_data['city']));
+        update_post_meta($order_id, '_billing_phone', sanitize_text_field($form_data['phone']));
+
+        // Update order notes with additional details
+        $order_notes = "Additional details: " . sanitize_textarea_field($form_data['details']);
+        $order_notes .= "\nDelivery Method: " . sanitize_text_field($form_data['deliveryMethod']);
+        $order_notes .= "\n\nDetalhes acrescentados durante o checkout.";
+        $order->add_order_note($order_notes);
+    }
+    // You can send a response back to the JavaScript if needed
+    wp_send_json(['success' => true, 'message' => 'Ordem criada com sucesso']);
+    wp_die();
+}
 
 
 

@@ -100,7 +100,7 @@ function getInvoice(event) {
     // Assuming you have an attribute 'data-order' on the clicked element
     let invoiceClicked = event.target;
     let invoiceId = invoiceClicked.getAttribute('data-order');
-    console.log(invoiceId);
+    
     // Check if the order ID is valid
     if (invoiceId) {
         // Send an AJAX request to generate the invoice

@@ -39,13 +39,14 @@
                        <div class="information__details-holder">
                            
                            <div class="information__contact-holder">
+                              <form action="post" action="http://localhost:81/wordpress/pagamento/">
                                <div class="contact__header">
                                    Envio
                                </div>
                                <div class="contact__deliver">
                                    <div class="deliver__radio-holder">
                                        <label for="netflix" class="radio">
-                                            <input type="radio" id="netflix" class="information__radio" name="netflix">
+                                            <input type="radio" id="netflix" class="information__radio" name="envio" value="stream">
                                             <div class="radio__radio"></div>
                                        </label>
                                    </div>
@@ -60,29 +61,29 @@
                                <div class="contact__deliver">
                                    <div class="deliver__radio-holder">
                                        <label for="kilamba" class="radio">
-                                           <input type="radio" id="kilamba" class="information__radio" name="kilamba">
+                                           <input type="radio" id="kilamba" class="information__radio" name="envio" value="kilamba">
                                            <div class="radio__radio"></div>
                                        </label>
                                        
                                    </div>
                                    <div class="deliver__text-holder">
-                                       <h4>Centralidade do Kilamba e KK5000</h4>
+                                       <h4>Centralidade Vida Pacífica (Zango 0)</h4>
                                        <p>Tempo de envio: Entrega até 24/48h após pagamento - Dias úteis das 8h às 16h30 e Sábados das 9h às 13h</p>
                                    </div>
                                    <div class="deliver__price-holder">
-                                       <h4>AOA 1.000</h4>                                       
+                                       <h4>AOA 1.500</h4>                                       
                                    </div>
                                </div>
                                
                                <div class="contact__deliver">
                                    <div class="deliver__radio-holder">
                                        <label for="luanda_Ben_Cam_MorrB" class="radio">
-                                           <input type="radio" id="luanda_Ben_Cam_MorrB" class="information__radio" name="luanda_Ben_Cam_MorrB">
+                                           <input type="radio" id="luanda_Ben_Cam_MorrB" class="information__radio" value="luanda_Ben_Cam_MorrB" name="envio">
                                            <div class="radio__radio"></div>
                                        </label>
                                    </div>
                                    <div class="deliver__text-holder">
-                                       <h4>Luanda - Fora da Cidade (Benfica/Camama/Morro Bento/Zango 0/Talatona/Gamek/ Patriota/Golf .)</h4>
+                                       <h4>Luanda - Fora da Cidade (Benfica/Camama/Morro Bento/Centralidade do Kilamba e KK5000/Talatona/Gamek/ Patriota/Golf .)</h4>
                                        <p>Tempo de envio: Entrega até 24/48h após pagamento - Dias úteis das 8h às 16h30 e Sábados das 9h às 13h</p>
                                    </div>
                                    <div class="deliver__price-holder">
@@ -94,7 +95,7 @@
                                    <div class="deliver__radio-holder">
                                        
                                        <label for="luanda_cidade" class="radio">
-                                           <input type="radio" id="luanda_cidade" class="information__radio" name="luanda_cidade">
+                                           <input type="radio" id="luanda_cidade" class="information__radio" value="luanda_cidade" name="envio">
                                            <div class="radio__radio"></div>
                                        </label>
                                    </div>
@@ -111,7 +112,7 @@
                                    <div class="deliver__radio-holder">
                                        
                                        <label for="luanda_Vi_ladS_Cac" class="radio">
-                                           <input type="radio" id="luanda_Vi_ladS_Cac" class="information__radio" name="luanda_Vi_ladS_Cac">
+                                           <input type="radio" id="luanda_Vi_ladS_Cac" class="information__radio" value="luanda_Vi_ladS_Cac" name="envio">
                                            <div class="radio__radio"></div>
                                        </label>
                                    </div>
@@ -129,7 +130,7 @@
                                    <div class="deliver__radio-holder">
                                        
                                        <label for="dhl" class="radio">
-                                           <input type="radio" id="dhl" class="information__radio" name="dhl">
+                                           <input type="radio" id="dhl" class="information__radio" value="dhl" name="envio">
                                            <div class="radio__radio"></div>
                                        </label>
                                    </div>
@@ -138,10 +139,11 @@
                                        <p>Tempo de envio: Entrega até 72h após pagamento </p>
                                    </div>
                                    <div class="deliver__price-holder">
-                                       <h4>AOA 6.500</h4>
+                                       <h4>AOA 11.500</h4>
                                        <p></p>
                                    </div>
                                </div>
+                               </form>
                            </div>
                            
                            <div class="information__contact-holder">
