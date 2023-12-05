@@ -46,7 +46,7 @@
                                <div class="contact__deliver">
                                    <div class="deliver__radio-holder">
                                        <label for="netflix" class="radio">
-                                            <input type="radio" id="netflix" class="information__radio" name="envio" value="stream">
+                                            <input type="radio" id="netflix" class="information__radio" name="envio" value="2">
                                             <div class="radio__radio"></div>
                                        </label>
                                    </div>
@@ -61,7 +61,7 @@
                                <div class="contact__deliver">
                                    <div class="deliver__radio-holder">
                                        <label for="kilamba" class="radio">
-                                           <input type="radio" id="kilamba" class="information__radio" name="envio" value="kilamba">
+                                           <input type="radio" id="kilamba" class="information__radio" name="envio" value="3">
                                            <div class="radio__radio"></div>
                                        </label>
                                        
@@ -78,7 +78,7 @@
                                <div class="contact__deliver">
                                    <div class="deliver__radio-holder">
                                        <label for="luanda_Ben_Cam_MorrB" class="radio">
-                                           <input type="radio" id="luanda_Ben_Cam_MorrB" class="information__radio" value="luanda_Ben_Cam_MorrB" name="envio">
+                                           <input type="radio" id="luanda_Ben_Cam_MorrB" class="information__radio" value="4" name="envio">
                                            <div class="radio__radio"></div>
                                        </label>
                                    </div>
@@ -95,7 +95,7 @@
                                    <div class="deliver__radio-holder">
                                        
                                        <label for="luanda_cidade" class="radio">
-                                           <input type="radio" id="luanda_cidade" class="information__radio" value="luanda_cidade" name="envio">
+                                           <input type="radio" id="luanda_cidade" class="information__radio" value="5" name="envio">
                                            <div class="radio__radio"></div>
                                        </label>
                                    </div>
@@ -130,7 +130,7 @@
                                    <div class="deliver__radio-holder">
                                        
                                        <label for="dhl" class="radio">
-                                           <input type="radio" id="dhl" class="information__radio" value="dhl" name="envio">
+                                           <input type="radio" id="dhl" class="information__radio" value="6" name="envio">
                                            <div class="radio__radio"></div>
                                        </label>
                                    </div>

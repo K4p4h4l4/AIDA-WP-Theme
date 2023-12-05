@@ -51,7 +51,7 @@
                                    Método de entrega *
                                </div>
                                <div class="contact__deliver">
-                                   <input type="radio" class="information__radio" name="encomenda" value="enviar">
+                                   <input type="radio" class="information__radio" name="encomenda" value="shipped">
                                    <div class="deliver__text-holder">
                                        <i class="material-icons">local_shipping</i>
                                        <p>Enviar</p>

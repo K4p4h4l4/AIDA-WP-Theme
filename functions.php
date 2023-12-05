@@ -514,6 +514,7 @@ function register_user_order_callback() {
 
     if($order_id > 0){
     // You can now use $form_data to register the user details to the order
+        
         // Update billing email
         update_post_meta($order_id, '_billing_email', sanitize_email($form_data['email']));
 
@@ -532,8 +533,8 @@ function register_user_order_callback() {
         update_post_meta($order_id, '_billing_phone', sanitize_text_field($form_data['phone']));
 
         // Update order notes with additional details
-        $order_notes = "Additional details: " . sanitize_textarea_field($form_data['details']);
-        $order_notes .= "\nDelivery Method: " . sanitize_text_field($form_data['deliveryMethod']);
+        $order_notes = "Detalhes Adicionais: " . sanitize_textarea_field($form_data['details']);
+        $order_notes .= "\nMétodo de Entrega: " . sanitize_text_field($form_data['deliveryMethod']);
         $order_notes .= "\n\nDetalhes acrescentados durante o checkout.";
         $order->add_order_note($order_notes);
     }
