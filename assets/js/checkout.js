@@ -1,5 +1,6 @@
 let usr_buttonInfo = document.getElementById('usr_buttonInfo');
 
+//Ao clicar colectar os dados e endereço do cliente 
 usr_buttonInfo.addEventListener('click', function (event){
     // Assuming you have an attribute 'data-order' on the clicked element
     let checkoutClicked = event.target;
@@ -31,7 +32,7 @@ usr_buttonInfo.addEventListener('click', function (event){
     if(!formData.details){
        formData.details="";
     }
-    console.log(checkoutId);
+    
     // AJAX request
     jQuery.ajax({
         type: 'POST',

@@ -112,7 +112,7 @@
                                    <div class="deliver__radio-holder">
                                        
                                        <label for="luanda_Vi_ladS_Cac" class="radio">
-                                           <input type="radio" id="luanda_Vi_ladS_Cac" class="information__radio" value="luanda_Vi_ladS_Cac" name="envio">
+                                           <input type="radio" id="luanda_Vi_ladS_Cac" class="information__radio" value="8" name="envio">
                                            <div class="radio__radio"></div>
                                        </label>
                                    </div>
@@ -235,7 +235,17 @@
                 </div>
                 
                 <div class="button__shipping-holder">
-                    <button class="button__shipping"><i class="material-icons">attach_money</i> Prosseguir para pagamento</button>
+                    <?php
+                        // Check if an order (cart) exists in the session
+                        if (isset($_SESSION['cart'])) {
+                            $order = $_SESSION['cart'];
+                        }
+                    ?>
+                    <button class="button__shipping" type="submit" id="usr_shipp_pay" data-order="<?php
+                                    if (isset($order)) {
+                                        echo $order->get_id();
+                                    }
+                                     ?>"><i class="material-icons">attach_money</i> Prosseguir para pagamento</button>
                 </div>
             </div>
         </div>

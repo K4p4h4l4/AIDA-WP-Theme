@@ -543,6 +543,57 @@ function register_user_order_callback() {
     wp_die();
 }
 
+//Função para adicionar os dados do cliente
+add_action('wp_ajax_assign_shipping_zone_to_order', 'assign_shipping_zone_to_order_callback');
+add_action('wp_ajax_nopriv_assign_shipping_zone_to_order', 'assign_shipping_zone_to_order_callback');
+
+function assign_shipping_zone_to_order_callback(){
+    // Get the form data from the AJAX request
+     $form_data = isset($_POST['form_data']) ? $_POST['form_data'] : [];
+    // Get the order object
+    $order_id = isset($_POST['orderId']) ? $_POST['orderId'] : 0;
+    $order = wc_get_order($order_id);
+    
+    if($order_id > 0){
+        // Assign the shipping zone to the order
+        $order->set_shipping_zone_id($form_data['shippZone']);
+
+        // Get the tax rate ID based on the shipping zone
+        $tax_rate_id = get_tax_rate_id_by_shipping_zone($form_data['shippZone']);
+
+        // Apply the tax rate to the order
+        $order->set_customer_tax_class($tax_rate_id);
+        
+        // You can send a response back to the JavaScript if needed
+        wp_send_json(['success' => true, 'message' => $order->get_taxes()]);
+        
+        // Save changes to the order
+        $order->save();
+    }
+    
+    wp_die();
+}
+
+// Function to get the tax rate ID based on the shipping zone
+function get_tax_rate_id_by_shipping_zone($shipping_zone_id) {
+    // Get all tax rates for the given shipping zone
+    $tax_rates = WC_Tax::_get_tax_rates_by_tax_class_and_tax_country(
+        '', // Tax class (empty for standard rates)
+        $shipping_zone_id
+    );
+
+    // If there are tax rates associated with the shipping zone
+    if (!empty($tax_rates)) {
+        // Assume the first tax rate found is the one you want
+        $first_tax_rate = reset($tax_rates);
+        
+        // Return the tax rate ID
+        return $first_tax_rate->tax_rate_id;
+    }
+
+    // Return 0 or another default value if no tax rate is found
+    return 0;
+}
 
 
 ?>
