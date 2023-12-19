@@ -577,10 +577,7 @@ function assign_shipping_zone_to_order_callback(){
 // Function to get the tax rate ID based on the shipping zone
 function get_tax_rate_id_by_shipping_zone($shipping_zone_id) {
     // Get all tax rates for the given shipping zone
-    $tax_rates = WC_Tax::_get_tax_rates_by_tax_class_and_tax_country(
-        '', // Tax class (empty for standard rates)
-        $shipping_zone_id
-    );
+    $tax_rates = WC_Tax::get_rates_for_tax_class('', $shipping_zone_id);
 
     // If there are tax rates associated with the shipping zone
     if (!empty($tax_rates)) {
@@ -593,6 +590,7 @@ function get_tax_rate_id_by_shipping_zone($shipping_zone_id) {
 
     // Return 0 or another default value if no tax rate is found
     return 0;
+    
 }
 
 
