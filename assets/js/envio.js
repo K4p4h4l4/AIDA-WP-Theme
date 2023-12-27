@@ -36,7 +36,7 @@ usr_shipp_pay.addEventListener('click', function(event){
             // Handle the server's response
             if (response.success) {
                 console.log(response.message);
-                //window.location.assign('http://localhost:81/wordpress/envio/');
+                
             } else {
                 alert("Erro na taxa de envio!!!");
             }

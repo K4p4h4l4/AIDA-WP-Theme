@@ -553,19 +553,23 @@ function assign_shipping_zone_to_order_callback(){
     // Get the order object
     $order_id = isset($_POST['orderId']) ? $_POST['orderId'] : 0;
     $order = wc_get_order($order_id);
+    $shipping_zone = $form_data['shippZone'];
     
-    if($order_id > 0){
+    if($order){
         // Assign the shipping zone to the order
-        $order->set_shipping_zone_id($form_data['shippZone']);
+        $order->add_shipping_method(1);
 
         // Get the tax rate ID based on the shipping zone
-        $tax_rate_id = get_tax_rate_id_by_shipping_zone($form_data['shippZone']);
+        //$tax_rate_id = get_tax_rate_id_by_shipping_zone($form_data['shippZone']);
 
         // Apply the tax rate to the order
-        $order->set_customer_tax_class($tax_rate_id);
+        //$order->set_customer_tax_class($tax_rate_id);
+        
+        // Calculate totals and save changes to the order
+        $order->calculate_totals();
         
         // You can send a response back to the JavaScript if needed
-        wp_send_json(['success' => true, 'message' => $order->get_taxes()]);
+        wp_send_json(['success' => true, 'message' => $order->get_formatted_billing_address() ]); //$order->get_taxes()
         
         // Save changes to the order
         $order->save();
