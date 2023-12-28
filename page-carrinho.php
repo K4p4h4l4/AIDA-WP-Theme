@@ -133,7 +133,7 @@
                                                                                         echo $order->get_id();
                                                                                     }
                                                                                      ?>"> <i class="material-icons">article</i> Consultar preço</button>
-                    <button class="button__actions" onclick="location.href='<?php echo get_permalink(63); ?>'"> <i class="material-icons">done</i> Finalizar compra</button>
+                    <button class="button__actions" onclick="location.href='<?php echo get_permalink(149); ?>'"> <i class="material-icons">done</i> Finalizar compra</button> <!--?php echo get_permalink(63); ?-->
                 </div>
             </div>
         </div>
