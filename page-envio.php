@@ -143,6 +143,33 @@
                                        <p></p>
                                    </div>
                                </div>
+                               
+                               <?php 
+                                    function list_shipping_zones() {
+    // Get all shipping zones
+    $shipping_zones = WC_Shipping_Zones::get_zones();
+
+    foreach ($shipping_zones as $zone) {
+        
+        echo '<h2>' . esc_html($zone['zone_name']) . '</h2>';
+        
+        /*// Loop through zone locations
+        foreach ($zone['zone_locations'] as $location) {
+            echo '<p>' . esc_html($location['code']) . ': ' . esc_html($location['type']) . '</p>';
+        }*/
+
+        // Loop through zone methods esc_html($method->get_cost()).
+        foreach ($zone['shipping_methods'] as $method) {
+            echo '<p>' . esc_html($method->get_title()) . ' : '. '</p>';
+        }
+    }
+    print_r($shipping_zones);
+}
+
+// Call the function to list shipping zones
+list_shipping_zones();
+
+                                ?>
                                </form>
                            </div>
                            

@@ -556,8 +556,10 @@ function assign_shipping_zone_to_order_callback(){
     $shipping_zone = $form_data['shippZone'];
     
     if($order){
+        
+        
         // Assign the shipping zone to the order
-        $order->add_shipping_method(1);
+        $order->add_shipping_method('Centralidade Vida Pacífica (Zango 0)');
 
         // Get the tax rate ID based on the shipping zone
         //$tax_rate_id = get_tax_rate_id_by_shipping_zone($form_data['shippZone']);
