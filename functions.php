@@ -332,7 +332,7 @@ function update_order_item_quantity_callback() {
                 //Calcular os totais com a alteração das quantidades dos produtos
                 $order->calculate_totals();
                 // Save the order to apply the changes
-                $order->save();
+                //$order->save();
 
                 // Optionally, you can add order notes to record the quantity change
                 //$order->add_order_note(
@@ -343,6 +343,8 @@ function update_order_item_quantity_callback() {
                 break; // Exit the loop after updating the item
             }
         }
+        
+        
     }
 
     if($order){
@@ -567,7 +569,7 @@ function assign_shipping_zone_to_order_callback(){
         $item = new WC_Order_Item_Shipping();
         
         $item->set_method_title( $method_title );
-        $item->set_instance_id(3);
+        
         
         foreach ($shipping_zones as $zone) {        
 
@@ -575,7 +577,7 @@ function assign_shipping_zone_to_order_callback(){
             foreach ($zone['shipping_methods'] as $method) {
                 if($method->get_title()==$method_title){
                     $item->set_total($method->get_option('cost'));
-                    
+                    $item->set_instance_id($method->get_instance_id());
                 }
             }
         }

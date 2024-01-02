@@ -160,10 +160,10 @@
 
         // Loop through zone methods esc_html($method->get_cost()).
         foreach ($zone['shipping_methods'] as $method) {
-            echo '<p>' . esc_html($method->get_title()) . ' : '. esc_html($method->get_option('cost')) . '</p>';
+            echo '<p>' . esc_html($method->get_title()) . ' : '. esc_html($method->get_instance_id()) . '</p>';
         }
     }
-    //print_r($shipping_zones);
+    print_r($shipping_zones);
 }
 
 // Call the function to list shipping zones
