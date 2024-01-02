@@ -46,7 +46,7 @@
                                <div class="contact__deliver">
                                    <div class="deliver__radio-holder">
                                        <label for="netflix" class="radio">
-                                            <input type="radio" id="netflix" class="information__radio" name="envio" value="2">
+                                            <input type="radio" id="netflix" class="information__radio" name="envio" value="1">
                                             <div class="radio__radio"></div>
                                        </label>
                                    </div>
@@ -61,7 +61,7 @@
                                <div class="contact__deliver">
                                    <div class="deliver__radio-holder">
                                        <label for="kilamba" class="radio">
-                                           <input type="radio" id="kilamba" class="information__radio" name="envio" value="3">
+                                           <input type="radio" id="kilamba" class="information__radio" name="envio" value="2">
                                            <div class="radio__radio"></div>
                                        </label>
                                        
@@ -78,7 +78,7 @@
                                <div class="contact__deliver">
                                    <div class="deliver__radio-holder">
                                        <label for="luanda_Ben_Cam_MorrB" class="radio">
-                                           <input type="radio" id="luanda_Ben_Cam_MorrB" class="information__radio" value="4" name="envio">
+                                           <input type="radio" id="luanda_Ben_Cam_MorrB" class="information__radio" value="3" name="envio">
                                            <div class="radio__radio"></div>
                                        </label>
                                    </div>
@@ -95,7 +95,7 @@
                                    <div class="deliver__radio-holder">
                                        
                                        <label for="luanda_cidade" class="radio">
-                                           <input type="radio" id="luanda_cidade" class="information__radio" value="5" name="envio">
+                                           <input type="radio" id="luanda_cidade" class="information__radio" value="4" name="envio">
                                            <div class="radio__radio"></div>
                                        </label>
                                    </div>
@@ -112,7 +112,7 @@
                                    <div class="deliver__radio-holder">
                                        
                                        <label for="luanda_Vi_ladS_Cac" class="radio">
-                                           <input type="radio" id="luanda_Vi_ladS_Cac" class="information__radio" value="8" name="envio">
+                                           <input type="radio" id="luanda_Vi_ladS_Cac" class="information__radio" value="5" name="envio">
                                            <div class="radio__radio"></div>
                                        </label>
                                    </div>
@@ -160,10 +160,10 @@
 
         // Loop through zone methods esc_html($method->get_cost()).
         foreach ($zone['shipping_methods'] as $method) {
-            echo '<p>' . esc_html($method->get_title()) . ' : '. '</p>';
+            echo '<p>' . esc_html($method->get_title()) . ' : '. esc_html($method->get_option('cost')) . '</p>';
         }
     }
-    print_r($shipping_zones);
+    //print_r($shipping_zones);
 }
 
 // Call the function to list shipping zones

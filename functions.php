@@ -555,11 +555,34 @@ function assign_shipping_zone_to_order_callback(){
     $order = wc_get_order($order_id);
     $shipping_zone = $form_data['shippZone'];
     
+    // Get all shipping zones
+    $shipping_zones = WC_Shipping_Zones::get_zones();
+    
     if($order){
         
+        // Add a shipping method to the order based on the selected shipping zone
+        $method_title = add_shipping_method_to_order($order, $shipping_zone);
         
+        // Get a new instance of the WC_Order_Item_Shipping Object
+        $item = new WC_Order_Item_Shipping();
+        
+        $item->set_method_title( $method_title );
+        $item->set_instance_id(3);
+        
+        foreach ($shipping_zones as $zone) {        
+
+            // Loop through zone methods esc_html($method->get_cost()).
+            foreach ($zone['shipping_methods'] as $method) {
+                if($method->get_title()==$method_title){
+                    $item->set_total($method->get_option('cost'));
+                    
+                }
+            }
+        }
+        
+        $order->add_item( $item );
         // Assign the shipping zone to the order
-        $order->add_shipping_method('Centralidade Vida Pacífica (Zango 0)');
+        //$order->add_shipping_method('Centralidade Vida Pacífica (Zango 0)');
 
         // Get the tax rate ID based on the shipping zone
         //$tax_rate_id = get_tax_rate_id_by_shipping_zone($form_data['shippZone']);
@@ -580,7 +603,52 @@ function assign_shipping_zone_to_order_callback(){
     wp_die();
 }
 
-// Function to get the tax rate ID based on the shipping zone
+// Function to add a shipping method to the order based on the shipping zone
+function add_shipping_method_to_order($order, $shipping_zone) {
+    // Assuming each shipping zone has a specific shipping method title
+    $shipping_method_title = get_shipping_method_title_by_zone($shipping_zone);
+
+    // Get all available shipping methods for the order
+    $available_methods = $order->get_shipping_methods();
+
+    // Check if the shipping method is already added
+    foreach ($available_methods as $method) {
+        if ($method->get_method_title() === $shipping_method_title) {
+            return; // Shipping method is already added
+        }
+    }
+
+    // Add the shipping method to the order
+    //$order->add_shipping_method($shipping_method_title);
+    return $shipping_method_title;
+
+    // You can customize this further based on your specific requirements
+}
+
+// Function to get the shipping method title based on the shipping zone
+function get_shipping_method_title_by_zone($shipping_zone) {
+    // Customize this function based on how you associate shipping zones with method titles
+    // You might want to have a mapping of zone IDs to method titles
+    switch ($shipping_zone) {
+        case '1':
+            return 'Serviço de streaming (Netflix, Disney+, HBO)';
+        case '2':
+            return 'Centralidade Vida Pacífica (Zango 0)';
+        case '3':
+            return 'Luanda - Fora da Cidade (Benfica/Camama/Morro Bento/Centralidade do Kilamba e KK5000/Talatona/Gamek/ Patriota/Golf .)';
+        case '4':
+            return 'Luanda - Dentro da Cidade de Luanda (Maianga, Ingombotas, Rangel,etc.)';
+        case '5':
+            return 'Luanda - Fora da Cidade (Viana / Luanda Sul/Cacuaco)';
+        case '6':
+            return 'Outras Províncias de Angola (DHL)';
+        // Add more cases as needed
+        default:
+            return 'Default Shipping Method';
+    }
+}
+
+/*// Function to get the tax rate ID based on the shipping zone
 function get_tax_rate_id_by_shipping_zone($shipping_zone_id) {
     // Get all tax rates for the given shipping zone
     $tax_rates = WC_Tax::get_rates_for_tax_class('', $shipping_zone_id);
@@ -597,7 +665,7 @@ function get_tax_rate_id_by_shipping_zone($shipping_zone_id) {
     // Return 0 or another default value if no tax rate is found
     return 0;
     
-}
+}*/
 
 
 ?>

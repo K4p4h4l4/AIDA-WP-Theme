@@ -46,8 +46,8 @@ usr_buttonInfo.addEventListener('click', function (event){
             // Handle the server's response
             if (response.success) {
                 console.log(response.message);
-                window.location.assign('http://localhost:81/wordpress/envio/');
-                //window.location.assign('http://localhost/wordpress/envio/');
+                //window.location.assign('http://localhost:81/wordpress/envio/');
+                window.location.assign('http://localhost/wordpress/envio/');
             } else {
                 alert("Erro registar o seu pedido!!!");
             }
