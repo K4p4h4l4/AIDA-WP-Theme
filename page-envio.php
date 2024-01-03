@@ -143,20 +143,32 @@
                                        <p></p>
                                    </div>
                                </div>
+                               <div class="contact__deliver">
+                                   <div class="deliver__radio-holder">
+                                       
+                                       <label for="levantamento_local" class="radio">
+                                           <input type="radio" id="levantamento_local" class="information__radio" value="7" name="envio">
+                                           <div class="radio__radio"></div>
+                                       </label>
+                                   </div>
+                                   <div class="deliver__text-holder">
+                                       <h4>Levantamento no local</h4>
+                                       <p>Período para o levantamento: Dias úteis das 8h às 16h30 e Sábados das 9h às 13h</p>
+                                   </div>
+                                   <div class="deliver__price-holder">
+                                       <h4>Grátis</h4>
+                                       <p></p>
+                                   </div>
+                               </div>
                                
                                <?php 
-                                    function list_shipping_zones() {
+                                   /* function list_shipping_zones() {
     // Get all shipping zones
     $shipping_zones = WC_Shipping_Zones::get_zones();
 
     foreach ($shipping_zones as $zone) {
         
         echo '<h2>' . esc_html($zone['zone_name']) . '</h2>';
-        
-        /*// Loop through zone locations
-        foreach ($zone['zone_locations'] as $location) {
-            echo '<p>' . esc_html($location['code']) . ': ' . esc_html($location['type']) . '</p>';
-        }*/
 
         // Loop through zone methods esc_html($method->get_cost()).
         foreach ($zone['shipping_methods'] as $method) {
@@ -167,7 +179,7 @@
 }
 
 // Call the function to list shipping zones
-list_shipping_zones();
+list_shipping_zones();*/
 
                                 ?>
                                </form>

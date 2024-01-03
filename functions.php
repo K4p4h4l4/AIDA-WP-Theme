@@ -78,6 +78,12 @@
             wp_register_style('envio_css', get_template_directory_uri().'/assets/css/envio.css', array(), 1, 'all');
             wp_enqueue_style('envio_css');
         }
+        
+        if(is_page('pagamento')){
+            //css da página de envio
+            wp_register_style('pagamento_css', get_template_directory_uri().'/assets/css/pagamento.css', array(), 1, 'all');
+            wp_enqueue_style('pagamento_css');
+        }
     }
 
     add_action('wp_enqueue_scripts', 'fn_theme_style');
@@ -644,6 +650,8 @@ function get_shipping_method_title_by_zone($shipping_zone) {
             return 'Luanda - Fora da Cidade (Viana / Luanda Sul/Cacuaco)';
         case '6':
             return 'Outras Províncias de Angola (DHL)';
+        case '7':
+            return 'Levantamento no local';
         // Add more cases as needed
         default:
             return 'Default Shipping Method';
