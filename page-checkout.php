@@ -25,7 +25,7 @@
                        <form name="usrform" method="post" action="http://localhost:81/wordpress/envio/">
                        <div class="information__links">
                            <div class="information__link-holder">
-                               <a href="carrinho.php" class="information__link">Carrinho <i class="material-icons">chevron_right</i></a>
+                               <a href="./carrinho/" class="information__link">Carrinho <i class="material-icons">chevron_right</i></a>
                            </div>
                            <div class="information__link-holder">
                                <a href="#" class="information__link">Informações <i class="material-icons">chevron_right</i></a>

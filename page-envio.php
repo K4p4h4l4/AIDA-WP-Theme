@@ -24,10 +24,10 @@
                     <div class="checkout__information-details">
                        <div class="information__links">
                            <div class="information__link-holder">
-                               <a href="carrinho.php" class="information__link">Carrinho <i class="material-icons">chevron_right</i></a>
+                               <a href="./carrinho/" class="information__link">Carrinho <i class="material-icons">chevron_right</i></a>
                            </div>
                            <div class="information__link-holder">
-                               <a href="checkout.php" class="information__link">Informações <i class="material-icons">chevron_right</i></a>
+                               <a href="./checkout/" class="information__link">Informações <i class="material-icons">chevron_right</i></a>
                            </div>
                            <div class="information__link-holder">
                                <a href="#" class="information__link">Envio <i class="material-icons">chevron_right</i></a>
@@ -71,7 +71,7 @@
                                        <p>Tempo de envio: Entrega até 24/48h após pagamento - Dias úteis das 8h às 16h30 e Sábados das 9h às 13h</p>
                                    </div>
                                    <div class="deliver__price-holder">
-                                       <h4>AOA 1.500</h4>                                       
+                                       <h4>AKZ 1.500</h4>                                       
                                    </div>
                                </div>
                                
@@ -87,7 +87,7 @@
                                        <p>Tempo de envio: Entrega até 24/48h após pagamento - Dias úteis das 8h às 16h30 e Sábados das 9h às 13h</p>
                                    </div>
                                    <div class="deliver__price-holder">
-                                       <h4>AOA 2.000</h4>                                       
+                                       <h4>AKZ 2.000</h4>                                       
                                    </div>
                                </div>
                                
@@ -104,7 +104,7 @@
                                        <p>Tempo de envio: Entrega até 24/48h após pagamento - Dias úteis das 8h às 16h30 e Sábados das 9h às 13h</p>
                                    </div>
                                    <div class="deliver__price-holder">
-                                       <h4>AOA 2.500</h4>                                       
+                                       <h4>AKZ 2.500</h4>                                       
                                    </div>
                                </div>
                                
@@ -121,7 +121,7 @@
                                        <p>Tempo de envio: Entrega até 24/48h após pagamento - Dias úteis das 8h às 16h30 e Sábados das 9h às 13h</p>
                                    </div>
                                    <div class="deliver__price-holder">
-                                       <h4>AOA 2.800</h4>
+                                       <h4>AKZ 2.800</h4>
                                        <p></p>
                                    </div>
                                </div>
@@ -139,7 +139,7 @@
                                        <p>Tempo de envio: Entrega até 72h após pagamento </p>
                                    </div>
                                    <div class="deliver__price-holder">
-                                       <h4>AOA 11.500</h4>
+                                       <h4>AKZ 11.500</h4>
                                        <p></p>
                                    </div>
                                </div>
@@ -231,7 +231,7 @@ list_shipping_zones();*/
                                     <?php echo $_product->get_name(); ?>
                                 </div>
                                 <div class="product__card-price">
-                                    Kz
+                                    AKZ
                                     <?php  
                                         echo number_format($values['line_subtotal'],  2, ',', '.');
                                         $total+=$values['line_subtotal'];                        
@@ -249,25 +249,25 @@ list_shipping_zones();*/
                         <div class="subtotal__text-holder">
                             Subtotal
                         </div>
-                        <div class="subtotal__price-holder">
-                            Kz
+                        <div class="subtotal__price-holder subtotal__price">
+                            AKZ
                             <?php echo number_format($total, 2, ',', '.'); ?>
                         </div>
                     </div>
-                    <!--div class="checkout__subtotal-holder">
+                    <div class="checkout__subtotal-holder">
                         <div class="subtotal__text-holder">
                             Envio
                         </div>
-                        <div class="subtotal__price-holder">
-                            AOA 3.000,00
+                        <div class="subtotal__price-holder" id="shippingValue">
+                            AKZ 0,00
                         </div>
-                    </div-->
+                    </div>
                     <div class="checkout__total-container">
                         <div class="total__text-holder">
                             Total
                         </div>
                         <div class="total__price-holder">
-                            Kz
+                            AKZ
                             <?php echo number_format($total, 2, ',', '.'); ?>
                         </div>
                     </div>

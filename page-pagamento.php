@@ -25,13 +25,13 @@
                     <div class="checkout__information-details">
                        <div class="information__links">
                            <div class="information__link-holder">
-                               <a href="carrinho.php" class="information__link">Carrinho <i class="material-icons">chevron_right</i></a>
+                               <a href="./carrinho/" class="information__link">Carrinho <i class="material-icons">chevron_right</i></a>
                            </div>
                            <div class="information__link-holder">
-                               <a href="checkout.php" class="information__link">Informações <i class="material-icons">chevron_right</i></a>
+                               <a href="./checkout/" class="information__link">Informações <i class="material-icons">chevron_right</i></a>
                            </div>
                            <div class="information__link-holder">
-                               <a href="#" class="information__link">Envio <i class="material-icons">chevron_right</i></a>
+                               <a href="./envio/" class="information__link">Envio <i class="material-icons">chevron_right</i></a>
                            </div>
                            <div class="information__link-holder">
                                <a href="#" class="information__link">Pagamento</a>
@@ -84,12 +84,12 @@
                                    </div>
                                    <div class="deliver__text-holder">
                                        <h4>Transferência Bancaria</h4>
-                                       <p>Faça a transferência ou deposito para a Conta da GameShop - NIF 50001000 Game Shop Comércio e Serviços, Lda.
-Banco Sol IBAN: AO06 0044 0000 0498 0385 101 85
-Banco BFA IBAN: AO06 0006 0000 8927 9787 301 56
-Banco Atlântico IBAN: AO06 0055 0000 6990 8792 1016 9
-Banco BAI IBAN: AO06 0040 0000 4492 4828 1011 1
-No final da transação, na app MulticaixaExpress, deve escolher a opção “Enviar por email” e inserir o nosso email “geral@gameshopangola.com” E ao mesmo tempo enviar o comprovativo para o nosso WhatsApp 923955004</p>
+                                       <p>Faça a transferência ou deposito para a Conta da GameShop - NIF 50001000 Game Shop Comércio e Serviços, Lda.</p>
+
+<p>Banco BFA IBAN: AO06 0006 0000 8927 9787 301 56</p>
+<p>Banco Atlântico IBAN: AO06 0055 0000 6990 8792 1016 9</p>
+<p>Banco BAI IBAN: AO06 0040 0000 4492 4828 1011 1</p>
+<p>No final da transação, na app MulticaixaExpress, deve escolher a opção “Enviar por email” e inserir o nosso email “geral@gameshopangola.com” E ao mesmo tempo enviar o comprovativo para o nosso WhatsApp 923955004</p>
                                    </div>
                                    
                                </div>
@@ -218,7 +218,7 @@ No final da transação, na app MulticaixaExpress, deve escolher a opção “En
                                     if (isset($order)) {
                                         echo $order->get_id();
                                     }
-                                     ?>"><i class="material-icons">attach_money</i> Prosseguir com encomenda</button>
+                                     ?>"><i class="material-icons">local_shipping</i> Prosseguir com encomenda</button>
                 </div>
             </div>
         </div>
