@@ -338,7 +338,7 @@ function update_order_item_quantity_callback() {
                 //Calcular os totais com a alteração das quantidades dos produtos
                 $order->calculate_totals();
                 // Save the order to apply the changes
-                //$order->save();
+                $order->save();
 
                 // Optionally, you can add order notes to record the quantity change
                 //$order->add_order_note(
@@ -568,6 +568,11 @@ function assign_shipping_zone_to_order_callback(){
     
     if($order){
         
+        $order->set_shipping_total(0);
+        // Calculate totals and save changes to the order
+        $order->calculate_totals();
+        $order->save();
+        
         // Add a shipping method to the order based on the selected shipping zone
         $method_title = add_shipping_method_to_order($order, $shipping_zone);
         
@@ -589,14 +594,6 @@ function assign_shipping_zone_to_order_callback(){
         }
         
         $order->add_item( $item );
-        // Assign the shipping zone to the order
-        //$order->add_shipping_method('Centralidade Vida Pacífica (Zango 0)');
-
-        // Get the tax rate ID based on the shipping zone
-        //$tax_rate_id = get_tax_rate_id_by_shipping_zone($form_data['shippZone']);
-
-        // Apply the tax rate to the order
-        //$order->set_customer_tax_class($tax_rate_id);
         
         // Calculate totals and save changes to the order
         $order->calculate_totals();

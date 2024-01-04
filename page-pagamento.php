@@ -85,11 +85,11 @@
                                    <div class="deliver__text-holder">
                                        <h4>Transferência Bancaria</h4>
                                        <p>Faça a transferência ou deposito para a Conta da GameShop - NIF 50001000 Game Shop Comércio e Serviços, Lda.</p>
-
-<p>Banco BFA IBAN: AO06 0006 0000 8927 9787 301 56</p>
-<p>Banco Atlântico IBAN: AO06 0055 0000 6990 8792 1016 9</p>
-<p>Banco BAI IBAN: AO06 0040 0000 4492 4828 1011 1</p>
-<p>No final da transação, na app MulticaixaExpress, deve escolher a opção “Enviar por email” e inserir o nosso email “geral@gameshopangola.com” E ao mesmo tempo enviar o comprovativo para o nosso WhatsApp 923955004</p>
+                                       <br>
+                                        <p>Banco BFA IBAN: AO06 0055 0000 8838 4866 1016 2 </p><br>
+                                        <p>Banco Atlântico IBAN: AO06 0034 0000 0500 8373 3585 8 </p><br>
+                                        <p>Banco BAI IBAN: AO06 0040 0000 6277 3928 1014 8</p><br>
+                                        <p>No final da transação, na app MulticaixaExpress, deve escolher a opção “Enviar por email” e inserir o nosso email “geral@aida.ao” E ao mesmo tempo enviar o comprovativo para o nosso WhatsApp 923695077</p>
                                    </div>
                                    
                                </div>
@@ -119,20 +119,7 @@
                                </form>
                            </div>
                            
-                           <div class="information__contact-holder">
-                               <div class="contact__header">
-                                   Termos de serviço
-                               </div>
-                               <div class="service__terms">
-                                   <div class="deliver__radio-holder">
-                                       <input type="checkbox" id="terms" class="information__checkbox">
-                                   </div>
-                                   <div class="service__terms-text">
-                                       <p>Eu concordo e aceito incondicionalmente os termos de serviço. <a href="#" class="open__terms-modal">(ver termos de serviço)</a></p> 
-                                   </div>
-                                   
-                               </div>
-                           </div>
+                           
                        </div>
                     </div>
                 </div>
@@ -184,36 +171,44 @@
                             Subtotal
                         </div>
                         <div class="subtotal__price-holder">
-                            Kz
+                            AKZ
                             <?php echo number_format($total, 2, ',', '.'); ?>
                         </div>
                     </div>
-                    <!--div class="checkout__subtotal-holder">
+                    <div class="checkout__subtotal-holder">
                         <div class="subtotal__text-holder">
                             Envio
                         </div>
                         <div class="subtotal__price-holder">
-                            AOA 3.000,00
+                            <?php
+                                // Check if an order (cart) exists in the session
+                                if (isset($_SESSION['cart'])) {
+                                    $order = $_SESSION['cart'];
+                                }
+                                echo number_format($order->get_shipping_total() , 2, ',', '.');
+                            ?>
+                            
                         </div>
-                    </div-->
+                    </div>
                     <div class="checkout__total-container">
                         <div class="total__text-holder">
                             Total
                         </div>
                         <div class="total__price-holder">
-                            Kz
-                            <?php echo number_format($total, 2, ',', '.'); ?>
+                            AKZ
+                            <?php echo number_format($order->get_total() , 2, ',', '.'); ?>
                         </div>
                     </div>
                 </div>
                 
                 <div class="button__shipping-holder">
-                    <?php
+                    
+                    <!--?php
                         // Check if an order (cart) exists in the session
                         if (isset($_SESSION['cart'])) {
                             $order = $_SESSION['cart'];
                         }
-                    ?>
+                    ?-->
                     <button class="button__shipping" type="submit" id="usr_shipp_pay" data-order="<?php
                                     if (isset($order)) {
                                         echo $order->get_id();

@@ -34,31 +34,38 @@ function ready(){
 
 
         let shippmentOptions = document.getElementsByName('envio');
+        let terms = document.getElementById('terms');
+        
+        
         formData.shippZone = getRadioValue(shippmentOptions);
+        //console.log(terms.checked);
+        if((formData.shippZone == null) || (!terms.checked)){ 
+            alert("Verifique em método de envio e os termos de serviço");
+        }else{
+            // AJAX request
+            jQuery.ajax({
+                type: 'POST',
+                url: wc_add_to_cart_params.ajax_url,
+                data: {
+                    action: 'assign_shipping_zone_to_order', // Action name defined in the server-side function
+                    form_data: formData,
+                    orderId: shippId
+                },
+                success: function (response) {
+                    // Handle the server's response
+                    if (response.success) {
 
-
-        // AJAX request
-        jQuery.ajax({
-            type: 'POST',
-            url: wc_add_to_cart_params.ajax_url,
-            data: {
-                action: 'assign_shipping_zone_to_order', // Action name defined in the server-side function
-                form_data: formData,
-                orderId: shippId
-            },
-            success: function (response) {
-                // Handle the server's response
-                if (response.success) {
-                    
-                    window.location.href = './pagamento/';
-                } else {
-                    alert("Erro na taxa de envio!!!");
+                        window.location.href = './pagamento/';
+                    } else {
+                        alert("Erro na taxa de envio!!!");
+                    }
+                },
+                error: function (error) {
+                    console.error('Error:', error);
                 }
-            },
-            error: function (error) {
-                console.error('Error:', error);
-            }
-        });
+            });
+        }
+        
     });
 }
 
