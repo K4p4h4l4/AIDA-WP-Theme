@@ -125,6 +125,12 @@
             wp_enqueue_script('envio_js');
         }
         
+        if(is_page('pagamento')){
+            //Envio js 
+            wp_register_script('pagamento_js', get_template_directory_uri().'/assets/js/pagamento.js', array(), 1, 1, 1); //get_theme_file_uri
+            wp_enqueue_script('pagamento_js');
+        }
+        
         if(is_page('carrinho')){
             //Envio js 
             wp_register_script('carrinho_js', get_template_directory_uri().'/assets/js/carrinho.js', array(), 1, 1, 1); //get_theme_file_uri
@@ -335,10 +341,7 @@ function update_order_item_quantity_callback() {
                 // Set the new quantity for this item
                 $item->set_quantity($new_quantity);
                 
-                //Calcular os totais com a alteração das quantidades dos produtos
-                $order->calculate_totals();
-                // Save the order to apply the changes
-                $order->save();
+                
 
                 // Optionally, you can add order notes to record the quantity change
                 //$order->add_order_note(
@@ -350,7 +353,10 @@ function update_order_item_quantity_callback() {
             }
         }
         
-        
+        //Calcular os totais com a alteração das quantidades dos produtos
+        $order->calculate_totals();
+        // Save the order to apply the changes
+        $order->save();
     }
 
     if($order){
@@ -673,6 +679,63 @@ function get_tax_rate_id_by_shipping_zone($shipping_zone_id) {
     return 0;
     
 }*/
+
+// Add an action hook to handle the download request
+add_action('wp_ajax_download_invoice', 'download_invoice_callback');
+add_action('wp_ajax_nopriv_download_invoice', 'download_invoice_callback');
+
+// Function to initiate the download
+function download_invoice_callback() {
+    // Get the order ID from the AJAX request
+    $order_id = isset($_POST['order_id']) ? $_POST['order_id'] : 0;
+    $order = wc_get_order($order_id);
+
+    // Check if the order is valid
+    if ($order) {
+        // Generate the invoice
+         // Trigger the creation of the invoice
+        /*do_action('woocommerce_order_details_after_order_table', $order);
+        //$invoice = new WooCommerce_PDF_Invoices($order);
+        $invoice = wcpdf_get_document( 'invoice', $order, true );
+        //$pdf_data = $invoice->get_pdf();
+        //$invoice->output_invoice();
+        $invoice->output_pdf();
+        //do_action('wpo_wcpdf_after_pdf', $order);
+        //$invoice->output_invoice();
+        // Trigger the download for the invoice
+        if (function_exists('wpo_wcpdf') && class_exists('WPO\PDF\PDF')) {
+            $invoice = wpo_wcpdf()->get_invoice($order);
+            
+            if ($invoice instanceof WPO\PDF\PDF) {
+                $invoice->output_invoice();
+                exit; // Ensure that nothing else is output after the download
+            }
+        }*/
+        
+        // Check if the document is available
+        if ($invoice && method_exists($invoice, 'output_pdf')) {
+            // Generate the PDF content
+            $pdf_content = $invoice->output_pdf();
+
+            // Define a unique filename for the download
+            $filename = 'invoice_' . $order->get_order_number() . '.pdf';
+
+            // Set the content type
+            header('Content-Type: application/pdf');
+            
+            // Set the content disposition to force download
+            header('Content-Disposition: attachment; filename="' . $filename . '"');
+
+            // Output the PDF content
+            echo $pdf_content;
+            exit(); // Ensure that nothing else is output after the download
+        }
+    }
+
+    // If the order or invoice is not valid, you can send a response back to the JavaScript 
+    wp_send_json(['success' => false, 'message' => 'Error initiating the download']);
+}
+
 
 
 ?>

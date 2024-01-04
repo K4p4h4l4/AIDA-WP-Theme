@@ -48,7 +48,7 @@
                                <div class="contact__deliver">
                                    <div class="deliver__radio-holder">
                                        <label for="kilamba" class="radio">
-                                           <input type="radio" id="kilamba" class="information__radio" name="envio" value="2">
+                                           <input type="radio" id="tpa" class="information__radio" name="pagamento" value="2">
                                            <div class="radio__radio"></div>
                                        </label>
                                        
@@ -63,7 +63,7 @@
                                <div class="contact__deliver">
                                    <div class="deliver__radio-holder">
                                        <label for="luanda_Ben_Cam_MorrB" class="radio">
-                                           <input type="radio" id="luanda_Ben_Cam_MorrB" class="information__radio" value="3" name="envio">
+                                           <input type="radio" id="cash" class="information__radio" value="3" name="pagamento">
                                            <div class="radio__radio"></div>
                                        </label>
                                    </div>
@@ -78,7 +78,7 @@
                                    <div class="deliver__radio-holder">
                                        
                                        <label for="luanda_cidade" class="radio">
-                                           <input type="radio" id="luanda_cidade" class="information__radio" value="4" name="envio">
+                                           <input type="radio" id="transfer" class="information__radio" value="4" name="pagamento">
                                            <div class="radio__radio"></div>
                                        </label>
                                    </div>
@@ -98,7 +98,7 @@
                                    <div class="deliver__radio-holder">
                                        
                                        <label for="luanda_Vi_ladS_Cac" class="radio">
-                                           <input type="radio" id="luanda_Vi_ladS_Cac" class="information__radio" value="5" name="envio">
+                                           <input type="radio" id="express" class="information__radio" value="5" name="pagamento">
                                            <div class="radio__radio"></div>
                                        </label>
                                    </div>
@@ -131,7 +131,7 @@
             \******************************/-->
             <?php
                 global $woocommerce;
-                $products = $woocommerce->cart->get_cart();
+                $products = $woocommerce->cart->get_cart(); 
                 $total =0;
                 //print_r($products);
             ?>
@@ -209,7 +209,7 @@
                             $order = $_SESSION['cart'];
                         }
                     ?-->
-                    <button class="button__shipping" type="submit" id="usr_shipp_pay" data-order="<?php
+                    <button class="button__shipping" type="submit" id="usr_pay" data-order="<?php
                                     if (isset($order)) {
                                         echo $order->get_id();
                                     }
