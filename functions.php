@@ -694,16 +694,16 @@ function download_invoice_callback() {
     if ($order) {
         // Generate the invoice
          // Trigger the creation of the invoice
-        /*do_action('woocommerce_order_details_after_order_table', $order);
+        //do_action('woocommerce_order_details_after_order_table', $order);
         //$invoice = new WooCommerce_PDF_Invoices($order);
-        $invoice = wcpdf_get_document( 'invoice', $order, true );
-        //$pdf_data = $invoice->get_pdf();
+        $invoice = wcpdf_get_invoice( $order, true );
+        $pdf_data = $invoice->get_pdf();
         //$invoice->output_invoice();
-        $invoice->output_pdf();
+        //$invoice->output_pdf();
         //do_action('wpo_wcpdf_after_pdf', $order);
         //$invoice->output_invoice();
         // Trigger the download for the invoice
-        if (function_exists('wpo_wcpdf') && class_exists('WPO\PDF\PDF')) {
+        /*if (function_exists('wpo_wcpdf') && class_exists('WPO\PDF\PDF')) {
             $invoice = wpo_wcpdf()->get_invoice($order);
             
             if ($invoice instanceof WPO\PDF\PDF) {
@@ -712,24 +712,7 @@ function download_invoice_callback() {
             }
         }*/
         
-        // Check if the document is available
-        if ($invoice && method_exists($invoice, 'output_pdf')) {
-            // Generate the PDF content
-            $pdf_content = $invoice->output_pdf();
-
-            // Define a unique filename for the download
-            $filename = 'invoice_' . $order->get_order_number() . '.pdf';
-
-            // Set the content type
-            header('Content-Type: application/pdf');
-            
-            // Set the content disposition to force download
-            header('Content-Disposition: attachment; filename="' . $filename . '"');
-
-            // Output the PDF content
-            echo $pdf_content;
-            exit(); // Ensure that nothing else is output after the download
-        }
+        
     }
 
     // If the order or invoice is not valid, you can send a response back to the JavaScript 
