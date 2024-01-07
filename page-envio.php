@@ -39,7 +39,7 @@
                        <div class="information__details-holder">
                            
                            <div class="information__contact-holder">
-                              <form action="post" action="http://localhost:81/wordpress/pagamento/">
+                              <form action="post" action="./envio/">
                                <div class="contact__header">
                                    Envio
                                </div>

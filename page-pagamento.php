@@ -40,36 +40,36 @@
                        <div class="information__details-holder">
                            
                            <div class="information__contact-holder">
-                              <form action="post" action="http://localhost:81/wordpress/pagamento/">
+                              <form action="post" action="./pagamento/">
                                <div class="contact__header">
                                    Pagamento
                                </div>
                                
                                <div class="contact__deliver">
                                    <div class="deliver__radio-holder">
-                                       <label for="kilamba" class="radio">
-                                           <input type="radio" id="tpa" class="information__radio" name="pagamento" value="2">
+                                       <label for="tpa" class="radio">
+                                           <input type="radio" id="tpa" class="information__radio" name="pagamento" value="1">
                                            <div class="radio__radio"></div>
                                        </label>
                                        
                                    </div>
                                    <div class="deliver__text-holder">
-                                       <h4>TPA - Terminal de Pagamento Automatico</h4>
-                                       <p>Use o seu cartão multicaixa para pagar nos nossos TPAs no local, ou no acto da entrega da mercadoria</p>
+                                       <h4>TPA - Terminal de Pagamento Automático</h4>
+                                       <p>Use o seu cartão multicaixa para pagar nos nossos TPAs no local, ou no acto da entrega da mercadoria.</p>
                                    </div>
                                    
                                </div>
                                
                                <div class="contact__deliver">
                                    <div class="deliver__radio-holder">
-                                       <label for="luanda_Ben_Cam_MorrB" class="radio">
-                                           <input type="radio" id="cash" class="information__radio" value="3" name="pagamento">
+                                       <label for="cash" class="radio">
+                                           <input type="radio" id="cash" class="information__radio" value="2" name="pagamento">
                                            <div class="radio__radio"></div>
                                        </label>
                                    </div>
                                    <div class="deliver__text-holder">
                                        <h4>CASH | DINHEIRO VIVO</h4>
-                                       <p>Pague a cash no nosso local ou no acto de entrega do produto</p>
+                                       <p>Pague a cash no nosso local ou no acto de entrega do produto.</p>
                                    </div>
                                    
                                </div>
@@ -77,14 +77,14 @@
                                <div class="contact__deliver">
                                    <div class="deliver__radio-holder">
                                        
-                                       <label for="luanda_cidade" class="radio">
-                                           <input type="radio" id="transfer" class="information__radio" value="4" name="pagamento">
+                                       <label for="transfer" class="radio">
+                                           <input type="radio" id="transfer" class="information__radio" value="3" name="pagamento">
                                            <div class="radio__radio"></div>
                                        </label>
                                    </div>
                                    <div class="deliver__text-holder">
-                                       <h4>Transferência Bancaria</h4>
-                                       <p>Faça a transferência ou deposito para a Conta da GameShop - NIF 50001000 Game Shop Comércio e Serviços, Lda.</p>
+                                       <h4>Transferência Bancária</h4>
+                                       <p>Faça a transferência ou deposito para a Conta da ADVANCED INTERNET DESIGN ANGOLA (AIDA) - NIF 50001000 Game Shop Comércio e Serviços, Lda.</p>
                                        <br>
                                         <p>Banco BFA IBAN: AO06 0055 0000 8838 4866 1016 2 </p><br>
                                         <p>Banco Atlântico IBAN: AO06 0034 0000 0500 8373 3585 8 </p><br>
@@ -97,8 +97,8 @@
                                <div class="contact__deliver">
                                    <div class="deliver__radio-holder">
                                        
-                                       <label for="luanda_Vi_ladS_Cac" class="radio">
-                                           <input type="radio" id="express" class="information__radio" value="5" name="pagamento">
+                                       <label for="express" class="radio">
+                                           <input type="radio" id="express" class="information__radio" value="4" name="pagamento">
                                            <div class="radio__radio"></div>
                                        </label>
                                    </div>
@@ -109,13 +109,6 @@
                                    
                                </div>
                                
-                               
-                               
-                               
-                               <?php 
-                                   
-
-                                ?>
                                </form>
                            </div>
                            

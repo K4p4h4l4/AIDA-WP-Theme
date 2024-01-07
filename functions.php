@@ -661,25 +661,6 @@ function get_shipping_method_title_by_zone($shipping_zone) {
     }
 }
 
-/*// Function to get the tax rate ID based on the shipping zone
-function get_tax_rate_id_by_shipping_zone($shipping_zone_id) {
-    // Get all tax rates for the given shipping zone
-    $tax_rates = WC_Tax::get_rates_for_tax_class('', $shipping_zone_id);
-
-    // If there are tax rates associated with the shipping zone
-    if (!empty($tax_rates)) {
-        // Assume the first tax rate found is the one you want
-        $first_tax_rate = reset($tax_rates);
-        
-        // Return the tax rate ID
-        return $first_tax_rate->tax_rate_id;
-    }
-
-    // Return 0 or another default value if no tax rate is found
-    return 0;
-    
-}*/
-
 // Add an action hook to handle the download request
 add_action('wp_ajax_download_invoice', 'download_invoice_callback');
 add_action('wp_ajax_nopriv_download_invoice', 'download_invoice_callback');
@@ -689,34 +670,56 @@ function download_invoice_callback() {
     // Get the order ID from the AJAX request
     $order_id = isset($_POST['order_id']) ? $_POST['order_id'] : 0;
     $order = wc_get_order($order_id);
-
+    $paymentMethod = $form_data['paymentMethod'];
     // Check if the order is valid
     if ($order) {
-        // Generate the invoice
-         // Trigger the creation of the invoice
-        //do_action('woocommerce_order_details_after_order_table', $order);
-        //$invoice = new WooCommerce_PDF_Invoices($order);
+        
+        if(($paymentMethod == 1) || ($paymentMethod == 3) || ($paymentMethod == 4)){
+            $order->set_payment_method('bacs');
+        }else if($paymentMethod == 2){
+            $order->set_payment_method('cod');
+        }
+        
+        if($paymentMethod == 1){
+            $note_title = __('TPA - Terminal de Pagamento Automático');
+            $note_body = __('Use o seu cartão multicaixa para pagar nos nossos TPAs no local, ou no acto da entrega da mercadoria.');
+            $order->add_order_note($note_title . ': '. $note_body);
+        }else if($paymentMethod == 2){
+            $note_title = __('CASH | DINHEIRO VIVO');
+            $note_body = __('Pague a cash no nosso local ou no acto de entrega do produto.');
+            $order->add_order_note($note_title . ': '. $note_body);
+        }else if($paymentMethod == 3){
+            $note_title = __('Transferência Bancária');
+            $note_body = __('Faça a transferência ou deposito para a Conta da ADVANCED INTERNET DESIGN ANGOLA (AIDA).');
+            $order->add_order_note($note_title . ': '. $note_body);
+        }else if($paymentMethod == 4){
+            $note_title = __('Multicaixa Express (Recomendado)');
+            $note_body = __('Pagamento direto pelo aplicativo Multicaixa Express (sem precisar fazer transferência).');
+            $order->add_order_note($note_title . ': '. $note_body);
+        }
+        
+        WC()->mailer()->emails['WC_Email_New_Order']->trigger($order_id, $order);
+        WC()->mailer()->emails['WC_Email_Customer_Completed_Order']->trigger($order_id, $order);
+        
         $invoice = wcpdf_get_invoice( $order, true );
-        $pdf_data = $invoice->get_pdf();
-        //$invoice->output_invoice();
-        //$invoice->output_pdf();
-        //do_action('wpo_wcpdf_after_pdf', $order);
-        //$invoice->output_invoice();
-        // Trigger the download for the invoice
-        /*if (function_exists('wpo_wcpdf') && class_exists('WPO\PDF\PDF')) {
-            $invoice = wpo_wcpdf()->get_invoice($order);
-            
-            if ($invoice instanceof WPO\PDF\PDF) {
-                $invoice->output_invoice();
-                exit; // Ensure that nothing else is output after the download
-            }
-        }*/
         
+        $invoice_url = add_query_arg( array(
+            'action'        => 'generate_wpo_wcpdf',
+            'document_type' => 'invoice',
+            'order_ids'     => $order->get_id(),
+            'order_key'     => $order->get_order_key(),
+        ), admin_url( 'admin-ajax.php' ) );
         
+        // Clear WooCommerce cart
+        WC()->cart->empty_cart();
+        
+        // Unset your custom session variable cart
+        unset($_SESSION['cart']);
+        
+        wp_send_json(['invoice_url' => $invoice_url ]);
     }
 
-    // If the order or invoice is not valid, you can send a response back to the JavaScript 
-    wp_send_json(['success' => false, 'message' => 'Error initiating the download']);
+    wp_die();
 }
 
 

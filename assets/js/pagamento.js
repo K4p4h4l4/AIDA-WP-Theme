@@ -14,25 +14,49 @@ function ready(){
 function finishOrder(event){
     let clicked_btn = event.target;
     let orderID = clicked_btn.getAttribute('data-order');
-    
-    console.log(orderID);
+    let formData = {};
     
     let paymentOptions = document.getElementsByName('pagamento');
+    formData.paymentMethod = getRadioValue(paymentOptions);
     
-    // AJAX request to trigger the download
-    jQuery.ajax({
-        type: 'POST',
-        url: wc_add_to_cart_params.ajax_url,
-        data: {
-            action: 'download_invoice',
-            order_id: orderID
-        },
-        success: function(response) {
-            // Handle the server's response if needed
-            console.log(response);
-        },
-        error: function(error) {
-            console.error('Error:', error);
+    if(formData.paymentMethod == null){
+       alert('Escolha o método de pagamento!');
+    }else{
+        
+        // AJAX request to trigger the download
+        jQuery.ajax({
+            type: 'POST',
+            url: wc_add_to_cart_params.ajax_url,
+            data: {
+                action: 'download_invoice',
+                form_data: formData,
+                order_id: orderID
+            },
+            success: function(response) {
+               // Check if the response contains the invoice URL
+                if (response.invoice_url) {
+                    // Open the generated invoice URL in a new tab
+                    window.open(response.invoice_url, '_blank');
+                    window.href = './home/';
+                } else {
+                    console.error('Error: Invalid invoice URL', response.invoice_url);
+                }
+
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
+        });
+    }
+    
+}
+
+//Verifica a escolha para o envio
+function getRadioValue(radioOptions) {
+    for (var i = 0; i < radioOptions.length; i++) {
+        if (radioOptions[i].checked) {
+            return radioOptions[i].value;
         }
-    });
+    }
+    return null; // No option selected
 }

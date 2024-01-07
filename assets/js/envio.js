@@ -38,7 +38,7 @@ function ready(){
         
         
         formData.shippZone = getRadioValue(shippmentOptions);
-        //console.log(terms.checked);
+        
         if((formData.shippZone == null) || (!terms.checked)){ 
             alert("Verifique em método de envio e os termos de serviço");
         }else{
