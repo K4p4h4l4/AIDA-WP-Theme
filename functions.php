@@ -32,6 +32,10 @@
          wp_register_style('media_home', get_template_directory_uri().'/assets/css/_home.css', array(), 1, 'all');
          wp_enqueue_style('media_home');
         
+        //css da animação de carregar a página
+         wp_register_style('loader_css', get_template_directory_uri().'/assets/css/loader.css', array(), 1, 'all');
+         wp_enqueue_style('loader_css');
+        
          
         if(is_page('em-promocao')){
              //css do resto da página home

@@ -32,12 +32,15 @@ function finishOrder(event){
                 form_data: formData,
                 order_id: orderID
             },
+            beforeSend: function(){
+                loader.classList.remove("loader__hidden");
+            },
             success: function(response) {
                // Check if the response contains the invoice URL
                 if (response.invoice_url) {
                     // Open the generated invoice URL in a new tab
                     window.open(response.invoice_url, '_blank');
-                    window.href = './home/';
+                    window.location.href = './home/';
                 } else {
                     console.error('Error: Invalid invoice URL', response.invoice_url);
                 }
@@ -45,6 +48,9 @@ function finishOrder(event){
             },
             error: function(error) {
                 console.error('Error:', error);
+            },
+            complete: function(){
+                loader.classList.add("loader__hidden");
             }
         });
     }

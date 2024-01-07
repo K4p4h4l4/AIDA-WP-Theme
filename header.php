@@ -13,7 +13,12 @@
 </head>
 
 <body>
-    
+    <div class="loader__container" id="loader__container">
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <span class="loading">Carregando...</span>
+    </div>
     <!-- *******************\
              button menu
     \*******************/-->

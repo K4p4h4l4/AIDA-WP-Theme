@@ -42,6 +42,9 @@ usr_buttonInfo.addEventListener('click', function (event){
             form_data: formData,
             orderId: checkoutId
         },
+        beforeSend: function(){
+            loader.classList.remove("loader__hidden");
+        },
         success: function (response) {
             // Handle the server's response
             if (response.success) {
@@ -54,6 +57,9 @@ usr_buttonInfo.addEventListener('click', function (event){
         },
         error: function (error) {
             console.error('Error:', error);
+        },
+        complete: function(){
+            loader.classList.add("loader__hidden");
         }
     });
     

@@ -51,6 +51,9 @@ function ready(){
                     form_data: formData,
                     orderId: shippId
                 },
+                beforeSend: function(){
+                    loader.classList.remove("loader__hidden");
+                },
                 success: function (response) {
                     // Handle the server's response
                     if (response.success) {
@@ -62,6 +65,9 @@ function ready(){
                 },
                 error: function (error) {
                     console.error('Error:', error);
+                },
+                complete: function(){
+                    loader.classList.add("loader__hidden");
                 }
             });
         }

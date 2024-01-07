@@ -111,6 +111,9 @@ function getInvoice(event) {
                 action: 'generate_invoice',
                 orderId: invoiceId
             },
+            beforeSend: function(){
+                loader.classList.remove("loader__hidden");
+            },
             success: function (data) {
                 // Check if the response contains the invoice URL
                 if (data.invoice_url) {
@@ -124,6 +127,9 @@ function getInvoice(event) {
             error: function (error) {
                 console.error('Error generating the invoice:', error);
             },
+            complete: function(){
+                loader.classList.add("loader__hidden");
+            }
         });
     } else {
         console.error('Error: Invalid order ID');

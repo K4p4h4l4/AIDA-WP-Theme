@@ -7,7 +7,7 @@ if(document.readyState == 'loading'){
 
 //Vector para armazenar os produtos do carrinho
 var cartItemsArray = [];
-
+const loader = document.getElementById('loader__container');
 //número da ordem
 //var order_number;
 
@@ -166,13 +166,19 @@ function updateCartItemQuantity(cart_item_key, new_quantity) {
             cart_item_key: cart_item_key,
             new_quantity: new_quantity
         },
+        beforeSend: function(){
+            loader.classList.remove("loader__hidden");
+        },
         success: function (response) {
             // Handle the response from the server, e.g., update the cart totals or display a success message.
-            console.log(response.message);
+            //console.log(response.message);
         },
         error: function (error) {
             console.error('Error updating cart item quantity:', error);
-        }
+        },
+        complete: function(){
+            loader.classList.add("loader__hidden");
+        },
     });
 }
 
@@ -255,16 +261,22 @@ function removeCartItemBack(chave){
             action: 'remove_cart_item', // Action hook for the AJAX handler
             cart_item_key: cartItemKey // The key of the cart item to remove
         },
+        beforeSend: function(){
+            loader.classList.remove("loader__hidden");
+        },
         success: function(response) {
             if (response === 'success') {
                 // Handle success - you can update the cart display or perform other actions
                 //window.location.reload();
-                console.log('Removido com sucesso');
+                //console.log('Removido com sucesso');
             } else {
                 // Handle error
                 alert('Um erro ocorreu enquanto removia-se um produto do carrinho .');
             }
-        }
+        },
+        complete: function(){
+            loader.classList.add("loader__hidden");
+        },
     });
 }
 
@@ -313,6 +325,7 @@ function callCart(){
 // JavaScript para criar uma encomenda e adicionar os produto a mesma
 function createOrderAndAddProduct(productID, quantity) {
     //console.log(productID, quantity);
+    
     jQuery.ajax({
       type: 'POST',
       url: wc_add_to_cart_params.ajax_url, // Replace with the correct server endpoint
@@ -321,15 +334,21 @@ function createOrderAndAddProduct(productID, quantity) {
         product_id: productID,
         quantity: quantity
       },
+      beforeSend: function(){
+          loader.classList.remove("loader__hidden");
+      },
       success: function (data) {
           // Handle the response from the server (e.g., success or error message)        
           let order_number = data.order_number;
           localStorage.setItem('orderID', order_number);
-          console.log(order_number, data.message);
+          //console.log(order_number, data.message);
       },
       error: function (error) {
         // Handle errors (e.g., display an error message)
         console.error('Erro ao adicionar produtos ao carrinho:', error);
+      },
+      complete: function(){
+          loader.classList.add("loader__hidden");
       },
     });
 }
@@ -337,7 +356,7 @@ function createOrderAndAddProduct(productID, quantity) {
 
 //Javascript para actualizar os produtos da encomenda
 function updateOrderItemQuantity(orderId, productId, newQuantity) {
-    console.log(orderId, productId, newQuantity);
+    //console.log(orderId, productId, newQuantity);
     // Send the Ajax request to the server
     jQuery.ajax({
         type: 'POST',
@@ -348,16 +367,21 @@ function updateOrderItemQuantity(orderId, productId, newQuantity) {
             productId: productId,
             newQuantity: newQuantity
         },
-        //dataType: 'json' ,
+        beforeSend: function(){
+            loader.classList.remove("loader__hidden");
+        },
         success: function (data) {
             // Handle the server's response (e.g., success or error message)
             //let message = data.message;
-            console.log(data.order_number, data.message);
+            //console.log(data.order_number, data.message);
         },
         error: function(error) {
             // Handle errors (e.g., display an error message)
             console.error('Erro ao actualizar as quantidades da encomenda:', error);
-        }
+        },
+        complete: function(){
+            loader.classList.add("loader__hidden");
+        },
     });
 }
 
@@ -372,7 +396,7 @@ function updateInvoice(order_id) {
         },
         success: function (data) {
             // Handle the server's response (e.g., success or error message)
-            console.log(data.message);
+            //console.log(data.message);
         },
         error: function (error) {
             // Handle errors (e.g., display an error message)
@@ -394,15 +418,21 @@ function removeProductFromOrder(orderId, productId) {
             order_id: orderId,
             product_id: productId
         },
+        beforeSend: function(){
+            loader.classList.remove("loader__hidden");
+        },
         success: function(data) {
             // Handle the server's response (e.g., success or error message)
             
-            console.log(data.message);
+            //console.log(data.message);
                 
         },
         error: function(error) {
             // Handle errors (e.g., display an error message)
             console.error('Error removing the product:', error);
+        },
+        complete: function(){
+            loader.classList.add("loader__hidden");
         }
     });
 }

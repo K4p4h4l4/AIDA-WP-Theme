@@ -1,3 +1,13 @@
+window.addEventListener("load", () =>{
+    const loader = document.querySelector(".loader__container");
+    loader.classList.add("loader__hidden");
+    
+    loader.addEventListener("transitionend", () =>{
+        //document.body.removeChild(loader);
+        loader.classList.add("loader__hidden");
+    });
+});
+
 document.getElementById('products__cart').addEventListener('click', function () {
     document.querySelector('.cart__list-holder').classList.toggle("cart__list-active");
 } );
