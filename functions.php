@@ -726,6 +726,30 @@ function download_invoice_callback() {
     wp_die();
 }
 
+// PHP function to check if an order exists
+function check_order_exists_callback() {
+  // Get the order ID from the AJAX request
+  /*$order = isset($_SESSION['cart']) ? absint($_SESSION['cart']) : 0;
+    
+  $check_cart = $_POST['check_cart'];
+
+  // Check if the order exists
+  $order_exists = wc_get_order($order->get_id()) ? true : false;*/
+  $itens = $_POST['check_cart'];
+  if($itens > 0){
+      $order_exists = true;
+  }else{
+      $order_exists = false;
+  }
+  //$order_exists = isset($_SESSION['cart'])? true : false;
+
+  // Send response back to JavaScript
+  wp_send_json(['exists' => $order_exists]);//
+}
+
+// Action hook to handle the AJAX request
+add_action('wp_ajax_check_order_exists', 'check_order_exists_callback');
+add_action('wp_ajax_nopriv_check_order_exists', 'check_order_exists_callback');
 
 
 ?>

@@ -1,3 +1,4 @@
+
 window.addEventListener("load", () =>{
     const loader = document.querySelector(".loader__container");
     loader.classList.add("loader__hidden");
@@ -58,8 +59,6 @@ menu.addEventListener('click', function(e){
     console.log(e);
    document.querySelector('.main__menu').classList.toggle("show__menu"); 
 });
-
-
 /*function updateTotal(){
     let cartContent = document.getElementsByClassName('cart__list-container')[0];
     let cartBoxes = cart.getElementsByClassName('cart__list-card');

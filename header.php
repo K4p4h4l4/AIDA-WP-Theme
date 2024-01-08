@@ -229,7 +229,7 @@
                             </div>
                             <div class="cart__btn-container">
                                 <button class="cart__view ver__carrinho" id="cart__view">Ver carrinho</button> <!-- onclick="location.href='< ?php echo get_permalink(190); ?>'" -->
-                                <button class="cart__view" onclick="location.href='checkout'">Finalizar Compra</button> <!--?php echo get_permalink(63); ?-->
+                                <button class="cart__view" id="checkout__view" onclick="location.href='checkout'">Finalizar Compra</button> <!--?php echo get_permalink(63); ?-->
                             </div>
                         </div>
                     </div>

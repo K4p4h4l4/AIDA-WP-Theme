@@ -297,28 +297,59 @@ function productCounter(operation){
 //Javascript para chamar a função de criar uma encomenda e em seguida ir para a página do carrinho
 function callCart(){
     let itemsList = document.getElementsByClassName('cart__list-card');
+    /*loader.classList.remove("loader__hidden");
+    else {
+        loader.classList.add("loader__hidden");
+        alert("Carrinho vazio!!!");
+    }*/
     
-    if(itemsList.length > 0){
+    let check_cart = 1;
+    jQuery.ajax({
+        type: 'POST',
+        url: wc_add_to_cart_params.ajax_url,
+        data: {
+            action: 'check_order_exists', // Action name defined in the server-side function
+            check_cart: itemsList.length
+        },
+        beforeSend: function(){
+            loader.classList.remove("loader__hidden");
+        },
+        success: function (response) {
+            // Handle the server's response
+            if (response.exists) {
+                //if(itemsList.length > 0){
         
-        for(let i = 0; i < itemsList.length; i++){
-            let product_id = itemsList[i].children[2].getAttribute('data-product-id');
-            let product_qtde = itemsList[i].children[1].children[1].children[0].value;
-            
-            let order_number = localStorage.getItem('orderID');
-            //console.log(order_number, product_id, product_qtde);
-            //actualizar as quantidades dos produtos do carrinho
-            updateCartItemQuantity(product_id, product_qtde);
-            setInterval(function (){},3000);
-            //actualizar as quantidades dos produtos da encomenda
-            updateOrderItemQuantity(order_number, product_id, product_qtde);
-            setInterval(function (){},3000);
-            //Actualizar as facturas
+                    for(let i = 0; i < itemsList.length; i++){
+                        let product_id = itemsList[i].children[2].getAttribute('data-product-id');
+                        let product_qtde = itemsList[i].children[1].children[1].children[0].value;
+
+                        let order_number = localStorage.getItem('orderID');
+                        //console.log(order_number, product_id, product_qtde);
+                        //actualizar as quantidades dos produtos do carrinho
+                        updateCartItemQuantity(product_id, product_qtde);
+                        setInterval(function (){},3000);
+                        //actualizar as quantidades dos produtos da encomenda
+                        updateOrderItemQuantity(order_number, product_id, product_qtde);
+                        setInterval(function (){},3000);
+                        //Actualizar as facturas
+                    }
+                    //loader.classList.add("loader__hidden");
+                    //window.location.assign('http://localhost:81/wordpress/carrinho/');
+                    window.location.href = './carrinho/';
+
+                //}
+                //window.location.href = './carrinho/';
+            } else {
+                alert("Carrinho vazio!!!");
+            }
+        },
+        error: function (error) {
+            console.error('Error:', error);
+        },
+        complete: function(){
+            loader.classList.add("loader__hidden");
         }
-        
-        //window.location.assign('http://localhost:81/wordpress/carrinho/');
-        window.location.href = './carrinho/';
-        
-    }
+    });
     
 }
 
