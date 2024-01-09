@@ -121,7 +121,7 @@
                     </div>
                 </div>
                 <div class="cart__buttons-holder">
-                    <button class="button__actions" onclick="location.href='<?php echo get_permalink(22); ?>'"> <i class="material-icons">arrow_back</i> Continuar a comprar</button>
+                    <button class="button__actions" onclick="location.href='./home/'"> <i class="material-icons">arrow_back</i> Continuar a comprar</button>
                     <?php
                         // Check if an order (cart) exists in the session
                         if (isset($_SESSION['cart'])) {
@@ -133,7 +133,7 @@
                                                                                         echo $order->get_id();
                                                                                     }
                                                                                      ?>"> <i class="material-icons">article</i> Consultar preço</button>
-                    <button class="button__actions" onclick="location.href='checkout'"> <i class="material-icons">done</i> Finalizar compra</button> <!--?php echo get_permalink(63); ? < ?php echo get_permalink(149); ?>-->
+                    <button class="button__actions" id="checkout"> <i class="material-icons">done</i> Finalizar compra</button> 
                 </div>
             </div>
         </div>
@@ -142,6 +142,6 @@
     
     
 <?php 
-    //get footer.php file
+    
     get_footer();        
 ?>

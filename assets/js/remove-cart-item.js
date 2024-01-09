@@ -47,6 +47,7 @@ function ready(){
     }
     
     document.getElementById('cart__view').addEventListener('click', callCart);
+    document.getElementById('checkout__view').addEventListener('click', callCheckout);
 }
 
 //Função para  remover items do carrinho
@@ -171,7 +172,7 @@ function updateCartItemQuantity(cart_item_key, new_quantity) {
         },
         success: function (response) {
             // Handle the response from the server, e.g., update the cart totals or display a success message.
-            //console.log(response.message);
+            console.log(response.message);
         },
         error: function (error) {
             console.error('Error updating cart item quantity:', error);
@@ -297,11 +298,7 @@ function productCounter(operation){
 //Javascript para chamar a função de criar uma encomenda e em seguida ir para a página do carrinho
 function callCart(){
     let itemsList = document.getElementsByClassName('cart__list-card');
-    /*loader.classList.remove("loader__hidden");
-    else {
-        loader.classList.add("loader__hidden");
-        alert("Carrinho vazio!!!");
-    }*/
+    
     
     let check_cart = 1;
     jQuery.ajax({
@@ -327,10 +324,10 @@ function callCart(){
                         //console.log(order_number, product_id, product_qtde);
                         //actualizar as quantidades dos produtos do carrinho
                         updateCartItemQuantity(product_id, product_qtde);
-                        setInterval(function (){},3000);
+                        //setInterval(function (){},3000);
                         //actualizar as quantidades dos produtos da encomenda
                         updateOrderItemQuantity(order_number, product_id, product_qtde);
-                        setInterval(function (){},3000);
+                        //setInterval(function (){},3000);
                         //Actualizar as facturas
                     }
                     //loader.classList.add("loader__hidden");
@@ -340,17 +337,65 @@ function callCart(){
                 //}
                 //window.location.href = './carrinho/';
             } else {
+                loader.classList.add("loader__hidden");
                 alert("Carrinho vazio!!!");
             }
         },
         error: function (error) {
             console.error('Error:', error);
         },
-        complete: function(){
+        /*complete: function(){
             loader.classList.add("loader__hidden");
-        }
+        }*/
     });
     
+}
+
+//Função para verificar se há itens e se tiver ir para o checkout
+function callCheckout(){
+    let itemsList = document.getElementsByClassName('cart__list-card');
+    
+    let check_cart = 1;
+    jQuery.ajax({
+        type: 'POST',
+        url: wc_add_to_cart_params.ajax_url,
+        data: {
+            action: 'check_order_exists', // Action name defined in the server-side function
+            check_cart: itemsList.length
+        },
+        beforeSend: function(){
+            loader.classList.remove("loader__hidden");
+        },
+        success: function (response) {
+            // Handle the server's response
+            if (response.exists) {
+                for(let i = 0; i < itemsList.length; i++){
+                    let product_id = itemsList[i].children[2].getAttribute('data-product-id');
+                    let product_qtde = itemsList[i].children[1].children[1].children[0].value;
+
+                    let order_number = localStorage.getItem('orderID');
+                    //console.log(order_number, product_id, product_qtde);
+                    //actualizar as quantidades dos produtos do carrinho
+                    updateCartItemQuantity(product_id, product_qtde);
+                    //setInterval(function (){},3000);
+                    //actualizar as quantidades dos produtos da encomenda
+                    updateOrderItemQuantity(order_number, product_id, product_qtde);
+                    //setInterval(function (){},3000);
+                    //Actualizar as facturas
+                }
+                window.location.href = './checkout/'; 
+            } else {
+                loader.classList.add("loader__hidden");
+                alert("Carrinho vazio!!!");
+            }
+        },
+        error: function (error) {
+            console.error('Error:', error);
+        },
+        /*complete: function(){
+            loader.classList.add("loader__hidden");
+        }*/
+    });
 }
 
 // JavaScript para criar uma encomenda e adicionar os produto a mesma

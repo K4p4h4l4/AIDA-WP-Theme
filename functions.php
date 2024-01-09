@@ -245,9 +245,9 @@
             WC()->cart->set_quantity($cart_item_key, $new_quantity);
 
             // Calculate totals and return the updated cart HTML
-            WC()->cart->calculate_totals();
+            $totals = WC()->cart->calculate_totals();
             $updated_cart_html = WC()->cart->get_cart_contents();
-            wp_send_json(['success' => true, 'message' => ' Quantidade de produto actualizada com sucesso']);
+            wp_send_json(['success' => true, 'message' => ' Quantidade de produto actualizada com sucesso: '.$totals]);
         } else {
             wp_send_json(['success' => false, 'message' => ' Erro ao actualizar a quantidade de produto']);
         }
@@ -355,12 +355,13 @@ function update_order_item_quantity_callback() {
                 // Optionally, you can trigger any necessary actions or hooks here
                 break; // Exit the loop after updating the item
             }
-        }
+            //Calcular os totais com a alteração das quantidades dos produtos
+            $order->calculate_totals();
+            // Save the order to apply the changes
+            $order->save();
+            }
         
-        //Calcular os totais com a alteração das quantidades dos produtos
-        $order->calculate_totals();
-        // Save the order to apply the changes
-        $order->save();
+        
     }
 
     if($order){

@@ -31,6 +31,8 @@ function ready(){
         invoiceButton.addEventListener('click', getInvoice);
     }
     
+    document.getElementById('checkout').addEventListener('click', callCheckout2);
+    
 }
 
 //Função para  remover items do carrinho
@@ -138,6 +140,37 @@ function getInvoice(event) {
     }
 }
 
+//Função para verificar se há itens e se tiver ir para o checkout
+function callCheckout2(){
+    let itemsList = document.getElementsByClassName('product__cart-table');
+    
+    let check_cart = 1;
+    jQuery.ajax({
+        type: 'POST',
+        url: wc_add_to_cart_params.ajax_url,
+        data: {
+            action: 'check_order_exists', // Action name defined in the server-side function
+            check_cart: itemsList.length
+        },
+        beforeSend: function(){
+            loader.classList.remove("loader__hidden");
+        },
+        success: function (response) {
+            // Handle the server's response
+            if (response.exists) {
+                    window.location.href = './checkout/'; 
+            } else {
+                alert("Carrinho vazio!!!");
+            }
+        },
+        error: function (error) {
+            console.error('Error:', error);
+        },
+        complete: function(){
+            loader.classList.add("loader__hidden");
+        }
+    });
+}
 
 //Função para adicionar ou remover itens da contagem de produtos
 /*function productCounter(operation){
