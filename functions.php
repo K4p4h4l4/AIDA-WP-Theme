@@ -781,5 +781,68 @@ function check_order_exists_callback() {
 add_action('wp_ajax_check_order_exists', 'check_order_exists_callback');
 add_action('wp_ajax_nopriv_check_order_exists', 'check_order_exists_callback');
 
+// AJAX action to register user and create order
+add_action('wp_ajax_register_user', 'register_user_callback');
+add_action('wp_ajax_nopriv_register_user', 'register_user_callback');
+
+//funcção para registar um novo usuário
+function register_user_callback() {
+    // Get the data from the AJAX request
+    $user_data = isset($_POST['userData']) ? $_POST['userData'] : array();
+    
+
+    // Your existing user registration logic here
+
+    // Your existing user registration logic here
+    // Example: Use wp_create_user to create a new user
+    $user_id = wp_create_user($user_data['email'], $user_data['senha'], $user_data['email']);
+
+    if (!is_wp_error($user_id)) {
+        // User registration successful
+        // Set user roles.
+        $user = new WP_User( $user_id );
+        $user->set_role( 'customer' );
+
+        // Update user meta data with additional information
+        update_user_meta($user_id, 'first_name', $user_data['nome']);
+        update_user_meta($user_id, 'last_name', $user_data['sobrenome']);
+        update_user_meta($user_id, 'provincia', $user_data['provincia']);
+        update_user_meta($user_id, 'municipio', $user_data['municipio']);
+        update_user_meta($user_id, 'endereco', $user_data['endereco']);
+        update_user_meta($user_id, 'telefone', $user_data['telefone']);
+        
+        //Opcional
+        // Set customer data
+        update_user_meta($user_id, 'billing_first_name', 'John');
+        update_user_meta($user_id, 'billing_last_name', 'Doe');
+        update_user_meta($user_id, 'billing_phone', '123-456-7890');
+        
+        // Billing Address
+update_user_meta($user_id, 'billing_address_1', '123 Main St');
+update_user_meta($user_id, 'billing_address_1', '123 Main St');
+update_user_meta($user_id, 'billing_city', 'City');
+update_user_meta($user_id, 'billing_postcode', '12345');
+update_user_meta($user_id, 'billing_country', 'US');
+
+// Shipping Address (if different from billing)
+update_user_meta($user_id, 'shipping_address_1', '456 Shipping St');
+update_user_meta($user_id, 'shipping_city', 'Shipping City');
+update_user_meta($user_id, 'shipping_postcode', '54321');
+update_user_meta($user_id, 'shipping_country', 'US');
+        
+        // Send custom mail
+      wp_mail( 'joedoe@mail.com', 'Welcome!', 'Your password is:'. $password );
+
+        // Return a response to the JavaScript
+        wp_send_json_success(array('message' => 'Usuário registado com sucesso.'));
+    } else {
+        // User registration failed
+        wp_send_json_error(array('message' => 'Erro ao registar usuário'));
+    }
+
+    // Don't forget to exit
+    wp_die();
+}
+
 
 ?>
