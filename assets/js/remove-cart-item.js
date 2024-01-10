@@ -158,12 +158,13 @@ function quantityChange(event){
 }
 
 
-function updateCartItemQuantity(cart_item_key, new_quantity) {
+function updateCartItemQuantity(order_id, cart_item_key, new_quantity) {
     jQuery.ajax({
         type: 'POST',
         url: wc_add_to_cart_params.ajax_url,
         data: {
             action: 'update_cart_item_quantity',
+            order_id: order_id,
             cart_item_key: cart_item_key,
             new_quantity: new_quantity
         },
@@ -323,7 +324,7 @@ function callCart(){
                         let order_number = localStorage.getItem('orderID');
                         //console.log(order_number, product_id, product_qtde);
                         //actualizar as quantidades dos produtos do carrinho
-                        updateCartItemQuantity(product_id, product_qtde);
+                        updateCartItemQuantity(order_number, product_id, product_qtde);
                         //setInterval(function (){},3000);
                         //actualizar as quantidades dos produtos da encomenda
                         updateOrderItemQuantity(order_number, product_id, product_qtde);
@@ -376,7 +377,7 @@ function callCheckout(){
                     let order_number = localStorage.getItem('orderID');
                     //console.log(order_number, product_id, product_qtde);
                     //actualizar as quantidades dos produtos do carrinho
-                    updateCartItemQuantity(product_id, product_qtde);
+                    updateCartItemQuantity(order_number, product_id, product_qtde);
                     //setInterval(function (){},3000);
                     //actualizar as quantidades dos produtos da encomenda
                     updateOrderItemQuantity(order_number, product_id, product_qtde);

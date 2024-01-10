@@ -1,8 +1,8 @@
 if(document.readyState == 'loading'){
-    
+    loader.classList.remove("loader__hidden");
     document.addEventListener('DOMContentLoaded', ready);
 }else{
-    
+    loader.classList.add("loader__hidden");
     ready();
 }
 
@@ -160,15 +160,16 @@ function callCheckout2(){
             if (response.exists) {
                     window.location.href = './checkout/'; 
             } else {
+                loader.classList.add("loader__hidden");
                 alert("Carrinho vazio!!!");
             }
         },
         error: function (error) {
             console.error('Error:', error);
         },
-        complete: function(){
+        /*complete: function(){
             loader.classList.add("loader__hidden");
-        }
+        }*/
     });
 }
 

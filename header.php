@@ -48,10 +48,10 @@
             <div class="header__contact">
                 <i class="material-icons">account_circle</i>
                 <span>
-                    <a href="register.php">Registar</a>
+                    <a href="./registar/">Registar</a>
                 </span>
                 <span>
-                    <a href="login.php">Login</a>
+                    <a href="./login/">Login</a>
                 </span>
             </div>
         </div>

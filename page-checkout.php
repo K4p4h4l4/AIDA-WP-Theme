@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="checkout__information-details">
-                       <form name="usrform" method="post" action="http://localhost:81/wordpress/envio/">
+                       <form name="usrform" method="post" action="./envio/">
                        <div class="information__links">
                            <div class="information__link-holder">
                                <a href="./carrinho/" class="information__link">Carrinho <i class="material-icons">chevron_right</i></a>
@@ -51,14 +51,14 @@
                                    Método de entrega *
                                </div>
                                <div class="contact__deliver">
-                                   <input type="radio" class="information__radio" name="encomenda" value="shipped">
+                                   <input type="radio" class="information__radio" name="encomenda" value="Entrega">
                                    <div class="deliver__text-holder">
                                        <i class="material-icons">local_shipping</i>
                                        <p>Enviar</p>
                                    </div>
                                </div>
                                <div class="contact__deliver">
-                                   <input type="radio" class="information__radio" name="encomenda" value="recolha">
+                                   <input type="radio" class="information__radio" name="encomenda" value="Recolha">
                                    <div class="deliver__text-holder">
                                        <i class="material-icons">home</i>
                                        <p>Recolha</p>
@@ -187,7 +187,7 @@
                                         echo $order->get_id();
                                     }
                                      ?>"><i class="material-icons">send</i> Continuar para envio</button>
-                    <!-- onclick="location.href= '< ? php echo get_permalink(194); ? > ' "-->
+                    
                 </div>
             </div>
         </div>

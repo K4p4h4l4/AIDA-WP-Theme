@@ -7,11 +7,7 @@ usr_buttonInfo.addEventListener('click', function (event){
     let checkoutId = checkoutClicked.getAttribute('data-order');
     let formData = {};
     formData.email = DOMPurify.sanitize(document.getElementById('usr_email').value);
-    if (isValidEmail(formData.email)) {
-        
-    } else {
-        alert(formData.email + " email inválido.");
-    }
+    
     
     let deliveryOptions = document.getElementsByName('encomenda');
     formData.deliveryMethod = getRadioValue(deliveryOptions);
@@ -27,6 +23,12 @@ usr_buttonInfo.addEventListener('click', function (event){
     if (!formData.email || !formData.country || !formData.name || !formData.surname || !formData.address || !formData.city || !formData.phone || !formData.deliveryMethod) {
         alert("Preencha os campos obrigatórios");
         return; // Stop further processing
+    }
+    
+    if (isValidEmail(formData.email)) {
+        
+    } else {
+        alert(formData.email + " email inválido.");
     }
     
     if(!formData.details){
@@ -52,15 +54,16 @@ usr_buttonInfo.addEventListener('click', function (event){
                 //window.location.assign('http://localhost:81/wordpress/envio/');
                 window.location.href= './envio/';
             } else {
+                loader.classList.add("loader__hidden");
                 alert("Erro registar o seu pedido!!!");
             }
         },
         error: function (error) {
             console.error('Error:', error);
         },
-        complete: function(){
+        /*complete: function(){
             loader.classList.add("loader__hidden");
-        }
+        }*/
     });
     
 });

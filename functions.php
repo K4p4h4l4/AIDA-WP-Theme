@@ -88,6 +88,18 @@
             wp_register_style('pagamento_css', get_template_directory_uri().'/assets/css/pagamento.css', array(), 1, 'all');
             wp_enqueue_style('pagamento_css');
         }
+        
+        if(is_page('registar')){
+            //css da página de envio
+            wp_register_style('registar_css', get_template_directory_uri().'/assets/css/registar.css', array(), 1, 'all');
+            wp_enqueue_style('registar_css');
+        }
+        
+        if(is_page('login')){
+            //css da página de envio
+            wp_register_style('login_css', get_template_directory_uri().'/assets/css/login.css', array(), 1, 'all');
+            wp_enqueue_style('login_css');
+        }
     }
 
     add_action('wp_enqueue_scripts', 'fn_theme_style');
@@ -147,7 +159,18 @@
             wp_enqueue_script('checkout__js');
             
             //Biblioteca para sanitizar os inputs do form
-             wp_register_script('dompurify__js', 'https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.4/purify.min.js', array(), null, true);
+            wp_register_script('dompurify__js', 'https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.4/purify.min.js', array(), null, true);
+            //get_theme_file_uri
+            wp_enqueue_script('dompurify__js');
+        }
+        
+        if(is_page('registar')){
+            //Envio js 
+            wp_register_script('registar_js', get_template_directory_uri().'/assets/js/registar.js', array(), 1, 1, 1); //get_theme_file_uri
+            wp_enqueue_script('registar_js');
+            
+            //Biblioteca para sanitizar os inputs do form
+            wp_register_script('dompurify__js', 'https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.4/purify.min.js', array(), null, true);
             //get_theme_file_uri
             wp_enqueue_script('dompurify__js');
         }
@@ -237,7 +260,9 @@
         $product_item_key = WC()->cart->find_product_in_cart($product_cart_id); 
         $cart_item_key = sanitize_text_field($product_item_key);
         $new_quantity = (int) $_POST['new_quantity'];
-
+        $order_id = $_POST['order_id'];
+        // Retrieve the order number
+        $order = wc_get_order($order_id);
         // Validate the new quantity, e.g., check if it's a positive integer.
 
         if ($new_quantity > 0) {
@@ -247,6 +272,10 @@
             // Calculate totals and return the updated cart HTML
             $totals = WC()->cart->calculate_totals();
             $updated_cart_html = WC()->cart->get_cart_contents();
+            //Calcular os totais com a alteração das quantidades dos produtos
+            $order->calculate_totals();
+            // Save the order to apply the changes
+            $order->save();
             wp_send_json(['success' => true, 'message' => ' Quantidade de produto actualizada com sucesso: '.$totals]);
         } else {
             wp_send_json(['success' => false, 'message' => ' Erro ao actualizar a quantidade de produto']);

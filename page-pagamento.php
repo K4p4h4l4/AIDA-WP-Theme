@@ -195,13 +195,6 @@
                 </div>
                 
                 <div class="button__shipping-holder">
-                    
-                    <!--?php
-                        // Check if an order (cart) exists in the session
-                        if (isset($_SESSION['cart'])) {
-                            $order = $_SESSION['cart'];
-                        }
-                    ?-->
                     <button class="button__shipping" type="submit" id="usr_pay" data-order="<?php
                                     if (isset($order)) {
                                         echo $order->get_id();
