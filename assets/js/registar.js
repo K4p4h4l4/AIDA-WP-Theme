@@ -16,7 +16,7 @@ function ready(){
 
 //Função para criar conta d usuário
 function criarConta(){
-    console.log("chegou");
+    //console.log("chegou");
     let userData = {};
     
     userData.nome = DOMPurify.sanitize(document.getElementById("nome").value);
@@ -37,7 +37,7 @@ function criarConta(){
     }else{
         alert(userData.email + " email inválido.");
     }
-    
+    //console.log(userData);
     // AJAX request para registar usuário
     jQuery.ajax({
         type: 'POST',
@@ -54,10 +54,10 @@ function criarConta(){
             if (response.success) {
                 console.log(response.message);
                 //window.location.assign('http://localhost:81/wordpress/envio/');
-                window.location.href= './envio/';
+                window.location.href= './home/';
             } else {
                 loader.classList.add("loader__hidden");
-                alert("Erro registar o seu pedido!!!");
+                alert("Erro ao registar o seu pedido!!! " + response);
             }
         },
         error: function (error) {
