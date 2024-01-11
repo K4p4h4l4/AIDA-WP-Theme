@@ -796,49 +796,51 @@ function register_user_callback() {
     
     if ($user_exists) {
         wp_send_json_error(array('message' => 'Este endereço de email já está em uso.'));
+    }else{
+        // Example: Use wp_create_user to create a new user
+        $user_id = wc_create_new_customer($user_data['email'], $user_data['email'], $user_data['senha']);
+
+        if (!is_wp_error($user_id)) {
+            // User registration successful
+            // Set user roles.
+            /*$user = new WP_User( $user_id );
+            $user->set_role( 'customer' );*/
+
+            // Endereço de facturação
+            update_user_meta($user_id, 'billing_first_name', $user_data['nome']);
+            update_user_meta($user_id, 'billing_last_name', $user_data['sobrenome']);
+            update_user_meta($user_id, 'billing_state', $user_data['provincia']);
+            update_user_meta($user_id, 'billing_city', $user_data['municipio']);
+            update_user_meta($user_id, 'billing_address_1', $user_data['endereco']);
+            update_user_meta($user_id, 'billing_phone', $user_data['telefone']);
+            update_user_meta($user_id, 'billing_postcode', '1459');
+            update_user_meta($user_id, 'billing_country', 'AO');
+
+            // Shipping Address (if different from billing)
+            update_user_meta($user_id, 'shipping_address_1', $user_data['endereco']);
+            update_user_meta($user_id, 'shipping_city', $user_data['municipio']);
+            update_user_meta($user_id, 'shipping_postcode', '1459');
+            update_user_meta($user_id, 'shipping_country', 'AO');
+
+            // Send custom mail with welcome message
+            $subject = 'Bem-vindo à nossa loja!';
+            $message = 'Olá ' . $user_data['nome'] . ',<br><br>';
+            $message .= 'Bem-vindo à nossa loja! Agradecemos por se registrar.<br>';
+            $message .= 'A sua conta foi criada com sucesso. Agora você pode fazer login e começar a explorar nossos produtos.<br><br>';
+            $message .= 'Atenciosamente,<br> ADVANCED INTERNET DESIGN ANGOLA';
+
+            // Send custom mail
+            wp_mail( $user_data['email'], $subject, $message );
+
+            // Return a response to the JavaScript
+            wp_send_json_success(array('message' => 'Usuário registado com sucesso.'));
+        } else {
+            // User registration failed
+            wp_send_json_error(array('message' => 'Erro ao registar usuário'));
+        }
     }
 
-    // Example: Use wp_create_user to create a new user
-    $user_id = wc_create_new_customer($user_data['email'], $user_data['email'], $user_data['senha']);
-
-    if (!is_wp_error($user_id)) {
-        // User registration successful
-        // Set user roles.
-        $user = new WP_User( $user_id );
-        $user->set_role( 'customer' );
-
-        // Endereço de facturação
-        update_user_meta($user_id, 'billing_first_name', $user_data['nome']);
-        update_user_meta($user_id, 'billing_last_name', $user_data['sobrenome']);
-        update_user_meta($user_id, 'billing_state', $user_data['provincia']);
-        update_user_meta($user_id, 'billing_city', $user_data['municipio']);
-        update_user_meta($user_id, 'billing_address_1', $user_data['endereco']);
-        update_user_meta($user_id, 'billing_phone', $user_data['telefone']);
-        update_user_meta($user_id, 'billing_postcode', '1459');
-        update_user_meta($user_id, 'billing_country', 'AO');
-        
-        // Shipping Address (if different from billing)
-        update_user_meta($user_id, 'shipping_address_1', $user_data['endereco']);
-        update_user_meta($user_id, 'shipping_city', $user_data['municipio']);
-        update_user_meta($user_id, 'shipping_postcode', '1459');
-        update_user_meta($user_id, 'shipping_country', 'AO');
-        
-        // Send custom mail with welcome message
-        $subject = 'Bem-vindo à nossa loja!';
-        $message = 'Olá ' . $user_data['nome'] . ',<br><br>';
-        $message .= 'Bem-vindo à nossa loja! Agradecemos por se registrar.<br>';
-        $message .= 'A sua conta foi criada com sucesso. Agora você pode fazer login e começar a explorar nossos produtos.<br><br>';
-        $message .= 'Atenciosamente,<br> ADVANCED INTERNET DESIGN ANGOLA';
-        
-        // Send custom mail
-        wp_mail( $user_data['email'], $subject, $message );
-
-        // Return a response to the JavaScript
-        wp_send_json_success(array('message' => 'Usuário registado com sucesso.'));
-    } else {
-        // User registration failed
-        wp_send_json_error(array('message' => 'Erro ao registar usuário'));
-    }
+    
 
     // Don't forget to exit
     wp_die();

@@ -33,40 +33,40 @@ function criarConta(){
     }
     
     if(isValidEmail(userData.email)){
-        
+        //console.log(userData);
+        // AJAX request para registar usuário
+        jQuery.ajax({
+            type: 'POST',
+            url: wc_add_to_cart_params.ajax_url,
+            data: {
+                action: 'register_user', // Action name defined in the server-side function
+                userData: userData
+            },
+            beforeSend: function(){
+                loader.classList.remove("loader__hidden");
+            },
+            success: function (response) {
+                // Handle the server's response
+                if (response.success) {
+                    console.log(response.message);
+                    //window.location.assign('http://localhost:81/wordpress/envio/');
+                    //window.location.href= './home/';
+                } else {
+                    loader.classList.add("loader__hidden");
+                    alert("Erro ao registar o seu pedido!!! " + response);
+                }
+            },
+            error: function (error) {
+                console.error('Error:', error);
+            },
+            /*complete: function(){
+                loader.classList.add("loader__hidden");
+            }*/
+        });
     }else{
         alert(userData.email + " email inválido.");
     }
-    //console.log(userData);
-    // AJAX request para registar usuário
-    jQuery.ajax({
-        type: 'POST',
-        url: wc_add_to_cart_params.ajax_url,
-        data: {
-            action: 'register_user', // Action name defined in the server-side function
-            userData: userData
-        },
-        beforeSend: function(){
-            loader.classList.remove("loader__hidden");
-        },
-        success: function (response) {
-            // Handle the server's response
-            if (response.success) {
-                console.log(response.message);
-                //window.location.assign('http://localhost:81/wordpress/envio/');
-                window.location.href= './home/';
-            } else {
-                loader.classList.add("loader__hidden");
-                alert("Erro ao registar o seu pedido!!! " + response);
-            }
-        },
-        error: function (error) {
-            console.error('Error:', error);
-        },
-        /*complete: function(){
-            loader.classList.add("loader__hidden");
-        }*/
-    });
+    
 }
 
 //Verifica se o email é válido ou não

@@ -76,7 +76,7 @@
                                 <span class="input_icon">
                                     <i class="material-icons">lock</i>
                                 </span>
-                                <input type="password" placeholder="Insira o seu e-mail" required class="register__user-data" id="senha" autocomplete="off">
+                                <input type="password" placeholder="Crie uma nova senha" required class="register__user-data" id="senha" autocomplete="off">
                                 <label for="senha" class="account__label">Senha</label>
                             </div>
 
