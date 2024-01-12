@@ -798,7 +798,7 @@ function register_user_callback() {
         wp_send_json_error(array('message' => 'Este endereço de email já está em uso.'));
     }else{
         // Example: Use wp_create_user to create a new user
-        $user_id = wc_create_new_customer($user_data['email'], $user_data['email'], $user_data['senha']);
+        $user_id = wc_create_new_customer($user_data['email'], $user_data['nome'].' '.$user_data['sobrenome'], $user_data['senha']);
 
         if (!is_wp_error($user_id)) {
             // User registration successful
@@ -807,20 +807,20 @@ function register_user_callback() {
             $user->set_role( 'customer' );*/
 
             // Endereço de facturação
-            update_user_meta($user_id, 'billing_first_name', $user_data['nome']);
-            update_user_meta($user_id, 'billing_last_name', $user_data['sobrenome']);
-            update_user_meta($user_id, 'billing_state', $user_data['provincia']);
-            update_user_meta($user_id, 'billing_city', $user_data['municipio']);
-            update_user_meta($user_id, 'billing_address_1', $user_data['endereco']);
-            update_user_meta($user_id, 'billing_phone', $user_data['telefone']);
-            update_user_meta($user_id, 'billing_postcode', '1459');
-            update_user_meta($user_id, 'billing_country', 'AO');
+            update_user_meta($user_id, '_billing_first_name', $user_data['nome']);
+            update_user_meta($user_id, '_billing_last_name', $user_data['sobrenome']);
+            update_user_meta($user_id, '_billing_state', $user_data['provincia']);
+            update_user_meta($user_id, '_billing_city', $user_data['municipio']);
+            update_user_meta($user_id, '_billing_address_1', $user_data['endereco']);
+            update_user_meta($user_id, '_billing_phone', $user_data['telefone']);
+            update_user_meta($user_id, '_billing_postcode', '1459');
+            update_user_meta($user_id, '_billing_country', 'AO');
 
             // Shipping Address (if different from billing)
-            update_user_meta($user_id, 'shipping_address_1', $user_data['endereco']);
-            update_user_meta($user_id, 'shipping_city', $user_data['municipio']);
-            update_user_meta($user_id, 'shipping_postcode', '1459');
-            update_user_meta($user_id, 'shipping_country', 'AO');
+            update_user_meta($user_id, '_shipping_address_1', $user_data['endereco']);
+            update_user_meta($user_id, '_shipping_city', $user_data['municipio']);
+            update_user_meta($user_id, '_shipping_postcode', '1459');
+            update_user_meta($user_id, '_shipping_country', 'Angola');
 
             // Send custom mail with welcome message
             $subject = 'Bem-vindo à nossa loja!';
