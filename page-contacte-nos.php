@@ -54,34 +54,37 @@
                 </div>
                 
                 <div class="contact__user-info">
-                    <div class="contact__username-container">
-                        <span class="input_icon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <input type="text" placeholder="Insira o seu nome" required class="contact__user-data" id="nome" autocomplete="off">
-                        <label for="nome" class="account__label">Nome</label>
-                    </div>
+                    <form action="./contacte-nos/" method="post">
+                        <div class="contact__username-container">
+                            <span class="input_icon">
+                                <i class="material-icons">person</i>
+                            </span>
+                            <input type="text" placeholder="Insira o seu nome" required class="contact__user-data" id="nome" autocomplete="off">
+                            <label for="nome" class="account__label">Nome</label>
+                        </div>
+
+                        <div class="contact__username-container">
+                            <span class="input_icon">
+                                <i class="material-icons">email</i>
+                            </span>
+                            <input type="email" placeholder="Insira o seu e-mail" required class="contact__user-data" id="email" autocomplete="off">
+                            <label for="email" class="account__label">E-mail</label>
+                        </div>
+                        <div class="contact__username-container">
+                            <span class="input_icon">
+                                <i class="material-icons">border_color</i>
+                            </span>
+                            <input type="text" placeholder="Insira o assunto" required class="contact__user-data" id="assunto" autocomplete="off">
+                            <label for="assunto" class="account__label">Assunto</label>
+                        </div>
+                        <div class="contact__username-container">
+                            <textarea name="contact__comments" cols="5" rows="5" class="contact__comments" placeholder="Escreva suas dúvidas aqui" id="mensagem"></textarea>
+                            <label for="mensagem" class="account__label">Mensagem</label>
+                        </div>
+                    </form>
                     
-                    <div class="contact__username-container">
-                        <span class="input_icon">
-                            <i class="material-icons">email</i>
-                        </span>
-                        <input type="email" placeholder="Insira o seu e-mail" required class="contact__user-data" id="email" autocomplete="off">
-                        <label for="email" class="account__label">E-mail</label>
-                    </div>
-                    <div class="contact__username-container">
-                        <span class="input_icon">
-                            <i class="material-icons">border_color</i>
-                        </span>
-                        <input type="text" placeholder="Insira o assunto" required class="contact__user-data" id="assunto" autocomplete="off">
-                        <label for="assunto" class="account__label">Assunto</label>
-                    </div>
-                    <div class="contact__username-container">
-                        <textarea name="contact__comments" id="" cols="5" rows="5" class="contact__comments" placeholder="Escreva suas dúvidas aqui" id="mensagem"></textarea>
-                        <label for="mensagem" class="account__label">Mensagem</label>
-                    </div>
                     <div class="contact__sendsms-container">
-                        <button class="button__shipping"><i class="material-icons">send</i> Enviar</button>
+                        <button class="button__shipping" id="enviar"><i class="material-icons">send</i> Enviar</button>
                     </div>
                 </div>
             </div>

@@ -175,6 +175,17 @@
             wp_enqueue_script('dompurify__js');
         }
         
+        if(is_page('contacte-nos')){
+            //Envio js 
+            wp_register_script('contacte-nos_js', get_template_directory_uri().'/assets/js/contacte-nos.js', array(), 1, 1, 1); //get_theme_file_uri
+            wp_enqueue_script('contacte-nos_js');
+            
+            //Biblioteca para sanitizar os inputs do form
+            wp_register_script('dompurify__js', 'https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.4/purify.min.js', array(), null, true);
+            //get_theme_file_uri
+            wp_enqueue_script('dompurify__js');
+        }
+        
     }
 
     add_action('wp_enqueue_scripts', 'fn_theme_scripts');
@@ -781,7 +792,105 @@ function check_order_exists_callback() {
 add_action('wp_ajax_check_order_exists', 'check_order_exists_callback');
 add_action('wp_ajax_nopriv_check_order_exists', 'check_order_exists_callback');
 
-// AJAX action to register user and create order
+
+// AJAX action to talk to us
+add_action('wp_ajax_talk_to_us', 'talk_to_us_callback');
+add_action('wp_ajax_nopriv_talk_to_us', 'talk_to_us_callback');
+
+//Função para recolher interesses e dúvidas que o cliente possa ter em relação aos produtos
+function talk_to_us_callback(){
+    // Get the data from the AJAX request
+    $user_data = isset($_POST['userData']) ? $_POST['userData'] : array();
+    
+    $nome = sanitize_text_field($user_data['nome']);
+    $email = sanitize_text_field($user_data['email']);
+    $assunto = sanitize_text_field($user_data['assunto']);
+    $mensagem = sanitize_text_field($user_data['mensagem']);
+    
+    $valid_email = is_email($email);
+    if($valid_email){
+        
+        
+        $message = '<html><body style="font-family: Arial, sans-serif; padding: 20px; color: #333; background-color: #f5f5f5;">';
+        $message .= '<div style="max-width: 600px; margin: 0 auto;">';
+        $message .= '<img src="https://www.aida.ao/img/logo/aid_logo.png" alt="Company Logo" style="max-width: 100%; margin-bottom: 20px;">';
+        $message .= '<h2 style="color: #007bff;">Mensagem do Formulário de Contacto</h2>';
+        $message .= '<p>Olá Time,</p>';
+        $message .= '<p>Recebemos uma nova mensagem do formulário de contato:</p>';
+        $message .= '<strong>Nome: </strong>'.$nome;
+        $message .= '<br>';
+        $message .= '<strong>Email: </strong>'.$email;
+        $message .= '<br>';
+        $message .= '<strong>Assunto: </strong>'.$assunto;
+        $message .= '<br>';
+        $message .= '<strong>Mensagem: </strong>'.$mensagem;
+        $message .= '<br>';
+
+        $message .= '<br>';
+        $message .= '<p>Por favor, responda ao remetente o mais breve possível.</p>';
+        $message .= '<p>Obrigado!</p>';
+        $message .= '<div style="border-top: 1px solid #ccc; padding-top: 20px; margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px; text-align: center; background-color:black; color:white;">';
+        $message .= '<p>Siga-nos nas redes sociais:</p>';
+        $message .= '<a href="https://www.facebook.com" style="margin-right: 10px;"><img src="https://d3k81ch9hvuctc.cloudfront.net/company/PMgFnb/images/bb194ecc-82ed-4c0b-a19d-2a7a27010865.png" alt="Facebook" style="width: 20px; height: 20px;"></a>';
+        $message .= '<a href="https://www.linkdin.com" style="margin-right: 10px;"><img src="https://d3k81ch9hvuctc.cloudfront.net/company/PMgFnb/images/970bec08-616d-47fe-96ff-ebab859bb15b.png" alt="Linkdin" style="width: 20px; height: 20px;"></a>';
+        $message .= '<a href="https://www.instagram.com" style="margin-right: 10px;"><img src="https://d3k81ch9hvuctc.cloudfront.net/company/PMgFnb/images/3d1d9040-b9a7-4fe5-bd48-6da093f22f12.png" alt="Instagram" style="width: 20px; height: 20px;"></a>';
+        $message .= '<br>';
+        $message .= '<p>Localização: Zango 0, Vila Chinesa</p>';
+        $message .= '<p>&copy; ' . date('Y') . ' ADVANCED INTERNET DESIGN ANGOLA. Todos os direitos reservados.</p>';
+        $message .= '</div>';
+        $message .= '</div>';
+        $message .= '</body></html>';
+        
+        $headers = array('Content-Type: text/html; charset=UTF-8');
+        // Send custom mail
+        wp_mail( 'info@aida.ao', 'Mensagem do Formulário de Contacto', $message, $headers );
+        
+        $message2 = '<html><body style="font-family: Arial, sans-serif; padding: 20px; color: #333; background-color: #f5f5f5;">';
+        $message2 .= '<div style="max-width: 600px; margin: 0 auto;">';
+        $message2 .= '<img src="https://www.aida.ao/img/logo/aid_logo.png" alt="Company Logo" style="max-width: 100%; margin-bottom: 20px;">';
+        $message2 .= '<h2 style="color: #007bff;">Mensagem do Formulário de Contacto</h2>';
+        $message2 .= '<p>Prezado(a) '.$nome. ',</p>';
+        $message2 .= '<p>Agradecemos por entrar em contato connosco através da nossa página "Contacte-nos". Valorizamos a sua opinião e estaremos felizes em ajudar.</p>';
+        $message2 .= '<p>Detalhes da sua mensagem:</p>';
+        $message2 .= '<strong>Nome: </strong>'.$nome;
+        $message2 .= '<br>';
+        $message2 .= '<strong>Email: </strong>'.$email;
+        $message2 .= '<br>';
+        $message2 .= '<strong>Assunto: </strong>'.$assunto;
+        $message2 .= '<br>';
+        $message2 .= '<strong>Mensagem: </strong>'.$mensagem;
+        $message2 .= '<br>';
+
+        $message2 .= '<br>';
+        $message2 .= '<p>Responderemos à sua mensagem o mais breve possível. Caso sua consulta seja urgente, recomendamos que entre em contato conosco diretamente pelo telefone 923695077.</p>';
+        $message2 .= '<p>Agradecemos por escolher ADVANCED INTERNET DESIGN ANGOLA!</p>';
+        $message2 .= '<br>';
+        $message2 .= '<p>Atenciosamente,</p>';
+        $message2 .= '<p>Equipe ADVANCED INTERNET DESIGN ANGOLA</p>';
+        $message2 .= '<p>info@aida.ao</p>';
+        $message2 .= '<div style="border-top: 1px solid #ccc; padding-top: 20px; margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px; text-align: center; background-color:black; color:white;">';
+        $message2 .= '<p>Siga-nos nas redes sociais:</p>';
+        $message2 .= '<a href="https://www.facebook.com" style="margin-right: 10px;"><img src="https://d3k81ch9hvuctc.cloudfront.net/company/PMgFnb/images/bb194ecc-82ed-4c0b-a19d-2a7a27010865.png" alt="Facebook" style="width: 20px; height: 20px;"></a>';
+        $message2 .= '<a href="https://www.linkdin.com" style="margin-right: 10px;"><img src="https://d3k81ch9hvuctc.cloudfront.net/company/PMgFnb/images/970bec08-616d-47fe-96ff-ebab859bb15b.png" alt="Linkdin" style="width: 20px; height: 20px;"></a>';
+        $message2 .= '<a href="https://www.instagram.com" style="margin-right: 10px;"><img src="https://d3k81ch9hvuctc.cloudfront.net/company/PMgFnb/images/3d1d9040-b9a7-4fe5-bd48-6da093f22f12.png" alt="Instagram" style="width: 20px; height: 20px;"></a>';
+        $message2 .= '<br>';
+        $message2 .= '<p>Localização: Zango 0, Vila Chinesa</p>';
+        $message2 .= '<p>&copy; ' . date('Y') . ' ADVANCED INTERNET DESIGN ANGOLA. Todos os direitos reservados.</p>';
+        $message2 .= '</div>';
+        $message2 .= '</div>';
+        $message2 .= '</body></html>';
+        
+        // Send custom mail
+        wp_mail( $email, 'Agradecemos pelo seu contato', $message2, $headers );
+        
+        // Return a response to the JavaScript
+        wp_send_json(array('success'=> 'true', 'message' => 'Mensagem enviada com sucesso.'));
+    }else{
+        wp_send_json(array('success'=> 'false', 'message' => 'Email inválido'));
+    }
+}
+
+// AJAX action to register user
 add_action('wp_ajax_register_user', 'register_user_callback');
 add_action('wp_ajax_nopriv_register_user', 'register_user_callback');
 
@@ -831,16 +940,16 @@ function register_user_callback() {
             $message .= '<p>Agradecemos por se registrar na nossa loja online. Sua conta foi criada com sucesso!</p>';
             $message .= '<p>Agora você pode fazer login e começar a explorar nossa seleção de produtos.</p>';
             $message .= '<br>';
-            $message .= '<p style="text-align: center;"><a href="http://localhost:81/wordpress" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Ir para a Loja</a></p>';
+            $message .= '<p style="text-align: center;"><a href="https://www.aida.ao" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Ir para a Loja</a></p>';
 
             $message .= '<br>';
             $message .= '<p>Atenciosamente,</p>';
             $message .= '<p style="font-weight: bold;">ADVANCED INTERNET DESIGN ANGOLA</p>';
-            $message .= '<div style="border-top: 1px solid #ccc; padding-top: 20px; margin-top: 20px; text-align: center; background-color:black; text-color:white;">';
+            $message .= '<div style="border-top: 1px solid #ccc; padding-top: 20px; margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px; text-align: center; background-color:black; color:white;">';
             $message .= '<p>Siga-nos nas redes sociais:</p>';
-            $message .= '<a href="www.facebook.com" style="margin-right: 10px;"><img src="URL_TO_YOUR_FACEBOOK_LOGO" alt="Facebook" style="width: 20px; height: 20px;"></a>';
-            $message .= '<a href="www.twitter.com" style="margin-right: 10px;"><img src="URL_TO_YOUR_TWITTER_LOGO" alt="Twitter" style="width: 20px; height: 20px;"></a>';
-            $message .= '<a href="www.instagram.com" style="margin-right: 10px;"><img src="URL_TO_YOUR_INSTAGRAM_LOGO" alt="Instagram" style="width: 20px; height: 20px;"></a>';
+            $message .= '<a href="https://www.facebook.com" style="margin-right: 10px;"><img src="https://d3k81ch9hvuctc.cloudfront.net/company/PMgFnb/images/bb194ecc-82ed-4c0b-a19d-2a7a27010865.png" alt="Facebook" style="width: 20px; height: 20px;"></a>';
+            $message .= '<a href="https://www.linkdin.com" style="margin-right: 10px;"><img src="https://d3k81ch9hvuctc.cloudfront.net/company/PMgFnb/images/970bec08-616d-47fe-96ff-ebab859bb15b.png" alt="Linkdin" style="width: 20px; height: 20px;"></a>';
+            $message .= '<a href="https://www.instagram.com" style="margin-right: 10px;"><img src="https://d3k81ch9hvuctc.cloudfront.net/company/PMgFnb/images/3d1d9040-b9a7-4fe5-bd48-6da093f22f12.png" alt="Instagram" style="width: 20px; height: 20px;"></a>';
             $message .= '<br>';
             $message .= '<p>Localização: Zango 0, Vila Chinesa</p>';
             $message .= '<p>&copy; ' . date('Y') . ' ADVANCED INTERNET DESIGN ANGOLA. Todos os direitos reservados.</p>';
