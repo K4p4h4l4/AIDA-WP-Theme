@@ -821,17 +821,30 @@ function register_user_callback() {
             update_user_meta($user_id, '_shipping_country', 'AO ');
 
             // Send custom mail with welcome message
-            // Send custom mail with welcome message
+            // Send custom mail with welcome message<img src="./img/logo/aid_logo.png" alt="AIDA">
             $subject = 'Bem-vindo à nossa loja!';
             $message = '<html><body style="font-family: Arial, sans-serif; padding: 20px; color: #333; background-color: #f5f5f5;">';
             $message .= '<div style="max-width: 600px; margin: 0 auto;">';
+            $message .= '<img src="https://www.aida.ao/img/logo/aid_logo.png" alt="Company Logo" style="max-width: 100%; margin-bottom: 20px;">';
             $message .= '<h2 style="color: #007bff;">Bem-vindo à nossa loja!</h2>';
             $message .= '<p>Olá ' . sanitize_text_field($user_data['nome']) . ' ' . sanitize_text_field($user_data['sobrenome']) . ',</p>';
             $message .= '<p>Agradecemos por se registrar na nossa loja online. Sua conta foi criada com sucesso!</p>';
             $message .= '<p>Agora você pode fazer login e começar a explorar nossa seleção de produtos.</p>';
             $message .= '<br>';
+            $message .= '<p style="text-align: center;"><a href="http://localhost:81/wordpress" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Ir para a Loja</a></p>';
+
+            $message .= '<br>';
             $message .= '<p>Atenciosamente,</p>';
             $message .= '<p style="font-weight: bold;">ADVANCED INTERNET DESIGN ANGOLA</p>';
+            $message .= '<div style="border-top: 1px solid #ccc; padding-top: 20px; margin-top: 20px; text-align: center; background-color:black; text-color:white;">';
+            $message .= '<p>Siga-nos nas redes sociais:</p>';
+            $message .= '<a href="www.facebook.com" style="margin-right: 10px;"><img src="URL_TO_YOUR_FACEBOOK_LOGO" alt="Facebook" style="width: 20px; height: 20px;"></a>';
+            $message .= '<a href="www.twitter.com" style="margin-right: 10px;"><img src="URL_TO_YOUR_TWITTER_LOGO" alt="Twitter" style="width: 20px; height: 20px;"></a>';
+            $message .= '<a href="www.instagram.com" style="margin-right: 10px;"><img src="URL_TO_YOUR_INSTAGRAM_LOGO" alt="Instagram" style="width: 20px; height: 20px;"></a>';
+            $message .= '<br>';
+            $message .= '<p>Localização: Zango 0, Vila Chinesa</p>';
+            $message .= '<p>&copy; ' . date('Y') . ' ADVANCED INTERNET DESIGN ANGOLA. Todos os direitos reservados.</p>';
+            $message .= '</div>';
             $message .= '</div>';
             $message .= '</body></html>';
 

@@ -88,7 +88,7 @@
     \******************************/-->
     <div class="footer__bottom">
         <div class="footer__bottom-details">
-            <span>© 2023 AIDA - Advanced Internet Design Angola™ . Todos os Direitos Reservados</span>
+            <span>© <?php echo date('Y'); ?> AIDA - Advanced Internet Design Angola™ . Todos os Direitos Reservados</span>
         </div>
     </div>
     <?php wp_footer(); ?>
