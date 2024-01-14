@@ -100,6 +100,12 @@
             wp_register_style('login_css', get_template_directory_uri().'/assets/css/login.css', array(), 1, 'all');
             wp_enqueue_style('login_css');
         }
+            
+        if(is_page('minha-conta')){
+            //css da página de envio
+            wp_register_style('minha-conta_css', get_template_directory_uri().'/assets/css/minha-conta.css', array(), 1, 'all');
+            wp_enqueue_style('minha-conta_css');
+        }
     }
 
     add_action('wp_enqueue_scripts', 'fn_theme_style');
@@ -179,6 +185,17 @@
             //Envio js 
             wp_register_script('contacte-nos_js', get_template_directory_uri().'/assets/js/contacte-nos.js', array(), 1, 1, 1); //get_theme_file_uri
             wp_enqueue_script('contacte-nos_js');
+            
+            //Biblioteca para sanitizar os inputs do form
+            wp_register_script('dompurify__js', 'https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.4/purify.min.js', array(), null, true);
+            //get_theme_file_uri
+            wp_enqueue_script('dompurify__js');
+        }
+        
+        if(is_page('minha-conta')){
+            //Envio js 
+            wp_register_script('minha-conta_js', get_template_directory_uri().'/assets/js/minha-conta.js', array(), 1, 1, 1); //get_theme_file_uri
+            wp_enqueue_script('minha-conta_js');
             
             //Biblioteca para sanitizar os inputs do form
             wp_register_script('dompurify__js', 'https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.4/purify.min.js', array(), null, true);

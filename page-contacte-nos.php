@@ -96,6 +96,6 @@
     </section>
     
 <?php 
-    //get footer.php file
+    
     get_footer();
 ?>
