@@ -866,7 +866,7 @@ function talk_to_us_callback(){
         $message2 .= '<p>Agradecemos por escolher ADVANCED INTERNET DESIGN ANGOLA!</p>';
         $message2 .= '<br>';
         $message2 .= '<p>Atenciosamente,</p>';
-        $message2 .= '<p>Equipe ADVANCED INTERNET DESIGN ANGOLA</p>';
+        $message2 .= '<p>ADVANCED INTERNET DESIGN ANGOLA</p>';
         $message2 .= '<p>info@aida.ao</p>';
         $message2 .= '<div style="border-top: 1px solid #ccc; padding-top: 20px; margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px; text-align: center; background-color:black; color:white;">';
         $message2 .= '<p>Siga-nos nas redes sociais:</p>';
