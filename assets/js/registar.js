@@ -33,7 +33,7 @@ function criarConta(){
     }
     
     if(isValidEmail(userData.email)){
-        //console.log(userData);
+        console.log(userData);
         // AJAX request para registar usuário
         jQuery.ajax({
             type: 'POST',

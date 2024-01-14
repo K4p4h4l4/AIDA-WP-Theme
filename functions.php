@@ -792,51 +792,59 @@ function register_user_callback() {
     
 
     // Check if the user with the provided email already exists
-    $user_exists = email_exists($user_data['email']);
-    
-    if ($user_exists) {
-        wp_send_json_error(array('message' => 'Este endereço de email já está em uso.'));
+    $user_exists = email_exists(sanitize_text_field($user_data['email']));
+    $valid_email = is_email(sanitize_text_field($user_data['email']));
+    if ($user_exists && $valid_email) {
+        wp_send_json(array('success'=> 'false', 'message' => 'Este endereço de email já está em uso.'));
     }else{
         // Example: Use wp_create_user to create a new user
-        $user_id = wc_create_new_customer($user_data['email'], $user_data['nome'].' '.$user_data['sobrenome'], $user_data['senha']);
+        $user_id = wc_create_new_customer(sanitize_text_field($user_data['email']), sanitize_text_field($user_data['nome']).' '. sanitize_text_field($user_data['sobrenome']), wp_hash_password(sanitize_text_field($user_data['senha'])));
 
         if (!is_wp_error($user_id)) {
-            // User registration successful
-            // Set user roles.
-            /*$user = new WP_User( $user_id );
-            $user->set_role( 'customer' );*/
 
             // Endereço de facturação
-            update_user_meta($user_id, '_billing_first_name', $user_data['nome']);
-            update_user_meta($user_id, '_billing_last_name', $user_data['sobrenome']);
-            update_user_meta($user_id, '_billing_state', $user_data['provincia']);
-            update_user_meta($user_id, '_billing_city', $user_data['municipio']);
-            update_user_meta($user_id, '_billing_address_1', $user_data['endereco']);
-            update_user_meta($user_id, '_billing_phone', $user_data['telefone']);
+            update_user_meta($user_id, '_first_name', sanitize_text_field($user_data['nome']));
+            update_user_meta($user_id, '_last_name', sanitize_text_field($user_data['sobrenome']));
+            update_user_meta($user_id, '_billing_first_name', sanitize_text_field($user_data['nome']));
+            update_user_meta($user_id, '_billing_last_name', sanitize_text_field($user_data['sobrenome']));
+            update_user_meta($user_id, '_billing_state', sanitize_text_field($user_data['provincia']));
+            update_user_meta($user_id, '_billing_city', sanitize_text_field($user_data['municipio']));
+            update_user_meta($user_id, '_billing_address_1', sanitize_text_field($user_data['endereco']));
+            update_user_meta($user_id, '_billing_phone', sanitize_text_field($user_data['telefone']));
             update_user_meta($user_id, '_billing_postcode', '1459');
             update_user_meta($user_id, '_billing_country', 'AO');
 
             // Shipping Address (if different from billing)
-            update_user_meta($user_id, '_shipping_address_1', $user_data['endereco']);
-            update_user_meta($user_id, '_shipping_city', $user_data['municipio']);
+            update_user_meta($user_id, '_shipping_address_1', sanitize_text_field($user_data['endereco']));
+            update_user_meta($user_id, '_shipping_city', sanitize_text_field($user_data['municipio']));
             update_user_meta($user_id, '_shipping_postcode', '1459');
-            update_user_meta($user_id, '_shipping_country', 'Angola');
+            update_user_meta($user_id, '_shipping_country', 'AO ');
 
             // Send custom mail with welcome message
+            // Send custom mail with welcome message
             $subject = 'Bem-vindo à nossa loja!';
-            $message = 'Olá ' . $user_data['nome'] . ',<br><br>';
-            $message .= 'Bem-vindo à nossa loja! Agradecemos por se registrar.<br>';
-            $message .= 'A sua conta foi criada com sucesso. Agora você pode fazer login e começar a explorar nossos produtos.<br><br>';
-            $message .= 'Atenciosamente,<br> ADVANCED INTERNET DESIGN ANGOLA';
+            $message = '<html><body style="font-family: Arial, sans-serif; padding: 20px; color: #333; background-color: #f5f5f5;">';
+            $message .= '<div style="max-width: 600px; margin: 0 auto;">';
+            $message .= '<h2 style="color: #007bff;">Bem-vindo à nossa loja!</h2>';
+            $message .= '<p>Olá ' . sanitize_text_field($user_data['nome']) . ' ' . sanitize_text_field($user_data['sobrenome']) . ',</p>';
+            $message .= '<p>Agradecemos por se registrar na nossa loja online. Sua conta foi criada com sucesso!</p>';
+            $message .= '<p>Agora você pode fazer login e começar a explorar nossa seleção de produtos.</p>';
+            $message .= '<br>';
+            $message .= '<p>Atenciosamente,</p>';
+            $message .= '<p style="font-weight: bold;">ADVANCED INTERNET DESIGN ANGOLA</p>';
+            $message .= '</div>';
+            $message .= '</body></html>';
 
+            
+            $headers = array('Content-Type: text/html; charset=UTF-8');
             // Send custom mail
-            wp_mail( $user_data['email'], $subject, $message );
+            wp_mail( sanitize_text_field($user_data['email']), $subject, $message, $headers );
 
             // Return a response to the JavaScript
-            wp_send_json_success(array('message' => 'Usuário registado com sucesso.'));
+            wp_send_json(array('success'=> 'true', 'message' => 'Usuário registado com sucesso.'));
         } else {
             // User registration failed
-            wp_send_json_error(array('message' => 'Erro ao registar usuário'));
+            wp_send_json(array('success'=> 'false', 'message' => 'Erro ao registar usuário'));
         }
     }
 
