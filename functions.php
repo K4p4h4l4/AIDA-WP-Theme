@@ -148,19 +148,19 @@
         }
         
         if(is_page('pagamento')){
-            //Envio js 
+            //Pegamento js 
             wp_register_script('pagamento_js', get_template_directory_uri().'/assets/js/pagamento.js', array(), 1, 1, 1); //get_theme_file_uri
             wp_enqueue_script('pagamento_js');
         }
         
         if(is_page('carrinho')){
-            //Envio js 
+            //Carrinho js 
             wp_register_script('carrinho_js', get_template_directory_uri().'/assets/js/carrinho.js', array(), 1, 1, 1); //get_theme_file_uri
             wp_enqueue_script('carrinho_js');
         }
         
         if(is_page('checkout')){
-            //Envio js 
+            //Checkout js 
             wp_register_script('checkout__js', get_template_directory_uri().'/assets/js/checkout.js', array(), 1, 1, 1); //get_theme_file_uri
             wp_enqueue_script('checkout__js');
             
@@ -171,7 +171,7 @@
         }
         
         if(is_page('registar')){
-            //Envio js 
+            //Registar js 
             wp_register_script('registar_js', get_template_directory_uri().'/assets/js/registar.js', array(), 1, 1, 1); //get_theme_file_uri
             wp_enqueue_script('registar_js');
             
@@ -182,7 +182,7 @@
         }
         
         if(is_page('contacte-nos')){
-            //Envio js 
+            //contacte-nos js 
             wp_register_script('contacte-nos_js', get_template_directory_uri().'/assets/js/contacte-nos.js', array(), 1, 1, 1); //get_theme_file_uri
             wp_enqueue_script('contacte-nos_js');
             
@@ -192,8 +192,19 @@
             wp_enqueue_script('dompurify__js');
         }
         
+        if(is_page('login')){
+            //Login js 
+            wp_register_script('login_js', get_template_directory_uri().'/assets/js/login.js', array(), 1, 1, 1); //get_theme_file_uri
+            wp_enqueue_script('login_js');
+            
+            //Biblioteca para sanitizar os inputs do form
+            wp_register_script('dompurify__js', 'https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.4/purify.min.js', array(), null, true);
+            //get_theme_file_uri
+            wp_enqueue_script('dompurify__js');
+        }
+        
         if(is_page('minha-conta')){
-            //Envio js 
+            //Minha conta js 
             wp_register_script('minha-conta_js', get_template_directory_uri().'/assets/js/minha-conta.js', array(), 1, 1, 1); //get_theme_file_uri
             wp_enqueue_script('minha-conta_js');
             
@@ -987,7 +998,34 @@ function register_user_callback() {
         }
     }
 
-    
+    // Don't forget to exit
+    wp_die();
+}
+
+add_action('wp_ajax_user_login', 'user_login_callback');
+add_action('wp_ajax_nopriv_user_login', 'user_login_callback');
+
+function user_login_callback() {
+    $user_data = isset($_POST['userData']) ? $_POST['userData'] : array();
+
+    // Sanitize and validate user input
+    $email = sanitize_email($user_data['email']);
+    $password = sanitize_text_field($user_data['senha']);
+
+    // Perform login
+    $user = wp_authenticate($email, $password);
+
+    if (!is_wp_error($user)) {
+        // Login successful
+        wp_set_current_user($user->ID, $user->user_login);
+        wp_set_auth_cookie($user->ID);
+        do_action('wp_login', $user->user_login);
+
+        wp_send_json(array('message' => 'Login bem-sucedido.'));
+    } else {
+        // Login failed
+        wp_send_json(array('message' => 'Erro ao fazer login. Verifique suas credenciais.'));
+    }
 
     // Don't forget to exit
     wp_die();

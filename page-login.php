@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="login__btn-container">
-                    <button class="btn__login">Login</button>
+                    <button class="btn__login" id="login">Login</button>
                 </div>
                 <div class="other__options">
                     <div class="other__option">
