@@ -41,7 +41,7 @@ function fazerLogin(){
                     if (response.success) {
                         console.log(response.message);
                         // Redirect or perform any action upon successful login
-                        //window.location.href = './minha-conta/';
+                        window.location.href = './minha-conta/';
                     } else {
                         alert(response.message);
                     }
@@ -50,6 +50,7 @@ function fazerLogin(){
                     console.error('Error:', error);
                 },
                 complete: function() {
+                    setInterval(()=>{}, 4000);
                     // Hide loader or perform any post-request actions
                     loader.classList.add("loader__hidden");
                 }

@@ -940,7 +940,7 @@ function register_user_callback() {
         wp_send_json(array('success'=> false, 'message' => 'Este endereço de email já está em uso.'));
     }else{
         // Example: Use wp_create_user to create a new user
-        $user_id = wc_create_new_customer(sanitize_text_field($user_data['email']), sanitize_text_field($user_data['nome']).' '. sanitize_text_field($user_data['sobrenome']), wp_hash_password(sanitize_text_field($user_data['senha'])));
+        $user_id = wc_create_new_customer(sanitize_text_field($user_data['email']), sanitize_text_field($user_data['email']), wp_hash_password(sanitize_text_field($user_data['senha'])));
 
         if (!is_wp_error($user_id)) {
 
@@ -1019,25 +1019,30 @@ function user_login_callback() {
     
     // Verify nonce
     if (isset($_POST['security']) && wp_verify_nonce($_POST['security'], 'ajax_nonce')) {
-        // Perform login
-        $user = wp_authenticate($email, $password);
+        // Authenticate user
+        /*$creds = array(
+            'user_login'    => $email,
+            'user_password' => $password,
+            'remember'      => true
+        );
 
+        $user = wp_signon($creds, false);*/
+        //$user = wp_authenticate_username_password(null, $email, $password);
+        $user = wp_authenticate($email, $password);
         if (!is_wp_error($user)) {
             // Login successful
             wp_set_current_user($user->ID, $user->user_login);
             wp_set_auth_cookie($user->ID);
-            do_action('wp_login', $user->user_login);
+            do_action('wp_login', $user->user_login, $_SERVER['HTTP_USER_AGENT']);
 
             wp_send_json(array('success'=> true, 'message' => 'Login bem-sucedido.'));
         } else {
             // Login failed
-            wp_send_json(array('success'=> false, 'message' => 'Erro ao fazer login. Verifique suas credenciais.'));
+            wp_send_json(array('success'=> false, 'message' => 'Erro ao fazer login. Verifique suas credenciais. Error: '. $user->get_error_message()));//
         }
     } else {
         wp_send_json(array('success'=> false, 'message' => 'Nonce verification failed.'));
-    }
-    
-    
+    }    
 
     // Don't forget to exit
     wp_die();
