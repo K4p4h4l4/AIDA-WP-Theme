@@ -26,10 +26,11 @@ function fazerLogin(){
            // AJAX request to perform login
             jQuery.ajax({
                 type: 'POST',
-                url: wc_add_to_cart_params.ajax_url,
+                url: login_params.ajaxurl,
                 data: {
                     action: 'user_login', // Action name defined in the server-side function
-                    userData: userData
+                    userData: userData,
+                    security: login_params.ajax_nonce,
                 },
                 beforeSend: function() {
                     // Show loader or perform any pre-request actions
@@ -40,7 +41,7 @@ function fazerLogin(){
                     if (response.success) {
                         console.log(response.message);
                         // Redirect or perform any action upon successful login
-                        window.location.href = './minha-conta/';
+                        //window.location.href = './minha-conta/';
                     } else {
                         alert(response.message);
                     }
