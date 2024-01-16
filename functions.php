@@ -940,27 +940,34 @@ function register_user_callback() {
         wp_send_json(array('success'=> false, 'message' => 'Este endereço de email já está em uso.'));
     }else{
         // Example: Use wp_create_user to create a new user
-        $user_id = wc_create_new_customer(sanitize_text_field($user_data['email']), sanitize_text_field($user_data['email']), wp_hash_password(sanitize_text_field($user_data['senha'])));
+        $user_id = wc_create_new_customer(sanitize_text_field($user_data['email']), sanitize_text_field($user_data['email']), sanitize_text_field($user_data['senha']));//wp_hash_password()
 
         if (!is_wp_error($user_id)) {
+            
+            /*wc_update_new_customer_address(array('first_name' => sanitize_text_field($user_data['nome']), 'last_name' => sanitize_text_field($user_data['sobrenome'])), $user_id);*/
+
 
             // Endereço de facturação
-            update_user_meta($user_id, '_first_name', sanitize_text_field($user_data['nome']));
-            update_user_meta($user_id, '_last_name', sanitize_text_field($user_data['sobrenome']));
-            update_user_meta($user_id, '_billing_first_name', sanitize_text_field($user_data['nome']));
-            update_user_meta($user_id, '_billing_last_name', sanitize_text_field($user_data['sobrenome']));
-            update_user_meta($user_id, '_billing_state', sanitize_text_field($user_data['provincia']));
-            update_user_meta($user_id, '_billing_city', sanitize_text_field($user_data['municipio']));
-            update_user_meta($user_id, '_billing_address_1', sanitize_text_field($user_data['endereco']));
-            update_user_meta($user_id, '_billing_phone', sanitize_text_field($user_data['telefone']));
-            update_user_meta($user_id, '_billing_postcode', '1459');
-            update_user_meta($user_id, '_billing_country', 'AO');
+            update_user_meta($user_id, 'first_name', sanitize_text_field($user_data['nome']));
+            update_user_meta($user_id, 'last_name', sanitize_text_field($user_data['sobrenome']));
+            update_user_meta($user_id, 'billing_first_name', sanitize_text_field($user_data['nome']));
+            update_user_meta($user_id, 'billing_last_name', sanitize_text_field($user_data['sobrenome']));
+            update_user_meta($user_id, 'billing_state', 'LAD');//sanitize_text_field($user_data['provincia'])
+            update_user_meta($user_id, 'billing_city', sanitize_text_field($user_data['municipio']));
+            update_user_meta($user_id, 'billing_address_1', sanitize_text_field($user_data['endereco']));
+            update_user_meta($user_id, 'billing_phone', sanitize_text_field($user_data['telefone']));
+            update_user_meta($user_id, 'billing_postcode', '1459');
+            update_user_meta($user_id, 'billing_country', 'AO');
 
             // Shipping Address (if different from billing)
-            update_user_meta($user_id, '_shipping_address_1', sanitize_text_field($user_data['endereco']));
-            update_user_meta($user_id, '_shipping_city', sanitize_text_field($user_data['municipio']));
-            update_user_meta($user_id, '_shipping_postcode', '1459');
-            update_user_meta($user_id, '_shipping_country', 'AO ');
+            update_user_meta($user_id, 'shipping_first_name', sanitize_text_field($user_data['nome']));
+            update_user_meta($user_id, 'shipping_last_name', sanitize_text_field($user_data['sobrenome']));
+            update_user_meta($user_id, 'shipping_address_1', sanitize_text_field($user_data['endereco']));
+            update_user_meta($user_id, 'shipping_state', sanitize_text_field($user_data['provincia']));
+            update_user_meta($user_id, 'shipping_city', sanitize_text_field($user_data['municipio']));
+            update_user_meta($user_id, 'shipping_phone', sanitize_text_field($user_data['telefone']));
+            update_user_meta($user_id, 'shipping_postcode', '1459');
+            update_user_meta($user_id, 'shipping_country', 'AO');
 
             // Send custom mail with welcome message
             // Send custom mail with welcome message<img src="./img/logo/aid_logo.png" alt="AIDA">
