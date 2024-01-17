@@ -12,6 +12,24 @@
             <!-- *****************************\
                 Informações sobre o checkout
             \******************************/-->
+            <?php 
+                // Check if the user is logged in
+                if (is_user_logged_in()) {
+                    $current_user = wp_get_current_user();
+                    $nome = get_user_meta($current_user->ID, 'first_name', true);
+                    $sobrenome = get_user_meta($current_user->ID, 'last_name', true);
+                    $email = $current_user->user_email;
+                    $telefone = get_user_meta($current_user->ID, 'billing_phone', true);
+                    $provincia = get_user_meta($current_user->ID, 'billing_state', true);
+                    $municipio = get_user_meta($current_user->ID, 'billing_city', true);
+                    $endereco = get_user_meta($current_user->ID, 'billing_address_1', true);
+                    
+                    // Get the current user ID
+                    $user_id = get_current_user_id();
+                    
+                }
+            
+            ?>
             <div class="checkout__information-holder">
                 <div class="checkout__information">
                     <div class="checkout__information-header">
@@ -43,7 +61,7 @@
                                    Email *
                                </div>
                                <div class="contact__email-holder">
-                                   <input type="email" placeholder="Email" class="information__email" required name="user_email" id="usr_email">
+                                   <input type="email" placeholder="Email" class="information__email" required name="user_email" id="usr_email" value="<?php if(isset($email)){echo $email;}?>">
                                </div>
                            </div>
                            <div class="information__contact-holder">
@@ -75,20 +93,20 @@
                                    </select>
                                </div>
                                <div class="owner__details">
-                                   <input type="text" class="owner__names" placeholder="Nome" required name="usr_name" id="usr_name">
-                                   <input type="text" class="owner__names" placeholder="Sobrenome" required name="usr_surname" id="usr_surname">
+                                   <input type="text" class="owner__names" placeholder="Nome" required name="usr_name" id="usr_name" value="<?php if(isset($nome)){ echo $nome; }?>">
+                                   <input type="text" class="owner__names" placeholder="Sobrenome" required name="usr_surname" id="usr_surname" value="<?php if(isset($sobrenome)){ echo $sobrenome; }?>">
                                </div>
                                
                                <div class="owner__address">
-                                   <input type="text" placeholder="Endereço" required name="usr_address" class="owner__address-details" id="usr_address">
+                                   <input type="text" placeholder="Endereço" required name="usr_address" class="owner__address-details" id="usr_address" value="<?php if(isset($endereco)){echo $endereco;}?>">
                                </div>
                                
                                <div class="owner__address">
-                                   <input type="text" placeholder="Cidade" class="owner__address-details" required name="usr_city" id="usr_city">
+                                   <input type="text" placeholder="Cidade" class="owner__address-details" required name="usr_city" id="usr_city" value="<?php if(isset($provincia)){echo $provincia;}?>">
                                </div>
                                
                                <div class="owner__address">
-                                   <input type="number" placeholder="Telefone" class="owner__address-details" min="910000000" value="910000000" required name="usr_phone" id="usr_phone">
+                                   <input type="number" placeholder="Telefone" class="owner__address-details" min="910000000" value="<?php if(isset($telefone)){echo $telefone;}else{echo '910000000';}?>" required name="usr_phone" id="usr_phone">
                                </div>
                             
                            </div>

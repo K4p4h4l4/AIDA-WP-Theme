@@ -25,9 +25,13 @@
                     $municipio = get_user_meta($current_user->ID, 'billing_city', true);
                     $endereco = get_user_meta($current_user->ID, 'billing_address_1', true);
                     
+                    // Get the current user ID
+                    $user_id = get_current_user_id();
+                    
+                    // Get orders for the current user
                     // Get orders for the current user
                     $customer_orders = wc_get_orders(array(
-                        'customer' => $current_user,
+                        'customer' => $user_id,
                         'limit'    => -1, // Set to -1 to retrieve all orders
                     ));
                 }
@@ -54,12 +58,7 @@
                                             <span class="input_icon">
                                                 <i class="material-icons">person</i>
                                             </span>
-                                            <input type="text" placeholder="Insira o seu nome" required class="register__user-data" id="nome" autocomplete="off" value="
-                                            <?php 
-                                                if(isset($nome)){
-                                                    echo $nome;
-                                                } 
-                                            ?>">
+                                            <input type="text" placeholder="Insira o seu nome" required class="register__user-data" id="nome" autocomplete="off" value="<?php if(isset($nome)){ echo $nome; }?>">
                                             <label for="nome" class="account__label">Nome</label>
                                         </div>
 
@@ -67,12 +66,7 @@
                                             <span class="input_icon">
                                                 <i class="material-icons">person</i>
                                             </span>
-                                            <input type="text" placeholder="Insira o seu sobrenome" required class="register__user-data" id="sobrenome" autocomplete="off" value="
-                                            <?php
-                                                if(isset($sobrenome)){
-                                                    echo $sobrenome;
-                                                }                                                 
-                                            ?>">
+                                            <input type="text" placeholder="Insira o seu sobrenome" required class="register__user-data" id="sobrenome" autocomplete="off" value="<?php if(isset($sobrenome)){ echo $sobrenome;}?>">
                                             <label for="sobrenome" class="account__label">Sobrenome</label>
                                         </div>
                                     </div>
@@ -82,24 +76,14 @@
                                             <span class="input_icon">
                                                 <i class="material-icons">email</i>
                                             </span>
-                                            <input type="text" placeholder="Insira o seu e-mail" required class="register__user-data" id="email" autocomplete="off" value="
-                                            <?php
-                                                if(isset($email)){
-                                                    echo $email; 
-                                                }                                                 
-                                            ?>">
+                                            <input type="text" placeholder="Insira o seu e-mail" required class="register__user-data" id="email" autocomplete="off" value="<?php if(isset($email)){echo $email;}?>">
                                             <label for="email" class="account__label">E-mail</label>
                                         </div>
                                         <div class="register__username-container">
                                             <!--span class="input_icon">
                                                 <i class="material-icons">cellphone</i>
                                             </span-->
-                                            <input type="number" placeholder="Insira o número de telefone" required class="register__user-data" id="telefone" autocomplete="off" min="910000000" value="
-                                            <?php
-                                                if(isset($telefone)){
-                                                    echo $telefone;
-                                                }                                                 
-                                            ?>">
+                                            <input type="number" placeholder="Insira o número de telefone" required class="register__user-data" id="telefone" autocomplete="off" min="910000000" value="<?php if(isset($telefone)){echo $telefone;} ?>">
                                             <label for="telefone" class="account__label">Telefone</label>
                                         </div>
                                     </div>
@@ -125,7 +109,7 @@
                                             <span class="input_icon">
                                                 <i class="material-icons">landscape</i>
                                             </span>
-                                            <input type="text" placeholder="Insira a sua Província" required class="register__user-data" id="provincia" autocomplete="off" value="<?php echo $provincia; ?>">
+                                            <input type="text" placeholder="Insira a sua Província" required class="register__user-data" id="provincia" autocomplete="off" value="<?php if(isset($provincia)){echo $provincia;}?>">
                                             <label for="provincia" class="account__label">Província</label>
                                         </div>
 
@@ -133,7 +117,7 @@
                                             <span class="input_icon">
                                                 <i class="material-icons">domain</i>
                                             </span>
-                                            <input type="text" placeholder="Insira o seu Município" required class="register__user-data" id="municipio" autocomplete="off" value="<?php echo $municipio; ?>">
+                                            <input type="text" placeholder="Insira o seu Município" required class="register__user-data" id="municipio" autocomplete="off" value="<?php if(isset($municipio)){echo $municipio;}?>">
                                             <label for="municipio" class="account__label">Município</label>
                                         </div>
                                     </div>
@@ -143,7 +127,7 @@
                                             <span class="input_icon">
                                                 <i class="material-icons">home</i>
                                             </span>
-                                            <input type="text" placeholder="Insira o seu endereço" required class="register__address-data" id="endereco" autocomplete="off" value="<?php echo $endereco; ?>">
+                                            <input type="text" placeholder="Insira o seu endereço" required class="register__address-data" id="endereco" autocomplete="off" value="<?php if(isset($endereco)){echo $endereco;}?>">
                                             <label for="endereco" class="account__label">Endereço</label>
                                         </div>
                                     </div>
@@ -191,12 +175,15 @@
 
                                     <tbody class="cart__table-body">
                                         <?php 
-                                            foreach($customer_orders as $order){
-                                                $order_id = $order->get_id();
-                                                $order_status = $order->get_status();
-                                                $order_date = $order->get_date_created()->format('d-m-Y H:i:s');
-                                                $order_total = wc_price($order->get_total());
-                                                $order_invoice_link = $order->get_view_order_url(); // Link to view the order
+                                            //print_r($customer_orders);
+                                            if(isset($customer_orders)){
+                                               
+                                                foreach($customer_orders as $order){
+                                                    $order_id = $order->get_id();
+                                                    $order_status = $order->get_status();
+                                                    $order_date = $order->get_date_created()->format('d-m-Y H:i:s');
+                                                    $order_total = wc_price($order->get_total());
+                                                    $order_invoice_link = $order->get_view_order_url(); // Link to view the order*/
                                         ?>
                                         <tr class="product__cart-table">
                                             <td data-label="Produto">                                                
@@ -206,8 +193,8 @@
                                                 <?php echo $order_date; ?>
                                             </td>
                                             <td data-label="Preço" class="cart__table-price">
-                                                AKZ
-                                                <?php echo number_format( $order_total, 2, ',', '.'); ?>                            
+                                                
+                                                <?php echo $order_total;//number_format( $order_total, 2, ',', '.'); ?>                            
                                             </td>
                                             <td data-label="Qtde">
                                                 <?php echo $order_status; ?>
@@ -217,7 +204,8 @@
                                             </td>
                                             
                                         </tr>
-                                        <?php 
+                                        <?php
+                                                }
                                             }
                                         ?>
 
@@ -299,7 +287,8 @@
                                                 </a>
                                             </td>
                                         </tr>
-                                        <?php 
+                                        <?php
+                                                
                                             }
                                         ?>
 

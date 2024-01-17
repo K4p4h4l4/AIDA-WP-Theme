@@ -368,6 +368,12 @@ function create_order_and_add_product_callback() {
         $_SESSION['cart'] = $order;
     }
     
+    if(is_user_logged_in()){
+        $user_id = get_current_user_id(); // Get the current logged-in user ID
+        // Set the user ID for the order
+        $order->set_customer_id($user_id);
+    }
+    
     // Add the product to the order
     $order->add_product(wc_get_product($product_id), $quantity);
 
@@ -1054,6 +1060,21 @@ function user_login_callback() {
     // Don't forget to exit
     wp_die();
 }
+
+// Add this function in your theme's functions.php or a custom plugin
+function get_order_invoice_url($order_id) {
+    $order = wc_get_order($order_id);
+    $downloads = $order->get_downloadable_items();
+
+    if (empty($downloads)) {
+        return '';
+    }
+
+    $first_download = reset($downloads);
+
+    return esc_url($first_download['download_url']);
+}
+
 
 
 ?>
