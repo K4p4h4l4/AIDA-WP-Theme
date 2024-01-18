@@ -18,6 +18,14 @@ function ready(){
     const btn3 = document.getElementById('btn3');
     const btn4 = document.getElementById('btn4');
     const btn5 = document.getElementById('btn5');
+    
+    //remove Items From cart
+    let facturaButtons = document.getElementsByClassName('action__remove');
+    //console.log(removeTableButtons);
+    for(let i=0; i < facturaButtons.length; i++){
+        let factura = facturaButtons[i];
+        factura.addEventListener('click', imprimirFactura);
+    }
 }
 
 function myaccountProfile(){
@@ -148,4 +156,45 @@ function myaccountSecurity(){
     content3.style.position = "absolute";
     content4.style.position = "absolute";
     content5.style.position = "relative";
+}
+
+//Função para donwload 
+function imprimirFactura(event){
+    let facturaClicked = event.target;
+    
+    let facturaId = facturaClicked.getAttribute('data-order-id');
+    
+    // Check if the order ID is valid
+    if (facturaId) {
+        // Send an AJAX request to generate the invoice
+        jQuery.ajax({
+            type: 'POST',
+            url: wc_add_to_cart_params.ajax_url,
+            data: {
+                action: 'generate_invoice',
+                orderId: facturaId
+            },
+            beforeSend: function(){
+                loader.classList.remove("loader__hidden");
+            },
+            success: function (data) {
+                // Check if the response contains the invoice URL
+                if (data.invoice_url) {
+                    // Open the generated invoice URL in a new tab
+                    window.open(data.invoice_url, '_blank');
+                } else {
+                    console.error('Error: Invalid invoice URL', data.invoice_url);
+                }
+                //console.log(data.invoice_url);
+            },
+            error: function (error) {
+                console.error('Error generating the invoice:', error);
+            },
+            complete: function(){
+                loader.classList.add("loader__hidden");
+            }
+        });
+    } else {
+        console.error('Error: Invalid order ID');
+    }
 }

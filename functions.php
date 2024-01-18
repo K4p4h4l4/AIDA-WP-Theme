@@ -958,7 +958,7 @@ function register_user_callback() {
             update_user_meta($user_id, 'last_name', sanitize_text_field($user_data['sobrenome']));
             update_user_meta($user_id, 'billing_first_name', sanitize_text_field($user_data['nome']));
             update_user_meta($user_id, 'billing_last_name', sanitize_text_field($user_data['sobrenome']));
-            update_user_meta($user_id, 'billing_state', 'LAD');//sanitize_text_field($user_data['provincia'])
+            update_user_meta($user_id, 'billing_state', sanitize_text_field($user_data['provincia']));//
             update_user_meta($user_id, 'billing_city', sanitize_text_field($user_data['municipio']));
             update_user_meta($user_id, 'billing_address_1', sanitize_text_field($user_data['endereco']));
             update_user_meta($user_id, 'billing_phone', sanitize_text_field($user_data['telefone']));

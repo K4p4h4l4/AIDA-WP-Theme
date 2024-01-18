@@ -200,7 +200,10 @@
                                                 <?php echo $order_status; ?>
                                             </td>
                                             <td data-label="Subtotal" class="cart__table-subtotal">
-                                                <?php echo '<a href="' . esc_url($order_invoice_link) . '">Factura</a>';?>   
+                                                <?php //echo '<a href="' . esc_url($order_invoice_link) . '" >Factura</a>';?>
+                                                <a class="action__remove factura" >
+                                                    <i class="material-icons" data-order-id="<?php echo $order->get_ID();?>">receipt_long</i>
+                                                </a> 
                                             </td>
                                             
                                         </tr>
