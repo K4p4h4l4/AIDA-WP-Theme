@@ -43,7 +43,7 @@
                         <button class="tab__button" id="btn1" onclick="myaccountProfile()"><i class="material-icons">account_circle</i> Perfil</button>
                         <button class="tab__button" id="btn2" onclick="myaccountAddress()"><i class="material-icons">map</i> Endereço</button>
                         <button class="tab__button" id="btn3" onclick="myaccountOrders()"><i class="material-icons">shopping_bag</i> Encomendas</button>
-                        <button class="tab__button" id="btn4" onclick="myaccountWishlist()"><i class="material-icons">favorite_border</i> Lista de desejos</button>
+                        <button class="tab__button" id="btn4" onclick="myaccountWishlist()"><i class="material-icons">favorite_border</i> Lista de favoritos</button>
                         <button class="tab__button" id="btn5" onclick="myaccountSecurity()"><i class="material-icons">key</i> Segurança</button>
                     </div>
                     <div class="myaccount__details-tab" id="content1">
@@ -220,7 +220,7 @@
                     </div>
                     <div class="myaccount__details-tab" id="content4">
                         <div class="myaccount__details-title">
-                            <h3>Minha lista de desejos</h3>
+                            <h3>Minha lista de favoritos</h3>
                         </div>
                         <div class="myaccount__details-body">
                             <div class="table__order-holder">

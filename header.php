@@ -97,7 +97,7 @@
                     </div>
                     <a href="#" class="wishes__content-btn" id="products__wish">
                         <i class="material-icons">favorite_border</i>
-                        <span>Desejos</span>
+                        <span>Favoritos</span>
                     </a>
                     
                     <!-- ************************************\
