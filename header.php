@@ -148,7 +148,7 @@
                         </div>
                         <div class="wish__btn-holder">
                             <div class="wish__btn-container">
-                                <button class="wish__view">Adicionar ao carrinho</button>
+                                <button class="wish__view" id="wish__view">Adicionar ao carrinho</button>
                             </div>
                         </div>
                     </div>
