@@ -584,19 +584,15 @@ html{
     z-index: 1;
     position: absolute;
     top: 100%;
-    right: -160%;
+    right: -80%;
     -webkit-transition: all 1s ease-in-out;
     -o-transition: all 1s ease-in-out;
     transition: all 1s ease-in-out;
     border-radius: .3rem;
-    /*visibility: visible;
-    opacity: 0;*/
     display: none;
 }
 
 .wish__list-active{
-    /*opacity: 1;
-    visibility: visible;*/
     z-index: 3;
     display: block;
 }
@@ -730,18 +726,18 @@ html{
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
 }
 
 .wish__view{
-    width: 11rem; 
+    width: 9.5rem; 
     font-size: var(--font-size8);
     border: none;
     padding: .6rem .3rem;
     cursor: pointer;
-    background-color: var(--default-red);
+    background-color: var(--default-black);
     color: var(--default-white);
     border-radius: .3rem;
     font-weight: bold;
@@ -749,7 +745,7 @@ html{
 }
 
 .wish__view:hover{
-    background-color: var(--default-black);
+    background-color: var(--default-red);
 }
 
 

@@ -93,7 +93,7 @@
                 \******************************/-->
                 <div class="wishes__content">
                     <div class="wishes__number">
-                        <span>2</span>
+                        <span class="wishes__count">0</span>
                     </div>
                     <a href="#" class="wishes__content-btn" id="products__wish">
                         <i class="material-icons">favorite_border</i>
@@ -105,45 +105,6 @@
                     \*************************************/--> 
                     <div class="wish__list-holder">
                         <div class="wish__list-container">
-                            <div class="wish__list-card">
-                                <div class="wish__list-img">
-                                    <img src="<?php echo get_theme_file_uri('assets/img/13-300x300.jpg')?>" alt="">
-                                </div>
-                                <div class="wish__txt-container">
-                                    <div class="wish__poduct-name">
-                                        <span>Samsung LED TV</span>
-                                    </div>
-                                    <div class="wish__product-price">
-                                        <div class="wish__product-qtde">
-                                            <span>1</span>X
-                                        </div>
-                                        <span>AOA 890.000</span>
-                                    </div>   
-                                </div>
-                                <div class="wish__close-btn">
-                                    +
-                                </div>
-                            </div>
-                            
-                            <div class="wish__list-card">
-                                <div class="wish__list-img">
-                                    <img src="<?php echo get_theme_file_uri('assets/img/33-300x300.jpg')?>" alt="">
-                                </div>
-                                <div class="wish__txt-container">
-                                    <div class="wish__poduct-name">
-                                        <span>Fujifilm Instax Mini</span>
-                                    </div>
-                                    <div class="wish__product-price">
-                                        <div class="wish__product-qtde">
-                                            <span>1</span>X
-                                        </div>
-                                        <span>AOA 90.000</span>
-                                    </div>   
-                                </div>
-                                <div class="wish__close-btn">
-                                    +
-                                </div>
-                            </div>
                             
                         </div>
                         <div class="wish__btn-holder">
@@ -164,7 +125,7 @@
                 ?>
                 <div class="wishes__content">
                     <div class="wishes__number">
-                        <span class="wishes__count"><?php echo count(WC()->cart->get_cart());?></span>
+                        <span class="wishes__count cart__count"><?php echo count(WC()->cart->get_cart());?></span>
                     </div>
                     <a href="#" class="wishes__content-btn" id="products__cart">
                         <i class="material-icons">local_grocery_store</i>

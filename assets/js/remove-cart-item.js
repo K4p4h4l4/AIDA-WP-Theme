@@ -7,6 +7,8 @@ if(document.readyState == 'loading'){
 
 //Vector para armazenar os produtos do carrinho
 var cartItemsArray = [];
+//Vector para armazenar os produtos da lista de desejos
+var wishlistArray = [];
 const loader = document.getElementById('loader__container');
 //número da ordem
 //var order_number;
@@ -18,8 +20,15 @@ function ready(){
     
     for(let i=0; i < removeCartButtons.length; i++){
         var removeItem = removeCartButtons[i];
-        //let itemKey = removeCartButtons[i].getAttribute('data-product-id');
         removeItem.addEventListener('click', removeCartItem);
+    }
+    
+    //remove Items From WISHLIST
+    let removeWishButtons = document.getElementsByClassName('wish__close-btn');
+    
+    for(let i=0; i < removeWishButtons.length; i++){
+        var removeWish = removeWishButtons[i];
+        removeWish.addEventListener('click', removeWishItem);
     }
     
     //Mudança das quantidades
@@ -34,6 +43,13 @@ function ready(){
     for(let i=0; i < addCart.length; i++){
         let button = addCart[i];
         button.addEventListener('click', addCartClicked);
+    }
+    
+    //Adicionando na lista de desejos
+    let addtoWishlist = document.getElementsByClassName('addtoWishlist');
+    for(let i=0; i< addtoWishlist.length; i++){
+        let wishlist_btn = addtoWishlist[i];
+        wishlist_btn.addEventListener('click', addWishlistClicked);
     }
     
     //Adicionando ao carrinho no back
@@ -59,6 +75,13 @@ function removeCartItem(event){
     updateTotal();    
 }
 
+//Função para  remover items do carrinho
+function removeWishItem(event){
+    let removeClicked = event.target;
+    wishCounter('remove');
+    removeClicked.parentElement.remove();      
+}
+
 //Função para adicionar itens ao carrinho
 function addCartClicked(event){
     let button = event.target;
@@ -70,6 +93,66 @@ function addCartClicked(event){
     let itemQuantity = 1;
     addProductToCart(title,price,image,id, itemQuantity);
     updateTotal();
+}
+
+//Função para adicionar itens a lista de desejos
+function addWishlistClicked(event){
+    let button = event.target;
+    let shopProducts = button.parentElement.parentElement.parentElement.parentElement;
+    let title = shopProducts.children[1].children[0].getElementsByClassName('product__name')[0].innerText;
+    let price = shopProducts.children[1].children[0].children[2].getElementsByClassName('product__price')[0].innerText;
+    let image = shopProducts.children[0].children[0].getElementsByClassName('attachment-thumbnail')[0].src;
+    let id = shopProducts.children[2].id;
+    let itemQuantity = 1;
+    let wishlistBox = document.createElement('div');
+    wishlistBox.classList.add('wish__list-card');
+    let wishItems = document.getElementsByClassName('wish__list-container')[0];
+    let wishItemsNames = wishItems.getElementsByClassName('item__name');
+    
+    price.toLocaleString("nl-NL", {
+            style: "currency", 
+            currency: "AKZ",                       
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+        });
+    
+    for(let i=0; i < wishItemsNames.length; i++){
+        if(wishItemsNames[i].innerText == title){
+            alert('Item já adicionado a lista de desejos');
+            return;
+        }        
+    }
+    
+    let wishBoxContent = `
+        <div class="wish__list-img">
+            <img width="150" height="150" src="${image}" alt="" class="attachment-thumbnail size-thumbnail" decoding="async">
+
+        </div>
+        <div class="wish__txt-container">
+            <div class="wish__poduct-name">
+                <span class="item__name">${title}</span>
+                
+            </div>
+            <div class="wish__product-qtde">
+                <input type="number" value="${itemQuantity}" min="1" class="product__quantity" disabled>
+            </div>
+            <div class="wish__product-price">                                        
+                <span class="product__price">
+                    ${price}
+                </span>
+            </div>   
+        </div>
+        
+        <div class="wish__close-btn" data-product-id="${id}">
+           +                         
+        </div>
+    `;
+    
+    //contador de produtos adicionados
+    wishCounter('add');
+    wishlistBox.innerHTML = wishBoxContent;
+    wishItems.append(wishlistBox);
+    wishlistBox.getElementsByClassName('wish__close-btn')[0].addEventListener('click', removeWishItem);
 }
 
 //Função para adicionar produto através da modal
@@ -141,7 +224,7 @@ function addProductToCart(title,price,image,id, itemQuantity){
     
     //Adicionar produtos a base de dados do Wordpress
     rudrAddToCart(id, itemQuantity);
-    //console.log(cartItemsArray);
+    
     
     createOrderAndAddProduct(id, itemQuantity);
     updateTotal();
@@ -284,7 +367,7 @@ function removeCartItemBack(chave){
 
 //Função para adicionar ou remover itens da contagem de produtos
 function productCounter(operation){
-    let productCountText = document.getElementsByClassName('wishes__count')[0].innerText;
+    let productCountText = document.getElementsByClassName('cart__count')[0].innerText;
     let productCount = parseInt(productCountText);
     
     if(operation == 'add'){
@@ -293,7 +376,21 @@ function productCounter(operation){
         productCount-=1;         
     }
     
-    document.getElementsByClassName('wishes__count')[0].innerText = productCount;
+    document.getElementsByClassName('cart__count')[0].innerText = productCount;
+}
+
+//Função para adicionar ou remover itens da contagem de produtos
+function wishCounter(operation){
+    let wishCountText = document.getElementsByClassName('wishes__count')[0].innerText;
+    let wishCount = parseInt(wishCountText);
+    
+    if(operation == 'add'){
+       wishCount+=1;
+    }else if(operation == 'remove'){
+        wishCount-=1;         
+    }
+    
+    document.getElementsByClassName('wishes__count')[0].innerText = wishCount;
 }
 
 //Javascript para chamar a função de criar uma encomenda e em seguida ir para a página do carrinho
