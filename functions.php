@@ -281,7 +281,10 @@
 
     //Remover item da lista de produtos
     function remove_cart_item_callback() {
-        if (isset($_POST['cart_item_key'])) {
+        if (isset($_POST['cart_item_key']) && isset($_POST['orderID'])) {
+            $order_id = $_POST['orderID'];
+            $order = wc_get_order($order_id); // Retrieve the order object by ID
+            
             $product_cart_id = WC()->cart->generate_cart_id( $_POST['cart_item_key'] );
             $product_item_key = WC()->cart->find_product_in_cart($product_cart_id); 
             $cart_item_key = sanitize_text_field($product_item_key); 
@@ -304,22 +307,18 @@
         $product_item_key = WC()->cart->find_product_in_cart($product_cart_id); 
         $cart_item_key = sanitize_text_field($product_item_key);
         $new_quantity = (int) $_POST['new_quantity'];
-        $order_id = $_POST['order_id'];
-        // Retrieve the order number
-        $order = wc_get_order($order_id);
-        // Validate the new quantity, e.g., check if it's a positive integer.
+        
+        // Check if the provided cart item key exists in the cart
+        $cart_item = WC()->cart->get_cart_item($cart_item_key);
 
-        if ($new_quantity > 0) {
+        if ($new_quantity > 0 && $cart_item) {
             // Update the cart item quantity
             WC()->cart->set_quantity($cart_item_key, $new_quantity);
 
             // Calculate totals and return the updated cart HTML
             $totals = WC()->cart->calculate_totals();
             $updated_cart_html = WC()->cart->get_cart_contents();
-            //Calcular os totais com a alteração das quantidades dos produtos
-            $order->calculate_totals();
-            // Save the order to apply the changes
-            $order->save();
+            
             wp_send_json(['success' => true, 'message' => ' Quantidade de produto actualizada com sucesso: '.$totals]);
         } else {
             wp_send_json(['success' => false, 'message' => ' Erro ao actualizar a quantidade de produto']);
@@ -1075,6 +1074,33 @@ function get_order_invoice_url($order_id) {
     return esc_url($first_download['download_url']);
 }
 
+add_action('wp_ajax_add_wishlist_item', 'add_wishlist_item_callback');
+add_action('wp_ajax_nopriv_add_wishlist_item', 'add_wishlist_item_callback');
+
+//Função para adicionar itens a lista dos favoritos
+function add_wishlist_item_callback(){
+    
+    $product_id = isset($_POST['productID']) ? intval($_POST['productID']) : 0;
+    // User ID for whom the product should be added to the wishlist
+    $user_id = get_current_user_id(); // or specify the user ID directly
+
+    if($user_id > 0 && $product_id > 0){
+        // Check if the function exists
+        if (function_exists('ti_woocommerce_add_to_wishlist')) {
+            // Add the product to the wishlist
+            ti_woocommerce_add_to_wishlist($product_id, $user_id);
+            wp_send_json(array('success' => true, 'message' => 'Producto adicionado a lista de desejos'));
+        } else {
+            // Handle the case where the function doesn't exist
+            //echo "Wishlist function not available.";
+            wp_send_json(array('success' => false, 'message' => 'Função não existe'));
+        }
+    }else{
+        wp_send_json(array('success' => false, 'message' => 'Erro ao adicionar a lista de desejos'));
+    }
+    
+    wp_die();
+}
 
 
 ?>

@@ -153,6 +153,30 @@ function addWishlistClicked(event){
     wishlistBox.innerHTML = wishBoxContent;
     wishItems.append(wishlistBox);
     wishlistBox.getElementsByClassName('wish__close-btn')[0].addEventListener('click', removeWishItem);
+    
+    jQuery.ajax({
+        type: 'POST',
+        url: wc_add_to_cart_params.ajax_url,
+        data: {
+            action: 'add_wishlist_item',
+            productID: id
+        },
+        beforeSend: function(){
+            loader.classList.remove("loader__hidden");
+        },
+        success: function (response) {
+            // Handle the response from the server, e.g., update the cart totals or display a success message.
+            console.log(response.message);
+        },
+        error: function (error) {
+            console.error('Erro ao adicionar productos a lista de desejos:', error);
+        },
+        complete: function(){
+            loader.classList.add("loader__hidden");
+        },
+    });
+    
+    
 }
 
 //Função para adicionar produto através da modal
@@ -225,8 +249,6 @@ function addProductToCart(title,price,image,id, itemQuantity){
     //Adicionar produtos a base de dados do Wordpress
     rudrAddToCart(id, itemQuantity);
     
-    
-    createOrderAndAddProduct(id, itemQuantity);
     updateTotal();
     
 }
@@ -241,13 +263,12 @@ function quantityChange(event){
 }
 
 
-function updateCartItemQuantity(order_id, cart_item_key, new_quantity) {
+function updateCartItemQuantity(cart_item_key, new_quantity) {
     jQuery.ajax({
         type: 'POST',
         url: wc_add_to_cart_params.ajax_url,
         data: {
             action: 'update_cart_item_quantity',
-            order_id: order_id,
             cart_item_key: cart_item_key,
             new_quantity: new_quantity
         },
@@ -286,8 +307,13 @@ function updateTotal(){
         let order_number = localStorage.getItem('orderID');
         
         //updateOrderItemQuantity(order_number, product_id, quantity)
+        updateCartItemQuantity(product_id, quantity);
         total = total + (price * quantity);
+        
+        console.log(product_id, quantity);
     }
+    
+    
         //arredondar o valor sem as casas decimais
         total = Math.round(total * 100) / 100;
         
@@ -300,7 +326,7 @@ function updateTotal(){
     
 }
 
-//adicionar o produto no backend
+//adicionar o produto ao carrinho no backend
 function rudrAddToCart( product_id, quantity) {
 
 	// let's check is add-to-cart.min.js is enqueued and parameters are presented
@@ -344,7 +370,8 @@ function removeCartItemBack(chave){
         url: wc_add_to_cart_params.ajax_url, //'http://localhost/wordpress/wp-admin/admin-ajax.php' ajaxurl WordPress AJAX URL (automatically defined)
         data: {
             action: 'remove_cart_item', // Action hook for the AJAX handler
-            cart_item_key: cartItemKey // The key of the cart item to remove
+            cart_item_key: cartItemKey, // The key of the cart item to remove
+            orderID: order_number,
         },
         beforeSend: function(){
             loader.classList.remove("loader__hidden");
@@ -414,7 +441,7 @@ function callCart(){
             if (response.exists) {
                 //if(itemsList.length > 0){
         
-                    for(let i = 0; i < itemsList.length; i++){
+                    /*for(let i = 0; i < itemsList.length; i++){
                         let product_id = itemsList[i].children[2].getAttribute('data-product-id');
                         let product_qtde = itemsList[i].children[1].children[1].children[0].value;
 
@@ -427,7 +454,7 @@ function callCart(){
                         updateOrderItemQuantity(order_number, product_id, product_qtde);
                         //setInterval(function (){},3000);
                         //Actualizar as facturas
-                    }
+                    }*/
                     //loader.classList.add("loader__hidden");
                     //window.location.assign('http://localhost:81/wordpress/carrinho/');
                     window.location.href = './carrinho/';
@@ -453,6 +480,25 @@ function callCart(){
 function callCheckout(){
     let itemsList = document.getElementsByClassName('cart__list-card');
     
+    // Select all elements with class "product__quantity"
+    let quantityInputs = document.querySelectorAll('.product__quantity');
+    
+    // Create an array to store product data
+    let productDataArray = [];
+    
+    // Iterate through each quantity input element and push its value and data-product-id to the array
+    quantityInputs.forEach(input => {
+      const id = input.closest('.cart__list-card').querySelector('.cart__close-btn').getAttribute('data-product-id');
+      const quantity = input.value;
+
+      productDataArray.push({ id, quantity });
+    });
+    
+    console.log('Product Data:', productDataArray);
+    
+    for(let i =0; i<productDataArray.length; i++){
+        createOrderAndAddProduct(productDataArray[i]['id'], productDataArray[i]['quantity']);
+    }
     let check_cart = 1;
     jQuery.ajax({
         type: 'POST',
@@ -467,7 +513,7 @@ function callCheckout(){
         success: function (response) {
             // Handle the server's response
             if (response.exists) {
-                for(let i = 0; i < itemsList.length; i++){
+                /*for(let i = 0; i < itemsList.length; i++){
                     let product_id = itemsList[i].children[2].getAttribute('data-product-id');
                     let product_qtde = itemsList[i].children[1].children[1].children[0].value;
 
@@ -480,7 +526,7 @@ function callCheckout(){
                     updateOrderItemQuantity(order_number, product_id, product_qtde);
                     //setInterval(function (){},3000);
                     //Actualizar as facturas
-                }
+                }*/
                 window.location.href = './checkout/'; 
             } else {
                 loader.classList.add("loader__hidden");
@@ -490,9 +536,9 @@ function callCheckout(){
         error: function (error) {
             console.error('Error:', error);
         },
-        /*complete: function(){
+        complete: function(){
             loader.classList.add("loader__hidden");
-        }*/
+        }
     });
 }
 
