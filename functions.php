@@ -1074,6 +1074,78 @@ function get_order_invoice_url($order_id) {
     return esc_url($first_download['download_url']);
 }
 
+// WordPress AJAX action to log out the user
+add_action('wp_ajax_custom_logout', 'custom_logout');
+add_action('wp_ajax_nopriv_custom_logout', 'custom_logout');
+
+function custom_logout() {
+    wp_logout(); // Log the user out
+
+    // Send a response to indicate a successful logout
+    wp_send_json(['success' => true]);
+    wp_die();
+}
+
+// Add AJAX action hook for updating user profile
+add_action("wp_ajax_update_user_profile", "update_user_profile_callback");
+add_action("wp_ajax_nopriv_update_user_profile", "update_user_profile_callback");
+
+function update_user_profile_callback() {
+    // Check if the user is logged in
+    if (!is_user_logged_in()) {
+        wp_send_json(["success" => false, "message" => "Usuário não autenticado"]);
+    }else{
+        // Get current user ID
+        $user_id = get_current_user_id();
+
+        // Get user data sent via AJAX
+        $user_data = isset($_POST["user_data"]) ? $_POST["user_data"] : [];
+
+        // Update user meta data (replace with your specific field names)
+        update_user_meta($user_id, "first_name", sanitize_text_field($user_data["nome"]));
+        update_user_meta($user_id, "last_name", sanitize_text_field($user_data["sobrenome"]));
+        update_user_meta($user_id, "billing_phone", sanitize_text_field($user_data["telefone"]));
+        
+        update_user_meta($user_id, "shipping_first_name", sanitize_text_field($user_data["nome"]));
+        update_user_meta($user_id, "shipping_last_name", sanitize_text_field($user_data["sobrenome"]));
+        update_user_meta($user_id, "shipping_phone", sanitize_text_field($user_data["telefone"]));
+
+        wp_send_json(["success" => true, "message" => "Perfil actualizado com sucesso"]);
+    }
+
+    
+}
+
+// Add AJAX action hook for updating user address
+add_action("wp_ajax_update_user_address", "update_user_address_callback");
+add_action("wp_ajax_nopriv_update_user_address", "update_user_address_callback");
+
+function update_user_address_callback() {
+    // Check if the user is logged in
+    if (!is_user_logged_in()) {
+        wp_send_json(["success" => false, "message" => "Usuário não autenticado"]);
+    }else{
+        // Get current user ID
+        $user_id = get_current_user_id();
+
+        // Get user data sent via AJAX
+        $user_data = isset($_POST["user_data"]) ? $_POST["user_data"] : [];
+
+        // Update user meta data (replace with your specific field names)
+        update_user_meta($user_id, 'billing_state', sanitize_text_field($user_data['provincia']));
+        update_user_meta($user_id, 'billing_city', sanitize_text_field($user_data['municipio']));
+        update_user_meta($user_id, 'billing_address_1', sanitize_text_field($user_data['endereco']));
+        
+        update_user_meta($user_id, 'shipping_state', sanitize_text_field($user_data['provincia']));//
+        update_user_meta($user_id, 'shipping_city', sanitize_text_field($user_data['municipio']));
+        update_user_meta($user_id, 'shipping_address_1', sanitize_text_field($user_data['endereco']));
+
+        wp_send_json(["success" => true, "message" => "Endereço actualizado com sucesso"]);
+    }
+
+    
+}
+
 add_action('wp_ajax_add_wishlist_item', 'add_wishlist_item_callback');
 add_action('wp_ajax_nopriv_add_wishlist_item', 'add_wishlist_item_callback');
 

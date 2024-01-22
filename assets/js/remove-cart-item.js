@@ -64,6 +64,9 @@ function ready(){
     
     document.getElementById('cart__view').addEventListener('click', callCart);
     document.getElementById('checkout__view').addEventListener('click', callCheckout);
+    
+    let logoutBtn = document.getElementById('logout');
+    logoutBtn.addEventListener('click', logoutUser);
 }
 
 //Função para  remover items do carrinho
@@ -657,4 +660,29 @@ function removeProductFromOrder(orderId, productId) {
     });
 }
 
-
+//Função para fazer o logout do user
+function logoutUser(){
+    
+    // Perform an AJAX logout request
+    jQuery.ajax({
+        type: 'POST',
+        url: wc_add_to_cart_params.ajax_url,
+        data: {
+            action: 'custom_logout', // Create a custom WordPress action
+        },
+        beforeSend: function(){
+            loader.classList.remove("loader__hidden");
+        },
+        success: function (response) {
+            // Redirect the user to a specific page after logout (e.g., home page)
+            window.location.href = './home/';
+        },
+        error: function (error) {
+            console.error('Erro durante o logout:', error);
+        },
+        complete: function(){
+            setTimeout(()=>{},2000);
+            loader.classList.add("loader__hidden");
+        }
+    });
+}

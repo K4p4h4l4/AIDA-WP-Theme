@@ -76,7 +76,7 @@
                                             <span class="input_icon">
                                                 <i class="material-icons">email</i>
                                             </span>
-                                            <input type="text" placeholder="Insira o seu e-mail" required class="register__user-data" id="email" autocomplete="off" value="<?php if(isset($email)){echo $email;}?>">
+                                            <input type="text" placeholder="Insira o seu e-mail" required class="register__user-data" id="email" autocomplete="off" value="<?php if(isset($email)){echo $email;}?>" disabled>
                                             <label for="email" class="account__label">E-mail</label>
                                         </div>
                                         <div class="register__username-container">
@@ -93,7 +93,7 @@
                             </form>
                         </div>
                         <div class="myaccount__btn-holder">
-                            <button class="update__btn">Actualizar</button>
+                            <button class="update__btn" id="updateProfile">Actualizar</button>
                         </div>
                     </div>
                     <div class="myaccount__details-tab" id="content2">
@@ -136,7 +136,7 @@
                             </form>
                         </div>
                         <div class="myaccount__btn-holder">
-                            <button class="update__btn">Actualizar</button>
+                            <button class="update__btn" id="updateAddress">Actualizar</button>
                         </div>
                     </div>
                     <div class="myaccount__details-tab" id="content3">
@@ -186,20 +186,20 @@
                                                     $order_invoice_link = $order->get_view_order_url(); // Link to view the order*/
                                         ?>
                                         <tr class="product__cart-table">
-                                            <td data-label="Produto">                                                
+                                            <td data-label="Encomenda ID">                                                
                                                 <?php echo $order_id;?>                     
                                             </td>
-                                            <td data-label="Nome">
+                                            <td data-label="Data">
                                                 <?php echo $order_date; ?>
                                             </td>
-                                            <td data-label="Preço" class="cart__table-price">
+                                            <td data-label="Total" class="cart__table-price">
                                                 
                                                 <?php echo $order_total;//number_format( $order_total, 2, ',', '.'); ?>                            
                                             </td>
-                                            <td data-label="Qtde">
+                                            <td data-label="Status">
                                                 <?php echo $order_status; ?>
                                             </td>
-                                            <td data-label="Subtotal" class="cart__table-subtotal">
+                                            <td data-label="Factura" class="cart__table-subtotal">
                                                 <?php //echo '<a href="' . esc_url($order_invoice_link) . '" >Factura</a>';?>
                                                 <a class="action__remove factura" >
                                                     <i class="material-icons" data-order-id="<?php echo $order->get_ID();?>">receipt_long</i>
@@ -306,7 +306,35 @@
                             <h3>Minha segurança</h3>
                         </div>
                         <div class="myaccount__details-body">
-                            
+                            <div class="register__usernames">
+                                <div class="register__username-container">
+                                    <span class="input_icon">
+                                        <i class="material-icons">lock</i>
+                                    </span>
+                                    <input type="password" placeholder="Senha actual" required class="register__user-data" id="senha" autocomplete="off">
+                                    <label for="senha" class="account__label">Senha Actual</label>
+                                </div>
+                            </div>
+                            <div class="register__usernames">
+                                <div class="register__username-container">
+                                    <span class="input_icon">
+                                        <i class="material-icons">lock</i>
+                                    </span>
+                                    <input type="password" placeholder="Insira a sua nova senha" required class="register__user-data" id="novasenha" autocomplete="off">
+                                    <label for="novasenha" class="account__label">Nova Senha</label>
+                                </div>
+
+                                <div class="register__username-container">
+                                    <span class="input_icon">
+                                        <i class="material-icons">lock</i>
+                                    </span>
+                                    <input type="password" placeholder="Confirme a sua nova senha" required class="register__user-data" id="confirmarsenha" autocomplete="off">
+                                    <label for="confirmarsenha" class="account__label">Confirmar Senha</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="myaccount__btn-holder">
+                            <button class="update__btn" id="updatePassword">Actualizar</button>
                         </div>
                     </div>
                 </div>

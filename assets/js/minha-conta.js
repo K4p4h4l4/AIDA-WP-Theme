@@ -26,6 +26,14 @@ function ready(){
         let factura = facturaButtons[i];
         factura.addEventListener('click', imprimirFactura);
     }
+    
+    //Actualizar o perfil
+    let updateProfileButton = document.getElementById('updateProfile');
+    updateProfileButton.addEventListener('click', updateProfile);
+    
+    //Actualizar o endereço
+    let updateAddressButton = document.getElementById('updateAddress');
+    updateAddressButton.addEventListener('click', updateAddress);
 }
 
 function myaccountProfile(){
@@ -196,5 +204,79 @@ function imprimirFactura(event){
         });
     } else {
         console.error('Error: Invalid order ID');
+    }
+}
+
+//Função para actulizar os dados do perfil
+function updateProfile(){
+    let userData = {};
+    
+    userData.nome = DOMPurify.sanitize(document.getElementById("nome").value);
+    userData.sobrenome = DOMPurify.sanitize(document.getElementById("sobrenome").value);
+    userData.telefone = DOMPurify.sanitize(document.getElementById("telefone").value);
+    
+    if(!userData.nome || !userData.sobrenome || !userData.telefone ){
+        alert("Preencha todos os campos!");
+    }else{
+        // AJAX request
+        jQuery.ajax({
+            type: "POST",
+            url: wc_add_to_cart_params.ajax_url, // The AJAX endpoint defined in WordPress
+            data: {
+                action: "update_user_profile", // Action name for the server-side function
+                user_data: userData // Data to send to the server
+            },
+            beforeSend: function(){
+                loader.classList.remove("loader__hidden");
+            },
+            success: function (response) {
+                // Handle the server's response (e.g., display a success message)
+                alert(response.message);
+                window.location.href = './minha-conta/';
+            },
+            error: function (error) {
+                console.error("Error updating profile:", error);
+            },
+            complete: function(){
+                loader.classList.add("loader__hidden");
+            }
+        });
+    }
+}
+
+//Função para actualizar o endereço do usuário
+function updateAddress(){
+    let userData = {};
+    
+    userData.provincia = DOMPurify.sanitize(document.getElementById("provincia").value);
+    userData.municipio = DOMPurify.sanitize(document.getElementById("municipio").value);
+    userData.endereco = DOMPurify.sanitize(document.getElementById("endereco").value);
+    
+    if(!userData.provincia || !userData.municipio || !userData.endereco){
+        alert("Preencha todos os campos!");
+    }else{
+        // AJAX request
+        jQuery.ajax({
+            type: "POST",
+            url: wc_add_to_cart_params.ajax_url, // The AJAX endpoint defined in WordPress
+            data: {
+                action: "update_user_address", // Action name for the server-side function
+                user_data: userData // Data to send to the server
+            },
+            beforeSend: function(){
+                loader.classList.remove("loader__hidden");
+            },
+            success: function (response) {
+                // Handle the server's response (e.g., display a success message)
+                alert(response.message);
+                window.location.href = './minha-conta/';
+            },
+            error: function (error) {
+                console.error("Erro ao actualizar endereço:", error);
+            },
+            complete: function(){
+                loader.classList.add("loader__hidden");
+            }
+        });
     }
 }

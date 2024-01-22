@@ -17,6 +17,10 @@ document.getElementById('products__wish').addEventListener('click', function () 
     document.querySelector('.wish__list-holder').classList.toggle("wish__list-active");
 });
 
+document.getElementById('user__profile').addEventListener('click', function () {
+    document.querySelector('.user__profile-holder').classList.toggle("user__menu-active");
+} );
+
 const informatic = document.querySelector('.informatic');
 
 informatic.addEventListener('click', function(){

@@ -54,7 +54,7 @@
                         $nome = get_user_meta($current_user->ID, 'first_name', true);
                         $sobrenome = get_user_meta($current_user->ID, 'last_name', true);
                         
-                        echo '<a href="#" class="user__profile"><i class="material-icons">account_circle</i> Olá, ' . $nome . ' ' . $sobrenome.'</a>'; ?>
+                        echo '<a href="#" class="user__profile" id="user__profile"><i class="material-icons">account_circle</i> Olá, ' . $nome . ' ' . $sobrenome.'</a>'; ?>
                         <div class="user__profile-holder">
                             <div class="profile__btn-holder">
                                 <a href="./minha-conta/" class="user__profile">
@@ -63,7 +63,7 @@
                                 </a>
                             </div>
                             <div class="profile__btn-holder">
-                                <a href="#" class="user__profile logout">
+                                <a href="#" class="user__profile" id="logout">
                                     <i class="material-icons">logout</i>
                                     <span>Sair</span>
                                 </a>
