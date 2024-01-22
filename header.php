@@ -46,13 +46,35 @@
         </div>
         <div class="info__header-account">
             <div class="header__contact">
-                <i class="material-icons">account_circle</i>
-                <span>
-                    <a href="./registar/">Registar</a>
-                </span>
-                <span>
-                    <a href="./login/">Login</a>
-                </span>
+                
+                <?php
+                    // Check if the user is logged in
+                    if (is_user_logged_in()) {
+                        $current_user = wp_get_current_user();
+                        $nome = get_user_meta($current_user->ID, 'first_name', true);
+                        $sobrenome = get_user_meta($current_user->ID, 'last_name', true);
+                        
+                        echo '<a href="#" class="user__profile"><i class="material-icons">account_circle</i> Olá, ' . $nome . ' ' . $sobrenome.'</a>'; ?>
+                        <div class="user__profile-holder">
+                            <div class="profile__btn-holder">
+                                <a href="./minha-conta/" class="user__profile">
+                                    <i class="material-icons">person</i>
+                                    <span>Perfil</span>
+                                </a>
+                            </div>
+                            <div class="profile__btn-holder">
+                                <a href="#" class="user__profile logout">
+                                    <i class="material-icons">logout</i>
+                                    <span>Sair</span>
+                                </a>
+                            </div>
+                        </div>
+                        <?php 
+                    }else{
+                        echo '<span><a href="./registar/">Registar</a></span><span><a href="./login/">Login</a></span>';
+                    }
+                ?>
+                
             </div>
         </div>
     </div>
