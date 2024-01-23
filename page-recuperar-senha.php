@@ -17,12 +17,13 @@
                         <span class="input_icon">
                             <i class="material-icons">email</i>
                         </span>
-                        <input type="email" placeholder="Insira o seu e-mail" required class="login__user-data">
+                        <input type="email" placeholder="Insira o seu e-mail" required class="login__user-data"
+                        id="user_email">
                         <label for="email" class="account__label">E-mail</label>
                     </div>
                 </div>
                 <div class="login__btn-container">
-                    <button class="btn__login">Recuperar</button>
+                    <button class="btn__login" id="passowordRecovery">Recuperar</button>
                 </div>
                 <div class="other__options">
                     <div class="other__option">

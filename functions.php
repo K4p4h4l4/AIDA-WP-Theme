@@ -219,6 +219,17 @@
             wp_enqueue_script('dompurify__js');
         }
         
+        if(is_page('recuperar-senha')){
+            //Minha conta js 
+            wp_register_script('recuperar-senha_js', get_template_directory_uri().'/assets/js/recuperar-senha.js', array(), 1, 1, 1); //get_theme_file_uri
+            wp_enqueue_script('recuperar-senha_js');
+            
+            //Biblioteca para sanitizar os inputs do form
+            wp_register_script('dompurify__js', 'https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.4/purify.min.js', array(), null, true);
+            //get_theme_file_uri
+            wp_enqueue_script('dompurify__js');
+        }
+        
     }
 
     add_action('wp_enqueue_scripts', 'fn_theme_scripts');
@@ -1175,6 +1186,72 @@ function validate_and_update_password_callback() {
 
     wp_die();
 }
+
+add_action('wp_ajax_reset_password_request', 'reset_password_request_callback');
+add_action('wp_ajax_nopriv_reset_password_request', 'reset_password_request_callback');
+
+function reset_password_request_callback() {
+    $user_email = sanitize_email($_POST['user_email']);
+
+    if (empty($user_email)) {
+        wp_send_json(['success' => false, 'message' => 'Please provide your email address.']);
+    }
+
+    // Check if the email address exists in the database
+    $user = get_user_by('email', $user_email);
+
+    if (!$user) {
+        wp_send_json(['success' => false, 'message' => 'Email address not found in our records.']);
+    }
+
+    // Generate a unique reset key and store it in user's meta data
+    $reset_key = wp_generate_password(20, false);
+    update_user_meta($user->ID, 'password_reset_key', $reset_key);
+
+    // Send a password reset email to the user
+    $reset_link = site_url("/reset-password?key=$reset_key&email=$user_email");
+    $email_subject = 'Pedido de reset da senha';
+    $email_message .= "Clique no seguinte link para reset da sua senha: $reset_link";
+    
+    $email_message = '<html><body style="font-family: Arial, sans-serif; padding: 20px; color: #333; background-color: #f5f5f5;">';
+    $email_message .= '<div style="max-width: 600px; margin: 0 auto;">';
+    $email_message .= '<img src="https://www.aida.ao/img/logo/aid_logo.png" alt="Company Logo" style="max-width: 100%; margin-bottom: 20px;">';
+    /*$email_message .= '<h2 style="color: #007bff;">Bem-vindo à nossa loja!</h2>';*/
+    $email_message .= '<p>Olá,</p>';
+    $email_message .= '<p>Recebemos uma solicitação para redefinir a senha da sua conta. Para criar uma nova senha, clique no link abaixo:</p>';
+    $email_message .= "Clique no seguinte link para reset da sua senha: $reset_link";
+    $email_message .= '<p>Se você não solicitou essa redefinição de senha, pode ignorar este email. Sua senha permanecerá a mesma.</p>';
+    $email_message .= '<p>Lembre-se de escolher uma senha segura, com pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e caracteres especiais, para manter sua conta protegida.</p>';
+    $email_message .= '<p>Se você tiver algum problema ou dúvida, entre em contato conosco.</p>';
+    
+
+    $email_message .= '<br>';
+    $email_message .= '<p>Atenciosamente,</p>';
+    $email_message .= '<p style="font-weight: bold;">ADVANCED INTERNET DESIGN ANGOLA</p>';
+    $email_message .= '<div style="border-top: 1px solid #ccc; padding-top: 20px; margin-top: 20px; padding-bottom: 20px; margin-bottom: 20px; text-align: center; background-color:black; color:white;">';
+    $email_message .= '<p>Siga-nos nas redes sociais:</p>';
+    $email_message .= '<a href="https://www.facebook.com" style="margin-right: 10px;"><img src="https://d3k81ch9hvuctc.cloudfront.net/company/PMgFnb/images/bb194ecc-82ed-4c0b-a19d-2a7a27010865.png" alt="Facebook" style="width: 20px; height: 20px;"></a>';
+    $email_message .= '<a href="https://www.linkdin.com" style="margin-right: 10px;"><img src="https://d3k81ch9hvuctc.cloudfront.net/company/PMgFnb/images/970bec08-616d-47fe-96ff-ebab859bb15b.png" alt="Linkdin" style="width: 20px; height: 20px;"></a>';
+    $email_message .= '<a href="https://www.instagram.com" style="margin-right: 10px;"><img src="https://d3k81ch9hvuctc.cloudfront.net/company/PMgFnb/images/3d1d9040-b9a7-4fe5-bd48-6da093f22f12.png" alt="Instagram" style="width: 20px; height: 20px;"></a>';
+    $email_message .= '<br>';
+    $email_message .= '<p>Localização: Zango 0, Vila Chinesa</p>';
+    $email_message .= '<p>&copy; ' . date('Y') . ' ADVANCED INTERNET DESIGN ANGOLA. Todos os direitos reservados.</p>';
+    $email_message .= '</div>';
+    $email_message .= '</div>';
+    $email_message .= '</body></html>';
+    
+    $headers = array('Content-Type: text/html; charset=UTF-8');
+    
+    $sent = wp_mail($user_email, $email_subject, $email_message, $headers);
+
+    if ($sent) {
+        wp_send_json(['success' => true, 'message' => 'Password reset email sent. Please check your email.']);
+    } else {
+        wp_send_json(['success' => false, 'message' => 'Failed to send password reset email.']);
+    }
+    wp_die();
+}
+
 
 add_action('wp_ajax_add_wishlist_item', 'add_wishlist_item_callback');
 add_action('wp_ajax_nopriv_add_wishlist_item', 'add_wishlist_item_callback');
