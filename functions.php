@@ -95,7 +95,7 @@
             wp_enqueue_style('registar_css');
         }
         
-        if(is_page('login')){
+        if(is_page('login') || is_page('recuperar-senha')){
             //css da página de envio
             wp_register_style('login_css', get_template_directory_uri().'/assets/css/login.css', array(), 1, 'all');
             wp_enqueue_style('login_css');
@@ -1050,7 +1050,7 @@ function user_login_callback() {
             wp_send_json(array('success'=> true, 'message' => 'Login bem-sucedido.'));
         } else {
             // Login failed
-            wp_send_json(array('success'=> false, 'message' => 'Erro ao fazer login. Verifique suas credenciais. Error: '. $user->get_error_message()));//
+            wp_send_json(array('success'=> false, 'message' => 'Erro ao fazer login. Verifique as suas credenciais.'));
         }
     } else {
         wp_send_json(array('success'=> false, 'message' => 'Nonce verification failed.'));
@@ -1144,6 +1144,36 @@ function update_user_address_callback() {
     }
 
     
+}
+
+// Add server-side action hooks for AJAX
+add_action('wp_ajax_validate_and_update_password', 'validate_and_update_password_callback');
+add_action('wp_ajax_nopriv_validate_and_update_password', 'validate_and_update_password_callback');
+
+function validate_and_update_password_callback() {
+    // Get user's current ID
+    $current_user_id = get_current_user_id();
+
+    // Get the entered current password, new password, and confirm password from AJAX request
+    $current_password = sanitize_text_field($_POST['current_password']);
+    $new_password = sanitize_text_field($_POST['new_password']);
+    $confirm_password = sanitize_text_field($_POST['confirm_password']);
+
+    // Verify if the entered current password matches the user's current password
+    if (wp_check_password($current_password, wp_get_current_user()->user_pass, $current_user_id)) {
+        // Current password matches, now check if new password and confirm password match
+        if ($new_password === $confirm_password) {
+            // Update the user's password
+            wp_set_password($new_password, $current_user_id);
+            wp_send_json(['success' => true, 'message' => 'Password actualizda com sucesso!']);
+        } else {
+            wp_send_json(['success' => false, 'message' => 'A nova senha e a confirmação da senha não conferem.']);
+        }
+    } else {
+        wp_send_json(['success' => false, 'message' => 'Senha incorrecta.']);
+    }
+
+    wp_die();
 }
 
 add_action('wp_ajax_add_wishlist_item', 'add_wishlist_item_callback');

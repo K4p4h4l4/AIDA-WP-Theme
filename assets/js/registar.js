@@ -30,10 +30,11 @@ function criarConta(){
     
     if(!userData.nome || !userData.sobrenome || !userData.email || !userData.provincia || !userData.municipio || !userData.endereco || !userData.senha || !userData.telefone ){
         alert("Preencha todos os campos!");
-    }
-    
-    if(isValidEmail(userData.email)){
-        //console.log(userData);
+    }else if(!isValidEmail(userData.email)){
+        alert(userData.email + " email inválido.");    
+    }else if (!isPasswordValid(userData.senha)) {
+        alert("A senha deve atender aos requisitos de complexidade.");
+    }else{
         // AJAX request para registar usuário
         jQuery.ajax({
             type: 'POST',
@@ -59,14 +60,11 @@ function criarConta(){
             error: function (error) {
                 console.error('Error:', error);
             },
-            /*complete: function(){
+            complete: function(){
                 loader.classList.add("loader__hidden");
-            }*/
+            }
         });
-    }else{
-        alert(userData.email + " email inválido.");
-    }
-    
+    }   
 }
 
 //Verifica se o email é válido ou não
@@ -76,3 +74,22 @@ function isValidEmail(email) {
     return emailRegex.test(email);
 }
 
+// Function to check if the password meets complexity requirements
+function isPasswordValid(password) {
+    // Define your complexity requirements here using regular expressions
+    const minLength = 8; // Minimum length requirement
+    const hasUpperCase = /[A-Z]/.test(password); // At least one uppercase letter
+    const hasLowerCase = /[a-z]/.test(password); // At least one lowercase letter
+    const hasDigit = /\d/.test(password); // At least one digit
+
+    // You can add more requirements as needed
+
+    // Check if the password meets all requirements
+    return (
+        password.length >= minLength &&
+        hasUpperCase &&
+        hasLowerCase &&
+        hasDigit
+        // Add more conditions for additional requirements if necessary
+    );
+}

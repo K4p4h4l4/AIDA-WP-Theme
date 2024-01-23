@@ -34,10 +34,10 @@
                 </div>
                 <div class="other__options">
                     <div class="other__option">
-                        <p>Novo Cliente? <a href="register.php">Crie a sua conta</a></p>
+                        <p>Novo Cliente? <a href="./registar/">Crie a sua conta</a></p>
                     </div>
                     <div class="other__option">
-                        <p>Esqueceu a senha? <a href="recuperar-senha.php">Recupere sua senha</a></p>
+                        <p>Esqueceu a senha? <a href="./recuperar-senha/">Recupere sua senha</a></p>
                     </div>
                 </div>
             </div>

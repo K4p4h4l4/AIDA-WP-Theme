@@ -157,6 +157,12 @@
     color: var(--light-gray);
 }
 
+.input_icon2{
+    position: absolute;
+    left: 40.5%;
+    color: var(--light-gray);
+}
+
 .input_icon i{
     font-size: var(--font-size12);
 }
@@ -213,6 +219,58 @@
     transition: all .3s;
 }
 
+.register__user-data2{
+    width: 45%;
+    padding: 1.2rem 1rem;
+    border: solid .1rem var(--light-gray);
+    border-radius: .3rem;
+    outline: none;
+    font-size: var(--font-size11);
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+.register__user-data2:focus{
+    border: solid .1rem var(--default-black);
+}
+
+.register__user-data2::-webkit-input-placeholder{
+    font-size: var(--font-size12);
+    opacity: 0;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+
+.register__user-data2::-moz-placeholder{
+    font-size: var(--font-size12);
+    opacity: 0;
+    -moz-transition: all .3s;
+    transition: all .3s;
+}
+
+.register__user-data2:-ms-input-placeholder{
+    font-size: var(--font-size12);
+    opacity: 0;
+    -ms-transition: all .3s;
+    transition: all .3s;
+}
+
+.register__user-data2::-ms-input-placeholder{
+    font-size: var(--font-size12);
+    opacity: 0;
+    -ms-transition: all .3s;
+    transition: all .3s;
+}
+
+.register__user-data2::placeholder{
+    font-size: var(--font-size12);
+    opacity: 0;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
 .account__label{
     position: absolute;
     -webkit-transition: all .2s;
@@ -225,7 +283,31 @@
     font-size: var(--font-size12);
 }
 
+.account__label2{
+    position: absolute;
+    -webkit-transition: all .2s;
+    -o-transition: all .2s;
+    transition: all .2s;
+    color: var(--default-black);
+    z-index: 1;
+    left: 5%;
+    top: 35%;
+    font-size: var(--font-size12);
+}
+
+
 .account__label::before{
+    content: "";
+    height: 1rem;
+    background-color: var(--default-white);
+    position: absolute;
+    left: 0%;
+    top: 40%;
+    z-index: -1;
+    width: 100%;
+}
+
+.account__label2::before{
     content: "";
     height: 1rem;
     background-color: var(--default-white);
@@ -281,6 +363,53 @@
     -webkit-animation-delay: .2s;
             animation-delay: .2s;
 }
+
+.register__user-data2:not(:-moz-placeholder-shown).register__user-data2:not(:focus)~.account__label2{
+    top:-16%;
+    color: var(--default-black);
+    font-size: var(--font-size10);
+}
+
+.register__user-data2:not(:-ms-input-placeholder).register__user-data2:not(:focus)~.account__label2{
+    top:-16%;
+    color: var(--default-black);
+    font-size: var(--font-size10);
+}
+
+.register__user-data2:focus + .account__label2 , 
+.register__user-data2:not(:placeholder-shown).register__user-data2:not(:focus)~.account__label2{
+    top:-16%;
+    color: var(--default-black);
+    font-size: var(--font-size10);
+}
+
+.register__user-data2:focus::-webkit-input-placeholder{
+    opacity: 1;
+    -webkit-animation-delay: .2s;
+            animation-delay: .2s;
+}
+
+.register__user-data2:focus::-moz-placeholder{
+    opacity: 1;
+    animation-delay: .2s;
+}
+
+.register__user-data2:focus:-ms-input-placeholder{
+    opacity: 1;
+    animation-delay: .2s;
+}
+
+.register__user-data2:focus::-ms-input-placeholder{
+    opacity: 1;
+    animation-delay: .2s;
+}
+
+.register__user-data2:focus::placeholder{
+    opacity: 1;
+    -webkit-animation-delay: .2s;
+            animation-delay: .2s;
+}
+
 
 .register__address-container{
     width: 100%;

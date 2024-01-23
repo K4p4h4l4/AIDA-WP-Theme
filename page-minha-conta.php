@@ -1,5 +1,4 @@
 <?php 
-    //get header.php file
     get_header();
 ?>
 
@@ -308,11 +307,11 @@
                         <div class="myaccount__details-body">
                             <div class="register__usernames">
                                 <div class="register__username-container">
-                                    <span class="input_icon">
+                                    <span class="input_icon input_icon2">
                                         <i class="material-icons">lock</i>
                                     </span>
-                                    <input type="password" placeholder="Senha actual" required class="register__user-data" id="senha" autocomplete="off">
-                                    <label for="senha" class="account__label">Senha Actual</label>
+                                    <input type="password" placeholder="Senha actual" required class="register__user-data2" id="senha" autocomplete="off">
+                                    <label for="senha" class="account__label2">Senha Actual</label>
                                 </div>
                             </div>
                             <div class="register__usernames">
@@ -342,6 +341,5 @@
         </div>
     </section>
 <?php 
-    
     get_footer();
 ?>
