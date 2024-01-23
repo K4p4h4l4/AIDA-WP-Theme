@@ -335,6 +335,9 @@ function validateAndUpdatePassword(userData) {
             new_password: userData.novasenha,
             confirm_password: userData.confirmarsenha
         },
+        beforeSend: function(){
+            loader.classList.remove("loader__hidden");
+        },
         success: function (response) {
             // Handle the server's response
             if (response.success) {
@@ -346,6 +349,9 @@ function validateAndUpdatePassword(userData) {
         },
         error: function (error) {
             console.error('Error:', error);
+        },
+        complete: function(){
+            loader.classList.add("loader__hidden");
         }
     });
 }

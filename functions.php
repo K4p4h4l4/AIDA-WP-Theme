@@ -1217,7 +1217,9 @@ function reset_password_request_callback() {
 
     // Generate a unique reset key and store it in user's meta data
     $reset_key = wp_generate_password(20, false);
+    $reset_key_expiration = current_time('timestamp') + 3600;
     update_user_meta($user->ID, 'password_reset_key', $reset_key);
+    update_user_meta($user->ID, 'password_reset_key_expiration', $reset_key_expiration);
 
     // Send a password reset email to the user
     $reset_link = site_url("/recetar-senha?key=$reset_key&email=$user_email");
@@ -1263,31 +1265,35 @@ function reset_password_request_callback() {
     wp_die();
 }
 
-function reset_password_request() {
-    if (isset($_POST['action']) && $_POST['action'] == 'reset-password') {
-        $user_login = sanitize_user($_POST['user_login']);
-        $reset_key = sanitize_text_field($_POST['key']);
-        $new_password = sanitize_text_field($_POST['new-password']);
-        $confirm_password = sanitize_text_field($_POST['confirm-password']);
 
-        // Validate the password complexity here (you can use your custom validation function).
+//Função para recetar a senha
+add_action('wp_ajax_reset_password', 'reset_password_callback');
+add_action('wp_ajax_nopriv_reset_password', 'reset_password_callback');
 
-        if ($new_password !== $confirm_password) {
-            // Passwords don't match, handle the error.
-        }
+function reset_password_callback() {
+    $user_email = sanitize_email($_POST['user_email']);
+    $reset_key = sanitize_text_field($_POST['reset_key']);
+    $new_password = sanitize_text_field($_POST['new_password']);
 
-        // Reset the user's password using the reset key and new password.
-        $reset_result = reset_password($user_login, $reset_key, $new_password);
+    // Check if the reset key matches the one stored in user's meta data
+    $stored_reset_key = get_user_meta($user_id, 'password_reset_key', true);
+    $reset_key_expiration = get_user_meta($user->ID, 'password_reset_key_expiration', true);
 
-        if (is_wp_error($reset_result)) {
-            // Password reset failed, handle the error.
-        } else {
-            // Password reset successful, redirect the user to the login page or a success page.
-        }
-    }
+    if (!$stored_reset_key || $reset_key !== $stored_reset_key || $reset_key_expiration < current_time('timestamp')) {
+        wp_send_json(['success' => false, 'message' => 'Invalid reset key.']);
+    }else{
+        // Update the user's password
+        $user = get_user_by('email', $user_email);
+        wp_set_password($new_password, $user->ID);
+
+        // Clear the reset key from user's meta data
+        delete_user_meta($user->ID, 'password_reset_key');
+        delete_user_meta($user->ID, 'password_reset_key_expiration');
+
+        wp_send_json(['success' => true, 'message' => 'Password reset successful.']);
+    }    
 }
 
-add_action('init', 'reset_password_request');
 
 
 add_action('wp_ajax_add_wishlist_item', 'add_wishlist_item_callback');

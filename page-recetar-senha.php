@@ -30,12 +30,13 @@
                         </div>
                     </div>
                     <input type="hidden" name="action" value="reset-password">
-                    <input type="hidden" name="user_login" value="<?php echo esc_attr( $user_login ); ?>">
-                    <input type="hidden" name="key" value="<?php echo esc_attr( $reset_key ); ?>">
-                    <div class="login__btn-container">
-                        <button type="submit" class="btn__login" id="passowordReset">Redefinir senha</button>
-                    </div>
+                    <input type="hidden" name="user_email" value="<?php echo esc_attr( $_GET['email'] ); ?>">
+                    <input type="hidden" name="reset_key" value="<?php echo esc_attr( $_GET['key'] ); ?>">
+                    
                 </form>
+                <div class="login__btn-container">
+                    <button  class="btn__login" id="passowordReset">Redefinir senha</button>
+                </div>
             </div>
         </div>
     </section>
