@@ -2,9 +2,9 @@
     get_header();
 ?>
     
-    <!-- *****************************\
-        secção de formulário de login
-    \******************************/-->
+    <!-- ***********************************************\
+        secção de formulário de recuperção de senha
+    \************************************************/-->
     <section class="login__section">
         <div class="login__holder">
             <div class="login__container">

@@ -95,7 +95,7 @@
             wp_enqueue_style('registar_css');
         }
         
-        if(is_page('login') || is_page('recuperar-senha')){
+        if(is_page('login') || is_page('recuperar-senha') || is_page('recetar-senha')){
             //css da página de envio
             wp_register_style('login_css', get_template_directory_uri().'/assets/css/login.css', array(), 1, 'all');
             wp_enqueue_style('login_css');
@@ -223,6 +223,17 @@
             //Minha conta js 
             wp_register_script('recuperar-senha_js', get_template_directory_uri().'/assets/js/recuperar-senha.js', array(), 1, 1, 1); //get_theme_file_uri
             wp_enqueue_script('recuperar-senha_js');
+            
+            //Biblioteca para sanitizar os inputs do form
+            wp_register_script('dompurify__js', 'https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.4/purify.min.js', array(), null, true);
+            //get_theme_file_uri
+            wp_enqueue_script('dompurify__js');
+        }
+        
+        if(is_page('recetar-senha')){
+            //Minha conta js 
+            wp_register_script('recetar-senha_js', get_template_directory_uri().'/assets/js/recetar-senha.js', array(), 1, 1, 1); //get_theme_file_uri
+            wp_enqueue_script('recetar-senha_js');
             
             //Biblioteca para sanitizar os inputs do form
             wp_register_script('dompurify__js', 'https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.4/purify.min.js', array(), null, true);
@@ -1209,7 +1220,7 @@ function reset_password_request_callback() {
     update_user_meta($user->ID, 'password_reset_key', $reset_key);
 
     // Send a password reset email to the user
-    $reset_link = site_url("/reset-password?key=$reset_key&email=$user_email");
+    $reset_link = site_url("/recetar-senha?key=$reset_key&email=$user_email");
     $email_subject = 'Pedido de reset da senha';
     $email_message .= "Clique no seguinte link para reset da sua senha: $reset_link";
     
@@ -1251,6 +1262,32 @@ function reset_password_request_callback() {
     }
     wp_die();
 }
+
+function reset_password_request() {
+    if (isset($_POST['action']) && $_POST['action'] == 'reset-password') {
+        $user_login = sanitize_user($_POST['user_login']);
+        $reset_key = sanitize_text_field($_POST['key']);
+        $new_password = sanitize_text_field($_POST['new-password']);
+        $confirm_password = sanitize_text_field($_POST['confirm-password']);
+
+        // Validate the password complexity here (you can use your custom validation function).
+
+        if ($new_password !== $confirm_password) {
+            // Passwords don't match, handle the error.
+        }
+
+        // Reset the user's password using the reset key and new password.
+        $reset_result = reset_password($user_login, $reset_key, $new_password);
+
+        if (is_wp_error($reset_result)) {
+            // Password reset failed, handle the error.
+        } else {
+            // Password reset successful, redirect the user to the login page or a success page.
+        }
+    }
+}
+
+add_action('init', 'reset_password_request');
 
 
 add_action('wp_ajax_add_wishlist_item', 'add_wishlist_item_callback');
