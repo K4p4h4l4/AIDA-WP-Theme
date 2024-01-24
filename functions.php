@@ -1223,8 +1223,7 @@ function reset_password_request_callback() {
 
     // Send a password reset email to the user
     $reset_link = site_url("/recetar-senha?key=$reset_key&email=$user_email");
-    $email_subject = 'Pedido de reset da senha';
-    $email_message .= "Clique no seguinte link para reset da sua senha: $reset_link";
+    $email_subject = 'Pedido de reset de senha';
     
     $email_message = '<html><body style="font-family: Arial, sans-serif; padding: 20px; color: #333; background-color: #f5f5f5;">';
     $email_message .= '<div style="max-width: 600px; margin: 0 auto;">';
@@ -1235,7 +1234,7 @@ function reset_password_request_callback() {
     $email_message .= "Clique no seguinte link para reset da sua senha: $reset_link";
     $email_message .= '<p>Se você não solicitou essa redefinição de senha, pode ignorar este email. Sua senha permanecerá a mesma.</p>';
     $email_message .= '<p>Lembre-se de escolher uma senha segura, com pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e caracteres especiais, para manter sua conta protegida.</p>';
-    $email_message .= '<p>Se você tiver algum problema ou dúvida, entre em contato conosco.</p>';
+    $email_message .= '<p>Se você tiver algum problema ou dúvida, entre em contato connosco.</p>';
     
 
     $email_message .= '<br>';
@@ -1274,24 +1273,28 @@ function reset_password_callback() {
     $user_email = sanitize_email($_POST['user_email']);
     $reset_key = sanitize_text_field($_POST['reset_key']);
     $new_password = sanitize_text_field($_POST['new_password']);
-
+    
+    // Check if the email address exists in the database
+    $user = get_user_by('email', $user_email);
     // Check if the reset key matches the one stored in user's meta data
-    $stored_reset_key = get_user_meta($user_id, 'password_reset_key', true);
+    $stored_reset_key = get_user_meta($user->ID, 'password_reset_key', true);
     $reset_key_expiration = get_user_meta($user->ID, 'password_reset_key_expiration', true);
 
     if (!$stored_reset_key || $reset_key !== $stored_reset_key || $reset_key_expiration < current_time('timestamp')) {
-        wp_send_json(['success' => false, 'message' => 'Invalid reset key.']);
-    }else{
+        wp_send_json(['success' => false, 'message' => 'Chave inválida.']);
+    }else if($user){
         // Update the user's password
-        $user = get_user_by('email', $user_email);
+        
         wp_set_password($new_password, $user->ID);
 
         // Clear the reset key from user's meta data
         delete_user_meta($user->ID, 'password_reset_key');
         delete_user_meta($user->ID, 'password_reset_key_expiration');
 
-        wp_send_json(['success' => true, 'message' => 'Password reset successful.']);
-    }    
+        wp_send_json(['success' => true, 'message' => 'Senha recetada com sucesso.']);
+    }else{
+        wp_send_json(['success' => false, 'message' => 'Email inválido.']);
+    } 
 }
 
 
