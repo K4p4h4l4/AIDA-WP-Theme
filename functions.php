@@ -124,9 +124,15 @@
         //get_theme_file_uri
         wp_enqueue_script('show_modal_js');
 
+        
         //produto js 
         wp_register_script('produto_js', get_template_directory_uri().'/assets/js/product.js', array(), 1, 1, 1); //get_theme_file_uri
         wp_enqueue_script('produto_js');
+        
+        //Biblioteca para sanitizar os inputs do form
+        wp_register_script('dompurify__js', 'https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.4/purify.min.js', array(), null, true);
+        //get_theme_file_uri
+        wp_enqueue_script('dompurify__js');
 
         //default js
         wp_register_script('default_js', get_template_directory_uri().'/assets/js/default.js', array(), 1, 1, 1);
@@ -1296,6 +1302,61 @@ function reset_password_callback() {
         wp_send_json(['success' => false, 'message' => 'Email inválido.']);
     } 
 }
+
+// Function to handle the review submission
+add_action('wp_ajax_submit_product_review', 'submit_product_review_callback');
+add_action('wp_ajax_nopriv_submit_product_review', 'submit_product_review_callback');
+
+function submit_product_review_callback() {
+    $product_id = sanitize_text_field($_POST['product_id']);
+    $rating = intval($_POST['rating']);
+    $review = sanitize_text_field($_POST['review']);
+
+    // Validate the review data as needed
+
+    // Check if WooCommerce is active
+    if (class_exists('WooCommerce')) {
+        // Check if the product exists
+        if (wc_get_product($product_id)) {
+            // Get the current user (assuming the user is logged in)
+            $user = wp_get_current_user();
+
+            // Check if the user is logged in
+            if ($user->ID !== 0) {
+                // Prepare the review data
+                $review_data = array(
+                    'comment_post_ID' => $product_id,
+                    'comment_author' => $user->display_name,
+                    'comment_content' => $review,
+                    'comment_meta' => array('rating' => $rating),
+                    'user_id' => $user->ID,
+                );
+
+                // Insert the review into WooCommerce
+                $comment_id = wp_new_comment($review_data);
+
+                if ($comment_id) {
+                    // Update WooCommerce's product rating and count
+                    update_comment_meta($comment_id, 'rating', $rating);
+                    wc_update_product_reviews_count($product_id);
+
+                    wp_send_json(['success' => true, 'message' => 'Avaliação submetida com sucesso.']);
+                } else {
+                    wp_send_json(['success' => false, 'message' => 'Erro ao submeter avaliação.']);
+                }
+            } else {
+                wp_send_json(['success' => false, 'message' => 'Utilizador não está autenticado.']);
+            }
+        } else {
+            wp_send_json(['success' => false, 'message' => 'Produto não encontrado.']);
+        }
+    } else {
+        wp_send_json(['success' => false, 'message' => 'WooCommerce não está ativo.']);
+    }
+
+    wp_die();
+}
+
 
 
 

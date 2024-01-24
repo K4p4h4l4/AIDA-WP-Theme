@@ -10,8 +10,6 @@ var cartItemsArray = [];
 //Vector para armazenar os produtos da lista de desejos
 var wishlistArray = [];
 const loader = document.getElementById('loader__container');
-//número da ordem
-//var order_number;
 
 //Function ready
 function ready(){

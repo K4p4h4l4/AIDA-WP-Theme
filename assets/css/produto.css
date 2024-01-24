@@ -894,7 +894,7 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    /*display: none;*/
+    display: none;
 }
 
 .review__modal-content{
@@ -933,7 +933,7 @@
     cursor: pointer;
 }
 
-.rating2 i .active2{
+.rating2 i.active2{
     opacity: 0;
     animation: animate .5s calc(var(--i)* .1s) ease-in-out forwards;
 }
@@ -971,6 +971,10 @@ textarea{
     background-color: var(--default-red);
 }
 
+.reviewModalActive{
+    display: inline-block;
+}
+
 @keyframes animate{
     0% {
         opacity: 0;
@@ -978,7 +982,7 @@ textarea{
     }
     50% {
         opacity: 1;
-        transform: scale(1.2);
+        transform: scale(1.4);
     }
     100% {
         opacity: 1;

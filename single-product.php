@@ -340,189 +340,104 @@
                                 
                                 <div class="reviews__holder">
                                     <div class="reviews__messages">
+                                        <?php
+                                            // Get the product reviews
+                                            $reviews = get_comments(array(
+                                                'post_id' => $product->get_ID(),
+                                                /*'status' => 'approved', // Only approved reviews
+                                                'type' => 'product_review',*/ // Specify the review type used by WooCommerce
+                                            ));
+                                            if ($reviews) :
+                                                foreach ($reviews as $review) :
+                                                    // Get review data
+                                                    $rating = get_comment_meta($review->comment_ID, 'rating', true);
+                                                    $author = $review->comment_author;
+                                                    $comment = $review->comment_content;
+                                                    $date = get_comment_date('', $review->comment_ID);
+                                        ?>
                                         <div class="review__card">
                                             <div class="review__person-container">
                                                 <div class="review__person-name">
-                                                    Igor
+                                                    <?php echo esc_html($author); ?>
                                                 </div>
                                                 <div class="review__date">
-                                                    27/08/2023
+                                                    <?php echo esc_html($date); ?>
                                                 </div>
                                                 <div class="review__rattings">
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star_outline</i>
-                                                    <i class="material-icons">star_outline</i>
-                                                    <i class="material-icons">star_outline</i>
-                                                    <i class="material-icons">star_outline</i>
+                                                    <?php
+                                                        if($rating == 5){                                                        
+                                                    ?>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                    
+                                                    <?php
+                                                        }
+                                                    ?>
+                                                    <?php
+                                                        if($rating == 4){                                                        
+                                                    ?>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                    
+                                                    <?php
+                                                        }
+                                                    ?>
+                                                    <?php
+                                                        if($rating == 3){                                                        
+                                                    ?>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                    
+                                                    <?php
+                                                        }
+                                                    ?>
+                                                    <?php
+                                                        if($rating == 2){                                                        
+                                                    ?>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                    
+                                                    <?php
+                                                        }
+                                                    ?>
+                                                    <?php
+                                                        if($rating == 1){                                                        
+                                                    ?>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                    
+                                                    <?php
+                                                        }
+                                                    ?>
                                                 </div>
                                             </div>
                                             <div class="review__message-container">
                                                 <div class="review__message">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, eligendi tempore saepe expedita asperiores quasi? Eos eligendi libero doloribus, sint, recusandae iusto nam. Veritatis placeat ipsa voluptatum. Debitis, quia nisi.
+                                                    <?php echo esc_html($comment); ?>
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                        <div class="review__card">
-                                            <div class="review__person-container">
-                                                <div class="review__person-name">
-                                                    Telmo
-                                                </div>
-                                                <div class="review__date">
-                                                    27/08/2023
-                                                </div>
-                                                <div class="review__rattings">
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star_outline</i>
-                                                    <i class="material-icons">star_outline</i>
-                                                    <i class="material-icons">star_outline</i>
-                                                </div>
-                                            </div>
-                                            <div class="review__message-container">
-                                                <div class="review__message">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, eligendi tempore saepe expedita asperiores quasi?
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="review__card">
-                                            <div class="review__person-container">
-                                                <div class="review__person-name">
-                                                    Mafalda
-                                                </div>
-                                                <div class="review__date">
-                                                    27/08/2023
-                                                </div>
-                                                <div class="review__rattings">
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star</i>
-                                                </div>
-                                            </div>
-                                            <div class="review__message-container">
-                                                <div class="review__message">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos obcaecati labore, enim inventore reprehenderit perferendis dicta quia dolore, animi ratione explicabo dolorum numquam porro nam odit doloribus deserunt quidem est, quod, itaque. Sequi iure cumque minus, maxime ullam, quam illo vero totam commodi quo earum odit quisquam nisi ipsum possimus?
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="review__card">
-                                            <div class="review__person-container">
-                                                <div class="review__person-name">
-                                                    Rogério
-                                                </div>
-                                                <div class="review__date">
-                                                    27/08/2023
-                                                </div>
-                                                <div class="review__rattings">
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star_outline</i>
-                                                    <i class="material-icons">star_outline</i>
-                                                    <i class="material-icons">star_outline</i>
-                                                    <i class="material-icons">star_outline</i>
-                                                </div>
-                                            </div>
-                                            <div class="review__message-container">
-                                                <div class="review__message">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="review__card">
-                                            <div class="review__person-container">
-                                                <div class="review__person-name">
-                                                    Mateus
-                                                </div>
-                                                <div class="review__date">
-                                                    27/08/2023
-                                                </div>
-                                                <div class="review__rattings">
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star</i>
-                                                </div>
-                                            </div>
-                                            <div class="review__message-container">
-                                                <div class="review__message">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos obcaecati labore, enim inventore reprehenderit perferendis dicta quia dolore, animi ratione explicabo dolorum numquam porro nam odit doloribus deserunt quidem est, quod, itaque. Sequi iure cumque minus, maxime ullam, quam illo vero totam commodi quo earum odit quisquam nisi ipsum possimus?
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="review__card">
-                                            <div class="review__person-container">
-                                                <div class="review__person-name">
-                                                    Igor
-                                                </div>
-                                                <div class="review__date">
-                                                    27/08/2023
-                                                </div>
-                                                <div class="review__rattings">
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star_outline</i>
-                                                    <i class="material-icons">star_outline</i>
-                                                    <i class="material-icons">star_outline</i>
-                                                    <i class="material-icons">star_outline</i>
-                                                </div>
-                                            </div>
-                                            <div class="review__message-container">
-                                                <div class="review__message">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="review__card">
-                                            <div class="review__person-container">
-                                                <div class="review__person-name">
-                                                    Igor
-                                                </div>
-                                                <div class="review__date">
-                                                    27/08/2023
-                                                </div>
-                                                <div class="review__rattings">
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star</i>
-                                                </div>
-                                            </div>
-                                            <div class="review__message-container">
-                                                <div class="review__message">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos obcaecati labore, enim inventore reprehenderit perferendis dicta quia dolore, animi ratione explicabo dolorum numquam porro nam odit doloribus deserunt quidem est, quod, itaque. Sequi iure cumque minus, maxime ullam, quam illo vero totam commodi quo earum odit quisquam nisi ipsum possimus?
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="review__card">
-                                            <div class="review__person-container">
-                                                <div class="review__person-name">
-                                                    Igor
-                                                </div>
-                                                <div class="review__date">
-                                                    27/08/2023
-                                                </div>
-                                                <div class="review__rattings">
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star_outline</i>
-                                                    <i class="material-icons">star_outline</i>
-                                                    <i class="material-icons">star_outline</i>
-                                                    <i class="material-icons">star_outline</i>
-                                                </div>
-                                            </div>
-                                            <div class="review__message-container">
-                                                <div class="review__message">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <?php
+                                                endforeach;
+                                            else :
+                                                echo '<p>No reviews yet.</p>';
+                                            endif;
+                                        ?>
 
                                     </div>
                                 </div>   
@@ -699,24 +614,27 @@
             <h3>Deixe a sua avaliação</h3>
             <!--form action="#"-->
                 <div class="rating2">
-                    <input type="number" name="rating2" id="" hidden>                    
+                    <input type="number" name="rating2" id="productRating" hidden>                    
                     <i class="material-icons" style="--i: 0">star_outline</i>
                     <i class="material-icons" style="--i: 1">star_outline</i>
                     <i class="material-icons" style="--i: 2">star_outline</i>
                     <i class="material-icons" style="--i: 3">star_outline</i>
                     <i class="material-icons" style="--i: 4">star_outline</i>                    
                 </div>
-                <textarea name="opinion" id="" cols="30" rows="5" placeholder="Sua opinião ..."></textarea>
+                <textarea name="opinion" id="productPost" cols="30" rows="5" placeholder="Sua opinião ..."></textarea>
                 <div class="btn-group">
-                    <button type="submit" class="btn submit">Enviar</button>
-                    <button type="submit" class="btn cancel">Cancelar</button>
+                    <button type="submit" class="btn submit" id="submitReview">Enviar</button>
+                    <button type="submit" class="btn cancel" id="closeReviewModal">Cancelar</button>
                 </div>
+                <input type="number" name="productID" id="productID" value="<?php echo $product->get_ID(); ?>" hidden>
             <!--/form-->
         </div>
     </div>
 </div>
 
 
-<?php 
-    get_footer();    
+<?php
+    print_r($reviews);
+    get_footer();
+    print_r($product);
 ?>
