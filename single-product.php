@@ -1,6 +1,6 @@
 <?php 
     /* Template Name: produto */
-    //get header.php file
+    
     get_header();
 ?>
     
@@ -62,9 +62,14 @@
                                     <?php echo $product->get_review_count()?> Avaliações
                                 </a>
                             </div>
-                            <div class="product__reviewButton-holder">
-                                <button class="add__review">Avaliar</button>
-                            </div>
+                            <?php 
+                                if(is_user_logged_in()){
+                                    echo '<div class="product__reviewButton-holder">
+                                            <button class="add__review" id="openReviewModal">Avaliar</button>
+                                        </div>';
+                                }
+                            ?>
+                            
                         </div>
                         <div class="produt__status">
                             <div class="product__price-holder">
@@ -685,8 +690,33 @@
     </div>        
 </div>
 
+<!-- *********************************\
+     Modal de avaliaçãode produto
+\**********************************/-->
+<div class="review__bg-modal">
+    <div class="review__modal-content">
+        <div class="wrapper">
+            <h3>Deixe a sua avaliação</h3>
+            <!--form action="#"-->
+                <div class="rating2">
+                    <input type="number" name="rating2" id="" hidden>                    
+                    <i class="material-icons" style="--i: 0">star_outline</i>
+                    <i class="material-icons" style="--i: 1">star_outline</i>
+                    <i class="material-icons" style="--i: 2">star_outline</i>
+                    <i class="material-icons" style="--i: 3">star_outline</i>
+                    <i class="material-icons" style="--i: 4">star_outline</i>                    
+                </div>
+                <textarea name="opinion" id="" cols="30" rows="5" placeholder="Sua opinião ..."></textarea>
+                <div class="btn-group">
+                    <button type="submit" class="btn submit">Enviar</button>
+                    <button type="submit" class="btn cancel">Cancelar</button>
+                </div>
+            <!--/form-->
+        </div>
+    </div>
+</div>
+
+
 <?php 
-    //get footer.php file
-    get_footer();
-    print_r($product);
+    get_footer();    
 ?>

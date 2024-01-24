@@ -1231,7 +1231,7 @@ function reset_password_request_callback() {
     /*$email_message .= '<h2 style="color: #007bff;">Bem-vindo à nossa loja!</h2>';*/
     $email_message .= '<p>Olá,</p>';
     $email_message .= '<p>Recebemos uma solicitação para redefinir a senha da sua conta. Para criar uma nova senha, clique no link abaixo:</p>';
-    $email_message .= "Clique no seguinte link para reset da sua senha: $reset_link";
+    $email_message .= "<p>Clique no seguinte link para recetar a sua senha: <a href=$reset_link>Clique aqui</a></p>";
     $email_message .= '<p>Se você não solicitou essa redefinição de senha, pode ignorar este email. Sua senha permanecerá a mesma.</p>';
     $email_message .= '<p>Lembre-se de escolher uma senha segura, com pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e caracteres especiais, para manter sua conta protegida.</p>';
     $email_message .= '<p>Se você tiver algum problema ou dúvida, entre em contato connosco.</p>';
