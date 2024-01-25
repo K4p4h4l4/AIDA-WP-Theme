@@ -229,7 +229,7 @@
                                 <div class="overall__rating-holder">
                                     <div class="overall__ratting-box">
                                         <div class="overall__ratting-total">
-                                            <h4>2,5</h4>
+                                            <h4><?php echo $product->get_average_rating();?></h4>
                                         </div>
                                         <div class="overall__ratting-stars">
                                             <i class="material-icons">star</i>
