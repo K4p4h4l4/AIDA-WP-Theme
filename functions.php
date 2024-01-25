@@ -1326,7 +1326,7 @@ function submit_product_review_callback() {
                 // Prepare the review data
                 $review_data = array(
                     'comment_post_ID' => $product_id,
-                    'comment_author' => $user->display_name,
+                    'comment_author' => $user->first_name.' '.$user->last_name,
                     'comment_content' => $review,
                     'comment_meta' => array('rating' => $rating),
                     'user_id' => $user->ID,

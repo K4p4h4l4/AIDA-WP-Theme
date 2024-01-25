@@ -1,6 +1,5 @@
 <?php 
     /* Template Name: produto */
-    
     get_header();
 ?>
     
@@ -203,7 +202,7 @@
                     <div class="tab__header">
                         <button class="tab__button" id="btn1" onclick="openProductDetails()">Detalhes</button >
                         <button class="tab__button" id="btn2" onclick="openProductSpecs()">Especificações</button >
-                        <button class="tab__button" id="btn3" onclick="openProductReviews()">Avaliações <span>(<?php echo $product->get_review_count()?>)</span></button >
+                        <button class="tab__button" id="btn3" onclick="openProductReviews()">Avaliações <span>(<?php echo $product->get_review_count();?>)</span></button >
                     </div>
                     
                     <div class="product__details-tab" id="content1">
@@ -224,6 +223,38 @@
                         <div class="product__details-title">
                             <h3><?php echo $product->get_name();?> - Avaliações</h3>
                         </div>
+                        <?php
+                            // Get an array of rating counts for each rating (1 star, 2 stars, 3 stars, etc.)
+                            $rating_counts = $product->get_rating_counts();
+
+                            // Now you can access the rating count for each rating
+                            if(isset($rating_counts[1])){
+                                $rating_1_count = $rating_counts[1];
+                            }else{
+                                $rating_1_count = 0;
+                            }
+                            if(isset($rating_counts[2])){
+                                $rating_2_count = $rating_counts[2];
+                            }else{
+                                $rating_2_count = 0;
+                            }
+                            if(isset($rating_counts[3])){
+                                $rating_3_count = $rating_counts[3];
+                            }else{
+                                $rating_3_count = 0;
+                            }
+                            if(isset($rating_counts[4])){
+                                $rating_4_count = $rating_counts[4];
+                            }else{
+                                $rating_4_count = 0;
+                            }
+                            if(isset($rating_counts[5])){
+                                $rating_5_count = $rating_counts[5];
+                            }else{
+                                $rating_5_count = 0;
+                            }
+                            
+                        ?>
                         <div class="product__details-body">
                             <div class="overall__ratting-container">
                                 <div class="overall__rating-holder">
@@ -250,12 +281,12 @@
                                             </div>
                                             <div class="ratting__stars-bar">
                                                 <div class="stars__progress">
-                                                    <div class="stars__progress-bar" id="bar5"></div>
+                                                    <div class="stars__progress-bar" id="bar5" style="width:<?php if($product->get_review_count()==0){echo 0;}else{echo $rating_5_count/$product->get_review_count();} ?>"></div>
                                                 </div>
                                             </div>
                                             <div class="ratting__votes">
                                                 <div class="ratting__votes-number">
-                                                    1
+                                                    <?php echo $rating_5_count;?>
                                                 </div>
                                             </div>
                                         </div>
@@ -269,12 +300,12 @@
                                             </div>
                                             <div class="ratting__stars-bar">
                                                 <div class="stars__progress">
-                                                    <div class="stars__progress-bar" id="bar4"></div>
+                                                    <div class="stars__progress-bar" id="bar4" style="width:<?php if($product->get_review_count()==0){echo 0;}else{echo $rating_4_count/$product->get_review_count();} ?>"></div>
                                                 </div>
                                             </div>
                                             <div class="ratting__votes">
                                                 <div class="ratting__votes-number">
-                                                    1
+                                                    <?php echo $rating_4_count;?>
                                                 </div>
                                             </div>
                                         </div>
@@ -288,12 +319,12 @@
                                             </div>
                                             <div class="ratting__stars-bar">
                                                 <div class="stars__progress">
-                                                    <div class="stars__progress-bar" id="bar3"></div>
+                                                    <div class="stars__progress-bar" id="bar3" style="width:<?php if($product->get_review_count()==0){echo 0;}else{echo $rating_3_count/$product->get_review_count();} ?>"></div>
                                                 </div>
                                             </div>
                                             <div class="ratting__votes">
                                                 <div class="ratting__votes-number">
-                                                    2
+                                                    <?php echo $rating_3_count;?>
                                                 </div>
                                             </div>
                                         </div>
@@ -307,12 +338,12 @@
                                             </div>
                                             <div class="ratting__stars-bar">
                                                 <div class="stars__progress">
-                                                    <div class="stars__progress-bar" id="bar2"></div>
+                                                    <div class="stars__progress-bar" id="bar2" style="width:<?php if($product->get_review_count()==0){echo 0;}else{echo $rating_2_count/$product->get_review_count();} ?>"></div>
                                                 </div>
                                             </div>
                                             <div class="ratting__votes">
                                                 <div class="ratting__votes-number">
-                                                    3
+                                                    <?php echo $rating_2_count;?>
                                                 </div>
                                             </div>
                                         </div>
@@ -326,12 +357,12 @@
                                             </div>
                                             <div class="ratting__stars-bar">
                                                 <div class="stars__progress">
-                                                    <div class="stars__progress-bar" id="bar1"></div>
+                                                    <div class="stars__progress-bar" id="bar1" style="width:<?php if($product->get_review_count()==0){echo 0;}else{echo $rating_1_count/$product->get_review_count();} ?>"></div>
                                                 </div>
                                             </div>
                                             <div class="ratting__votes">
                                                 <div class="ratting__votes-number">
-                                                    3
+                                                    <?php echo $rating_1_count;?>
                                                 </div>
                                             </div>
                                         </div>
@@ -344,8 +375,8 @@
                                             // Get the product reviews
                                             $reviews = get_comments(array(
                                                 'post_id' => $product->get_ID(),
-                                                /*'status' => 'approved', // Only approved reviews
-                                                'type' => 'product_review',*/ // Specify the review type used by WooCommerce
+                                                'status' => 'approve', // Only approved reviews
+                                                /*'type' => 'product_review', // Specify the review type used by WooCommerce*/
                                             ));
                                             if ($reviews) :
                                                 foreach ($reviews as $review) :
@@ -435,7 +466,7 @@
                                         <?php
                                                 endforeach;
                                             else :
-                                                echo '<p>No reviews yet.</p>';
+                                                echo '<p>Ainda sem avaliações. Seja o primeiro</p>';
                                             endif;
                                         ?>
 
@@ -634,7 +665,6 @@
 
 
 <?php
-    print_r($reviews);
     get_footer();
     print_r($product);
 ?>

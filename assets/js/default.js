@@ -17,52 +17,63 @@ document.getElementById('products__wish').addEventListener('click', function () 
     document.querySelector('.wish__list-holder').classList.toggle("wish__list-active");
 });
 
-document.getElementById('user__profile').addEventListener('click', function () {
-    document.querySelector('.user__profile-holder').classList.toggle("user__menu-active");
-} );
+let user__profile = document.getElementById('user__profile')
+if(user__profile){
+    user__profile.addEventListener('click', function () {
+        document.querySelector('.user__profile-holder').classList.toggle("user__menu-active");
+    });
+}
 
 const informatic = document.querySelector('.informatic');
-
-informatic.addEventListener('click', function(){
-    document.querySelector('.main__options-informatic').classList.toggle("submenu__active");
-});
+if(informatic){
+    informatic.addEventListener('click', function(){
+        document.querySelector('.main__options-informatic').classList.toggle("submenu__active");
+    });
+}
 
 const tvbox = document.querySelector('.tvbox');
-
-tvbox.addEventListener('click', function(){
-    document.querySelector('.main__options-tvbox').classList.toggle("submenu__active");
-});
+if(tvbox){
+    tvbox.addEventListener('click', function(){
+        document.querySelector('.main__options-tvbox').classList.toggle("submenu__active");
+    });
+}
 
 const tablet = document.querySelector('.tablet');
-
-tablet.addEventListener('click', function(){
-    document.querySelector('.main__options-tablet').classList.toggle("submenu__active");
-});
+if(tablet){
+    tablet.addEventListener('click', function(){
+        document.querySelector('.main__options-tablet').classList.toggle("submenu__active");
+    });
+}
 
 const paper = document.querySelector('.paper');
-
-paper.addEventListener('click', function(){
-    document.querySelector('.main__options-paper').classList.toggle("submenu__active");
-});
+if(paper){
+    paper.addEventListener('click', function(){
+        document.querySelector('.main__options-paper').classList.toggle("submenu__active");
+    });
+}
 
 const games = document.querySelector('.games');
-
-games.addEventListener('click', function(){
-    document.querySelector('.main__options-games').classList.toggle("submenu__active");
-});
+if(games){
+    games.addEventListener('click', function(){
+        document.querySelector('.main__options-games').classList.toggle("submenu__active");
+    });
+}
 
 const printer = document.querySelector('.printer');
-
-printer.addEventListener('click', function(){
-    document.querySelector('.main__options-printer').classList.toggle("submenu__active");
-});
+if(printer){
+    printer.addEventListener('click', function(){
+        document.querySelector('.main__options-printer').classList.toggle("submenu__active");
+    });
+}
 
 const menu = document.querySelector('.menu__button');
+if(menu){
+    menu.addEventListener('click', function(e){
+        console.log(e);
+       document.querySelector('.main__menu').classList.toggle("show__menu"); 
+    });
+}
 
-menu.addEventListener('click', function(e){
-    console.log(e);
-   document.querySelector('.main__menu').classList.toggle("show__menu"); 
-});
 /*function updateTotal(){
     let cartContent = document.getElementsByClassName('cart__list-container')[0];
     let cartBoxes = cart.getElementsByClassName('cart__list-card');

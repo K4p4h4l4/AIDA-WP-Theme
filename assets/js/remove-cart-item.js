@@ -64,7 +64,10 @@ function ready(){
     document.getElementById('checkout__view').addEventListener('click', callCheckout);
     
     let logoutBtn = document.getElementById('logout');
-    logoutBtn.addEventListener('click', logoutUser);
+    if(logoutBtn){
+        logoutBtn.addEventListener('click', logoutUser); 
+    }
+    
 }
 
 //Função para  remover items do carrinho

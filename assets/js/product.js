@@ -132,7 +132,7 @@ function submitReview(){
     reviewData.productID = DOMPurify.sanitize(document.getElementById( "productID").value);
     reviewData.productRating = DOMPurify.sanitize(document.getElementById( "productRating").value);
     reviewData.productPost = DOMPurify.sanitize(document.getElementById( "productPost").value);
-    console.log(reviewData);
+    
     if(!reviewData.productRating || !reviewData.productPost){
         alert("Preencha os campos obrigatórios");
     }else{
@@ -146,8 +146,9 @@ function submitReview(){
                 rating: reviewData.productRating,
                 review: reviewData.productPost,
             },
-            beforeSend: function () {
-                // Display a loading indicator or disable the submit button
+            beforeSend: function() {
+                // Show loader or perform any pre-request actions
+                //loader.classList.remove("loader__hidden");
             },
             success: function (response) {
                 if (response.success) {
@@ -162,9 +163,10 @@ function submitReview(){
             error: function (error) {
                 console.error('Error:', error);
             },
-            complete: function () {
-                // Hide the loading indicator or enable the submit button
-            },
+            complete: function() {
+                // Hide loader or perform any post-request actions
+                //loader.classList.add("loader__hidden");
+            }
         });
     }
 }

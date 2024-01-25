@@ -1,6 +1,10 @@
  
 let modal = document.querySelector('.bg-modal');
-let infoPreview = modal.querySelectorAll('.modal__container-info');
+let infoPreview;
+if(modal){
+    infoPreview = modal.querySelectorAll('.modal__container-info');
+}
+
 
 document.querySelectorAll('.product__buttons .info').forEach(product =>{
     product.onclick = () =>{
@@ -21,10 +25,14 @@ document.querySelectorAll('.product__buttons .info').forEach(product =>{
     }
 });
 
-document.querySelector('.modal__close-btn').addEventListener('click', function(){
-    document.querySelector('.modal__container-info').classList.remove('modalactive');
-    document.querySelector('.bg-modal').style.display='none';
-});
+let modal__close = document.querySelector('.modal__close-btn');
+if(modal__close){
+    modal__close.addEventListener('click', function(){
+        document.querySelector('.modal__container-info').classList.remove('modalactive');
+        document.querySelector('.bg-modal').style.display='none';
+    });
+}
+
 
 /*document.querySelector('.bg-modal').addEventListener('click', function(){
    document.querySelector('.bg-modal').style.display='none'; 

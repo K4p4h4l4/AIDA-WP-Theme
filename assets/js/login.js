@@ -41,7 +41,7 @@ function fazerLogin(){
                     if (response.success) {
                         console.log(response.message);
                         // Redirect or perform any action upon successful login
-                        window.location.href = './minha-conta/';
+                        window.location.href = './home/';
                     } else {
                         alert(response.message);
                     }
