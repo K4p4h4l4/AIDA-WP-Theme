@@ -1272,6 +1272,11 @@ a: -webkit-any-link{
     padding: 1rem 1.5rem;
 }
 
+.popular__product-details a{
+    text-decoration: none;
+    color: var(--default-black);
+}
+
 .popular__product-name{
     width: 100%;
     font-size: var(--font-size13);
@@ -1354,6 +1359,7 @@ a: -webkit-any-link{
 }
 
 .bestsold__product-img img{
+    width: 100%;
     height: 100%;
     -o-object-fit: cover;
        object-fit: cover;
@@ -1376,6 +1382,11 @@ a: -webkit-any-link{
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+}
+
+.bestsold__product-details a{
+    text-decoration: none;
+    color: var(--default-black);
 }
 
 .bestsold__product-name{

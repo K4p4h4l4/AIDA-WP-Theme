@@ -86,111 +86,152 @@
                     <span>Produtos Populares</span>
                 </div>
                 <div class="popular__products-list">
-                    <div class="popular__product-card">
-                        <div class="popular__product-img">
-                            <img src="<?php echo get_theme_file_uri('assets/img/macbook%20Pro.png')?>" alt="">
-                        </div>
-                        <div class="popular__product-details">
-                            <div class="popular__product-name">
-                                <span>MacBook Pro</span>
-                            </div>
-                            <div class="popular__product-rating">
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star_half</i>
-                                <i class="material-icons">star_border</i>
-                                <i class="material-icons">star_border</i>
-                            </div>
-                            <div class="popular__product-price">
-                                <p>AOA 300.000</p>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                            
+                            //configurando os argumentos
+                            $args = array(
+                                'limit' => 6,
+                                'meta_key' => 'total_sales',
+                                'visibility' => 'catalog',
+                                'featured' => true,
+                            );
+                            
+                            //Execução da query
+                            $query = new WC_Product_Query($args);
+                                    
+                            //Vector de produtos
+                            $products = $query->get_products();
+                            
+                            if(! empty($products)){
+                                 $i= 1;
+                                //Loop para listar todos os produtos        
+                                foreach( $products as $product){
+                                    //Obter os dados do vector
+                                    $product_id = $product->get_id();
+                                    $product_name = $product->get_name();
+                                    $product_price = $product->get_regular_price();
+                                    $product_sale_price = $product->get_sale_price();
+                                    $product_img_id = $product->get_image_id();
+                                    /*echo $val;*/
+                                    
+                                    
+                                    ?>
+                                    <div class="popular__product-card">
+                                        <div class="popular__product-img">
+                                            <a href="<?php echo get_permalink($product_id); ?>" class="product__link1">
+                                                <?php echo wp_get_attachment_image($product_img_id);?>
+                                            </a>
+                                        </div>
+                                        <div class="popular__product-details">
+                                            <a href="<?php echo get_permalink($product_id); ?>" class="product__link2">
+                                            <div class="popular__product-name">
+                                                <span><?php echo $product_name; ?></span>
+                                            </div>
+                                            <div class="popular__product-rating">
+                                                <?php 
+                                                    if($product->get_average_rating()==5){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                <?php
+                                                    }else if(($product->get_average_rating()>4) && ($product->get_average_rating()<5)){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_half</i>
+                                                <?php
+                                                    }else if($product->get_average_rating() == 4){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if(($product->get_average_rating()>3) && ($product->get_average_rating()<4)){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_half</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if($product->get_average_rating() == 3){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if(($product->get_average_rating()>2) && ($product->get_average_rating()<3)){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_half</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if($product->get_average_rating() == 2){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if(($product->get_average_rating()>1) && ($product->get_average_rating()<2)){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_half</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if($product->get_average_rating() == 1){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if(($product->get_average_rating()>0) && ($product->get_average_rating()<1)){
+                                                ?>
+                                                        <i class="material-icons">star_half</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if($product->get_average_rating() == 0){
+                                                ?>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }
+                                                ?>
+                                            </div>
+                                            <div class="popular__product-price">
+                                                <p>AKZ <?php echo number_format($product_price, 2, ',', '.'); ?></p>
+                                            </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <?php
+                                    $i++;
+                            }
+                        }   
 
-                    <div class="popular__product-card">
-                        <div class="popular__product-img">
-                            <img src="<?php echo get_theme_file_uri('assets/img/iPhone%20X.png')?>" alt="">
-                        </div>
-                        <div class="popular__product-details">
-                            <div class="popular__product-name">
-                                <span>iPhone X</span>
-                            </div>
-                            <div class="popular__product-rating">
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star_half</i>
-                                <i class="material-icons">star_border</i>
-                                <i class="material-icons">star_border</i>
-                            </div>
-                            <div class="popular__product-price">
-                                <p>AOA 100.000</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="popular__product-card">
-                        <div class="popular__product-img">
-                            <img src="<?php echo get_theme_file_uri('assets/img/HP%20OMEN.png')?>" alt="">
-                        </div>
-                        <div class="popular__product-details">
-                            <div class="popular__product-name">
-                                <span>HP OMEN</span>
-                            </div>
-                            <div class="popular__product-rating">
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star_half</i>
-                                <i class="material-icons">star_border</i>
-                                <i class="material-icons">star_border</i>
-                            </div>
-                            <div class="popular__product-price">
-                                <p>AOA 2.300.000</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="popular__product-card">
-                        <div class="popular__product-img">
-                            <img src="<?php echo get_theme_file_uri('assets/img/nikko camera.png')?>" alt="">
-                        </div>
-                        <div class="popular__product-details">
-                            <div class="popular__product-name">
-                                <span>Nikon</span>
-                            </div>
-                            <div class="popular__product-rating">
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star_half</i>
-                                <i class="material-icons">star_border</i>
-                                <i class="material-icons">star_border</i>
-                            </div>
-                            <div class="popular__product-price">
-                                <p>AOA 630.000</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="popular__product-card">
-                        <div class="popular__product-img">
-                            <img src="<?php echo get_theme_file_uri('assets/img/product02.png')?>" alt="">
-                        </div>
-                        <div class="popular__product-details">
-                            <div class="popular__product-name">
-                                <span>MacBook Pro</span>
-                            </div>
-                            <div class="popular__product-rating">
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star_half</i>
-                                <i class="material-icons">star_border</i>
-                                <i class="material-icons">star_border</i>
-                            </div>
-                            <div class="popular__product-price">
-                                <p>AOA 495.000</p>
-                            </div>
-                        </div>
-                    </div>
-
+                     ?>
                 </div>
             </div>
 
@@ -216,47 +257,152 @@
                     <span>Mais Vendidos</span>
                 </div>
                 <div class="bestsold__product-list">
-                    <div class="bestsold__product-card">
-                        <div class="bestsold__product-img">
-                            <img src="<?php echo get_theme_file_uri('assets/img/37-300x300.jpg')?>" alt="">
-                        </div>
-                        <div class="bestsold__product-details">
-                            <div class="bestsold__product-name">
-                                <span>Mivi Roam 2 Wireless</span>
-                            </div>
-                            <div class="bestsold__product-rating">
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star_half</i>
-                                <i class="material-icons">star_border</i>
-                                <i class="material-icons">star_border</i>
-                            </div>
-                            <div class="bestsold__product-price">
-                                <p>AOA 300.000</p>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                            
+                            //configurando os argumentos
+                            $args = array(
+                                'limit' => 2,
+                                'meta_key' => 'total_sales',
+                                'orderby' => 'meta_value_num',
+                                'order' => 'DESC'
+                            );
+                            
+                            //Execução da query
+                            $query = new WC_Product_Query($args);
+                                    
+                            //Vector de produtos
+                            $products = $query->get_products();
+                            
+                            if(! empty($products)){
+                                 $i= 1;
+                                //Loop para listar todos os produtos        
+                                foreach( $products as $product){
+                                    //Obter os dados do vector
+                                    $product_id = $product->get_id();
+                                    $product_name = $product->get_name();
+                                    $product_price = $product->get_regular_price();
+                                    $product_sale_price = $product->get_sale_price();
+                                    $product_img_id = $product->get_image_id();
+                                    /*echo $val;*/
+                                    
+                                    
+                                    ?>
+                                    <div class="bestsold__product-card">
+                                        <div class="bestsold__product-img">
+                                            <a href="<?php echo get_permalink($product_id); ?>" class="product__link1">
+                                                <?php echo wp_get_attachment_image($product_img_id);?>
+                                            </a>                                            
+                                        </div>
+                                        <div class="bestsold__product-details">
+                                            <a href="<?php echo get_permalink($product_id); ?>" class="product__link2">
+                                            <div class="bestsold__product-name">
+                                                <span><?php echo $product_name; ?></span>
+                                            </div>
+                                            <div class="bestsold__product-rating">
+                                                <?php 
+                                                    if($product->get_average_rating()==5){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                <?php
+                                                    }else if(($product->get_average_rating()>4) && ($product->get_average_rating()<5)){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_half</i>
+                                                <?php
+                                                    }else if($product->get_average_rating() == 4){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if(($product->get_average_rating()>3) && ($product->get_average_rating()<4)){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_half</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if($product->get_average_rating() == 3){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if(($product->get_average_rating()>2) && ($product->get_average_rating()<3)){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_half</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if($product->get_average_rating() == 2){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if(($product->get_average_rating()>1) && ($product->get_average_rating()<2)){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_half</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if($product->get_average_rating() == 1){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if(($product->get_average_rating()>0) && ($product->get_average_rating()<1)){
+                                                ?>
+                                                        <i class="material-icons">star_half</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if($product->get_average_rating() == 0){
+                                                ?>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }
+                                                ?>
+                                            </div>
+                                            <div class="bestsold__product-price">
+                                                <p>AKZ <?php echo number_format($product_price, 2, ',', '.'); ?></p>
+                                            </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                <?php
+                                    $i++;
+                            }
+                        }   
 
-                    <div class="bestsold__product-card">
-                        <div class="bestsold__product-img">
-                            <img src="<?php echo get_theme_file_uri('assets/img/22-300x300.jpg')?>" alt="">
-                        </div>
-                        <div class="bestsold__product-details">
-                            <div class="bestsold__product-name">
-                                <span>OPPO A74 5G</span>
-                            </div>
-                            <div class="bestsold__product-rating">
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star_half</i>
-                                <i class="material-icons">star_border</i>
-                                <i class="material-icons">star_border</i>
-                            </div>
-                            <div class="bestsold__product-price">
-                                <p>AOA 100.000</p>
-                            </div>
-                        </div>
-                    </div>
+                     ?>
                 </div>
             </div>
 
@@ -319,11 +465,97 @@
                                             <a href="<?php echo get_permalink($product_id); ?>" class="product__link2">
                                                 <span class="product__name"><?php echo $product_name; ?></span>
                                                 <div class="rating">
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star</i>
-                                                    <i class="material-icons">star_half</i>
+                                                    <?php 
+                                                        if($product->get_average_rating()==5){
+                                                    ?>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                    <?php
+                                                        }else if(($product->get_average_rating()>4) && ($product->get_average_rating()<5)){
+                                                    ?>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star_half</i>
+                                                    <?php
+                                                        }else if($product->get_average_rating() == 4){
+                                                    ?>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                    <?php
+                                                        }else if(($product->get_average_rating()>3) && ($product->get_average_rating()<4)){
+                                                    ?>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star_half</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                    <?php
+                                                        }else if($product->get_average_rating() == 3){
+                                                    ?>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                    <?php
+                                                        }else if(($product->get_average_rating()>2) && ($product->get_average_rating()<3)){
+                                                    ?>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star_half</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                    <?php
+                                                        }else if($product->get_average_rating() == 2){
+                                                    ?>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                    <?php
+                                                        }else if(($product->get_average_rating()>1) && ($product->get_average_rating()<2)){
+                                                    ?>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star_half</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                    <?php
+                                                        }else if($product->get_average_rating() == 1){
+                                                    ?>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                    <?php
+                                                        }else if(($product->get_average_rating()>0) && ($product->get_average_rating()<1)){
+                                                    ?>
+                                                            <i class="material-icons">star_half</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                    <?php
+                                                        }else if($product->get_average_rating() == 0){
+                                                    ?>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                    <?php
+                                                        }
+                                                    ?>
                                                 </div>
                                                 <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
                                                 <div class="price__holder">
@@ -362,180 +594,169 @@
                     <span class="products__header-title">Melhores avaliados</span>
                 </div>
                 <div class="new__products-list">
-                    <div class="product__card">
-                        <div class="product__img">
-                            <div class="product__discount">10%</div>
-                            <img src="<?php echo get_theme_file_uri('assets/img/1-300x300.jpg')?>" alt="">
-                        </div>
-                        <div class="product__details">
-                            <span>Canon Canonet</span>
-                            <div class="rating">
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star_half</i>
-                            </div>
-                            <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
-                            <div class="price__holder">
-                                <div class="product__price">AOA 90.000</div>
-                                <div class="product__price-old"><del>AOA 100.000</del></div>
-                            </div>
+                    <?php
+                            
+                        //configurando os argumentos
+                        $args = array(
+                            'limit' => 8,
+                            'meta_key' => '_wc_average_rating',
+                            'orderby' => 'meta_value_num',
+                            'order' => 'DESC'
+                        );
 
-                            <div class="product__buttons">
-                                <button class="product__btn" id="infoProductModal"><i class="material-icons">remove_red_eye</i></button>
-                                <button class="product__btn"><i class="material-icons">favorite_border</i></button>
-                                <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
+                        //Execução da query
+                        $query = new WC_Product_Query($args);
 
-                            </div>
-                        </div>
-                    </div>
+                        //Vector de produtos
+                        $products = $query->get_products();
 
-                    <div class="product__card">
-                        <div class="product__img">
-                            <div class="product__discount" style="display:none">10%</div>
-                            <img src="<?php echo get_theme_file_uri('assets/img/7.jpg')?>" alt="">
-                        </div>
-                        <div class="product__details">
-                            <span>ASUS Laptop</span>
-                            <div class="rating">
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                            </div>
-                            <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
-                            <div class="price__holder">
-                                <div class="product__price">AOA 495.000</div>
-                                <div class="product__price-old" style="display:none"><del>AOA 100.000</del></div>
-                            </div>
+                        if(! empty($products)){
+                             $i= 1;
+                            //Loop para listar todos os produtos        
+                            foreach( $products as $product){
+                                //Obter os dados do vector
+                                $product_id = $product->get_id();
+                                $product_name = $product->get_name();
+                                $product_price = $product->get_regular_price();
+                                $product_sale_price = $product->get_sale_price();
+                                $product_img_id = $product->get_image_id();
+                                /*echo $val;*/
 
-                            <div class="product__buttons">
-                                <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
-                                <button class="product__btn"><i class="material-icons">favorite_border</i></button>
-                                <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
 
-                            </div>
-                        </div>
-                    </div>
+                                ?>
 
-                    <div class="product__card">
-                        <div class="product__img">
-                            <div class="product__discount" style="display:none">10%</div>
-                            <img src="<?php echo get_theme_file_uri('assets/img/12-300x300.jpg')?>" alt="">
-                        </div>
-                        <div class="product__details">
-                            <span>Samsung A3</span>
-                            <div class="rating">
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                            </div>
-                            <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
-                            <div class="price__holder">
-                                <div class="product__price">AOA 220.000</div>
-                                <div class="product__price-old" style="display:none"><del>AOA 100.000</del></div>
-                            </div>
+                                <div class="product__card" >                                        
+                                    <div class="product__img">
+                                        <a href="<?php echo get_permalink($product_id); ?>" class="product__link1">
+                                            <?php if($product_sale_price):?>
+                                            <div class="product__discount">
+                                                <?php echo round((1-($product_sale_price/$product_price))*100); ?>%
+                                            </div>
+                                            <?php endif?>
+                                            <?php echo wp_get_attachment_image($product_img_id);?> 
 
-                            <div class="product__buttons">
-                                <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
-                                <button class="product__btn"><i class="material-icons">favorite_border</i></button>
-                                <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
+                                        </a>
 
-                            </div>
-                        </div>
-                    </div>
+                                    </div>
+                                    <div class="product__details">
+                                        <a href="<?php echo get_permalink($product_id); ?>" class="product__link2">
+                                            <span class="product__name"><?php echo $product_name; ?></span>
+                                            <div class="rating">
+                                                <?php 
+                                                    if($product->get_average_rating()==5){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                <?php
+                                                    }else if(($product->get_average_rating()>4) && ($product->get_average_rating()<5)){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_half</i>
+                                                <?php
+                                                    }else if($product->get_average_rating() == 4){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if(($product->get_average_rating()>3) && ($product->get_average_rating()<4)){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_half</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if($product->get_average_rating() == 3){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if(($product->get_average_rating()>2) && ($product->get_average_rating()<3)){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_half</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if($product->get_average_rating() == 2){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if(($product->get_average_rating()>1) && ($product->get_average_rating()<2)){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_half</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if($product->get_average_rating() == 1){
+                                                ?>
+                                                        <i class="material-icons">star</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if(($product->get_average_rating()>0) && ($product->get_average_rating()<1)){
+                                                ?>
+                                                        <i class="material-icons">star_half</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }else if($product->get_average_rating() == 0){
+                                                ?>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                        <i class="material-icons">star_outline</i>
+                                                <?php
+                                                    }
+                                                ?>
+                                            </div>
+                                            <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
+                                            <div class="price__holder">
+                                                <div class="product__price">AKZ <?php echo number_format($product_price, 2, ',', '.'); ?></div>
+                                                <?php if($product_sale_price):?>
+                                                <div class="product__price-old"><del>AKZ <?php echo number_format($product_sale_price, 2, ',', '.'); ?></del></div>
+                                                <?php endif?>
+                                            </div>
+                                        </a>
+                                        <div class="product__buttons">
+                                            <button class="product__btn info" id="infoProductModal" data-name="p-<?php echo $i;?>"><i class="material-icons">remove_red_eye</i></button>
+                                            <button class="product__btn addtoWishlist"><i class="material-icons">favorite_border</i></button>
+                                            <button class="product__btn addToCart"> <i class="material-icons">shopping_cart</i></button >
+                                            <!-- onclick="rudrAddToCart(< ?php echo $product_id; ?>, 1)" -->
+                                        </div>
+                                    </div>
+                                    <div class="product_id" id="<?php echo $product_id; ?>" ></div>                                        
+                                </div>
+                                <?php
+                                    $i++;
+                            }
+                        }   
 
-                    <div class="product__card">
-                        <div class="product__img">
-                            <div class="product__discount" style="display:none">10%</div>
-                            <img src="<?php echo get_theme_file_uri('assets/img/26.jpg')?>" alt="">
-                        </div>
-                        <div class="product__details">
-                            <span>Gaming Laptop</span>
-                            <div class="rating">
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                            </div>
-                            <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
-                            <div class="price__holder">
-                                <div class="product__price">AOA 1.090.000</div>
-                                <div class="product__price-old" style="display:none"><del>AOA 100.000</del></div>
-                            </div>
-
-                            <div class="product__buttons">
-                                <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
-                                <button class="product__btn"><i class="material-icons">favorite_border</i></button>
-                                <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product__card">
-                        <div class="product__img">
-                            <div class="product__discount">33%</div>
-                            <img src="<?php echo get_theme_file_uri('assets/img/Left-banner-1-1.jpg')?>" alt="">
-                        </div>
-                        <div class="product__details">
-                            <span>Best Beats</span>
-                            <div class="rating">
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                            </div>
-                            <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
-                            <div class="price__holder">
-                                <div class="product__price">AOA 110.000</div>
-                                <div class="product__price-old"><del>AOA 180.000</del></div>
-                            </div>
-
-                            <div class="product__buttons">
-                                <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
-                                <button class="product__btn"><i class="material-icons">favorite_border</i></button>
-                                <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product__card">
-                        <div class="product__img">
-                            <div class="product__discount">15%</div>
-                            <img src="<?php echo get_theme_file_uri('assets/img/product03.png')?>" alt="">
-                        </div>
-                        <div class="product__details">
-                            <span>Good Tablet</span>
-                            <div class="rating">
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star_half</i>
-                            </div>
-                            <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
-                            <div class="price__holder">
-                                <div class="product__price">AOA 100.000</div>
-                                <div class="product__price-old"><del>AOA 120.000</del></div>
-                            </div>
-
-                            <div class="product__buttons">
-                                <button class="product__btn"><i class="material-icons">remove_red_eye</i></button>
-                                <button class="product__btn"><i class="material-icons">favorite_border</i></button>
-                                <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
-
-                            </div>
-                        </div>
-                    </div>
-
+                     ?>
                 </div>
             </div>
 
@@ -575,14 +796,100 @@
                             <h3 class="modal__title"><?php echo $product_name;?></h3>
                         </div>
                         <div class="modal__product-rating">
-                            <i class="material-icons">star</i>
-                            <i class="material-icons">star</i>
-                            <i class="material-icons">star</i>
-                            <i class="material-icons">star</i>
-                            <i class="material-icons">star_half</i>
+                            <?php 
+                                if($product->get_average_rating()==5){
+                            ?>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                            <?php
+                                }else if(($product->get_average_rating()>4) && ($product->get_average_rating()<5)){
+                            ?>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                            <?php
+                                }else if($product->get_average_rating() == 4){
+                            ?>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_outline</i>
+                            <?php
+                                }else if(($product->get_average_rating()>3) && ($product->get_average_rating()<4)){
+                            ?>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_outline</i>
+                            <?php
+                                }else if($product->get_average_rating() == 3){
+                            ?>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                            <?php
+                                }else if(($product->get_average_rating()>2) && ($product->get_average_rating()<3)){
+                            ?>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                            <?php
+                                }else if($product->get_average_rating() == 2){
+                            ?>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                            <?php
+                                }else if(($product->get_average_rating()>1) && ($product->get_average_rating()<2)){
+                            ?>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                            <?php
+                                }else if($product->get_average_rating() == 1){
+                            ?>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                            <?php
+                                }else if(($product->get_average_rating()>0) && ($product->get_average_rating()<1)){
+                            ?>
+                                    <i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                            <?php
+                                }else if($product->get_average_rating() == 0){
+                            ?>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                            <?php
+                                }
+                            ?>
 
-                            <span class="modal__rating-value">4.4</span>
-                            <span class="modal__rating-total"> 75 Avaliações</span>
+                            <span class="modal__rating-value"><?php echo $product->get_average_rating();?></span>
+                            <span class="modal__rating-total"> (<?php echo $product->get_review_count();?>) - Avaliações</span>
                         </div>
                         <div class="modal__product-price">                            
                             <?php 

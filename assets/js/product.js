@@ -148,12 +148,12 @@ function submitReview(){
             },
             beforeSend: function() {
                 // Show loader or perform any pre-request actions
-                //loader.classList.remove("loader__hidden");
+                loader.classList.remove("loader__hidden");
             },
             success: function (response) {
                 if (response.success) {
                     // Review submitted successfully, display a success message
-                    alert("Review submitted successfully!");
+                    alert("Avaliação submetida com sucesso!");
                     // Optionally, refresh the page or update the review section
                     location.reload();
                 } else {
@@ -165,7 +165,7 @@ function submitReview(){
             },
             complete: function() {
                 // Hide loader or perform any post-request actions
-                //loader.classList.add("loader__hidden");
+                loader.classList.add("loader__hidden");
             }
         });
     }
