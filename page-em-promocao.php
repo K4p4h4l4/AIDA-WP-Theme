@@ -11,207 +11,7 @@
             <!-- *****************************\
                      Menu Principal
             \******************************/-->
-            <div class="main__menu">
-                <ul class="menu__options">
-                    <li class="main__options informatic">
-                        <i class="material-icons">computer</i> 
-                        Informática
-                        <i class="material-icons expand">expand_more</i>
-                        <ul class="main__options-informatic ">
-                            <li class="main__category-holder informatic-submenu">
-                                <a href="" class="main__category">Computadores</a>
-                                <div class="main__category-submenu">
-                                    <ul class="category__submenu-product">
-                                        <li class="poduct__submenu"><a href="" class="product__type">Computadores Portáteis</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">Computadores de Mesa</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="main__category-holder">
-                                <a href="" class="main__category">Armazenamento</a>
-                                <div class="main__category-submenu">
-                                    <ul class="category__submenu-product">
-                                        <li class="poduct__submenu"><a href="" class="product__type">Disco Externo</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">Pen USB</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="main__category-holder">
-                                <a href="" class="main__category">Rede</a>
-                                <div class="main__category-submenu">
-                                    <ul class="category__submenu-product">
-                                        <li class="poduct__submenu"><a href="" class="product__type">Extensor de Sinal</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">Router</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">Switch</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">Telefone</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="main__options tvbox">
-                        <i class="material-icons">airplay</i>
-                        TV Box
-                        <i class="material-icons expand">expand_more</i>
-                        <ul class="main__options-tvbox">
-                            <li class="main__category-holder tvbox-submenu">
-                                <a href="" class="main__category">Android Box</a>
-                                <div class="main__category-submenu">
-                                    <ul class="category__submenu-product">
-                                        <li class="poduct__submenu"><a href="" class="product__type">Android box 1</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">Android box 2</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="main__category-holder">
-                                <a href="" class="main__category">Amazon</a>
-                                <div class="main__category-submenu">
-                                    <ul class="category__submenu-product">
-                                        <li class="poduct__submenu"><a href="" class="product__type">Fire Stick</a></li>
-                                        
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="main__options tablet">
-                        <i class="material-icons">stay_current_portrait</i>
-                        Smartphones e Tablets
-                        <i class="material-icons expand">expand_more</i>
-                        <ul class="main__options-tablet">
-                            <li class="main__category-holder tablet-submenu">
-                                <a href="" class="main__category">Smartphones</a>
-                                <div class="main__category-submenu">
-                                    <ul class="category__submenu-product">
-                                        <li class="poduct__submenu"><a href="" class="product__type">iPhone</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">Android</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="main__category-holder">
-                                <a href="" class="main__category">Smart Wathes</a>
-                                <div class="main__category-submenu">
-                                    <ul class="category__submenu-product">
-                                        <li class="poduct__submenu"><a href="" class="product__type">Apple</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">Android</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="main__category-holder">
-                                <a href="" class="main__category">Tablet</a>
-                                <div class="main__category-submenu">
-                                    <ul class="category__submenu-product">
-                                        <li class="poduct__submenu"><a href="" class="product__type">iPad</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">Android</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">Surface</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="main__options paper">
-                        <i class="material-icons">library_books</i>
-                        Consumívies e Papel
-                        <i class="material-icons expand">expand_more</i>
-                        <ul class="main__options-paper">
-                            <li class="main__category-holder paper-submenu">
-                                <a href="" class="main__category">Tinteiros</a>
-                                <div class="main__category-submenu">
-                                    <ul class="category__submenu-product">
-                                        <li class="poduct__submenu"><a href="" class="product__type">HP</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">Cannon</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="main__category-holder">
-                                <a href="" class="main__category">Toner</a>
-                                <div class="main__category-submenu">
-                                    <ul class="category__submenu-product">
-                                        <li class="poduct__submenu"><a href="" class="product__type">HP</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">Ricoh</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">Kyocera</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="main__category-holder">
-                                <a href="" class="main__category">Papel</a>
-                                <div class="main__category-submenu">
-                                    <ul class="category__submenu-product">
-                                        <li class="poduct__submenu"><a href="" class="product__type">Papel A4</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">Papel A3</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="main__options games">
-                        <i class="material-icons">sports_esports</i>
-                        Jogos e Consola
-                        <i class="material-icons expand">expand_more</i>
-                        <ul class="main__options-games">
-                            <li class="main__category-holder games-submenu">
-                                <a href="" class="main__category">Jogos</a>
-                                <div class="main__category-submenu">
-                                    <ul class="category__submenu-product">
-                                        <li class="poduct__submenu"><a href="" class="product__type">PS5</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">PS4</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="main__category-holder">
-                                <a href="" class="main__category">Consolas</a>
-                                <div class="main__category-submenu">
-                                    <ul class="category__submenu-product">
-                                        <li class="poduct__submenu"><a href="" class="product__type">PS5</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">XBOX</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">PS4</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="main__category-holder">
-                                <a href="" class="main__category">Acessórios</a>
-                                <div class="main__category-submenu">
-                                    <ul class="category__submenu-product">
-                                        <li class="poduct__submenu"><a href="" class="product__type">Headphones</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">Capas PS5</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">Capas PS4</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">Comandos PS5</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">Comandos PS4</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="main__options printer">
-                        <i class="material-icons">adf_scanner</i>
-                        Impressoras e Scaners
-                        <i class="material-icons expand">expand_more</i>
-                        <ul class="main__options-printer">
-                            <li class="main__category-holder printer-submenu">
-                                <a href="" class="main__category">Impressoras</a>
-                                <div class="main__category-submenu">
-                                    <ul class="category__submenu-product">
-                                        <li class="poduct__submenu"><a href="" class="product__type">HP</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">Ricoh</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">Kyocera</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="main__category-holder">
-                                <a href="" class="main__category">Scanners</a>
-                                <div class="main__category-submenu">
-                                    <ul class="category__submenu-product">
-                                        <li class="poduct__submenu"><a href="" class="product__type">HP</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">Brother</a></li>
-                                        <li class="poduct__submenu"><a href="" class="product__type">Fujitsu</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                
-            </div>
+            <?php get_sidebar(); ?>
             
             <div class="catgories__container">
                 <div class="categories__container-header">
@@ -242,66 +42,166 @@
                        <?php
 
                             // Check rows existexists.
-                            if( have_rows('em_promocao') ):
+                            $args = array(
+                                'status' => 'publish', // To retrieve only published products
+                                'limit' => -1, // To retrieve all products that match the criteria
+                                'on_sale' => true, // To retrieve products that are on sale
+                            );
 
-                                // Loop through rows.
-                                while( have_rows('em_promocao') ) : the_row();
-
-                                    // Load sub field value.
-                                    $product_img = get_sub_field('product_img');
-                                    $product_name = get_sub_field('product_name');
-                                    $product_price = get_sub_field('product_price');
-                                    $product_link = get_sub_field('product_link');
-                                    $product_discount = get_sub_field('product_discount');
-                                    $product_old_price = get_sub_field('product_old_price');
+                            //Execução da query
+                            $query = new WC_Product_Query($args);
+                                    
+                            //Vector de produtos
+                            $products = $query->get_products();
+                            
+                            if(! empty($products)){
+                                 $i= 1;
+                                //Loop para listar todos os produtos        
+                                foreach( $products as $product){
+                                    //Obter os dados do vector
+                                    $product_id = $product->get_id();
+                                    $product_name = $product->get_name();
+                                    $product_price = $product->get_regular_price();
+                                    $product_sale_price = $product->get_sale_price();
+                                    $product_img_id = $product->get_image_id();
+                                    /*echo $val;*/
+                                    
+                                    
+                                    if($product_sale_price){
                                     ?>
                                     <div class="product__card">
                                         <div class="product__img">
-                                            <a href="<?php echo $product_link; ?>">
-                                                <?php if($product_discount):?>
+                                            <a href="<?php echo get_permalink($product_id); ?>">
+                                                <?php if($product_sale_price):?>
                                                     <div class="product__discount">
-                                                           <?php echo $product_discount ?>%
+                                                        <?php echo round((1-($product_sale_price/$product_price))*100); ?>%
                                                     </div>
                                                 <?php endif?>
-                                                <img src="<?php echo $product_img['sizes']['product_image_small'];?>" alt="">
+                                                <?php echo wp_get_attachment_image($product_img_id);?>
                                             </a>
 
                                         </div>
                                         <div class="product__details">
-                                             <a href="<?php echo $product_link; ?>">
-                                                 <span><?php echo $product_name; ?></span>
+                                             <a href="<?php echo get_permalink($product_id); ?>">
+                                                 <span class="product__name"><?php echo $product_name; ?></span>
                                                  <div class="rating">
-                                                     <i class="material-icons">star</i>
-                                                     <i class="material-icons">star</i>
-                                                     <i class="material-icons">star</i>
-                                                     <i class="material-icons">star</i>
-                                                     <i class="material-icons">star_half</i>
+                                                     <?php 
+                                                        if($product->get_average_rating()==5){
+                                                    ?>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                    <?php
+                                                        }else if(($product->get_average_rating()>4) && ($product->get_average_rating()<5)){
+                                                    ?>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star_half</i>
+                                                    <?php
+                                                        }else if($product->get_average_rating() == 4){
+                                                    ?>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                    <?php
+                                                        }else if(($product->get_average_rating()>3) && ($product->get_average_rating()<4)){
+                                                    ?>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star_half</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                    <?php
+                                                        }else if($product->get_average_rating() == 3){
+                                                    ?>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                    <?php
+                                                        }else if(($product->get_average_rating()>2) && ($product->get_average_rating()<3)){
+                                                    ?>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star_half</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                    <?php
+                                                        }else if($product->get_average_rating() == 2){
+                                                    ?>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                    <?php
+                                                        }else if(($product->get_average_rating()>1) && ($product->get_average_rating()<2)){
+                                                    ?>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star_half</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                    <?php
+                                                        }else if($product->get_average_rating() == 1){
+                                                    ?>
+                                                            <i class="material-icons">star</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                    <?php
+                                                        }else if(($product->get_average_rating()>0) && ($product->get_average_rating()<1)){
+                                                    ?>
+                                                            <i class="material-icons">star_half</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                    <?php
+                                                        }else if($product->get_average_rating() == 0){
+                                                    ?>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                            <i class="material-icons">star_outline</i>
+                                                    <?php
+                                                        }
+                                                    ?>
                                                  </div>
                                                  <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
                                                  <div class="price__holder">
-                                                     <div class="product__price">AOA <?php echo $product_price; ?></div>
-                                                     <?php if($product_old_price):?>
-                                                         <div class="product__price-old"><del>AOA <?php echo $product_old_price; ?></del></div>
-                                                     <?php endif?>
+                                                     <?php if($product_sale_price):?>
+                                                        <div class="product__price">AKZ <?php echo number_format($product_sale_price, 2, ',', '.'); ?></div>
+                                                        <div class="product__price-old"><del>AKZ <?php echo number_format($product_price, 2, ',', '.'); ?></del></div>
+                                                    <?php else:?>
+                                                        <div class="product__price">AKZ <?php echo number_format($product_price, 2, ',', '.'); ?></div>
+                                                    <?php endif?>
                                                  </div>
                                              </a>
                                              <div class="product__buttons">
-                                                 <button class="product__btn" id="infoProductModal"><i class="material-icons">remove_red_eye</i></button>
-                                                 <button class="product__btn"><i class="material-icons">favorite_border</i></button>
-                                                 <button class="product__btn"><i class="material-icons">shopping_cart</i></button>
+                                                 <button class="product__btn" id="infoProductModal" data-name="p-<?php echo $i;?>"><i class="material-icons">remove_red_eye</i></button>
+                                                 <button class="product__btn addtoWishlist"><i class="material-icons">favorite_border</i></button>
+                                                 <button class="product__btn addToCart"><i class="material-icons">shopping_cart</i></button>
 
                                              </div>
                                          </div>
+                                         <div class="product_id" id="<?php echo $product_id; ?>" ></div>
                                      </div>
                                      <?php
-
-                                // End loop.
-                                endwhile;
-
-                            // No value.
-                            else :
-                                // Do something...
-                            endif;
+                                    }
+                                        $i++;
+                                }
+                            }   
+                            
                          ?>                    
                          
                     </div>
@@ -309,6 +209,176 @@
             
         </div>
     </section>
+    
+<!-- *****************************\
+        Modal de produtos
+\******************************/-->
+<div class="bg-modal">
+    <div class="modal__content">
+        <div class="modal__close">
+            <div class="modal__close-btn">+</div>
+        </div>
+         <?php
+            $i=1;
+            foreach( $products as $product){
+                //Obter os dados do vector
+                $product_id = $product->get_id();
+                $product_name = $product->get_name();
+                $product_price = $product->get_regular_price();
+                $product_sale_price = $product->get_sale_price();
+                $product_img_id = $product->get_image_id();
+                
+                echo $product_sale_price;
+                //if(isset($product_sale_price)){
+                ?>
+                <div class="modal__container-info" data-target="p-<?php echo $i;?>">
+                    
+                    <div class="modal__product-img">
+                        <?php echo wp_get_attachment_image($product_img_id);?>
+                    </div>
+                    <div class="modal__product-info">
+                        <div class="modal__product-title">
+                            <h3 class="modal__title"><?php echo $product_name;?></h3>
+                        </div>
+                        <div class="modal__product-rating">
+                            <?php 
+                                if($product->get_average_rating()==5){
+                            ?>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                            <?php
+                                }else if(($product->get_average_rating()>4) && ($product->get_average_rating()<5)){
+                            ?>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                            <?php
+                                }else if($product->get_average_rating() == 4){
+                            ?>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_outline</i>
+                            <?php
+                                }else if(($product->get_average_rating()>3) && ($product->get_average_rating()<4)){
+                            ?>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_outline</i>
+                            <?php
+                                }else if($product->get_average_rating() == 3){
+                            ?>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                            <?php
+                                }else if(($product->get_average_rating()>2) && ($product->get_average_rating()<3)){
+                            ?>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                            <?php
+                                }else if($product->get_average_rating() == 2){
+                            ?>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                            <?php
+                                }else if(($product->get_average_rating()>1) && ($product->get_average_rating()<2)){
+                            ?>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                            <?php
+                                }else if($product->get_average_rating() == 1){
+                            ?>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                            <?php
+                                }else if(($product->get_average_rating()>0) && ($product->get_average_rating()<1)){
+                            ?>
+                                    <i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                            <?php
+                                }else if($product->get_average_rating() == 0){
+                            ?>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                            <?php
+                                }
+                            ?>
+
+                            <span class="modal__rating-value"><?php echo $product->get_average_rating();?></span>
+                            <span class="modal__rating-total"> (<?php echo $product->get_review_count();?>) - Avaliações</span>
+                        </div>
+                        <div class="modal__product-price">                            
+                            <?php 
+                                if($product->get_sale_price()):?>
+                                    <h3 class="modal__price">AKZ <?php echo number_format($product->get_sale_price(), 2, ',', '.');?></h3>
+                                    <del>AKZ <?php echo number_format($product->get_regular_price(),  2, ',', '.'); ?></del>
+                                <?php else:?>
+                                    <h3 class="modal__price">AKZ <?php echo number_format($product->get_regular_price(),  2, ',', '.');?></h3>
+                                <?php endif?>
+                        </div>
+                        <div class="modal__product-stock">
+                            <span class="modal__stock-txt">
+                                <?php                                        
+                                    if($product->get_stock_status()=="instock"){
+                                        echo "Em Estoque"; 
+                                    }elseif($product->get_stock_status()=="outofstock"){
+                                        echo "Esgotado"; 
+                                    }elseif($product->get_stock_status()=="onbackorder"){
+                                        echo "Por Encomenda"; 
+                                    }
+                                ?> 
+                            </span>
+                        </div>
+                        <div class="modal__product-qtde">
+                            <label for="Quantidade">Qtde:</label>
+                            <input type="number" min="1" value="1" max="100" class="modal__quantity">
+                            <button class="modal__product-cart" >
+                                <!-- onclick="rudrAddToCart(< ?php echo $product->get_ID(); ?>, 1)"-->
+                                <i class="material-icons">shopping_cart</i>
+                                Adicionar ao carrinho
+                            </button>
+                        </div>
+                        <div class="modal__product-description">
+                            <?php echo $product->get_short_description();?>
+                        </div>
+                    </div>
+                    <div class="modal__product-id" id="<?php echo $product->get_ID(); ?>"></div>
+                </div>
+            <?php
+               // }
+                $i++;
+            } ?>
+    </div>        
+</div>
     
 <?php 
     //get footer.php file

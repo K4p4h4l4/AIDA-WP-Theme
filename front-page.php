@@ -559,9 +559,11 @@
                                                 </div>
                                                 <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
                                                 <div class="price__holder">
-                                                    <div class="product__price">AKZ <?php echo number_format($product_price, 2, ',', '.'); ?></div>
                                                     <?php if($product_sale_price):?>
-                                                    <div class="product__price-old"><del>AKZ <?php echo number_format($product_sale_price, 2, ',', '.'); ?></del></div>
+                                                        <div class="product__price">AKZ <?php echo number_format($product_sale_price, 2, ',', '.'); ?></div>
+                                                        <div class="product__price-old"><del>AKZ <?php echo number_format($product_price, 2, ',', '.'); ?></del></div>
+                                                    <?php else:?>
+                                                        <div class="product__price">AKZ <?php echo number_format($product_price, 2, ',', '.'); ?></div>
                                                     <?php endif?>
                                                 </div>
                                             </a>
@@ -736,9 +738,11 @@
                                             </div>
                                             <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, sit.</p-->
                                             <div class="price__holder">
-                                                <div class="product__price">AKZ <?php echo number_format($product_price, 2, ',', '.'); ?></div>
                                                 <?php if($product_sale_price):?>
-                                                <div class="product__price-old"><del>AKZ <?php echo number_format($product_sale_price, 2, ',', '.'); ?></del></div>
+                                                    <div class="product__price">AKZ <?php echo number_format($product_sale_price, 2, ',', '.'); ?></div>
+                                                    <div class="product__price-old"><del>AKZ <?php echo number_format($product_price, 2, ',', '.'); ?></del></div>
+                                                <?php else:?>
+                                                    <div class="product__price">AKZ <?php echo number_format($product_price, 2, ',', '.'); ?></div>
                                                 <?php endif?>
                                             </div>
                                         </a>
@@ -782,8 +786,6 @@
                 $product_price = $product->get_regular_price();
                 $product_sale_price = $product->get_sale_price();
                 $product_img_id = $product->get_image_id();
-                /*echo $val;*/
-
 
                 ?>
                 <div class="modal__container-info" data-target="p-<?php echo $i;?>">

@@ -517,7 +517,7 @@ function remove_product_from_order_callback() {
         // Calculate totals and save the order
         $order->calculate_totals();
         $order->save();
-        
+        $_SESSION['cart'] = $order;
         wp_send_json(['success' => true, 'message' => 'Produto removido da encomenda']);
     } else {
         wp_send_json(['success' => false, 'message' => 'Erro ao remover produto da encomenda']);

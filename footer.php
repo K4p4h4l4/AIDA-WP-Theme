@@ -92,8 +92,7 @@
         </div>
     </div>
     <?php wp_footer(); ?>
-    <!--script src="./js/home.js"></script>
-    <script src="js/default.js"></script-->
+    
 </body>
 
 </html>

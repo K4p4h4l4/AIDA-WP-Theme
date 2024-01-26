@@ -502,6 +502,7 @@ function callCheckout(){
     
     for(let i =0; i<productDataArray.length; i++){
         createOrderAndAddProduct(productDataArray[i]['id'], productDataArray[i]['quantity']);
+        //rudrAddToCart(productDataArray[i]['id'],productDataArray[i]['quantity'])
     }
     let check_cart = 1;
     jQuery.ajax({
