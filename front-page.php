@@ -105,13 +105,13 @@
                             if(! empty($products)){
                                  $i= 1;
                                 //Loop para listar todos os produtos        
-                                foreach( $products as $product){
+                                foreach( $products as $product1){
                                     //Obter os dados do vector
-                                    $product_id = $product->get_id();
-                                    $product_name = $product->get_name();
-                                    $product_price = $product->get_regular_price();
-                                    $product_sale_price = $product->get_sale_price();
-                                    $product_img_id = $product->get_image_id();
+                                    $product_id = $product1->get_id();
+                                    $product_name = $product1->get_name();
+                                    $product_price = $product1->get_regular_price();
+                                    $product_sale_price = $product1->get_sale_price();
+                                    $product_img_id = $product1->get_image_id();
                                     /*echo $val;*/
                                     
                                     
@@ -129,7 +129,7 @@
                                             </div>
                                             <div class="popular__product-rating">
                                                 <?php 
-                                                    if($product->get_average_rating()==5){
+                                                    if($product1->get_average_rating()==5){
                                                 ?>
                                                         <i class="material-icons">star</i>
                                                         <i class="material-icons">star</i>
@@ -137,7 +137,7 @@
                                                         <i class="material-icons">star</i>
                                                         <i class="material-icons">star</i>
                                                 <?php
-                                                    }else if(($product->get_average_rating()>4) && ($product->get_average_rating()<5)){
+                                                    }else if(($product1->get_average_rating()>4) && ($product1->get_average_rating()<5)){
                                                 ?>
                                                         <i class="material-icons">star</i>
                                                         <i class="material-icons">star</i>
@@ -145,7 +145,7 @@
                                                         <i class="material-icons">star</i>
                                                         <i class="material-icons">star_half</i>
                                                 <?php
-                                                    }else if($product->get_average_rating() == 4){
+                                                    }else if($product1->get_average_rating() == 4){
                                                 ?>
                                                         <i class="material-icons">star</i>
                                                         <i class="material-icons">star</i>
@@ -153,7 +153,7 @@
                                                         <i class="material-icons">star</i>
                                                         <i class="material-icons">star_outline</i>
                                                 <?php
-                                                    }else if(($product->get_average_rating()>3) && ($product->get_average_rating()<4)){
+                                                    }else if(($product1->get_average_rating()>3) && ($product1->get_average_rating()<4)){
                                                 ?>
                                                         <i class="material-icons">star</i>
                                                         <i class="material-icons">star</i>
@@ -161,7 +161,7 @@
                                                         <i class="material-icons">star_half</i>
                                                         <i class="material-icons">star_outline</i>
                                                 <?php
-                                                    }else if($product->get_average_rating() == 3){
+                                                    }else if($product1->get_average_rating() == 3){
                                                 ?>
                                                         <i class="material-icons">star</i>
                                                         <i class="material-icons">star</i>
@@ -169,7 +169,7 @@
                                                         <i class="material-icons">star_outline</i>
                                                         <i class="material-icons">star_outline</i>
                                                 <?php
-                                                    }else if(($product->get_average_rating()>2) && ($product->get_average_rating()<3)){
+                                                    }else if(($product1->get_average_rating()>2) && ($product1->get_average_rating()<3)){
                                                 ?>
                                                         <i class="material-icons">star</i>
                                                         <i class="material-icons">star</i>
@@ -177,7 +177,7 @@
                                                         <i class="material-icons">star_outline</i>
                                                         <i class="material-icons">star_outline</i>
                                                 <?php
-                                                    }else if($product->get_average_rating() == 2){
+                                                    }else if($product1->get_average_rating() == 2){
                                                 ?>
                                                         <i class="material-icons">star</i>
                                                         <i class="material-icons">star</i>
@@ -185,7 +185,7 @@
                                                         <i class="material-icons">star_outline</i>
                                                         <i class="material-icons">star_outline</i>
                                                 <?php
-                                                    }else if(($product->get_average_rating()>1) && ($product->get_average_rating()<2)){
+                                                    }else if(($product1->get_average_rating()>1) && ($product1->get_average_rating()<2)){
                                                 ?>
                                                         <i class="material-icons">star</i>
                                                         <i class="material-icons">star_half</i>
@@ -193,7 +193,7 @@
                                                         <i class="material-icons">star_outline</i>
                                                         <i class="material-icons">star_outline</i>
                                                 <?php
-                                                    }else if($product->get_average_rating() == 1){
+                                                    }else if($product1->get_average_rating() == 1){
                                                 ?>
                                                         <i class="material-icons">star</i>
                                                         <i class="material-icons">star_outline</i>
@@ -201,7 +201,7 @@
                                                         <i class="material-icons">star_outline</i>
                                                         <i class="material-icons">star_outline</i>
                                                 <?php
-                                                    }else if(($product->get_average_rating()>0) && ($product->get_average_rating()<1)){
+                                                    }else if(($product1->get_average_rating()>0) && ($product1->get_average_rating()<1)){
                                                 ?>
                                                         <i class="material-icons">star_half</i>
                                                         <i class="material-icons">star_outline</i>
@@ -209,7 +209,7 @@
                                                         <i class="material-icons">star_outline</i>
                                                         <i class="material-icons">star_outline</i>
                                                 <?php
-                                                    }else if($product->get_average_rating() == 0){
+                                                    }else if($product1->get_average_rating() == 0){
                                                 ?>
                                                         <i class="material-icons">star_outline</i>
                                                         <i class="material-icons">star_outline</i>
