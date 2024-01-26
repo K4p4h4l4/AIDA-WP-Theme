@@ -1338,7 +1338,6 @@ function submit_product_review_callback() {
                 if ($comment_id) {
                     // Update WooCommerce's product rating and count
                     update_comment_meta($comment_id, 'rating', $rating);
-                    //wc_update_product_reviews_count($product_id);
 
                     wp_send_json(['success' => true, 'message' => 'Avaliação submetida com sucesso.']);
                 } else {
