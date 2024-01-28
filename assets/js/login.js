@@ -38,6 +38,8 @@ function fazerLogin(){
                 },
                 success: function(response) {
                     // Handle the server's response
+                    // Hide loader or perform any post-request actions
+                    loader.classList.add("loader__hidden");
                     if (response.success) {
                         console.log(response.message);
                         // Redirect or perform any action upon successful login
@@ -47,12 +49,13 @@ function fazerLogin(){
                     }
                 },
                 error: function(error) {
+                    // Hide loader or perform any post-request actions
+                    loader.classList.add("loader__hidden");
                     console.error('Error:', error);
                 },
                 complete: function() {
-                    setInterval(()=>{}, 4000);
-                    // Hide loader or perform any post-request actions
-                    loader.classList.add("loader__hidden");
+                    //setInterval(()=>{}, 4000);
+                    
                 }
             });
        }else{

@@ -308,7 +308,7 @@ function updateTotal(){
         let quantity = quantityElement.value;
         let product_id = product_ids[i].getAttribute('data-product-id');
         //console.log(product_id);
-        let order_number = localStorage.getItem('orderID');
+        //let order_number = localStorage.getItem('orderID');
         
         //updateOrderItemQuantity(order_number, product_id, quantity)
         updateCartItemQuantity(product_id, quantity);
@@ -366,7 +366,7 @@ function rudrAddToCart( product_id, quantity) {
 //remover o item do backend
 function removeCartItemBack(chave){
     let cartItemKey = chave;
-    let order_number = localStorage.getItem('orderID');
+    //let order_number = localStorage.getItem('orderID');
     //Função para remover o produto da encomenda
     //removeProductFromOrder(order_number, cartItemKey);
     jQuery.ajax({
@@ -375,7 +375,7 @@ function removeCartItemBack(chave){
         data: {
             action: 'remove_cart_item', // Action hook for the AJAX handler
             cart_item_key: cartItemKey, // The key of the cart item to remove
-            orderID: order_number,
+            //orderID: order_number,
         },
         beforeSend: function(){
             loader.classList.remove("loader__hidden");
@@ -444,24 +444,6 @@ function callCart(){
         success: function (response) {
             // Handle the server's response
             if (response.exists) {
-                //if(itemsList.length > 0){
-        
-                    /*for(let i = 0; i < itemsList.length; i++){
-                        let product_id = itemsList[i].children[2].getAttribute('data-product-id');
-                        let product_qtde = itemsList[i].children[1].children[1].children[0].value;
-
-                        let order_number = localStorage.getItem('orderID');
-                        //console.log(order_number, product_id, product_qtde);
-                        //actualizar as quantidades dos produtos do carrinho
-                        updateCartItemQuantity(order_number, product_id, product_qtde);
-                        //setInterval(function (){},3000);
-                        //actualizar as quantidades dos produtos da encomenda
-                        updateOrderItemQuantity(order_number, product_id, product_qtde);
-                        //setInterval(function (){},3000);
-                        //Actualizar as facturas
-                    }*/
-                    //loader.classList.add("loader__hidden");
-                    //window.location.assign('http://localhost:81/wordpress/carrinho/');
                     window.location.href = './carrinho/';
 
                 //}
@@ -519,20 +501,6 @@ function callCheckout(){
         success: function (response) {
             // Handle the server's response
             if (response.exists) {
-                /*for(let i = 0; i < itemsList.length; i++){
-                    let product_id = itemsList[i].children[2].getAttribute('data-product-id');
-                    let product_qtde = itemsList[i].children[1].children[1].children[0].value;
-
-                    let order_number = localStorage.getItem('orderID');
-                    //console.log(order_number, product_id, product_qtde);
-                    //actualizar as quantidades dos produtos do carrinho
-                    updateCartItemQuantity(order_number, product_id, product_qtde);
-                    //setInterval(function (){},3000);
-                    //actualizar as quantidades dos produtos da encomenda
-                    updateOrderItemQuantity(order_number, product_id, product_qtde);
-                    //setInterval(function (){},3000);
-                    //Actualizar as facturas
-                }*/
                 window.location.href = './checkout/'; 
             } else {
                 loader.classList.add("loader__hidden");
@@ -566,7 +534,7 @@ function createOrderAndAddProduct(productID, quantity) {
       success: function (data) {
           // Handle the response from the server (e.g., success or error message)        
           let order_number = data.order_number;
-          localStorage.setItem('orderID', order_number);
+          //localStorage.setItem('orderID', order_number);
           //console.log(order_number, data.message);
       },
       error: function (error) {

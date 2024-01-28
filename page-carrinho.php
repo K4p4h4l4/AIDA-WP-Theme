@@ -124,13 +124,16 @@
                     <button class="button__actions" onclick="location.href='./home/'"> <i class="material-icons">arrow_back</i> Continuar a comprar</button>
                     <?php
                         // Check if an order (cart) exists in the session
+                    
                         if (isset($_SESSION['cart'])) {
-                            $order = $_SESSION['cart'];
+                            $encomenda = $_SESSION['cart'];
                         }
+                    
+                    
                     ?>
                     <button class="button__actions" id="invoice-btn" data-order="<?php
-                                                                                    if (isset($order)) {
-                                                                                        echo $order->get_id();
+                                                                                    if($encomenda){
+                                                                                        echo $encomenda->get_id();
                                                                                     }
                                                                                      ?>"> <i class="material-icons">article</i> Consultar preço</button>
                     <button class="button__actions" id="checkout"> <i class="material-icons">done</i> Finalizar compra</button> 
@@ -143,5 +146,6 @@
     
 <?php 
     
-    get_footer();        
+    get_footer(); 
+
 ?>
