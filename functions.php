@@ -1424,6 +1424,31 @@ function submit_product_review_callback() {
     wp_die();
 }
 
+function fetch_product_info() {
+    $product_id = isset($_POST['product_id']) ? intval($_POST['product_id']) : 0;
+
+    if ($product_id) {
+        $product = wc_get_product($product_id);
+        if ($product) {
+            $response = array(
+                'image' => wp_get_attachment_url($product->get_image_id()),
+                'name' => $product->get_name(),
+                'regular_price' => $product->get_regular_price(),
+                'sales_price'=>$product->get_sale_price(),
+                'rating' => $product->get_average_rating(),
+                'review_count' => $product->get_review_count(),
+                'stock_status' => $product->get_stock_status(),
+                'description' => $product->get_description()
+            );
+            wp_send_json_success($response);
+        }
+    }
+
+    wp_send_json_error('Product not found');
+}
+
+add_action('wp_ajax_fetch_product_info', 'fetch_product_info');
+add_action('wp_ajax_nopriv_fetch_product_info', 'fetch_product_info');
 
 
 

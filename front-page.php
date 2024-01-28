@@ -777,142 +777,27 @@
         <div class="modal__close">
             <div class="modal__close-btn">+</div>
         </div>
-         <?php
-            $i=1;
-            foreach( $products as $product){
-                //Obter os dados do vector
-                $product_id = $product->get_id();
-                $product_name = $product->get_name();
-                $product_price = $product->get_regular_price();
-                $product_sale_price = $product->get_sale_price();
-                $product_img_id = $product->get_image_id();
-
-                ?>
-                <div class="modal__container-info" data-target="p-<?php echo $i;?>">
+         
+                <div class="modal__container-info" data-target="p-1">
                     <div class="modal__product-img">
-                        <!--img src="< ?php echo get_theme_file_uri('assets/img/8.jpg')?>" alt=""-->
-                        <?php echo wp_get_attachment_image($product_img_id);?>
+                        <img class="img" >
                     </div>
                     <div class="modal__product-info">
                         <div class="modal__product-title">
-                            <h3 class="modal__title"><?php echo $product_name;?></h3>
+                            <h3 class="modal__title"></h3>
                         </div>
                         <div class="modal__product-rating">
-                            <?php 
-                                if($product->get_average_rating()==5){
-                            ?>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                            <?php
-                                }else if(($product->get_average_rating()>4) && ($product->get_average_rating()<5)){
-                            ?>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star_half</i>
-                            <?php
-                                }else if($product->get_average_rating() == 4){
-                            ?>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star_outline</i>
-                            <?php
-                                }else if(($product->get_average_rating()>3) && ($product->get_average_rating()<4)){
-                            ?>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star_half</i>
-                                    <i class="material-icons">star_outline</i>
-                            <?php
-                                }else if($product->get_average_rating() == 3){
-                            ?>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star_outline</i>
-                                    <i class="material-icons">star_outline</i>
-                            <?php
-                                }else if(($product->get_average_rating()>2) && ($product->get_average_rating()<3)){
-                            ?>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star_half</i>
-                                    <i class="material-icons">star_outline</i>
-                                    <i class="material-icons">star_outline</i>
-                            <?php
-                                }else if($product->get_average_rating() == 2){
-                            ?>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star_outline</i>
-                                    <i class="material-icons">star_outline</i>
-                                    <i class="material-icons">star_outline</i>
-                            <?php
-                                }else if(($product->get_average_rating()>1) && ($product->get_average_rating()<2)){
-                            ?>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star_half</i>
-                                    <i class="material-icons">star_outline</i>
-                                    <i class="material-icons">star_outline</i>
-                                    <i class="material-icons">star_outline</i>
-                            <?php
-                                }else if($product->get_average_rating() == 1){
-                            ?>
-                                    <i class="material-icons">star</i>
-                                    <i class="material-icons">star_outline</i>
-                                    <i class="material-icons">star_outline</i>
-                                    <i class="material-icons">star_outline</i>
-                                    <i class="material-icons">star_outline</i>
-                            <?php
-                                }else if(($product->get_average_rating()>0) && ($product->get_average_rating()<1)){
-                            ?>
-                                    <i class="material-icons">star_half</i>
-                                    <i class="material-icons">star_outline</i>
-                                    <i class="material-icons">star_outline</i>
-                                    <i class="material-icons">star_outline</i>
-                                    <i class="material-icons">star_outline</i>
-                            <?php
-                                }else if($product->get_average_rating() == 0){
-                            ?>
-                                    <i class="material-icons">star_outline</i>
-                                    <i class="material-icons">star_outline</i>
-                                    <i class="material-icons">star_outline</i>
-                                    <i class="material-icons">star_outline</i>
-                                    <i class="material-icons">star_outline</i>
-                            <?php
-                                }
-                            ?>
+                            
 
-                            <span class="modal__rating-value"><?php echo $product->get_average_rating();?></span>
-                            <span class="modal__rating-total"> (<?php echo $product->get_review_count();?>) - Avaliações</span>
+                            <span class="modal__rating-value">2</span>
+                            <span class="modal__rating-total">1</span>
                         </div>
                         <div class="modal__product-price">                            
-                            <?php 
-                                if($product->get_sale_price()):?>
-                                    <h3 class="modal__price">AKZ <?php echo number_format($product->get_sale_price(), 2, ',', '.');?></h3>
-                                    <del>AKZ <?php echo number_format($product->get_regular_price(),  2, ',', '.'); ?></del>
-                                <?php else:?>
-                                    <h3 class="modal__price">AKZ <?php echo number_format($product->get_regular_price(),  2, ',', '.');?></h3>
-                                <?php endif?>
+                            
                         </div>
                         <div class="modal__product-stock">
                             <span class="modal__stock-txt">
-                                <?php                                        
-                                    if($product->get_stock_status()=="instock"){
-                                        echo "Em Estoque"; 
-                                    }elseif($product->get_stock_status()=="outofstock"){
-                                        echo "Esgotado"; 
-                                    }elseif($product->get_stock_status()=="onbackorder"){
-                                        echo "Por Encomenda"; 
-                                    }
-                                ?> 
+                                 
                             </span>
                         </div>
                         <div class="modal__product-qtde">
@@ -925,14 +810,14 @@
                             </button>
                         </div>
                         <div class="modal__product-description">
-                            <?php echo $product->get_short_description();?>
+                            <?php //echo $product->get_short_description();?>
                         </div>
                     </div>
-                    <div class="modal__product-id" id="<?php echo $product->get_ID(); ?>"></div>
+                    <div class="modal__product-id" id="<?php //echo $product->get_ID(); ?>"></div>
                 </div>
             <?php
-                $i++;
-            } ?>
+                /*$i++;
+            }*/ ?>
     </div>        
 </div>
 

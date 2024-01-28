@@ -6,7 +6,7 @@ if(modal){
 }
 
 
-document.querySelectorAll('.product__buttons .info').forEach(product =>{
+/*document.querySelectorAll('.product__buttons .info').forEach(product =>{
     product.onclick = () =>{
         modal.style.display = 'flex';
         
@@ -23,7 +23,141 @@ document.querySelectorAll('.product__buttons .info').forEach(product =>{
             });
         //});
     }
+});*/
+
+document.addEventListener('DOMContentLoaded', function() {
+    var infoButtons = document.querySelectorAll('.product__btn.info');
+
+    infoButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var productId = this.closest('.product__card').querySelector('.product_id').id;
+            
+            fetchProductInfo(productId);
+        });
+    });
 });
+
+function fetchProductInfo(productId) {
+    let infoPreview = modal.querySelectorAll('.modal__container-info');
+    let productInfoModal = document.querySelector('.bg-modal');
+    let productImage = document.querySelector('.img');
+    let productName = document.querySelector('.modal__title');
+    let productPrice = document.querySelector('.modal__product-price');
+    let productStarsRating = document.querySelector('.modal__product-rating');
+    let productAverageRating = document.querySelector('.modal__rating-value');
+    let productTotalReviews = document.querySelector('.modal__rating-total');
+    let productStockStatus = document.querySelector('.modal__stock-txt');
+    let productDesciption = document.querySelector('.modal__product-description');
+    let productID = document.querySelector('.modal__product-id');
+    
+    jQuery.ajax({
+        url: './wp-admin/admin-ajax.php',
+        type: 'POST',
+        data: {
+            'action': 'fetch_product_info',
+            'product_id': productId
+        },
+        success: function(response) {
+            console.log(productAverageRating); // You can replace this with code to display the product info
+            //infoPreview[0].classList.add('modalactive');
+            productInfoModal.style.display='flex';
+            productImage.src = response.data.image;
+            productName.innerText = response.data.name;
+            productAverageRating.innerText = response.data.rating;
+            
+            
+            productTotalReviews.innerText=`(${response.data.review_count}) - Avaliações`;
+            
+            if(response.data.stock_status == "instock"){
+                productStockStatus.innerText = "Em Estoque"; 
+            }else if(response.data.stock_status == "outofstock"){
+                productStockStatus.innerText = "Esgotado"; 
+            }else if(response.data.stock_status == "onbackorder"){
+                productStockStatus.innerText = "Por Encomenda"; 
+            }
+            
+            /*if(response.data.sales_price){
+                
+                productPrice.innerHTML = ` <h3 class="modal__price">AKZ ${response.data.sales_price.replace("Kz", "")} </h3>
+                                    <del>AKZ ${response.data.regular_price.replace("Kz", "")}</del>`; 
+            }else{
+                productPrice.innerHTML = ` <h3 class="modal__price">AKZ ${Intl.NumberFormat('de-DE', { style: 'currency', currency: 'AKZ', minimumFractionDigits: 2 }).format(response.data.regular_price).replace("AKZ", "")} </h3>`;
+            }*/
+            
+            if(response.data.rating == 5){
+               productStarsRating.innerHTML = `<i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>`;
+            }else if(response.data.rating > 4 &&  response.data.rating < 5){
+                productStarsRating.innerHTML = `<i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>`;    
+            }else if(response.data.rating == 4){
+                productStarsRating.innerHTML = `<i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_outline</i>`;    
+            }else if(response.data.rating > 3 &&  response.data.rating < 4){
+                productStarsRating.innerHTML = `<i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_outline</i>`;    
+            }else if(response.data.rating == 3){
+                productStarsRating.innerHTML = `<i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>`;    
+            }else if(response.data.rating > 2 &&  response.data.rating < 3){
+                productStarsRating.innerHTML = `<i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>`;    
+            }else if(response.data.rating == 2){
+                productStarsRating.innerHTML = `<i class="material-icons">star</i>
+                                    <i class="material-icons">star</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>`;    
+            }else if(response.data.rating > 1 &&  response.data.rating < 2){
+                productStarsRating.innerHTML = `<i class="material-icons">star</i>
+                                    <i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>`;    
+            }else if(response.data.rating == 1){
+                productStarsRating.innerHTML = `<i class="material-icons">star</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>`;    
+            }else if(response.data.rating > 0 &&  response.data.rating < 1){
+                productStarsRating.innerHTML = `<i class="material-icons">star_half</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>`;    
+            }else if(response.data.rating == 0){
+                productStarsRating.innerHTML = `<i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i>
+                                    <i class="material-icons">star_outline</i> `;    
+            }
+            
+            productDesciption.innerHTML = `${response.data.description}`;
+            
+            
+        }
+    });
+}
 
 let modal__close = document.querySelector('.modal__close-btn');
 if(modal__close){
@@ -32,8 +166,3 @@ if(modal__close){
         document.querySelector('.bg-modal').style.display='none';
     });
 }
-
-
-/*document.querySelector('.bg-modal').addEventListener('click', function(){
-   document.querySelector('.bg-modal').style.display='none'; 
-});*/
