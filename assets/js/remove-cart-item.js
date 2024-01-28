@@ -381,14 +381,15 @@ function removeCartItemBack(chave){
             loader.classList.remove("loader__hidden");
         },
         success: function(response) {
-            if (response === 'success') {
+            /*if (response === 'success') {
                 // Handle success - you can update the cart display or perform other actions
                 //window.location.reload();
                 //console.log('Removido com sucesso');
             } else {
                 // Handle error
                 alert('Um erro ocorreu enquanto removia-se um produto do carrinho .');
-            }
+            }*/
+            console.log(response.message);
         },
         complete: function(){
             loader.classList.add("loader__hidden");

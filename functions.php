@@ -309,17 +309,41 @@
 
     //Remover item da lista de produtos
     function remove_cart_item_callback() {
-        if (isset($_POST['cart_item_key']) && isset($_POST['orderID'])) {
-            $order_id = $_POST['orderID'];
-            $order = wc_get_order($order_id); // Retrieve the order object by ID
+        if (isset($_POST['cart_item_key']) || isset($_SESSION['cart'])) {
             
             $product_cart_id = WC()->cart->generate_cart_id( $_POST['cart_item_key'] );
             $product_item_key = WC()->cart->find_product_in_cart($product_cart_id); 
-            $cart_item_key = sanitize_text_field($product_item_key); 
+            $cart_item_key = sanitize_text_field($product_item_key);
+            
+            // Remove the item from the cart
             WC()->cart->remove_cart_item($cart_item_key);
-            echo 'success';
+            
+            if(isset($_SESSION['cart'])){
+                //$order_id = $_POST['orderID'];
+                $order = $_SESSION['cart']; // Retrieve the order object by ID
+                
+                if ($order) {
+                    // Remove the item from the order
+                    foreach ($order->get_items() as $item_id => $item) {
+                        if ($item->get_id() === $cart_item_key) {
+                            $order->remove_item($item_id);
+                            break;
+                        }
+                    }
+                    
+                    // Calculate totals and save the order
+                    $order->calculate_totals();
+                    
+                    // Save the updated order
+                    $order->save();
+                }
+                
+                $_SESSION['cart'] = $order;
+            }
+            
+            wp_send_json(['success' => true, 'message' => ' Produto removido com sucesso']);
         } else {
-            echo 'error';
+            wp_send_json(['success' => false, 'message' => ' Erro ao remover produto']);
         }
         die();
     }
@@ -346,6 +370,29 @@
             // Calculate totals and return the updated cart HTML
             $totals = WC()->cart->calculate_totals();
             $updated_cart_html = WC()->cart->get_cart_contents();
+            
+            // Check if an order (cart) exists in the session
+            if (isset($_SESSION['cart'])) {
+                $order = $_SESSION['cart'];
+
+                // Check if the product already exists in the order
+                $existing_items = $order->get_items();
+                $product_exists = false;
+
+                foreach ($existing_items as $item_id => $item) {
+                    if ($item->get_product_id() == $product_id) {
+                        // Update the quantity of the existing product
+
+                        $item->set_quantity($new_quantity);
+                        $product_exists = true;
+                        break;
+                    }
+                }
+
+                // Calculate totals and save the order
+                $order->calculate_totals();
+                $order->save();
+            }
             
             wp_send_json(['success' => true, 'message' => ' Quantidade de produto actualizada com sucesso: '.$totals]);
         } else {
@@ -389,23 +436,47 @@ function create_order_and_add_product_callback() {
      // Check if an order (cart) exists in the session
     if (isset($_SESSION['cart'])) {
         $order = $_SESSION['cart'];
+        
+        // Check if the product already exists in the order
+        $existing_items = $order->get_items();
+        $product_exists = false;
+        
+        foreach ($existing_items as $item_id => $item) {
+            if ($item->get_product_id() == $product_id) {
+                // Update the quantity of the existing product
+    
+                $item->set_quantity($quantity);
+                $product_exists = true;
+                break;
+            }
+        }
+        
+        if (!$product_exists) {
+            // Add the product to the order
+            $order->add_product(wc_get_product($product_id), $quantity);
+        }
+
+        // Calculate totals and save the order
+        $order->calculate_totals();
     } else {
         // If no cart exists, create a new one
         $order = wc_create_order();
         $_SESSION['cart'] = $order;
+        
+        // Add the product to the order
+        $order->add_product(wc_get_product($product_id), $quantity);
+
+        // Calculate totals and save the order
+        $order->calculate_totals();
     }
     
     if(is_user_logged_in()){
         $user_id = get_current_user_id(); // Get the current logged-in user ID
         // Set the user ID for the order
         $order->set_customer_id($user_id);
+        
     }
     
-    // Add the product to the order
-    $order->add_product(wc_get_product($product_id), $quantity);
-
-    // Calculate totals and save the order
-    $order->calculate_totals();
     // Update the order status
     $order->set_status('pending');
     $order->save();
@@ -835,13 +906,6 @@ function download_invoice_callback() {
 
 // PHP function to check if an order exists
 function check_order_exists_callback() {
-  // Get the order ID from the AJAX request
-  /*$order = isset($_SESSION['cart']) ? absint($_SESSION['cart']) : 0;
-    
-  $check_cart = $_POST['check_cart'];
-
-  // Check if the order exists
-  $order_exists = wc_get_order($order->get_id()) ? true : false;*/
   $itens = $_POST['check_cart'];
   if($itens > 0){
       $order_exists = true;
@@ -1108,9 +1172,13 @@ add_action('wp_ajax_nopriv_custom_logout', 'custom_logout');
 
 function custom_logout() {
     wp_logout(); // Log the user out
+    
+    //Unset your custom session variable cart
+    unset($_SESSION['cart']);
 
     // Send a response to indicate a successful logout
     wp_send_json(['success' => true]);
+    
     wp_die();
 }
 
