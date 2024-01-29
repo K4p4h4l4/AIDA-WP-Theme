@@ -101,43 +101,10 @@ function updateTableTotal(){
 
 //Função para gerar a factura proforma
 function getInvoice(event) {
-    // Assuming you have an attribute 'data-order' on the clicked element
-    let invoiceClicked = event.target;
-    let invoiceId = invoiceClicked.getAttribute('data-order');
     
-    // Check if the order ID is valid
-    if (invoiceId) {
-        // Send an AJAX request to generate the invoice
-        jQuery.ajax({
-            type: 'POST',
-            url: wc_add_to_cart_params.ajax_url,
-            data: {
-                action: 'generate_invoice',
-                orderId: invoiceId
-            },
-            beforeSend: function(){
-                loader.classList.remove("loader__hidden");
-            },
-            success: function (data) {
-                // Check if the response contains the invoice URL
-                if (data.invoice_url) {
-                    // Open the generated invoice URL in a new tab
-                    window.open(data.invoice_url, '_blank');
-                } else {
-                    console.error('Error: Invalid invoice URL', data.invoice_url);
-                }
-                //console.log(data.invoice_url);
-            },
-            error: function (error) {
-                console.error('Error generating the invoice:', error);
-            },
-            complete: function(){
-                loader.classList.add("loader__hidden");
-            }
-        });
-    } else {
-        console.error('Error: Invalid order ID');
-    }
+    var ajaxUrl = '../wp-admin/admin-ajax.php?action=generate_proforma_invoice';
+    window.open(ajaxUrl, '_blank');
+    
 }
 
 //Função para verificar se há itens e se tiver ir para o checkout

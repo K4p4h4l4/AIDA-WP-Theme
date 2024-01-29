@@ -1424,6 +1424,7 @@ function submit_product_review_callback() {
     wp_die();
 }
 
+//Função para pegar os dados do produto a apresentar na modal
 function fetch_product_info() {
     $product_id = isset($_POST['product_id']) ? intval($_POST['product_id']) : 0;
 
@@ -1438,7 +1439,7 @@ function fetch_product_info() {
                 'rating' => $product->get_average_rating(),
                 'review_count' => $product->get_review_count(),
                 'stock_status' => $product->get_stock_status(),
-                'description' => $product->get_description()
+                'description' => $product->get_short_description()
             );
             wp_send_json_success($response);
         }
@@ -1450,6 +1451,86 @@ function fetch_product_info() {
 add_action('wp_ajax_fetch_product_info', 'fetch_product_info');
 add_action('wp_ajax_nopriv_fetch_product_info', 'fetch_product_info');
 
+//Função para gerar uma factura proforma 
+function handle_generate_proforma_invoice() {
+    if (WC()->cart->is_empty()) {
+        wp_die('Cart is empty', 'Cart Empty', 400); // Send a 400 bad request response
+    }
+
+    // Include FPDF library
+    require_once get_template_directory() . '/lib/fpdf.php';
+
+    // Initialize FPDF and create the invoice
+    $pdf = new FPDF('P','mm','A4');
+    $pdf->AddPage();
+    // Add a logo
+    //$pdf->Image('./assets/img/logo/aid_logo.png',0,0,70); // Path to logo image 10, 6, 30
+    $pdf->SetFont('Arial', 'B', 17);
+    
+    // Move to the right
+    //$pdf->Cell(80);
+
+    $pdf->Cell(71, 10, '',0,0);
+    // Title
+    $pdf->Cell(59, 5, 'Factura Proforma', 0, 0);
+    $pdf->Cell(59, 10, '',0,1);
+    // Line break
+    $pdf->Ln(20);
+    
+    $pdf->SetFont('Arial', 'B', 15);
+    $pdf->Cell(71, 5, 'AIDA', 0, 0);
+    $pdf->Cell(59, 5, '',0,0);    
+    $pdf->Cell(59, 5, 'Detalhes',0,1);
+
+    $pdf->SetFont('Arial', '', 10);
+    
+    $pdf->Cell(130, 5, 'AIDA', 0, 0);
+    $pdf->Cell(25, 5, 'Cliente ID',0,0);    
+    $pdf->Cell(34, 5, '0012',0,1);
+    
+    $pdf->Cell(130, 5, 'Cidade', 0, 0);
+    $pdf->Cell(25, 5, 'Data de facturacao',0,0);    
+    $pdf->Cell(34, 5, '29 Jan 2024',0,1);
+    
+    $pdf->Cell(130, 5, '', 0, 0);
+    $pdf->Cell(25, 5, 'Factura No: ',0,0);    
+    $pdf->Cell(34, 5, '',0,1);
+    // Set font for the body
+    $pdf->SetFont('Arial', 'B', 11);
+
+    // Set column widths
+    $column_widths = array(70, 30, 50, 40);
+    // Header
+    $pdf->SetFillColor(0,0,0);
+    $pdf->Cell($column_widths[0], 10, 'Produto', 1, 0, 'C');
+    $pdf->Cell($column_widths[1], 10, 'Quantidade', 1, 0, 'C');
+    $pdf->Cell($column_widths[2], 10, iconv('UTF-8', 'windows-1252', 'Preço'), 1, 0, 'C');
+    $pdf->Cell($column_widths[3], 10, 'Total', 1, 1, 'C'); // 1, 1, 'C' means new line after this cell
+    $pdf->SetFont('Arial', '', 10);
+    // Add content to the PDF using FPDF functions
+    foreach (WC()->cart->get_cart() as $cart_item) {
+        $product = $cart_item['data'];
+        $quantity = $cart_item['quantity'];
+
+        $pdf->Cell($column_widths[0], 10, $product->get_name(), 1);
+        $pdf->Cell($column_widths[1], 10, $quantity, 1, 0, 'C');
+        $pdf->Cell($column_widths[2], 10, wc_price($cart_item['line_subtotal']), 1, 0, 'C');
+        $pdf->Cell($column_widths[3], 10, wc_price($cart_item['line_total']), 1, 1, 'C');
+        $pdf->Ln(10);
+    }
+
+    // Footer
+    $pdf->SetFont('Arial', 'I', 8);
+    $pdf->SetY(-15);
+    $pdf->Cell(0, 10, iconv('UTF-8', 'windows-1252', 'Página ') . $pdf->PageNo() . '/ {pages}', 0, 0, 'C');
+
+    // Output the PDF
+    $pdf->Output('I', 'proforma-invoice.pdf');
+    exit;
+}
+
+add_action('wp_ajax_generate_proforma_invoice', 'handle_generate_proforma_invoice');
+add_action('wp_ajax_nopriv_generate_proforma_invoice', 'handle_generate_proforma_invoice');
 
 
 add_action('wp_ajax_add_wishlist_item', 'add_wishlist_item_callback');

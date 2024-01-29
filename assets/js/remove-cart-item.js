@@ -187,14 +187,14 @@ function addWishlistClicked(event){
 function modalAddCartClicked(event){
     let modalAddButton = event.target;
     let productInfo = modalAddButton.parentElement.parentElement.parentElement;
-    let image = productInfo.children[0].getElementsByClassName('attachment-thumbnail')[0].src;
+    let image = productInfo.children[0].getElementsByClassName('img')[0].src;
     let title = productInfo.children[1].children[0].getElementsByClassName('modal__title')[0].innerText;
     let price = productInfo.children[1].children[2].getElementsByClassName('modal__price')[0].innerText ;
     let id = productInfo.children[2].id;
     let itemQuantity = productInfo.children[1].children[4].getElementsByClassName('modal__quantity')[0].value;
     addProductToCart(title, price, image, id, itemQuantity);
     updateTotal();
-    document.querySelector('.modal__container-info').classList.remove('modalactive');
+    
     document.querySelector('.bg-modal').style.display='none';
 }
 
@@ -314,7 +314,6 @@ function updateTotal(){
         updateCartItemQuantity(product_id, quantity);
         total = total + (price * quantity);
         
-        console.log(product_id, quantity);
     }
     
     

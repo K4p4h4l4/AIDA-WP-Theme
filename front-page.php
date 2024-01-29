@@ -789,8 +789,8 @@
                         <div class="modal__product-rating">
                             
 
-                            <span class="modal__rating-value">2</span>
-                            <span class="modal__rating-total">1</span>
+                            <span class="modal__rating-value"></span>
+                            <span class="modal__rating-total"></span>
                         </div>
                         <div class="modal__product-price">                            
                             
@@ -813,7 +813,7 @@
                             <?php //echo $product->get_short_description();?>
                         </div>
                     </div>
-                    <div class="modal__product-id" id="<?php //echo $product->get_ID(); ?>"></div>
+                    <div class="modal__product-id" id=""></div>
                 </div>
             <?php
                 /*$i++;

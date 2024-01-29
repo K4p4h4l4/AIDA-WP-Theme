@@ -44,8 +44,6 @@ function fetchProductInfo(productId) {
     let productName = document.querySelector('.modal__title');
     let productPrice = document.querySelector('.modal__product-price');
     let productStarsRating = document.querySelector('.modal__product-rating');
-    let productAverageRating = document.querySelector('.modal__rating-value');
-    let productTotalReviews = document.querySelector('.modal__rating-total');
     let productStockStatus = document.querySelector('.modal__stock-txt');
     let productDesciption = document.querySelector('.modal__product-description');
     let productID = document.querySelector('.modal__product-id');
@@ -57,16 +55,13 @@ function fetchProductInfo(productId) {
             'action': 'fetch_product_info',
             'product_id': productId
         },
-        success: function(response) {
-            console.log(productAverageRating); // You can replace this with code to display the product info
-            //infoPreview[0].classList.add('modalactive');
+        beforeSend: function(){
+            loader.classList.remove("loader__hidden");
+        },
+        success: function(response) {            
             productInfoModal.style.display='flex';
             productImage.src = response.data.image;
             productName.innerText = response.data.name;
-            productAverageRating.innerText = response.data.rating;
-            
-            
-            productTotalReviews.innerText=`(${response.data.review_count}) - Avaliações`;
             
             if(response.data.stock_status == "instock"){
                 productStockStatus.innerText = "Em Estoque"; 
@@ -76,84 +71,110 @@ function fetchProductInfo(productId) {
                 productStockStatus.innerText = "Por Encomenda"; 
             }
             
-            /*if(response.data.sales_price){
+            if(response.data.sales_price){
                 
-                productPrice.innerHTML = ` <h3 class="modal__price">AKZ ${response.data.sales_price.replace("Kz", "")} </h3>
-                                    <del>AKZ ${response.data.regular_price.replace("Kz", "")}</del>`; 
+                productPrice.innerHTML = ` <h3 class="modal__price">AKZ ${Intl.NumberFormat('de-DE', { style: 'currency', currency: 'AKZ', minimumFractionDigits: 2 }).format(response.data.sales_price).replace("AKZ", "")} </h3>
+                                    <del>AKZ ${Intl.NumberFormat('de-DE', { style: 'currency', currency: 'AKZ', minimumFractionDigits: 2 }).format(response.data.regular_price).replace("AKZ", "")}</del>`; 
             }else{
                 productPrice.innerHTML = ` <h3 class="modal__price">AKZ ${Intl.NumberFormat('de-DE', { style: 'currency', currency: 'AKZ', minimumFractionDigits: 2 }).format(response.data.regular_price).replace("AKZ", "")} </h3>`;
-            }*/
+            }
             
             if(response.data.rating == 5){
                productStarsRating.innerHTML = `<i class="material-icons">star</i>
                                     <i class="material-icons">star</i>
                                     <i class="material-icons">star</i>
                                     <i class="material-icons">star</i>
-                                    <i class="material-icons">star</i>`;
+                                    <i class="material-icons">star</i>
+                                    <span class="modal__rating-value"></span>
+                                    <span class="modal__rating-total"></span>`;
             }else if(response.data.rating > 4 &&  response.data.rating < 5){
                 productStarsRating.innerHTML = `<i class="material-icons">star</i>
                                     <i class="material-icons">star</i>
                                     <i class="material-icons">star</i>
                                     <i class="material-icons">star</i>
-                                    <i class="material-icons">star_half</i>`;    
+                                    <i class="material-icons">star_half</i>
+                                    <span class="modal__rating-value"></span>
+                                    <span class="modal__rating-total"></span>`;    
             }else if(response.data.rating == 4){
                 productStarsRating.innerHTML = `<i class="material-icons">star</i>
                                     <i class="material-icons">star</i>
                                     <i class="material-icons">star</i>
                                     <i class="material-icons">star</i>
-                                    <i class="material-icons">star_outline</i>`;    
+                                    <i class="material-icons">star_outline</i>
+                                    <span class="modal__rating-value"></span>
+                                    <span class="modal__rating-total"></span>`;    
             }else if(response.data.rating > 3 &&  response.data.rating < 4){
                 productStarsRating.innerHTML = `<i class="material-icons">star</i>
                                     <i class="material-icons">star</i>
                                     <i class="material-icons">star</i>
                                     <i class="material-icons">star_half</i>
-                                    <i class="material-icons">star_outline</i>`;    
+                                    <i class="material-icons">star_outline</i>
+                                    <span class="modal__rating-value"></span>
+                                    <span class="modal__rating-total"></span>`;    
             }else if(response.data.rating == 3){
                 productStarsRating.innerHTML = `<i class="material-icons">star</i>
                                     <i class="material-icons">star</i>
                                     <i class="material-icons">star</i>
                                     <i class="material-icons">star_outline</i>
-                                    <i class="material-icons">star_outline</i>`;    
+                                    <i class="material-icons">star_outline</i>
+                                    <span class="modal__rating-value"></span>
+                                    <span class="modal__rating-total"></span>`;    
             }else if(response.data.rating > 2 &&  response.data.rating < 3){
                 productStarsRating.innerHTML = `<i class="material-icons">star</i>
                                     <i class="material-icons">star</i>
                                     <i class="material-icons">star_half</i>
                                     <i class="material-icons">star_outline</i>
-                                    <i class="material-icons">star_outline</i>`;    
+                                    <i class="material-icons">star_outline</i>
+                                    <span class="modal__rating-value"></span>
+                                    <span class="modal__rating-total"></span>`;    
             }else if(response.data.rating == 2){
                 productStarsRating.innerHTML = `<i class="material-icons">star</i>
                                     <i class="material-icons">star</i>
                                     <i class="material-icons">star_outline</i>
                                     <i class="material-icons">star_outline</i>
-                                    <i class="material-icons">star_outline</i>`;    
+                                    <i class="material-icons">star_outline</i>
+                                    <span class="modal__rating-value"></span>
+                                    <span class="modal__rating-total"></span>`;    
             }else if(response.data.rating > 1 &&  response.data.rating < 2){
                 productStarsRating.innerHTML = `<i class="material-icons">star</i>
                                     <i class="material-icons">star_half</i>
                                     <i class="material-icons">star_outline</i>
                                     <i class="material-icons">star_outline</i>
-                                    <i class="material-icons">star_outline</i>`;    
+                                    <i class="material-icons">star_outline</i>
+                                    <span class="modal__rating-value"></span>
+                                    <span class="modal__rating-total"></span>`;    
             }else if(response.data.rating == 1){
                 productStarsRating.innerHTML = `<i class="material-icons">star</i>
                                     <i class="material-icons">star_outline</i>
                                     <i class="material-icons">star_outline</i>
                                     <i class="material-icons">star_outline</i>
-                                    <i class="material-icons">star_outline</i>`;    
+                                    <i class="material-icons">star_outline</i>
+                                    <span class="modal__rating-value"></span>
+                                    <span class="modal__rating-total"></span>`;    
             }else if(response.data.rating > 0 &&  response.data.rating < 1){
                 productStarsRating.innerHTML = `<i class="material-icons">star_half</i>
                                     <i class="material-icons">star_outline</i>
                                     <i class="material-icons">star_outline</i>
                                     <i class="material-icons">star_outline</i>
-                                    <i class="material-icons">star_outline</i>`;    
+                                    <i class="material-icons">star_outline</i>
+                                    <span class="modal__rating-value"></span>
+                                    <span class="modal__rating-total"></span>`;    
             }else if(response.data.rating == 0){
                 productStarsRating.innerHTML = `<i class="material-icons">star_outline</i>
                                     <i class="material-icons">star_outline</i>
                                     <i class="material-icons">star_outline</i>
                                     <i class="material-icons">star_outline</i>
-                                    <i class="material-icons">star_outline</i> `;    
+                                    <i class="material-icons">star_outline</i> 
+                                    <span class="modal__rating-value"></span>
+                                    <span class="modal__rating-total"></span>`;    
             }
             
+            let productAverageRating = document.querySelector('.modal__rating-value');
+            let productTotalReviews = document.querySelector('.modal__rating-total');
+            productAverageRating.innerText = response.data.rating;  
+            productTotalReviews.innerText=`(${response.data.review_count}) - Avaliações`;
             productDesciption.innerHTML = `${response.data.description}`;
-            
+            productID.setAttribute('id', productId);
             
         }
     });

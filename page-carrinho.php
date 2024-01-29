@@ -103,14 +103,7 @@
                         <?php echo number_format($total, 2, ',', '.'); ?>
                     </div>
                 </div>
-                <!--div class="shippement__holder">
-                    <div class="shippement__title">
-                        Entrega
-                    </div>
-                    <div class="shippement__number">
-                        AOA 3.000
-                    </div>
-                </div-->
+                
                 <div class="totals__holder">
                     <div class="totals__title">
                         Total
@@ -122,20 +115,8 @@
                 </div>
                 <div class="cart__buttons-holder">
                     <button class="button__actions" onclick="location.href='./home/'"> <i class="material-icons">arrow_back</i> Continuar a comprar</button>
-                    <?php
-                        // Check if an order (cart) exists in the session
                     
-                        if (isset($_SESSION['cart'])) {
-                            $encomenda = $_SESSION['cart'];
-                        }
-                    
-                    
-                    ?>
-                    <button class="button__actions" id="invoice-btn" data-order="<?php
-                                                                                    if($encomenda){
-                                                                                        echo $encomenda->get_id();
-                                                                                    }
-                                                                                     ?>"> <i class="material-icons">article</i> Consultar preço</button>
+                    <button class="button__actions" id="invoice-btn" data-order=""> <i class="material-icons">article</i> Consultar preço</button>
                     <button class="button__actions" id="checkout"> <i class="material-icons">done</i> Finalizar compra</button> 
                 </div>
             </div>
