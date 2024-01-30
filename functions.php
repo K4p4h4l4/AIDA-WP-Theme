@@ -1466,15 +1466,23 @@ function handle_generate_proforma_invoice() {
     // Add a logo Image(file path name, xposition, y position, width, height)
     $pdf->Image('../wp-content/uploads/2023/09/Logo_AIDA.png',10,6,50); // Path to logo image 10, 6, 30
     $pdf->SetFont('Arial', 'B', 13);
-    $pdf->Cell(100, 5, '', 0, 0);
-    $pdf->Cell(89, 5, 'AIDA', 0, 1, 'L');
+    $pdf->Cell(120, 5, '', 0, 0);
+    $pdf->Cell(70, 5, 'AIDA', 0, 1, 'L');
     $pdf->SetFont('Arial', '', 10);
-    $pdf->Cell(100, 5, '', 0, 0);
-    $pdf->Cell(89, 5, iconv('UTF-8', 'windows-1252', 'Luanda, Viana, Zango 0, Vila Chinesa, nº12'), 0, 1, 'L');
+    $pdf->Cell(120, 5, '', 0, 0);
+    $pdf->Cell(70, 5, iconv('UTF-8', 'windows-1252', 'www.aida.ao'), 0, 1, 'L');
+    $pdf->SetFont('Arial', '', 10);
+    $pdf->Cell(120, 5, '', 0, 0);
+    $pdf->Cell(70, 5, iconv('UTF-8', 'windows-1252', 'geral@aida.ao'), 0, 1, 'L');
+    $pdf->SetFont('Arial', '', 10);
+    $pdf->Cell(120, 5, '', 0, 0);
+    $pdf->Cell(70, 5, iconv('UTF-8', 'windows-1252', '+244 923 695 077'), 0, 1, 'L');
+    $pdf->SetFont('Arial', '', 10);
+    $pdf->Cell(120, 5, '', 0, 0);
+    $pdf->Cell(70, 5, iconv('UTF-8', 'windows-1252', 'Luanda, Viana, Zango 0, Vila Chinesa, nº12'), 0, 1, 'L');
     // Line break
-    $pdf->Ln(20);
-    $pdf->SetFont('Arial', 'B', 17);
-    
+    $pdf->Ln(10);
+    $pdf->SetFont('Arial', 'B', 17);    
     
     //Cell(width, height, text, border, end line, align);
     // Title
@@ -1486,49 +1494,55 @@ function handle_generate_proforma_invoice() {
     $pdf->Cell(94, 6, 'ENVIAR PARA:', 0, 0, 'L' );
     $pdf->Cell(94, 6, 'DETALHES DE FACTURA:', 0, 1, 'L' );
     $pdf->SetFont('Arial', '', 9);
-    $pdf->Cell(94, 6, iconv('UTF-8', 'windows-1252', 'Roberto Silva'), 0, 0, 'L' ); //Nome
+    $pdf->Cell(94, 6, iconv('UTF-8', 'windows-1252', '[NOME]'), 0, 0, 'L' ); //Nome
     $pdf->Cell(47, 6, iconv('UTF-8', 'windows-1252', 'Factura nº: '), 0, 0, 'L' );
-    $pdf->Cell(47, 6, iconv('UTF-8', 'windows-1252', 'AIDA Shop - 42'), 0, 1, 'L' );
-    $pdf->Cell(94, 6, iconv('UTF-8', 'windows-1252', 'Zango 0, Vida Pacífica, Zona II'), 0, 0, 'L' ); //Morada
+    $pdf->Cell(47, 6, iconv('UTF-8', 'windows-1252', '-'), 0, 1, 'L' );
+    $pdf->Cell(94, 6, iconv('UTF-8', 'windows-1252', '[MORADA]'), 0, 0, 'L' ); //Morada
     $pdf->Cell(47, 6, iconv('UTF-8', 'windows-1252', 'Facturação Data: '), 0, 0, 'L' );
     $pdf->Cell(47, 6, ''.date('d/m/Y'), 0, 1, 'L' );
-    $pdf->Cell(94, 6, iconv('UTF-8', 'windows-1252', 'Angola'), 0, 0, 'L' ); //País
+    $pdf->Cell(94, 6, iconv('UTF-8', 'windows-1252', '[PAÍS]'), 0, 0, 'L' ); //País
     $pdf->Cell(47, 6, iconv('UTF-8', 'windows-1252', 'Encomenda Nº: '), 0, 0, 'L' );
-    $pdf->Cell(47, 6, iconv('UTF-8', 'windows-1252', '388'), 0, 1, 'L' );
-    $pdf->Cell(94, 6, iconv('UTF-8', 'windows-1252', 'Luanda'), 0, 0, 'L' ); //Cidade
+    $pdf->Cell(47, 6, iconv('UTF-8', 'windows-1252', '-'), 0, 1, 'L' );
+    $pdf->Cell(94, 6, iconv('UTF-8', 'windows-1252', '[PROVÍNCIA]'), 0, 0, 'L' ); //Cidade
     $pdf->Cell(47, 6, iconv('UTF-8', 'windows-1252', 'Encomenda Data: '), 0, 0, 'L' );
     $pdf->Cell(47, 6, date('d/m/Y'), 0, 1, 'L' );
-    $pdf->Cell(94, 6, iconv('UTF-8', 'windows-1252', 'robertotrass@gmail.com'), 0, 1, 'L' ); //Email
+    $pdf->Cell(94, 6, iconv('UTF-8', 'windows-1252', '[EMAIL]'), 0, 1, 'L' ); //Email
     
     $pdf->Ln(8);
     // Set font for the body
     $pdf->SetFont('Arial', 'B', 10);
 
     // Set column widths
-    $column_widths = array(70, 30, 50, 40);
+    $column_widths = array(10, 60, 30, 50, 40);
     // Header0
     $pdf->SetFillColor(0,0,0);
     $pdf->SetTextColor(255,255,255);
-    $pdf->Cell($column_widths[0], 10, 'Produto', 1, 0, 'L', true);
-    $pdf->Cell($column_widths[1], 10, 'Quantidade', 1, 0, 'L', true);
-    $pdf->Cell($column_widths[2], 10, iconv('UTF-8', 'windows-1252', 'Preço'), 1, 0, 'L', true);
-    $pdf->Cell($column_widths[3], 10, 'Total', 1, 1, 'L', true); // 1, 1, 'C' means new line after this cell
+    $pdf->Cell($column_widths[0], 10, '#', 1, 0, 'L', true);
+    $pdf->Cell($column_widths[1], 10, 'Produto', 1, 0, 'L', true);
+    $pdf->Cell($column_widths[2], 10, 'Quantidade', 1, 0, 'L', true);
+    $pdf->Cell($column_widths[3], 10, iconv('UTF-8', 'windows-1252', 'Preço'), 1, 0, 'L', true);
+    $pdf->Cell($column_widths[4], 10, 'Subtotal', 1, 1, 'L', true); // 1, 1, 'C' means new line after this cell
     $pdf->SetFont('Arial', '', 9);
     $pdf->SetTextColor(0,0,0);
+    $pdf->SetFillColor(237,239,242);
+    $fill = true;
+    $i = 1;
     // Add content to the PDF using FPDF functions
     foreach (WC()->cart->get_cart() as $cart_item) {
         $product = $cart_item['data'];
         $quantity = $cart_item['quantity'];
 
-        $pdf->Cell($column_widths[0], 10, $product->get_name(), 0, 0, 'L');
-        $pdf->Cell($column_widths[1], 10, $quantity, 0, 0, 'L');
-        $pdf->Cell($column_widths[2], 10, 'AKZ '.number_format($product->get_price(), 2, ',', '.'), 0, 0, 'L');
-        $pdf->Cell($column_widths[3], 10, 'AKZ '.number_format($cart_item['line_total'], 2, ',', '.'), 0, 1, 'L');
-        
+        $pdf->Cell($column_widths[0], 10, $i, 0, 0, 'L', $fill);
+        $pdf->Cell($column_widths[1], 10, $product->get_name(), 0, 0, 'L', $fill);        
+        $pdf->Cell($column_widths[2], 10, $quantity, 0, 0, 'L', $fill);
+        $pdf->Cell($column_widths[3], 10, 'AKZ '.number_format($product->get_price(), 2, ',', '.'), 0, 0, 'L', $fill);
+        $pdf->Cell($column_widths[4], 10, 'AKZ '.number_format($cart_item['line_total'], 2, ',', '.'), 0, 1, 'L', $fill);
+        //$fill=!$fill;
+        $i++;
     }
     
-    $pdf->Line(2,10,4, 20);
-    $pdf->SetLineWidth(2);
+    //$pdf->Line(2,10,4, 20);
+    //$pdf->SetLineWidth(2);
 
     
     if ( function_exists( 'WC' ) ) {
@@ -1544,17 +1558,20 @@ function handle_generate_proforma_invoice() {
     }
     
     $pdf->Ln(8);
-    $pdf->Cell(94, 10, '',0,0);
+    $pdf->Cell(100, 10, '',0,0);
     $pdf->SetFont('Arial', 'B', 10);
-    $pdf->Cell(47, 10, 'Subtotal',0,0, 'L');
+    $pdf->Cell($column_widths[3], 10, 'Subtotal',0,0, 'L');
     $pdf->SetFont('Arial', '', 9);
-    $pdf->Cell(49, 10, 'AKZ '.number_format($cart_subtotal, 2, ',', '.'),0,1);
-    $pdf->Cell(94, 10, '',0,0);
+    $pdf->Cell($column_widths[4], 10, 'AKZ '.number_format($cart_subtotal, 2, ',', '.'),0,1);
+    $pdf->Cell(100, 10, '',0,0);
+    $pdf->SetFillColor(0,0,0);
+    $pdf->SetTextColor(255,255,255);
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->Cell($column_widths[3], 10, 'Total',0,0, 'L', true);
     $pdf->SetFont('Arial', 'B', 10);
-    $pdf->Cell(47, 10, 'Total',0,0, 'L');
-    $pdf->SetFont('Arial', '', 9);
-    $pdf->Cell(49, 10, 'AKZ '.number_format($cart_subtotal, 2, ',', '.'),0,1);
-
+    $pdf->Cell($column_widths[4], 10, 'AKZ '.number_format($cart_subtotal, 2, ',', '.'),0,1, 'L', true);
+    
+    $pdf->SetTextColor(0,0,0);
     // Footer
     $pdf->SetFont('Arial', 'B', 8);
     $pdf->SetY(-50);
