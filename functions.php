@@ -1527,6 +1527,10 @@ function handle_generate_proforma_invoice() {
         
     }
     
+    $pdf->Line(2,10,4, 20);
+    $pdf->SetLineWidth(2);
+
+    
     if ( function_exists( 'WC' ) ) {
         // Make sure WooCommerce is active and the cart is available
         $cart = WC()->cart;
@@ -1542,14 +1546,14 @@ function handle_generate_proforma_invoice() {
     $pdf->Ln(8);
     $pdf->Cell(94, 10, '',0,0);
     $pdf->SetFont('Arial', 'B', 10);
-    $pdf->Cell(47, 10, 'Subtotal',1,0, 'L');
+    $pdf->Cell(47, 10, 'Subtotal',0,0, 'L');
     $pdf->SetFont('Arial', '', 9);
-    $pdf->Cell(49, 10, 'AKZ '.number_format($cart_subtotal, 2, ',', '.'),1,1);
+    $pdf->Cell(49, 10, 'AKZ '.number_format($cart_subtotal, 2, ',', '.'),0,1);
     $pdf->Cell(94, 10, '',0,0);
     $pdf->SetFont('Arial', 'B', 10);
-    $pdf->Cell(47, 10, 'Total',1,0, 'L');
+    $pdf->Cell(47, 10, 'Total',0,0, 'L');
     $pdf->SetFont('Arial', '', 9);
-    $pdf->Cell(49, 10, 'AKZ '.number_format($cart_subtotal, 2, ',', '.'),1,1);
+    $pdf->Cell(49, 10, 'AKZ '.number_format($cart_subtotal, 2, ',', '.'),0,1);
 
     // Footer
     $pdf->SetFont('Arial', 'B', 8);
