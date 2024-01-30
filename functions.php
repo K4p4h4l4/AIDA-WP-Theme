@@ -1508,20 +1508,22 @@ function handle_generate_proforma_invoice() {
     $column_widths = array(70, 30, 50, 40);
     // Header0
     $pdf->SetFillColor(0,0,0);
-    $pdf->Cell($column_widths[0], 10, 'Produto', 1, 0, 'C');
-    $pdf->Cell($column_widths[1], 10, 'Quantidade', 1, 0, 'C');
-    $pdf->Cell($column_widths[2], 10, iconv('UTF-8', 'windows-1252', 'Preço'), 1, 0, 'C');
-    $pdf->Cell($column_widths[3], 10, 'Total', 1, 1, 'C'); // 1, 1, 'C' means new line after this cell
+    $pdf->SetTextColor(255,255,255);
+    $pdf->Cell($column_widths[0], 10, 'Produto', 1, 0, 'L', true);
+    $pdf->Cell($column_widths[1], 10, 'Quantidade', 1, 0, 'L', true);
+    $pdf->Cell($column_widths[2], 10, iconv('UTF-8', 'windows-1252', 'Preço'), 1, 0, 'L', true);
+    $pdf->Cell($column_widths[3], 10, 'Total', 1, 1, 'L', true); // 1, 1, 'C' means new line after this cell
     $pdf->SetFont('Arial', '', 9);
+    $pdf->SetTextColor(0,0,0);
     // Add content to the PDF using FPDF functions
     foreach (WC()->cart->get_cart() as $cart_item) {
         $product = $cart_item['data'];
         $quantity = $cart_item['quantity'];
 
-        $pdf->Cell($column_widths[0], 10, $product->get_name(), 1);
-        $pdf->Cell($column_widths[1], 10, $quantity, 1, 0, 'L');
-        $pdf->Cell($column_widths[2], 10, 'AKZ '.number_format($product->get_price(), 2, ',', '.'), 1, 0, 'L');
-        $pdf->Cell($column_widths[3], 10, 'AKZ '.number_format($cart_item['line_total'], 2, ',', '.'), 1, 1, 'L');
+        $pdf->Cell($column_widths[0], 10, $product->get_name(), 0, 0, 'L');
+        $pdf->Cell($column_widths[1], 10, $quantity, 0, 0, 'L');
+        $pdf->Cell($column_widths[2], 10, 'AKZ '.number_format($product->get_price(), 2, ',', '.'), 0, 0, 'L');
+        $pdf->Cell($column_widths[3], 10, 'AKZ '.number_format($cart_item['line_total'], 2, ',', '.'), 0, 1, 'L');
         
     }
     
