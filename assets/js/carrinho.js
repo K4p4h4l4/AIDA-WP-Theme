@@ -102,8 +102,8 @@ function updateTableTotal(){
 //Função para gerar a factura proforma
 function getInvoice(event) {
     
-    var ajaxUrl = '../wp-admin/admin-ajax.php?action=generate_proforma_invoice';
-    window.open(ajaxUrl, '_blank');
+    let invoicePageUrl = '../factura-proforma/';
+    window.open(invoicePageUrl, '_blank');
     
 }
 

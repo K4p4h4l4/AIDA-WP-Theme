@@ -74,13 +74,13 @@
                                        <p>Enviar</p>
                                    </div>
                                </div>
-                               <div class="contact__deliver">
+                               <!--div class="contact__deliver">
                                    <input type="radio" class="information__radio" name="encomenda" value="Recolha">
                                    <div class="deliver__text-holder">
                                        <i class="material-icons">home</i>
                                        <p>Recolha</p>
                                    </div>
-                               </div>
+                               </div-->
                            </div>
                            <div class="information__contact-holder">
                                <div class="contact__header">
