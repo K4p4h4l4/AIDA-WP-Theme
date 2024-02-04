@@ -26,6 +26,181 @@
 
    <div class="main__menu">
     <ul class="menu__options">
+        <li class="main__options streaming">
+            <?php
+                // Loop through product categories and display them as links
+                foreach ($product_categories as $category) {
+                    $category_link = get_term_link($category);
+
+                    if ((!is_wp_error($category_link)) && ($category->name == 'Streaming e Gift Cards' ))  {
+                                      
+            ?>
+                <a href="<?php echo esc_url($category_link); ?>" class="main__category-link">
+                    <i class="material-icons">podcasts</i>
+                    Streaming e Gift Cards<!--Streaming-->
+                </a>
+            <?php
+                        
+                    }
+                }
+            ?>
+            <i class="material-icons expand">expand_more</i>
+            <ul class="main__options-streaming ">
+                <li class="main__category-holder streaming-submenu">
+                    <?php
+                        // Loop through product categories and display them as links
+                        foreach ($product_categories as $category) {
+                            $category_link = get_term_link($category);
+
+                            if ((!is_wp_error($category_link)) && ($category->name == 'Streaming' ))  {
+                    ?>
+                                <a href="<?php echo esc_url($category_link); ?>" class="main__category">
+                                    Streaming<!--Streaming-->
+                                </a>
+                    <?php
+                            }
+                        }
+                    ?>
+                    <div class="main__category-submenu">
+                        <ul class="category__submenu-product">
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Netflix Streaming' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                Netflix Streaming<!--Netflix Streaming-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Amazon' ))  {
+                                ?>
+                                        <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                             Amazon<!-- Amazon-->
+                                        </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Disney' ))  {
+                                ?>
+                                        <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                             Disney<!--Disney-->
+                                        </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Animes' ))  {
+                                ?>
+                                        <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                             Animes<!--Animes-->
+                                        </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="main__category-holder">
+                    <?php
+                        // Loop through product categories and display them as links
+                        foreach ($product_categories as $category) {
+                            $category_link = get_term_link($category);
+
+                            if ((!is_wp_error($category_link)) && ($category->name == 'Gift Cards' ))  {
+                    ?>
+                        <a href="<?php echo esc_url($category_link); ?>" class="main__category">
+                            Gift Cards<!--Gift Cards--> 
+                        </a>
+                    <?php
+                            }
+                        }
+                    ?>
+                    <div class="main__category-submenu">
+                        <ul class="category__submenu-product">
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Netflix' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                Netflix<!--Netflix--> 
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Apple Cards' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                Apple Cards<!--Apple Cards-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'PlayStation Cards' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                PlayStation Cards<!--PlayStation Cards-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        
         <li class="main__options informatic">
             <?php
                 // Loop through product categories and display them as links

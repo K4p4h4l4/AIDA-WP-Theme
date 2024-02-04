@@ -1063,6 +1063,30 @@ a: -webkit-any-link{
     display: flex;
 }
 
+.main__options-streaming{
+    width: 20rem;
+    padding: 1rem 1rem;
+    list-style: none;
+    background-color: var(--default-white);
+    position: absolute;
+    top:0;
+    left: 100%;
+    border-radius: .3rem;
+    z-index: 2;
+    display: none;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+}
+
+.streaming:hover .main__options-streaming{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
 .main__options-tvbox{
     width: 20rem;
     padding: 1rem 1rem;

@@ -706,11 +706,15 @@
     /*************************\
             Caroussel
     \*************************/
+    .main__header{
+        padding: 0rem;
+    }
+    
     .main__caroussel{
         width: 100%;
     }
     
-    ..img_txt{
+    .img_txt{
         width: 70%;
         top:40%;
     }
@@ -729,6 +733,10 @@
         -webkit-box-direction: normal;
             -ms-flex-direction: column;
                 flex-direction: column;
+    }
+    
+    .products{
+        margin: 2rem 0rem;
     }
     
     /*************************\

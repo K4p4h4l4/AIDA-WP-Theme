@@ -31,6 +31,13 @@ if(informatic){
     });
 }
 
+const streaming = document.querySelector('.streaming');
+if(informatic){
+    streaming.addEventListener('click', function(){
+        document.querySelector('.main__options-streaming').classList.toggle("submenu__active");
+    });
+}
+
 const tvbox = document.querySelector('.tvbox');
 if(tvbox){
     tvbox.addEventListener('click', function(){
