@@ -468,10 +468,10 @@
                                     foreach ($product_categories as $category) {
                                         $category_link = get_term_link($category);
 
-                                        if ((!is_wp_error($category_link)) && ($category->name == 'Android Box II' ))  {
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Android TV' ))  {
                                 ?>
                                 <a href="<?php echo esc_url($category_link); ?>" class="product__type">
-                                    Android Box II<!--Android Box II-->
+                                    Android TV<!--Android TV-->
                                 </a>
                                 <?php
                                         }
