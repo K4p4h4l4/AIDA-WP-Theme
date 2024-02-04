@@ -675,7 +675,18 @@
                     </div>
                 </li>
                 <li class="main__category-holder">
-                    <a href="<?php echo $category_link; ?>" class="main__category">Papel<!--Papel--></a>
+                    <?php
+                        // Loop through product categories and display them as links
+                        foreach ($product_categories as $category) {
+                            $category_link = get_term_link($category);
+
+                            if ((!is_wp_error($category_link)) && ($category->name == 'Papel' ))  {
+                    ?>
+                    <a href="" class="main__category">Papel<!--Tudo relacionado com Papel--></a>
+                    <?php
+                            }
+                        }
+                    ?>
                     <div class="main__category-submenu">
                         <ul class="category__submenu-product">
                             <li class="poduct__submenu">

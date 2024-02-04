@@ -23,10 +23,20 @@
 
          //custom stylesheet
          wp_enqueue_style('custom-style',get_stylesheet_uri());
-
-         // @media responsividade dos ficheiros css
+        
+        // @media responsividade dos ficheiros css
          wp_register_style('media_responsive', get_template_directory_uri().'/assets/css/_media.css', array(), 1, 'all');
          wp_enqueue_style('media_responsive');
+        
+        //if(is_page('product')){
+        //css do resto da página produto
+        wp_register_style('produto_css', get_template_directory_uri().'/assets/css/produto.css', array(), 1, 'all');
+        wp_enqueue_style('produto_css');
+        //}
+        
+         //css do resto da página produto
+         wp_register_style('categorias_css', get_template_directory_uri().'/assets/css/categorias.css', array(), 1, 'all');
+         wp_enqueue_style('categorias_css');
 
          //css do resto da página home
          wp_register_style('media_home', get_template_directory_uri().'/assets/css/_home.css', array(), 1, 'all');
@@ -54,16 +64,6 @@
             wp_register_style('contactos_css', get_template_directory_uri().'/assets/css/contactos.css', array(), 1, 'all');
             wp_enqueue_style('contactos_css');
         }
-         
-        //if(is_page('product')){
-        //css do resto da página produto
-        wp_register_style('produto_css', get_template_directory_uri().'/assets/css/produto.css', array(), 1, 'all');
-        wp_enqueue_style('produto_css');
-        //}
-        
-         //css do resto da página produto
-         wp_register_style('categorias_css', get_template_directory_uri().'/assets/css/categorias.css', array(), 1, 'all');
-         wp_enqueue_style('categorias_css');
         
         if(is_page('carrinho')){
             //css da página do carrinho

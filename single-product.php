@@ -820,6 +820,7 @@
 
                                             </div>
                                         </div>
+                                        <div class="product_id" id="<?php echo $upsell_product->get_ID(); ?>" ></div> 
                                     </div>
                         <?php
                                     $i++;
@@ -846,72 +847,44 @@
         <div class="modal__close">
             <div class="modal__close-btn">+</div>
         </div>
-         <?php
-            $i=1;
-            foreach($related_products as $related_product){ 
-                //Obter os dados do vector
-                $upsell_product = wc_get_product($related_product);
-                /*echo $val;*/
-
-
-                ?>
-                <div class="modal__container-info" data-target="p-<?php echo $i;?>">
+         
+                <div class="modal__container-info" data-target="p-1">
                     <div class="modal__product-img">
-                        
-                        <?php echo wp_get_attachment_image($upsell_product->get_image_id());?>
+                        <img class="img" >
                     </div>
                     <div class="modal__product-info">
                         <div class="modal__product-title">
-                            <h3><?php echo $upsell_product->get_name();?></h3>
+                            <h3 class="modal__title"></h3>
                         </div>
                         <div class="modal__product-rating">
-                            <i class="material-icons">star</i>
-                            <i class="material-icons">star</i>
-                            <i class="material-icons">star</i>
-                            <i class="material-icons">star</i>
-                            <i class="material-icons">star_half</i>
+                            
 
-                            <span class="modal__rating-value">4.4</span>
-                            <span class="modal__rating-total"> 75 Avaliações</span>
+                            <span class="modal__rating-value"></span>
+                            <span class="modal__rating-total"></span>
                         </div>
                         <div class="modal__product-price">                            
-                            <?php 
-                                if($upsell_product->get_sale_price()):?>
-                                    <h3>AKZ <?php echo number_format($upsell_product->get_sale_price(), 2, ',', '.');?></h3>
-                                    <del>AKZ <?php echo number_format($upsell_product->get_regular_price(),  2, ',', '.'); ?></del>
-                                <?php else:?>
-                                    <h3>AKZ <?php echo number_format($upsell_product->get_regular_price(),  2, ',', '.');?></h3>
-                                <?php endif?>
+                            
                         </div>
                         <div class="modal__product-stock">
                             <span class="modal__stock-txt">
-                                <?php                                        
-                                    if($upsell_product->get_stock_status()=="instock"){
-                                        echo "Em Estoque"; 
-                                    }elseif($upsell_product->get_stock_status()=="outofstock"){
-                                        echo "Esgotado"; 
-                                    }elseif($upsell_product->get_stock_status()=="onbackorder"){
-                                        echo "Por Encomenda"; 
-                                    }
-                                ?> 
+                                 
                             </span>
                         </div>
                         <div class="modal__product-qtde">
                             <label for="Quantidade">Qtde:</label>
-                            <input type="number" min="0" value="1" max="100">
-                            <button class="modal__product-cart" onclick="rudrAddToCart(<?php echo $upsell_product->get_ID(); ?>, 1)">
+                            <input type="number" min="1" value="1" max="100" class="modal__quantity">
+                            <button class="modal__product-cart" >
+                                
                                 <i class="material-icons">shopping_cart</i>
                                 Adicionar ao carrinho
                             </button>
                         </div>
                         <div class="modal__product-description">
-                            <?php echo $upsell_product->get_short_description();?>
+                            
                         </div>
                     </div>
+                    <div class="modal__product-id" id=""></div>
                 </div>
-            <?php
-                $i++;
-            } ?>
     </div>        
 </div>
 

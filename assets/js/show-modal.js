@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function fetchProductInfo(productId) {
+    console.log(productId);
     let infoPreview = modal.querySelectorAll('.modal__container-info');
     let productInfoModal = document.querySelector('.bg-modal');
     let productImage = document.querySelector('.img');
@@ -49,7 +50,7 @@ function fetchProductInfo(productId) {
     let productID = document.querySelector('.modal__product-id');
     
     jQuery.ajax({
-        url: './wp-admin/admin-ajax.php',
+        url: wc_add_to_cart_params.ajax_url,
         type: 'POST',
         data: {
             'action': 'fetch_product_info',

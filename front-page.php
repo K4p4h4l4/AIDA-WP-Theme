@@ -804,27 +804,22 @@
                             <label for="Quantidade">Qtde:</label>
                             <input type="number" min="1" value="1" max="100" class="modal__quantity">
                             <button class="modal__product-cart" >
-                                <!-- onclick="rudrAddToCart(< ?php echo $product->get_ID(); ?>, 1)"-->
+                                
                                 <i class="material-icons">shopping_cart</i>
                                 Adicionar ao carrinho
                             </button>
                         </div>
                         <div class="modal__product-description">
-                            <?php //echo $product->get_short_description();?>
+                            
                         </div>
                     </div>
                     <div class="modal__product-id" id=""></div>
                 </div>
-            <?php
-                /*$i++;
-            }*/ ?>
     </div>        
 </div>
 
-<!--div id="cart-contents"></div-->
 <?php 
-    //get footer.php file
+    
     get_footer();
-    //print_r($product_categories);
-    //print_r($woocommerce->cart->get_cart()); 
+    
 ?>
