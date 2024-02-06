@@ -87,22 +87,7 @@
             <img src="<?php bloginfo('template_directory');?>/assets/img/logo/aid_logo.png'" alt="AIDA">
             
         </a>
-
-        <!--div class="my__insterests-search">
-            <div class="my__search-details">
-                <select name="categorias" id="categorias" class="categories">
-                    <option value="0">Todas categorias</option>
-                    <option value="1">Informática</option>
-                    <option value="2">Tv box</option>
-                    <option value="3">Smartphones e Tablets</option>
-                    <option value="4">Consumíveis e Papel</option>
-                    <option value="4">Jogos e Consola</option>
-                    <option value="4">Impressoras e Scaners</option>
-                </select>
-                <input type="text" class="search__text" placeholder="Procurar aqui">
-                <button class="search-btn"> <i class="material-icons">search</i> </button>
-            </div>
-        </div-->
+        
         <form role="search" id="live-search-form" class="my__insterests-search">
             <div class="my__search-details">
                 <select name="category" id="categorias" class="categories">
