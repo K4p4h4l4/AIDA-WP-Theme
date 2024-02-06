@@ -1,5 +1,5 @@
 if(document.readyState == 'loading'){
-    loader.classList.remove("loader__hidden");
+    //loader.classList.remove("loader__hidden");
     document.addEventListener('DOMContentLoaded', ready);
 }else{
     loader.classList.add("loader__hidden");
