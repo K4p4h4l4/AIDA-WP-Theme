@@ -22,7 +22,7 @@ function ready(){
     
     let addQtyButton = document.getElementById('add-qty');
     if(addQtyButton){
-        addQtyButton.addEventListener('click',productQTY('add'))
+        addQtyButton.addEventListener('click', productQTY('add'));
     }
 
     let openReviewModalButton = document.getElementById('openReviewModal');
