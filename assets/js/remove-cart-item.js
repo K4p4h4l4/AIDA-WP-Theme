@@ -50,9 +50,6 @@ function ready(){
         wishlist_btn.addEventListener('click', addWishlistClicked);
     }
     
-    //Adicionando ao carrinho no back
-    //document.getElementsByClassName('ver__carrinho').addEventListener('click');
-    
     //Adicionando produtos atravez da modal
     let modalAddCart = document.getElementsByClassName('modal__product-cart');
     for(let i=0; i < modalAddCart.length; i++){

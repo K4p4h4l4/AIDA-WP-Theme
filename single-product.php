@@ -184,9 +184,9 @@
                         <div class="product__quantities-holder">
                             <h4>Quantidade :</h4>
                             <div class="quantities__buttons-holder">
-                                <button class="qtde__button">-</button>
+                                <button class="qtde__button" id="remove-qty">-</button>
                                 <input type="number" value="1" min="1" step="1" class="qtde__number">
-                                <button class="qtde__button">+</button>
+                                <button class="qtde__button" id="add-qty">+</button>
                             </div>
                         </div>
                         <div class="product__buttons-holder">
@@ -194,13 +194,13 @@
                                 <i class="material-icons">favorite_border</i>
                                 Gostei
                             </button>
-                            <button class="product__addlist-button" onclick="rudrAddToCart(<?php echo $product->get_ID(); ?>, 1)">
+                            <button class="product__addlist-button" id="addToCart">
                                 <i class="material-icons">shopping_cart</i>
                                 adicionar ao carrinho
                             </button>
                         </div>
                     </div>
-                    
+                    <div class="single__product-id" id="<?php echo $product->get_ID(); ?>"></div>
                 </div>
                 
             </div>
