@@ -71,11 +71,11 @@ function ready(){
         searchTimer = setTimeout(function() {
             var searchVal = $('.search__text').val();
             var categoryVal = $('#categorias').val();
-            var nonce = '<?php echo wp_create_nonce("ajax-live-search-nonce"); ?>'; // Nonce for security
+            var nonce = ajax_object.nonce;//'<?php echo wp_create_nonce("ajax-live-search-nonce"); ?>'; // Nonce for security
 
             $.ajax({
                 type: 'POST',
-                url: wc_add_to_cart_params.ajax_url,//'<?php echo admin_url('admin-ajax.php'); ?>'
+                url: ajax_object.ajaxurl,//wc_add_to_cart_params.ajax_url,//'<?php echo admin_url('admin-ajax.php'); ?>'
                 data: {
                     action: 'live_search',
                     search_keyword: searchVal,

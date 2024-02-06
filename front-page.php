@@ -571,7 +571,7 @@
                                                 <button class="product__btn info" id="infoProductModal" data-name="p-<?php echo $i;?>"><i class="material-icons">remove_red_eye</i></button>
                                                 <button class="product__btn addtoWishlist"><i class="material-icons">favorite_border</i></button>
                                                 <button class="product__btn addToCart"> <i class="material-icons">shopping_cart</i></button >
-                                                <!-- onclick="rudrAddToCart(< ?php echo $product_id; ?>, 1)" -->
+                                                
                                             </div>
                                         </div>
                                         <div class="product_id" id="<?php echo $product_id; ?>" ></div>                                        

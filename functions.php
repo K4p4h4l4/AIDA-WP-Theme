@@ -144,8 +144,8 @@
         wp_enqueue_script('add_to_cart_js');
 
         //remove cart item js 
-        wp_register_script('remove_cart_item_js', get_template_directory_uri().'/assets/js/remove-cart-item.js', array(), 1, 1, 1); //get_theme_file_uri
-        wp_enqueue_script('remove_cart_item_js');
+        /*wp_register_script('remove_cart_item_js', get_template_directory_uri().'/assets/js/remove-cart-item.js', array(), 1, 1, 1); //get_theme_file_uri
+        wp_enqueue_script('remove_cart_item_js');*/
         
         if(is_page('envio')){
             //Envio js 
@@ -1642,6 +1642,18 @@ function prefix_ajax_live_search() {
 
 add_action('wp_ajax_add_wishlist_item', 'add_wishlist_item_callback');
 add_action('wp_ajax_nopriv_add_wishlist_item', 'add_wishlist_item_callback');
+
+function theme_enqueue_scripts() {
+    wp_enqueue_script('remove_cart_item_js', get_template_directory_uri() . '/assets/js/remove-cart-item.js', array('jquery'), '1.0', true);
+    
+    // Localize the script with new data
+    wp_localize_script('remove_cart_item_js', 'ajax_object', array(
+        'ajaxurl' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('ajax-live-search-nonce'),
+    ));
+}
+add_action('wp_enqueue_scripts', 'theme_enqueue_scripts');
+
 
 //Função para adicionar itens a lista dos favoritos
 function add_wishlist_item_callback(){

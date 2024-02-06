@@ -188,7 +188,7 @@
                                                  </div>
                                              </a>
                                              <div class="product__buttons">
-                                                 <button class="product__btn" id="infoProductModal" data-name="p-<?php echo $i;?>"><i class="material-icons">remove_red_eye</i></button>
+                                                 <button class="product__btn info" id="infoProductModal" data-name="p-<?php echo $i;?>"><i class="material-icons">remove_red_eye</i></button>
                                                  <button class="product__btn addtoWishlist"><i class="material-icons">favorite_border</i></button>
                                                  <button class="product__btn addToCart"><i class="material-icons">shopping_cart</i></button>
 

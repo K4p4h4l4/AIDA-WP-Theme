@@ -88,7 +88,7 @@
             
         </a>
         
-        <form role="search" id="live-search-form" class="my__insterests-search">
+        <form role="search" id="live-search-form" class="my__insterests-search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
             <div class="my__search-details">
                 <select name="category" id="categorias" class="categories">
                     <option value="">Todas categorias</option>
