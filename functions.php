@@ -1597,6 +1597,48 @@ function handle_generate_proforma_invoice() {
 add_action('wp_ajax_generate_proforma_invoice', 'handle_generate_proforma_invoice');
 add_action('wp_ajax_nopriv_generate_proforma_invoice', 'handle_generate_proforma_invoice');
 
+add_action('wp_ajax_nopriv_live_search', 'prefix_ajax_live_search');
+add_action('wp_ajax_live_search', 'prefix_ajax_live_search');
+
+//Função para procucar produto
+function prefix_ajax_live_search() {
+    // Check for nonce security
+    $nonce = $_POST['nonce'];
+    if (!wp_verify_nonce($nonce, 'ajax-live-search-nonce')) {
+        die('Nonce value cannot be verified.');
+    }
+
+    // Sanitize input data
+    $search_keyword = sanitize_text_field($_POST['search_keyword']);
+    $category = sanitize_text_field($_POST['category']);
+
+    $args = [
+        'post_type'      => 'post', // or 'product', if using WooCommerce
+        'post_status'    => 'publish',
+        's'              => $search_keyword,
+        'posts_per_page' => -1 // or any number you prefer
+    ];
+
+    // If a category is selected, add it to the query
+    if (!empty($category) && $category != '') {
+        $args['category_name'] = $category; // or use 'cat' => $category_id for IDs
+    }
+
+    $query = new WP_Query($args);
+
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            // Customize the output format as needed
+            echo '<div><a href="' . get_permalink() . '">' . get_the_title() . '</a></div>';
+        }
+    } else {
+        echo 'No results found.';
+    }
+
+    wp_die(); // terminate AJAX
+}
+
 
 add_action('wp_ajax_add_wishlist_item', 'add_wishlist_item_callback');
 add_action('wp_ajax_nopriv_add_wishlist_item', 'add_wishlist_item_callback');

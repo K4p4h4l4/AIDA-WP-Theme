@@ -65,6 +65,36 @@ function ready(){
         logoutBtn.addEventListener('click', logoutUser); 
     }
     
+    var searchTimer;
+    $('#categorias, .search__text').on('change keyup', function() {
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(function() {
+            var searchVal = $('.search__text').val();
+            var categoryVal = $('#categorias').val();
+            var nonce = '<?php echo wp_create_nonce("ajax-live-search-nonce"); ?>'; // Nonce for security
+
+            $.ajax({
+                type: 'POST',
+                url: wc_add_to_cart_params.ajax_url,//'<?php echo admin_url('admin-ajax.php'); ?>'
+                data: {
+                    action: 'live_search',
+                    search_keyword: searchVal,
+                    category: categoryVal,
+                    nonce: nonce
+                },
+                beforeSend: function() {
+                    loader.classList.remove("loader__hidden");
+                },
+                success: function(response) {
+                    $('#search-results').html(response);
+                },
+                complete: function(){
+                    loader.classList.add("loader__hidden");
+                }
+            });
+        }, 500); // Delay for 500 ms
+    });
+    
 }
 
 //Função para  remover items do carrinho

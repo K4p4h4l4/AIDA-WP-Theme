@@ -185,7 +185,7 @@
                             <h4>Quantidade :</h4>
                             <div class="quantities__buttons-holder">
                                 <button class="qtde__button" id="remove-qty">-</button>
-                                <input type="number" value="1" min="1" step="1" class="qtde__number">
+                                <input type="number" value="1" min="1" step="1" class="qtde__number" id="qtde__number">
                                 <button class="qtde__button" id="add-qty">+</button>
                             </div>
                         </div>

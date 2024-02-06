@@ -22,7 +22,12 @@ function ready(){
     
     let addQtyButton = document.getElementById('add-qty');
     if(addQtyButton){
-        addQtyButton.addEventListener('click', productQTY('add'));
+        addQtyButton.addEventListener('click', productQtyAdd);
+    }
+    
+    let removeQtyButton = document.getElementById('remove-qty');
+    if(removeQtyButton){
+        removeQtyButton.addEventListener('click', productQtyRemove);
     }
 
     let openReviewModalButton = document.getElementById('openReviewModal');
@@ -199,6 +204,15 @@ function addToCart(event){
 }
 
 //Função para adicionar produto
-function productQTY(op){
-    console.log(op);
+function productQtyAdd(){
+    let qtdeValue = document.getElementById('qtde__number');
+    qtdeValue.value = parseInt(qtdeValue.value, 10) + 1;
+}
+
+//Função para adicionar produto
+function productQtyRemove(){
+    let qtdeValue = document.getElementById('qtde__number');
+    if(parseInt(qtdeValue.value, 10)>1){
+       qtdeValue.value = parseInt(qtdeValue.value, 10) - 1;
+    }
 }

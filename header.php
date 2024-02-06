@@ -88,7 +88,7 @@
             
         </a>
 
-        <div class="my__insterests-search">
+        <!--div class="my__insterests-search">
             <div class="my__search-details">
                 <select name="categorias" id="categorias" class="categories">
                     <option value="0">Todas categorias</option>
@@ -102,7 +102,24 @@
                 <input type="text" class="search__text" placeholder="Procurar aqui">
                 <button class="search-btn"> <i class="material-icons">search</i> </button>
             </div>
-        </div>
+        </div-->
+        <form role="search" id="live-search-form" class="my__insterests-search">
+            <div class="my__search-details">
+                <select name="category" id="categorias" class="categories">
+                    <option value="">Todas categorias</option>
+                    <option value="informatica">Informática</option>
+                    <option value="Tv box">Tv box</option>
+                    <option value="Smartphones e Tablets">Smartphones e Tablets</option>
+                    <option value="Consumíveis e Papel">Consumíveis e Papel</option>
+                    <option value="Jogos e Consola">Jogos e Consola</option>
+                    <option value="Impressoras e Scaners">Impressoras e Scaners</option>
+                    <!-- Add other categories here -->
+                </select>
+                <input type="text" name="s" class="search__text" placeholder="Procurar aqui" autocomplete="off">
+                <button type="submit" class="search-btn"><i class="material-icons">search</i></button>
+            </div>
+        </form>
+<div id="search-results"></div>
 
         <!-- *****************************\
               Lista de desejos e compras

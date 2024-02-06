@@ -244,6 +244,12 @@
     border: solid .1rem var(--dark-gray);
     border-radius: .5rem;
     background-color: var(--default-white);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.qtde__button:hover{
+   background-color: var(--dark-gray); 
 }
 
 .qtde__number{
