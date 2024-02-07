@@ -39,7 +39,16 @@ function ready(){
 function removeTableItem(event){
     let removeTableButtonClicked = event.target;
     productCounter('remove');
-    removeCartItemBack(removeTableButtonClicked.getAttribute('data-item-id'));    
+    removeCartItemBack(removeTableButtonClicked.getAttribute('data-item-id'));
+    let removeID = removeTableButtonClicked.getAttribute('data-item-id');
+    let removeItem = document.getElementsByClassName('cart__close-btn');
+    let remove;
+    for(let i = 0; i < removeItem.length; i++){
+        remove = removeItem[i].getAttribute('data-product-id');
+        if(removeID == remove){
+           removeItem[i].parentElement.remove();
+        }
+    }
     removeTableButtonClicked.parentElement.parentElement.parentElement.remove();
     updateTableTotal();
     
@@ -50,6 +59,15 @@ function quantityChangeTable(event){
     if(isNaN(input.value) || input.value <= 0){
        input.value = 1;
     }
+    
+    //Mudança das quantidades
+    let quantityInputs = document.getElementsByClassName('qtde__number');
+    let quantityCartInputs = document.getElementsByClassName('product__quantity');
+    for(let i=0; i < quantityInputs.length; i++){
+        quantityCartInputs[i].value = quantityInputs[i].value;
+    }
+    
+    updateTotal();
     updateTableTotal();
 }
 
@@ -63,7 +81,6 @@ function updateTableTotal(){
         let cartBox = cartBoxes[i];
         let priceElement = cartBox.getElementsByClassName('cart__table-price')[0];
         let quantityElement = cartBox.getElementsByClassName('qtde__number')[0];
-        //let priceSubtotal = cartBox.getElementsByClassName('cart__table-subtotal')[0];
         let price = parseFloat(priceElement.innerText.replace("AKZ", "").replace(".", "").replace(".", "")); //para remover os pontos e o AKZ do preço
         let quantity = quantityElement.value;
         subtotal = price * quantity;
@@ -74,9 +91,7 @@ function updateTableTotal(){
             currency: "AKZ",                       
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,
-        });
-    
-        
+        });  
     }
     //arredondar o valor sem as casas decimais
     total = Math.round(total * 100) / 100;
@@ -95,7 +110,12 @@ function updateTableTotal(){
         maximumFractionDigits: 2,
     });
     
-    console.log(total);
+    document.getElementsByClassName('cart__total-value')[0].innerText = total.toLocaleString("nl-NL", {
+        style: "currency", 
+        currency: "AKZ",                       
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    });
     
 }
 
@@ -161,17 +181,3 @@ function callCheckout2(){
     
     
 }
-
-//Função para adicionar ou remover itens da contagem de produtos
-/*function productCounter(operation){
-    let productCountText = document.getElementsByClassName('wishes__count')[0].innerText;
-    let productCount = parseInt(productCountText);
-    
-    if(operation == 'add'){
-       productCount+=1;
-    }else if(operation == 'remove'){
-        productCount-=1;         
-    }
-    
-    document.getElementsByClassName('wishes__count')[0].innerText = productCount;
-}*/

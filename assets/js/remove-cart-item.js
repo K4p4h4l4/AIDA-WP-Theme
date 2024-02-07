@@ -334,25 +334,21 @@ function updateTotal(){
         let price = parseFloat(priceElement.innerText.replace("AKZ", "").replace(".", "").replace(".", "")); //para remover os pontos e o AKZ do preço
         let quantity = quantityElement.value;
         let product_id = product_ids[i].getAttribute('data-product-id');
-        //console.log(product_id);
-        //let order_number = localStorage.getItem('orderID');
         
-        //updateOrderItemQuantity(order_number, product_id, quantity)
         updateCartItemQuantity(product_id, quantity);
         total = total + (price * quantity);
         
     }
     
-    
-        //arredondar o valor sem as casas decimais
-        total = Math.round(total * 100) / 100;
-        
-        document.getElementsByClassName('cart__total-value')[0].innerText = /*'Kz ' +*/ total.toLocaleString("nl-NL", {
-            style: "currency", 
-            currency: "AKZ",                       
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-        });
+    //arredondar o valor sem as casas decimais
+    total = Math.round(total * 100) / 100;
+
+    document.getElementsByClassName('cart__total-value')[0].innerText = total.toLocaleString("nl-NL", {
+        style: "currency", 
+        currency: "AKZ",                       
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    });
     
 }
 

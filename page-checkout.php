@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="checkout__information-details">
-                       <form name="usrform" method="post" action="./envio/">
+                       
                        <div class="information__links">
                            <div class="information__link-holder">
                                <a href="./carrinho/" class="information__link">Carrinho <i class="material-icons">chevron_right</i></a>
@@ -118,7 +118,7 @@
                                </div>
                            </div>
                        </div>
-                        </form>
+                        
                     </div>
                 </div>
                 
