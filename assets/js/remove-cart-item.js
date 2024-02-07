@@ -511,9 +511,8 @@ function callCheckout(){
     
     for(let i =0; i<productDataArray.length; i++){
         createOrderAndAddProduct(productDataArray[i]['id'], productDataArray[i]['quantity']);
-        //rudrAddToCart(productDataArray[i]['id'],productDataArray[i]['quantity'])
     }
-    let check_cart = 1;
+    
     jQuery.ajax({
         type: 'POST',
         url: wc_add_to_cart_params.ajax_url,

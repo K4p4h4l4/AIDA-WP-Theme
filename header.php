@@ -178,7 +178,7 @@
                                     </div>
                                     <div class="cart__product-qtde">
                                         <input type="number" value="<?php echo $values['quantity']; ?>" min="1" class="product__quantity">
-                                        <!--?php echo $_product->get_quantity(); ?-->
+                                        
                                     </div>
                                     <div class="cart__product-price">                                        
                                         <span class="product__price">
@@ -189,16 +189,13 @@
                                                 else:
                                                     echo number_format($_product->get_regular_price(),  2, ',', '.');
                                                 endif;
-                                                //echo $values['line_subtotal'];
+                                                
                                                 $total+=$values['line_subtotal'];
                                             ?>
                                         </span>
                                     </div>   
                                 </div>
-                                <!--?php
-                                    $product_cart_id = WC()->cart->generate_cart_id( $_product->get_id() );
-                                    $cart_item_key = WC()->cart->find_product_in_cart($product_cart_id); 
-                                ?-->
+                                
                                 <div class="cart__close-btn" data-product-id="<?php echo $_product->get_id(); ?>" >
                                    +                         
                                 </div>
@@ -213,8 +210,8 @@
                                 <span class="cart__total-value" id="total">AKZ <?php echo number_format($total, 2, ',', '.'); ?> </span>
                             </div>
                             <div class="cart__btn-container">
-                                <button class="cart__view ver__carrinho" id="cart__view">Ver carrinho</button> <!-- onclick="location.href='< ?php echo get_permalink(190); ?>'" -->
-                                <button class="cart__view" id="checkout__view">Finalizar Compra</button> <!--?php echo get_permalink(63); ?-->
+                                <button class="cart__view ver__carrinho" id="cart__view">Ver carrinho</button>
+                                <button class="cart__view" id="checkout__view">Finalizar Compra</button> 
                             </div>
                         </div>
                     </div>
@@ -228,16 +225,7 @@
     \******************************/-->
     <div class="menu">
         <div class="menu__container">
-            <!--?php 
-                //display primary menu
-                if(has_nav_menu('primary-menu')){
-                    wp_nav_menu(array(
-                        'theme_location'=>'top_menu',
-                        'container'=>'',
-                        'items_wrap'=>'<ul class="nav__bar">%3$s</ul>'
-                    ));
-                }
-            ?-->
+            
             <?php 
                 wp_nav_menu(
                     array(
@@ -250,11 +238,6 @@
                     )
                 );
             ?>
-            <!--ul class="nav__bar">
-                <li class="menu__btn-container"><a href="#" class="menu__btn">Home</a></li>
-                <li class="menu__btn-container"><a href="promocao.php" class="menu__btn">Em promoção</a></li>
-                <li class="menu__btn-container"><a href="sobre.php" class="menu__btn">Sobre Nós</a></li>
-                <li class="menu__btn-container"><a href="contactos.php" class="menu__btn">Contacte-nos</a></li>
-            </ul-->
+            
         </div>
     </div>

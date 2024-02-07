@@ -110,34 +110,56 @@ function getInvoice(event) {
 //Função para verificar se há itens e se tiver ir para o checkout
 function callCheckout2(){
     let itemsList = document.getElementsByClassName('product__cart-table');
+    let productQuantities = document.querySelectorAll('.qtde__number');
     
-    let check_cart = 1;
-    jQuery.ajax({
-        type: 'POST',
-        url: wc_add_to_cart_params.ajax_url,
-        data: {
-            action: 'check_order_exists', // Action name defined in the server-side function
-            check_cart: itemsList.length
-        },
-        beforeSend: function(){
-            loader.classList.remove("loader__hidden");
-        },
-        success: function (response) {
-            // Handle the server's response
-            if (response.exists) {
-                    window.location.href = './checkout/'; 
-            } else {
+    // Create an array to store product data
+    let productDataArray = [];
+    
+    if(itemsList){
+        productQuantities.forEach(input => {
+          const id = input.closest('.product__cart-table').querySelector('.material-icons').getAttribute('data-item-id');
+          const quantity = input.value;
+
+          productDataArray.push({ id, quantity });
+        });
+
+        for(let i =0; i<productDataArray.length; i++){
+            createOrderAndAddProduct(productDataArray[i]['id'], productDataArray[i]['quantity']);            
+        }
+        
+        jQuery.ajax({
+            type: 'POST',
+            url: wc_add_to_cart_params.ajax_url,
+            data: {
+                action: 'check_order_exists', // Action name defined in the server-side function
+                check_cart: itemsList.length
+            },
+            beforeSend: function(){
+                loader.classList.remove("loader__hidden");
+            },
+            success: function (response) {
+                // Handle the server's response
+                if (response.exists) {
+                        window.location.href = './checkout/'; 
+                } else {
+                    loader.classList.add("loader__hidden");
+                    alert("Carrinho vazio!!!");
+                }
+            },
+            error: function (error) {
+                console.error('Error:', error);
+            },
+            complete: function(){
                 loader.classList.add("loader__hidden");
-                alert("Carrinho vazio!!!");
             }
-        },
-        error: function (error) {
-            console.error('Error:', error);
-        },
-        /*complete: function(){
-            loader.classList.add("loader__hidden");
-        }*/
-    });
+        });
+    }else{
+        alert("Carrinho vazio!!!");
+    }
+    
+    
+    
+    
 }
 
 //Função para adicionar ou remover itens da contagem de produtos

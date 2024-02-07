@@ -51,7 +51,7 @@
                                 <?php echo wp_get_attachment_image($_product->get_image_id());?>
                             </a>
                         </td>
-                        <td data-label="Nome">
+                        <td data-label="Nome" id="<?php echo $_product->get_ID();?>">
                             <?php echo $_product->get_name(); ?>
                         </td>
                         <td data-label="Preço" class="cart__table-price">
@@ -75,7 +75,7 @@
                             ?>
                         </td>
                         <td>
-                            <a class="action__remove" >
+                            <a class="action__remove" data-item-id="<?php echo $_product->get_ID();?>">
                                 <i class="material-icons" data-item-id="<?php echo $_product->get_ID();?>">delete</i>
                             </a>
                         </td>
