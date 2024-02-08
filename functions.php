@@ -711,8 +711,8 @@ function register_user_order_callback() {
     if($order_id > 0){
         
         // Example: Update billing email
-        if (isset($form_data_parsed['email'])) {
-            update_post_meta($order_id, '_billing_email', sanitize_email($form_data_parsed['email']));
+        if (isset($form_data['email'])) {
+            update_post_meta($order_id, '_billing_email', sanitize_email($form_data['email']));
         }
 
         // Update shipping details
