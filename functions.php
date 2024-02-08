@@ -881,7 +881,7 @@ function download_invoice_callback() {
         }
         
         WC()->mailer()->emails['WC_Email_New_Order']->trigger($order_id, $order);
-        WC()->mailer()->emails['WC_Email_Customer_Completed_Order']->trigger($order_id, $order);
+        WC()->mailer()->emails['WC_Email_Customer_Processing_Order']->trigger($order_id, $order);
         
         $invoice = wcpdf_get_invoice( $order, true );
         

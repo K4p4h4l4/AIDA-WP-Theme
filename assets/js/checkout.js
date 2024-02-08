@@ -51,8 +51,7 @@ usr_buttonInfo.addEventListener('click', function (event){
             // Handle the server's response
             if (response.success) {
                 console.log(response.message);
-                //window.location.assign('http://localhost:81/wordpress/envio/');
-                window.location.href= '../envio/';
+                window.location.href= './envio/';
             } else {
                 loader.classList.add("loader__hidden");
                 alert("Erro registar o seu pedido!!!");
@@ -61,9 +60,9 @@ usr_buttonInfo.addEventListener('click', function (event){
         error: function (error) {
             console.error('Error:', error);
         },
-        /*complete: function(){
+        complete: function(){
             loader.classList.add("loader__hidden");
-        }*/
+        }
     });
     
 });
