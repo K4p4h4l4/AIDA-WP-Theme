@@ -392,6 +392,8 @@
                 // Calculate totals and save the order
                 $order->calculate_totals();
                 $order->save();
+                
+                $_SESSION['cart'] = $order;
             }
             
             wp_send_json(['success' => true, 'message' => ' Quantidade de produto actualizada com sucesso: '.$totals]);
@@ -458,16 +460,20 @@ function create_order_and_add_product_callback() {
 
         // Calculate totals and save the order
         $order->calculate_totals();
+        $order->save();
+        $_SESSION['cart'] = $order;
     } else {
         // If no cart exists, create a new one
         $order = wc_create_order();
-        $_SESSION['cart'] = $order;
         
         // Add the product to the order
         $order->add_product(wc_get_product($product_id), $quantity);
 
         // Calculate totals and save the order
         $order->calculate_totals();
+        $order->save();
+        
+        $_SESSION['cart'] = $order;
     }
     
     if(is_user_logged_in()){
@@ -536,8 +542,8 @@ function update_order_item_quantity_callback() {
             $order->calculate_totals();
             // Save the order to apply the changes
             $order->save();
-            }
-        
+        }
+        $_SESSION['cart'] = $order;
         
     }
 
@@ -661,9 +667,7 @@ function generate_invoice_callback() {
         // Check if the order exists
         if ($order) {
             // Generate the invoice
-            //do_action('wpo_wcpdf_before_pdf', $order);
-            //$invoice = new WooCommerce_PDF_Invoices($order);
-            //$invoice = wcpdf_get_document( 'invoice', $order, true );
+            
             $invoice = wcpdf_get_invoice( $order, true );
             $invoice_url = add_query_arg( array(
                 'action'        => 'generate_wpo_wcpdf',
@@ -673,17 +677,7 @@ function generate_invoice_callback() {
             ), admin_url( 'admin-ajax.php' ) );
             $link_text = 'Download a printable invoice / payment confirmation (PDF format)';
             $text .= sprintf( '<p><a href="%s">%s</a></p>', esc_attr( $invoice_url ), esc_html( $link_text ) );
-            //$invoicePDF = wcpdf_get_document("PDF", $order, false);
-            //do_action('wpo_wcpdf_after_pdf', $order);
-            // Generate the invoice URL using the WooCommerce PDF Invoices plugin
-            //$invoice_url = wpo_wcpdf_get_invoice_url($order->get_id());
-            //error_log(print_r($order_id, true));
-            // Send the invoice URL back to the client
-            //wp_send_json(['invoice_url' => $invoice ]);//$invoice->get_invoice_url()
-
-            // Optionally, you can send the invoice to the customer via email
-            // Replace 'customer@example.com' with the customer's email address
-            //$invoice->email_invoice('customer@example.com');
+            
             wp_send_json(['invoice_url' => $invoice_url ]); //
         } else {
             // If the order ID is not valid, send an error response
@@ -715,18 +709,18 @@ function register_user_order_callback() {
         update_post_meta($order_id, '_billing_email', sanitize_email($form_data['email']));
 
         // Update shipping details
-        update_post_meta($order_id, '_shipping_country', sanitize_text_field($form_data['country']));
-        update_post_meta($order_id, '_shipping_first_name', sanitize_text_field($form_data['name']));
-        update_post_meta($order_id, '_shipping_last_name', sanitize_text_field($form_data['surname']));
-        update_post_meta($order_id, '_shipping_address_1', sanitize_text_field($form_data['address']));
-        update_post_meta($order_id, '_shipping_city', sanitize_text_field($form_data['city']));
+        update_post_meta($order_id, 'shipping_country', sanitize_text_field($form_data['country']));
+        update_post_meta($order_id, 'shipping_first_name', sanitize_text_field($form_data['name']));
+        update_post_meta($order_id, 'shipping_last_name', sanitize_text_field($form_data['surname']));
+        update_post_meta($order_id, 'shipping_address_1', sanitize_text_field($form_data['address']));
+        update_post_meta($order_id, 'shipping_city', sanitize_text_field($form_data['city']));
 
         // Update billing details
-        update_post_meta($order_id, '_billing_first_name', sanitize_text_field($form_data['name']));
-        update_post_meta($order_id, '_billing_last_name', sanitize_text_field($form_data['surname']));
-        update_post_meta($order_id, '_billing_address_1', sanitize_text_field($form_data['address']));
-        update_post_meta($order_id, '_billing_city', sanitize_text_field($form_data['city']));
-        update_post_meta($order_id, '_billing_phone', sanitize_text_field($form_data['phone']));
+        update_post_meta($order_id, 'billing_first_name', sanitize_text_field($form_data['name']));
+        update_post_meta($order_id, 'billing_last_name', sanitize_text_field($form_data['surname']));
+        update_post_meta($order_id, 'billing_address_1', sanitize_text_field($form_data['address']));
+        update_post_meta($order_id, 'billing_city', sanitize_text_field($form_data['city']));
+        update_post_meta($order_id, 'billing_phone', sanitize_text_field($form_data['phone']));
 
         // Update order notes with additional details
         $order_notes = "Detalhes Adicionais: " . sanitize_textarea_field($form_data['details']);
@@ -912,7 +906,6 @@ function check_order_exists_callback() {
   }else{
       $order_exists = false;
   }
-  //$order_exists = isset($_SESSION['cart'])? true : false;
 
   // Send response back to JavaScript
   wp_send_json(['exists' => $order_exists]);//
