@@ -39,11 +39,11 @@ usr_buttonInfo.addEventListener('click', function (event){
     jQuery.ajax({
         type: 'POST',
         url: wc_add_to_cart_params.ajax_url,
-        data: {
+        data: jQuery.param({
             action: 'register_user_order', // Action name defined in the server-side function
             form_data: formData,
             orderId: checkoutId
-        },
+        }),
         beforeSend: function(){
             loader.classList.remove("loader__hidden");
         },

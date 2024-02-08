@@ -696,10 +696,10 @@ add_action('wp_ajax_register_user_order', 'register_user_order_callback');
 add_action('wp_ajax_nopriv_register_user_order', 'register_user_order_callback');
 
 function register_user_order_callback() {
-    // Get the form data from the AJAX request
-     $form_data = isset($_POST['form_data']) ? $_POST['form_data'] : [];
-    // Get the order object
-    $order_id = isset($_POST['orderId']) ? $_POST['orderId'] : 0;
+    // Assuming $form_data is sent as a serialized string
+    parse_str($_POST['form_data'], $form_data_parsed);
+
+    $order_id = isset($_POST['orderId']) ? intval($_POST['orderId']) : 0;
     $order = wc_get_order($order_id);
 
     if($order_id > 0){
