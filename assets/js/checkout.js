@@ -39,11 +39,12 @@ usr_buttonInfo.addEventListener('click', function (event){
     jQuery.ajax({
         type: 'POST',
         url: wc_add_to_cart_params.ajax_url,
-        data: jQuery.param({
+        data:{
             action: 'register_user_order', // Action name defined in the server-side function
             form_data: formData,
-            orderId: checkoutId
-        }),
+            orderId: checkoutId,
+            nonce: ajax_object.nonce,
+        },
         beforeSend: function(){
             loader.classList.remove("loader__hidden");
         },
@@ -52,9 +53,10 @@ usr_buttonInfo.addEventListener('click', function (event){
             if (response.success) {
                 console.log(response.message);
                 window.location.href= './envio/';
+                
             } else {
                 loader.classList.add("loader__hidden");
-                alert("Erro registar o seu pedido!!!");
+                alert("Erro ao registar o seu pedido!!!, " + response.message);
             }
         },
         error: function (error) {

@@ -696,40 +696,66 @@ add_action('wp_ajax_register_user_order', 'register_user_order_callback');
 add_action('wp_ajax_nopriv_register_user_order', 'register_user_order_callback');
 
 function register_user_order_callback() {
-    // Assuming $form_data is sent as a serialized string
-    parse_str($_POST['form_data'], $form_data_parsed);
+    // Get the form data from the AJAX request
+     $form_data = isset($_POST['form_data']) ? $_POST['form_data'] : [];
 
     $order_id = isset($_POST['orderId']) ? intval($_POST['orderId']) : 0;
     $order = wc_get_order($order_id);
+    
+    // Verify nonce for added security
+    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'ajax-live-search-nonce')) {
+        wp_send_json(['success' => false, 'message' => 'Nonce verification failed']);
+        wp_die();
+    }
 
     if($order_id > 0){
-    // You can now use $form_data to register the user details to the order
         
-        // Update billing email
-        update_post_meta($order_id, '_billing_email', sanitize_email($form_data['email']));
+        // Example: Update billing email
+        if (isset($form_data_parsed['email'])) {
+            update_post_meta($order_id, '_billing_email', sanitize_email($form_data_parsed['email']));
+        }
 
         // Update shipping details
-        update_post_meta($order_id, 'shipping_country', sanitize_text_field($form_data['country']));
-        update_post_meta($order_id, 'shipping_first_name', sanitize_text_field($form_data['name']));
-        update_post_meta($order_id, 'shipping_last_name', sanitize_text_field($form_data['surname']));
-        update_post_meta($order_id, 'shipping_address_1', sanitize_text_field($form_data['address']));
-        update_post_meta($order_id, 'shipping_city', sanitize_text_field($form_data['city']));
-
-        // Update billing details
-        update_post_meta($order_id, 'billing_first_name', sanitize_text_field($form_data['name']));
-        update_post_meta($order_id, 'billing_last_name', sanitize_text_field($form_data['surname']));
-        update_post_meta($order_id, 'billing_address_1', sanitize_text_field($form_data['address']));
-        update_post_meta($order_id, 'billing_city', sanitize_text_field($form_data['city']));
-        update_post_meta($order_id, 'billing_phone', sanitize_text_field($form_data['phone']));
-
+        // Repeat the above process for other fields, ensuring to check if they're set
+        if (isset($form_data['country'])) {
+            $order->set_billing_country(sanitize_text_field($form_data['country']));
+            $order->set_shipping_country(sanitize_text_field($form_data['country']));
+        }
+        if (isset($form_data['name'])) {
+            $order->set_billing_first_name(sanitize_text_field($form_data['name']));
+            $order->set_shipping_first_name(sanitize_text_field($form_data['name']));
+        }
+        if (isset($form_data['surname'])) {
+            $order->set_billing_last_name(sanitize_text_field($form_data['surname']));
+            $order->set_shipping_last_name(sanitize_text_field($form_data['surname']));
+        }
+        if (isset($form_data['address'])) {
+            $order->set_billing_address_1(sanitize_text_field($form_data['address']));
+            $order->set_shipping_address_1(sanitize_text_field($form_data['address']));
+        }
+        if (isset($form_data['city'])) {
+            $order->set_billing_city(sanitize_text_field($form_data['city']));
+            $order->set_shipping_city(sanitize_text_field($form_data['city']));
+        }
+        if (isset($form_data['phone'])) {
+            $order->set_billing_phone(sanitize_text_field($form_data['phone']));
+            $order->set_shipping_phone(sanitize_text_field($form_data['phone']));
+        }
+        
         // Update order notes with additional details
-        $order_notes = "Detalhes Adicionais: " . sanitize_textarea_field($form_data['details']);
-        $order_notes .= "\nMétodo de Entrega: " . sanitize_text_field($form_data['deliveryMethod']);
-        $order_notes .= "\n\nDetalhes acrescentados durante o checkout.";
-        $order->add_order_note($order_notes);
+        if (isset($form_data['details'])) {
+            $order_notes = "Detalhes Adicionais: " . sanitize_textarea_field($form_data_parsed['details']);
+            $order_notes .= "\nMétodo de Entrega: " . sanitize_text_field($form_data_parsed['deliveryMethod']);
+            $order_notes .= "\n\nDetalhes acrescentados durante o checkout.";
+            $order->add_order_note($order_notes);
+        }
+
+        // You can send a response back to the JavaScript if needed
+        wp_send_json(['success' => true, 'message' => 'Ordem criada com sucesso']);
+    }else {
+        wp_send_json(['success' => false, 'message' => 'Ordem não encontrada']);
     }
-    // You can send a response back to the JavaScript if needed
-    wp_send_json(['success' => true, 'message' => 'Ordem criada com sucesso']);
+    
     wp_die();
 }
 
