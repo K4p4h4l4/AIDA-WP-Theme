@@ -41,7 +41,7 @@
             </div>
             <div class="header__contact">
                 <i class="material-icons">room</i>
-                <span>Zango 0, Vila Chinesa</span>
+                <span>Viana, Zango 0, Vida Pacífica, Zona II, Bloco II, prd IV</span>
             </div>
         </div>
         <div class="info__header-account">

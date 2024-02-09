@@ -697,7 +697,8 @@ add_action('wp_ajax_nopriv_register_user_order', 'register_user_order_callback')
 
 function register_user_order_callback() {
     // Get the form data from the AJAX request
-     $form_data = isset($_POST['form_data']) ? $_POST['form_data'] : [];
+    $form_data = json_decode(stripslashes($_POST['form_data']), true); // Assuming you're sending JSON string
+
 
     $order_id = isset($_POST['orderId']) ? intval($_POST['orderId']) : 0;
     $order = wc_get_order($order_id);
@@ -712,7 +713,7 @@ function register_user_order_callback() {
         
         // Example: Update billing email
         if (isset($form_data['email'])) {
-            update_post_meta($order_id, '_billing_email', sanitize_email($form_data['email']));
+            $order->set_billing_email(sanitize_email($form_data['email']));
         }
 
         // Update shipping details
@@ -744,12 +745,13 @@ function register_user_order_callback() {
         
         // Update order notes with additional details
         if (isset($form_data['details'])) {
-            $order_notes = "Detalhes Adicionais: " . sanitize_textarea_field($form_data_parsed['details']);
-            $order_notes .= "\nMétodo de Entrega: " . sanitize_text_field($form_data_parsed['deliveryMethod']);
+            $order_notes = "Detalhes Adicionais: " . sanitize_textarea_field($form_data['details']);
+            $order_notes .= "\nMétodo de Entrega: " . sanitize_text_field($form_data['deliveryMethod']);
             $order_notes .= "\n\nDetalhes acrescentados durante o checkout.";
             $order->add_order_note($order_notes);
         }
-
+        
+        $order->save();
         // You can send a response back to the JavaScript if needed
         wp_send_json(['success' => true, 'message' => 'Ordem criada com sucesso']);
     }else {
@@ -869,12 +871,25 @@ add_action('wp_ajax_nopriv_download_invoice', 'download_invoice_callback');
 
 // Function to initiate the download
 function download_invoice_callback() {
+    // Assuming JSON string, decode it
+    $form_data = json_decode(stripslashes($_POST['form_data']), true);
+    
     // Get the order ID from the AJAX request
     $order_id = isset($_POST['order_id']) ? $_POST['order_id'] : 0;
+    $paymentMethod = isset($form_data['paymentMethod']) ? $form_data['paymentMethod'] : '';
+    
+    // Verify nonce for added security
+    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'ajax-live-search-nonce')) {
+        wp_send_json(['success' => false, 'message' => 'Falha na verificação de segurança']);
+        wp_die();
+    }
+    
     $order = wc_get_order($order_id);
-    $paymentMethod = $form_data['paymentMethod'];
-    // Check if the order is valid
-    if ($order) {
+    
+    if (!$order) {
+        wp_send_json(['success' => false, 'message' => 'Encomenda não encontrada']);
+        wp_die();
+    }else{
         
         if(($paymentMethod == 1) || ($paymentMethod == 3) || ($paymentMethod == 4)){
             $order->set_payment_method('bacs');

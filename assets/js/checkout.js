@@ -41,7 +41,7 @@ usr_buttonInfo.addEventListener('click', function (event){
         url: wc_add_to_cart_params.ajax_url,
         data:{
             action: 'register_user_order', // Action name defined in the server-side function
-            form_data: formData,
+            form_data: JSON.stringify(formData),
             orderId: checkoutId,
             nonce: ajax_object.nonce,
         },

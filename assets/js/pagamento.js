@@ -29,8 +29,9 @@ function finishOrder(event){
             url: wc_add_to_cart_params.ajax_url,
             data: {
                 action: 'download_invoice',
-                form_data: formData,
-                order_id: orderID
+                form_data: JSON.stringify(formData),
+                order_id: orderID,
+                nonce: ajax_object.nonce,
             },
             beforeSend: function(){
                 loader.classList.remove("loader__hidden");
