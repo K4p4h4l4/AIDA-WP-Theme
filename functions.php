@@ -95,7 +95,7 @@
             wp_enqueue_style('registar_css');
         }
         
-        if(is_page('login') || is_page('recuperar-senha') || is_page('recetar-senha')){
+        if(is_page('login') || is_page('recuperar-senha') || is_page('recetar-senha') || is_page('404')){
             //css da página de envio
             wp_register_style('login_css', get_template_directory_uri().'/assets/css/login.css', array(), 1, 'all');
             wp_enqueue_style('login_css');

@@ -14,22 +14,22 @@ if (WC()->cart->is_empty()) {
     $pdf = new FPDF('P','mm','A4');
     $pdf->AddPage();
     // Add a logo Image(file path name, xposition, y position, width, height)
-    $pdf->Image('./wp-content/uploads/2023/09/Logo_AIDA.png',10,6,50); // Path to logo image 10, 6, 30
+    $pdf->Image('./wp-content/uploads/2024/01/Logo_AIDA.png',10,6,50); // Path to logo image 10, 6, 30 dados pro back 2023 09
     $pdf->SetFont('Arial', 'B', 13);
     $pdf->Cell(120, 5, '', 0, 0);
     $pdf->Cell(70, 5, 'AIDA', 0, 1, 'L');
     $pdf->SetFont('Arial', '', 10);
     $pdf->Cell(120, 5, '', 0, 0);
-    $pdf->Cell(70, 5, iconv('UTF-8', 'windows-1252', 'www.aida.ao'), 0, 1, 'L');
+    $pdf->Cell(70, 5, iconv('UTF-8', 'windows-1252', 'Luanda, Viana, Zango 0, Vida Pacífica, Zona II, Bloco II, prd IV'), 0, 1, 'L');
+    $pdf->SetFont('Arial', '', 10);
+    $pdf->Cell(120, 5, '', 0, 0);
+    $pdf->Cell(70, 5, iconv('UTF-8', 'windows-1252', '+244 923 695 077'), 0, 1, 'L');    
     $pdf->SetFont('Arial', '', 10);
     $pdf->Cell(120, 5, '', 0, 0);
     $pdf->Cell(70, 5, iconv('UTF-8', 'windows-1252', 'geral@aida.ao'), 0, 1, 'L');
     $pdf->SetFont('Arial', '', 10);
-    $pdf->Cell(120, 5, '', 0, 0);
-    $pdf->Cell(70, 5, iconv('UTF-8', 'windows-1252', '+244 923 695 077'), 0, 1, 'L');
-    $pdf->SetFont('Arial', '', 10);
-    $pdf->Cell(120, 5, '', 0, 0);
-    $pdf->Cell(70, 5, iconv('UTF-8', 'windows-1252', 'Luanda, Viana, Zango 0, Vila Chinesa, nº12'), 0, 1, 'L');
+    $pdf->Cell(120, 5, '', 0, 0);    
+    $pdf->Cell(70, 5, iconv('UTF-8', 'windows-1252', 'www.aida.ao'), 0, 1, 'L');
     // Line break
     $pdf->Ln(10);
     $pdf->SetFont('Arial', 'B', 17);    
