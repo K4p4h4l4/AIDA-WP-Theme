@@ -388,12 +388,26 @@ function rudrAddToCart( product_id, quantity) {
 //remover o item do backend
 function removeCartItemBack(chave){
     let cartItemKey = chave;
-    //let order_number = localStorage.getItem('orderID');
+    let tableItem = document.getElementsByClassName('action__remove');
+    let remove;
+    
+    //Para eliminar item da tabela tbm caso for removido a partir da lista de itens no carrinho
+    if(tableItem){
+        
+        for(let i = 0; i < tableItem.length; i++){
+            remove = tableItem[i].getAttribute('data-item-id');
+            console.log(remove);
+            if(cartItemKey == remove){
+               tableItem[i].parentElement.parentElement.remove();
+            }
+        }
+    }
+    
     //Função para remover o produto da encomenda
     //removeProductFromOrder(order_number, cartItemKey);
     jQuery.ajax({
         type: 'POST',
-        url: wc_add_to_cart_params.ajax_url, //'http://localhost/wordpress/wp-admin/admin-ajax.php' ajaxurl WordPress AJAX URL (automatically defined)
+        url: wc_add_to_cart_params.ajax_url, 
         data: {
             action: 'remove_cart_item', // Action hook for the AJAX handler
             cart_item_key: cartItemKey, // The key of the cart item to remove

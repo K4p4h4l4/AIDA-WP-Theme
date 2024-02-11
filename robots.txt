@@ -1,0 +1,21 @@
+User-agent: *
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+Disallow: /wp-includes/
+Disallow: /wp-content/plugins/
+Disallow: /wp-content/themes/
+Disallow: /trackback/
+Disallow: /xmlrpc.php
+Disallow: /cgi-bin/
+
+# Sitemap: Specify the direct URL to your website's sitemap.
+# This helps search engines to more effectively crawl your site.
+Sitemap: https://www.aida.ao/sitemap.xml
+
+# Block access to specific directories or files that are not meant for search engine indexing.
+# Disallow: /private-directory/
+# Disallow: /example-subpage/
+
+# Allow crawling of all content
+# This is default behavior but can be explicitly stated if desired.
+#Allow: /

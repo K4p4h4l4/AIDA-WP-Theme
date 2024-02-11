@@ -1,4 +1,10 @@
-<?php get_header(); ?>
+<?php 
+    
+    /**
+     * Template Name: 403 Acesso negado
+     */
+    get_header(); 
+?>
 
 <!-- *****************************\
         secção de formulário de login
@@ -7,17 +13,12 @@
         <div class="login__holder">
             <div class="login__container">
                 <div class="login__container-header">
-                    <h1 class="login__title">Página não encontrada</h1>
-                    <p>Parece que nada foi encontrado neste local. Tente procurar e talvez encontre?</p>
-                </div>
-                <div class="login__data">
-                    <div class="login__username-container">
-                        <?php get_search_form(); ?>
-                    </div>
+                    <h1 class="login__title">403 Acesso Negado</h1>
+                    <p>Desculpa, mas você não tem permissão para acessar essa página.</p>
                 </div>
                 <div class="other__options">
                     <div class="other__option">
-                        <p>Ou, <a href="<?php echo home_url(); ?>"> retorne para a página principal</a>.</p>
+                        <p><a href="<?php echo home_url(); ?>">Retorne para a página principal</a>.</p>
                     </div>
                 </div>
             </div>

@@ -95,7 +95,7 @@
             wp_enqueue_style('registar_css');
         }
         
-        if(is_page('login') || is_page('recuperar-senha') || is_page('recetar-senha') || is_page('404')){
+        if(is_page('login') || is_page('recuperar-senha') || is_page('recetar-senha') || is_404() || is_page('403-acesso-negado')){
             //css da página de envio
             wp_register_style('login_css', get_template_directory_uri().'/assets/css/login.css', array(), 1, 'all');
             wp_enqueue_style('login_css');
@@ -1688,6 +1688,26 @@ function theme_enqueue_scripts() {
 }
 add_action('wp_enqueue_scripts', 'theme_enqueue_scripts');
 
+
+function check_for_forbidden_access() {
+    if (is_page('minha-conta') && !is_user_logged_in()) {
+        $forbidden_page_url = home_url('/403-acesso-negado/');
+        wp_redirect($forbidden_page_url);
+        exit;
+    }
+    
+    // Ensure WooCommerce is loaded and the cart is initialized before trying to access it
+    if (function_exists('WC') && !is_null(WC()->cart)) {
+        $cartItemsQty = count(WC()->cart->get_cart());
+        
+        if ((is_page('envio') || is_page('carrinho') || is_page('checkout') || is_page('pagamento')) && ($cartItemsQty <= 0)) {
+            $forbidden_page_url = home_url('/403-acesso-negado/');
+            wp_redirect($forbidden_page_url);
+            exit;
+        }
+    }
+}
+add_action('template_redirect', 'check_for_forbidden_access');
 
 //Função para adicionar itens a lista dos favoritos
 function add_wishlist_item_callback(){

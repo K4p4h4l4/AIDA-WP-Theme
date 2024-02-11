@@ -76,7 +76,7 @@
                         </td>
                         <td>
                             <a class="action__remove" data-item-id="<?php echo $_product->get_ID();?>">
-                                <i class="material-icons" data-item-id="<?php echo $_product->get_ID();?>">delete</i>
+                                <i class="material-icons" >delete</i>
                             </a>
                         </td>
                     </tr>
