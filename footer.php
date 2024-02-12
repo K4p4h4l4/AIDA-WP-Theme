@@ -29,16 +29,16 @@
                 </div>
                 <div class="footer__card-content">
                     <div class="footer__options">
-                        <a href="#" class="option">Sobre nós</a>
+                        <a href="../sobre-nos/" class="option">Sobre nós</a>
                     </div>
                     <div class="footer__options">
-                        <a href="#" class="option">Contacte-nos</a>
+                        <a href="../contacte-nos/" class="option">Contacte-nos</a>
                     </div>
-                    <div class="footer__options">
+                    <!--div class="footer__options">
                         <a href="#" class="option">Política de Privacidade</a>
-                    </div>
+                    </div-->
                     <div class="footer__options">
-                        <a href="#" class="option">Termos & Condições</a>
+                        <a href="../termos-e-condicoes/" class="option">Termos & Condições</a>
                     </div>
                 </div>
             </div>
@@ -52,10 +52,10 @@
                         <a href="#" class="option">Minha conta</a>
                     </div>
                     <div class="footer__options">
-                        <a href="#" class="option">Carrinho</a>
+                        <a href="../carrinho/" class="option">Carrinho</a>
                     </div>
                     <div class="footer__options">
-                        <a href="#" class="option">Lista de desejos</a>
+                        <a href="../favoritos/" class="option">Lista de desejos</a>
                     </div>
                 </div>
             </div>

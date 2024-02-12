@@ -59,7 +59,7 @@
             wp_enqueue_style('sobrenos_css');
         }
         
-        if(is_page('contacte-nos')){
+        if(is_page('contacte-nos') || is_page('termos-e-condicoes')){
             //css do resto da página contacte-nos
             wp_register_style('contactos_css', get_template_directory_uri().'/assets/css/contactos.css', array(), 1, 'all');
             wp_enqueue_style('contactos_css');

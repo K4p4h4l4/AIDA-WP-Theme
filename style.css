@@ -357,17 +357,20 @@ a: -webkit-any-link{
 
 .categories{
     width: 30%;
-    /*height: 4rem;*/
+    height: 3.8rem;
     color: var(--light-gray);
     padding: 1rem 1.5rem;
+    /*border-radius: 1rem 0 0 1rem;*/
     border-radius: 2rem 0 0 2rem;
     border: none;
     font-size: var(--font-size12);
     outline: none;
+    background-color: var(--default-white);
 }
 
 .search__text{
     width: 50%;
+    height: 3.8rem;
     color: var(--light-gray);
     padding: 1.06rem 1.5rem;
     font-size: var(--font-size12);
@@ -377,6 +380,7 @@ a: -webkit-any-link{
 
 .search-btn{
     width: 18%;
+    height: 3.8rem;
     color: var(--default-white);
     font-weight: bold;
     padding: .85rem 1.5rem;

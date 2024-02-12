@@ -71,7 +71,7 @@
                         </div>
                         <?php 
                     }else{
-                        echo '<span><a href="./registar/">Registar</a></span><span><a href="./login/">Login</a></span>';
+                        echo '<span><a href="../registar/">Registar</a></span><span><a href="../login/">Login</a></span>';
                     }
                 ?>
                 
