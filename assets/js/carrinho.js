@@ -10,7 +10,6 @@ if(document.readyState == 'loading'){
 function ready(){
     //remove Items From cart
     let removeTableButtons = document.getElementsByClassName('action__remove');
-    //console.log(removeTableButtons);
     for(let i=0; i < removeTableButtons.length; i++){
         var removeItemTable = removeTableButtons[i];
         removeItemTable.addEventListener('click', removeTableItem);
@@ -39,14 +38,16 @@ function ready(){
 function removeTableItem(event){
     let removeTableButtonClicked = event.target;
     productCounter('remove');
-    removeCartItemBack(removeTableButtonClicked.getAttribute('data-item-id'));
-    let removeID = removeTableButtonClicked.getAttribute('data-item-id');
+    let removeID = removeTableButtonClicked.parentElement.getAttribute('data-item-id');
     let removeItem = document.getElementsByClassName('cart__close-btn');
     let remove;
     for(let i = 0; i < removeItem.length; i++){
         remove = removeItem[i].getAttribute('data-product-id');
+        console.log(removeID, remove);
         if(removeID == remove){
-           removeItem[i].parentElement.remove();
+            console.log(remove);
+            removeCartItemBack(remove);
+            removeItem[i].parentElement.remove();
         }
     }
     removeTableButtonClicked.parentElement.parentElement.parentElement.remove();
@@ -137,7 +138,7 @@ function callCheckout2(){
     
     if(itemsList){
         productQuantities.forEach(input => {
-          const id = input.closest('.product__cart-table').querySelector('.material-icons').getAttribute('data-item-id');
+          const id = input.closest('.product__cart-table').querySelector('.action__remove').getAttribute('data-item-id');
           const quantity = input.value;
 
           productDataArray.push({ id, quantity });
@@ -160,7 +161,7 @@ function callCheckout2(){
             success: function (response) {
                 // Handle the server's response
                 if (response.exists) {
-                        window.location.href = './checkout/'; 
+                        window.location.href = '../checkout/'; 
                 } else {
                     loader.classList.add("loader__hidden");
                     alert("Carrinho vazio!!!");

@@ -308,7 +308,7 @@ function updateCartItemQuantity(cart_item_key, new_quantity) {
         },
         success: function (response) {
             // Handle the response from the server, e.g., update the cart totals or display a success message.
-            console.log(response.message);
+            
         },
         error: function (error) {
             console.error('Error updating cart item quantity:', error);
@@ -396,7 +396,7 @@ function removeCartItemBack(chave){
         
         for(let i = 0; i < tableItem.length; i++){
             remove = tableItem[i].getAttribute('data-item-id');
-            console.log(remove);
+            
             if(cartItemKey == remove){
                tableItem[i].parentElement.parentElement.remove();
             }
@@ -417,14 +417,7 @@ function removeCartItemBack(chave){
             loader.classList.remove("loader__hidden");
         },
         success: function(response) {
-            /*if (response === 'success') {
-                // Handle success - you can update the cart display or perform other actions
-                //window.location.reload();
-                //console.log('Removido com sucesso');
-            } else {
-                // Handle error
-                alert('Um erro ocorreu enquanto removia-se um produto do carrinho .');
-            }*/
+            
             console.log(response.message);
         },
         complete: function(){
@@ -480,7 +473,11 @@ function callCart(){
         success: function (response) {
             // Handle the server's response
             if (response.exists) {
-                    window.location.href = '../carrinho/';
+                if(window.location.href.includes("/product/")){
+                    window.location.href = '../../carrinho/';
+                }else{
+                    window.location.href = './carrinho/';
+                }
             } else {
                 loader.classList.add("loader__hidden");
                 alert("Carrinho vazio!!!");
@@ -532,7 +529,11 @@ function callCheckout(){
         success: function (response) {
             // Handle the server's response
             if (response.exists) {
-                window.location.href = '../checkout/'; 
+                if(window.location.href.includes("/product/")){
+                    window.location.href = '../../checkout/';
+                }else{
+                    window.location.href = './checkout/';
+                } 
             } else {
                 loader.classList.add("loader__hidden");
                 alert("Carrinho vazio!!!");

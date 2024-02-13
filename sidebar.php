@@ -791,7 +791,9 @@
 
                             if ((!is_wp_error($category_link)) && ($category->name == 'Toners' ))  {
                     ?>
-                    <a href="" class="main__category">Toner<!--Todos os Toners--></a>
+                                <a href="<?php echo esc_url($category_link); ?>" class="main__category">
+                                    Toner<!--Todos os Toners-->
+                                </a>
                     <?php
                             }
                         }
