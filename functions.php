@@ -432,8 +432,8 @@ function create_order_and_add_product_callback() {
     }
     
     // Get product details from the request
-    $product_id = $_POST['product_id'];
-    $quantity = $_POST['quantity'];
+    $product_id = sanitize_text_field($_POST['product_id']);
+    $quantity = sanitize_text_field($_POST['quantity']);
 
      // Check if an order (cart) exists in the session
     if (isset($_SESSION['cart'])) {
@@ -461,7 +461,6 @@ function create_order_and_add_product_callback() {
         // Calculate totals and save the order
         $order->calculate_totals();
         $order->save();
-        $_SESSION['cart'] = $order;
     } else {
         // If no cart exists, create a new one
         $order = wc_create_order();
@@ -473,19 +472,19 @@ function create_order_and_add_product_callback() {
         $order->calculate_totals();
         $order->save();
         
-        $_SESSION['cart'] = $order;
+        
     }
     
     if(is_user_logged_in()){
         $user_id = get_current_user_id(); // Get the current logged-in user ID
         // Set the user ID for the order
-        $order->set_customer_id($user_id);
-        
+        $order->set_customer_id($user_id);        
     }
     
     // Update the order status
     $order->set_status('pending');
     $order->save();
+    $_SESSION['cart'] = $order;
 
     // Respond with a success or error message
     if ($order) {
@@ -914,6 +913,7 @@ function download_invoice_callback() {
             $note_body = __('Pagamento direto pelo aplicativo Multicaixa Express (sem precisar fazer transferência).');
             $order->add_order_note($note_title . ': '. $note_body);
         }
+        $order->save();
         
         WC()->mailer()->emails['WC_Email_New_Order']->trigger($order_id, $order);
         WC()->mailer()->emails['WC_Email_Customer_Processing_Order']->trigger($order_id, $order);
@@ -931,6 +931,7 @@ function download_invoice_callback() {
         WC()->cart->empty_cart();
         
         // Unset your custom session variable cart
+        session_start();
         unset($_SESSION['cart']);
         
         wp_send_json(['invoice_url' => $invoice_url ]);

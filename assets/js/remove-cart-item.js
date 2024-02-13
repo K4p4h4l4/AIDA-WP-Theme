@@ -480,10 +480,7 @@ function callCart(){
         success: function (response) {
             // Handle the server's response
             if (response.exists) {
-                    window.location.href = './carrinho/';
-
-                //}
-                //window.location.href = './carrinho/';
+                    window.location.href = '../carrinho/';
             } else {
                 loader.classList.add("loader__hidden");
                 alert("Carrinho vazio!!!");
@@ -517,9 +514,8 @@ function callCheckout(){
       productDataArray.push({ id, quantity });
     });
     
-    console.log('Product Data:', productDataArray);
-    
     for(let i =0; i<productDataArray.length; i++){
+        
         createOrderAndAddProduct(productDataArray[i]['id'], productDataArray[i]['quantity']);
     }
     
@@ -536,7 +532,7 @@ function callCheckout(){
         success: function (response) {
             // Handle the server's response
             if (response.exists) {
-                window.location.href = './checkout/'; 
+                window.location.href = '../checkout/'; 
             } else {
                 loader.classList.add("loader__hidden");
                 alert("Carrinho vazio!!!");
