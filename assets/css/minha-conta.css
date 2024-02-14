@@ -3,11 +3,14 @@
 \*******************************************/
 .myaccount__container{
     width: 100%;
-    padding: 5rem 25rem;
+    margin: 5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .myaccount__holder{
-    width: 100%;  
+    width: 70%;  
 }
 
 .myaccount__header-title{
@@ -660,4 +663,72 @@ td img{
 .action__remove:hover{
     color:var(--default-red);
     cursor: pointer;
+}
+
+/*********************************************\
+         Responsividade para telemóvel
+\*********************************************/
+@media only screen and (max-width:700px){
+    /*******************************************\
+        Detalhes do container da minha conta
+    \*******************************************/
+    .myaccount__holder{
+        width: 95%;  
+    }
+    
+    .myaccount__details-tab{
+        padding: 2rem 1rem;
+    }
+    
+    .register__usernames {
+        display: inline-block;
+    }
+    
+    .register__user-data {
+        width: 100%;
+    }
+    
+    .myaccount__btn-holder{
+        justify-content: center;
+    }
+    
+    .update__btn{
+        width: 40%;
+    }
+    
+    .register__address-data, .register__address-data2{
+        width: 100%;
+    }
+    
+    .input_icon2 {
+        left: 15%;
+    }
+    
+    /*************************\
+           cart table
+    \*************************/
+    thead {
+        display: none;
+    }
+    
+    tbody tr, tbody td{
+        width: 100%;
+        display: block;
+    }
+    
+    tbody td{
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+    
+    tbody td::before{
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        text-align: left;
+        padding-left: 1.5rem;
+        font-weight: bold;
+    }
 }
