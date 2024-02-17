@@ -296,10 +296,26 @@
                                     foreach ($product_categories as $category) {
                                         $category_link = get_term_link($category);
 
-                                        if ((!is_wp_error($category_link)) && ($category->name == 'Disco externo' ))  {
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Discos externos' ))  {
                                 ?>
                                             <a href="<?php echo esc_url($category_link); ?>" class="product__type">
-                                                Disco Externo
+                                                Discos Externos
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Discos internos' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                Discos Internos
                                             </a>
                                 <?php
                                         }
@@ -316,6 +332,58 @@
                                 ?>
                                             <a href="<?php echo esc_url($category_link); ?>" class="product__type">
                                                 Pen Drive USB<!--Pen Drive USB-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="main__category-holder">
+                    <?php
+                        // Loop through product categories and display them as links
+                        foreach ($product_categories as $category) {
+                            $category_link = get_term_link($category);
+
+                            if ((!is_wp_error($category_link)) && ($category->name == 'Monitores e Projectores' ))  {
+                    ?>
+                                <a href="<?php echo esc_url($category_link); ?>" class="main__category">
+                                    Monitores e Projectores<!--Monitores e Projectores-->
+                                </a>
+                    <?php
+                            }
+                        }
+                    ?>
+                    <div class="main__category-submenu">
+                        <ul class="category__submenu-product">
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Monitores' ))  {
+                                ?>
+                                <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                    Monitores<!--Monitores-->
+                                </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Projectores' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                Projectores<!--Projectores-->
                                             </a>
                                 <?php
                                         }
