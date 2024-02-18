@@ -166,20 +166,16 @@
                                     <h3>AKZ <?php echo number_format($product->get_regular_price(), 2, ',', '.');?></h3>
                                 <?php endif?>
                             </div>
-                            <div class="product__stock">
-                                <h4><?php
-                                        
-                                        if($product->get_stock_status()=="instock"){
-                                            echo "Em Estoque"; 
-                                        }elseif($product->get_stock_status()=="outofstock"){
-                                            echo "Esgotado"; 
-                                        }elseif($product->get_stock_status()=="onbackorder"){
-                                            echo "Por Encomenda"; 
-                                        }
-                                    ?> 
-                                    
-                                </h4>
-                            </div>
+                            <?php
+
+                                if($product->get_stock_status()=="instock"){
+                                    echo "<div class='product__stock' style='color:var(--default-green);'><h4>Em Estoque</h4></div>"; 
+                                }elseif($product->get_stock_status()=="outofstock"){
+                                    echo "<div class='product__stock' style='color:var(--default-red);'><h4>Esgotado</h4></div>"; 
+                                }elseif($product->get_stock_status()=="onbackorder"){
+                                    echo "<div class='product__stock' style='color:var(--default-yellow);'><h4>Por Encomenda</h4></div>"; 
+                                }
+                            ?> 
                         </div>
                         <div class="product__quantities-holder">
                             <h4>Quantidade :</h4>

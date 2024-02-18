@@ -1198,6 +1198,38 @@
                                     foreach ($product_categories as $category) {
                                         $category_link = get_term_link($category);
 
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Canon' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                Canon<!--Canon-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Epson' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                Epson<!--Epson-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
                                         if ((!is_wp_error($category_link)) && ($category->name == 'Kyocera' ))  {
                                 ?>
                                             <a href="<?php echo esc_url($category_link); ?>" class="product__type">

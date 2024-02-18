@@ -54,7 +54,7 @@ function criarConta(){
                     window.location.href= './home/';
                 } else {
                     loader.classList.add("loader__hidden");
-                    alert("Erro ao registar o seu pedido!!! " + response);
+                    alert("Erro ao registar os seus dados!!! " + response);
                 }
             },
             error: function (error) {
