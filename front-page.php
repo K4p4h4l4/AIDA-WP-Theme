@@ -48,7 +48,7 @@
                     <h1><?php echo $carrossel['carrossel_grupo3']['titulo_carrossel']; ?></h1>
                     <p><?php echo $carrossel['carrossel_grupo3']['paragrafo_carrossel']; ?></p>
                 </div>
-                <img src="<?php echo get_theme_file_uri('assets/img/Artg-Android-TV-3-1.jpg')?>" alt="">
+                <img src="<?php echo get_theme_file_uri('assets/img/slide7.jpg')?>" alt="">
             </div>
 
             <div class="caroussel__imgs fade">
