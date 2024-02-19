@@ -117,6 +117,54 @@
                                     foreach ($product_categories as $category) {
                                         $category_link = get_term_link($category);
 
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'HBO' ))  {
+                                ?>
+                                        <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                             HBO<!--HBO-->
+                                        </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'IPTV' ))  {
+                                ?>
+                                        <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                             IPTV<!--IPTV-->
+                                        </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'My family cinema' ))  {
+                                ?>
+                                        <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                             My family cinema<!--My family cinema-->
+                                        </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
                                         if ((!is_wp_error($category_link)) && ($category->name == 'Animes' ))  {
                                 ?>
                                         <a href="<?php echo esc_url($category_link); ?>" class="product__type">

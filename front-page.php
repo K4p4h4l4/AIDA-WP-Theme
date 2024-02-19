@@ -32,7 +32,7 @@
                     <h1><?php echo $carrossel['carrossel_grupo1']['titulo_carrossel']; ?></h1>
                     <p><?php echo $carrossel['carrossel_grupo1']['paragrafo_carrossel']; ?>.</p>
                 </div>
-                <img src="<?php echo get_theme_file_uri('assets/img/S1.webp')?>" alt="">
+                <img src="<?php echo esc_url($carrossel['carrossel_grupo1']['imagem_carrossel']['url']) ;?>" alt=""-->
             </div>
 
             <div class="caroussel__imgs fade">
@@ -40,7 +40,7 @@
                     <h1><?php echo $carrossel['carrossel_grupo2']['titulo_carrossel']; ?></h1>
                     <p><?php echo $carrossel['carrossel_grupo2']['paragrafo_carrossel']; ?></p>
                 </div>
-                <img src="<?php echo get_theme_file_uri('assets/img/Netflix-ok.jpg')?>" alt="">
+                <img src="<?php echo esc_url($carrossel['carrossel_grupo2']['imagem_carrossel']['url'])?>" alt="">
             </div>
 
             <div class="caroussel__imgs fade">
@@ -48,7 +48,7 @@
                     <h1><?php echo $carrossel['carrossel_grupo3']['titulo_carrossel']; ?></h1>
                     <p><?php echo $carrossel['carrossel_grupo3']['paragrafo_carrossel']; ?></p>
                 </div>
-                <img src="<?php echo get_theme_file_uri('assets/img/slide7.jpg')?>" alt="">
+                <img src="<?php echo esc_url($carrossel['carrossel_grupo3']['imagem_carrossel']['url'])?>" alt="">
             </div>
 
             <div class="caroussel__imgs fade">
@@ -56,7 +56,7 @@
                     <h1><?php echo $carrossel['carrossel_grupo4']['titulo_carrossel']; ?></h1>
                     <p><?php echo $carrossel['carrossel_grupo4']['paragrafo_carrossel']; ?></p>
                 </div>
-                <img src="<?php echo get_theme_file_uri('assets/img/Slider2.jpg')?>" alt="">
+                <img src="<?php echo esc_url($carrossel['carrossel_grupo4']['imagem_carrossel']['url'])?>" alt="">
             </div>
 
             <a href="#" class="prev" onclick="plusSlides(-1)">&#10094</a>
