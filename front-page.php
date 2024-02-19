@@ -238,13 +238,16 @@
             <!-- *****************************\
                          left advertising
                 \******************************/-->
+            <?php 
+                $left_advertising = get_field('left_advertising'); 
+            ?>
             <div class="product__advertising">
                 <div class="product__advertising-img">
                     <div class="product__advertising-txt">
-                        <h3>Smartphone</h3>
-                        <p>Até 30% de desconto</p>
+                        <h3><?php echo $left_advertising['left_advertising_titulo'] ?></h3>
+                        <p><?php echo $left_advertising['left_advertising_paragrafo'] ?></p>
                     </div>
-                    <img src="<?php echo get_theme_file_uri('assets/img/Left-banner-3.jpg')?>" alt="">
+                    <img src="<?php echo esc_url($left_advertising['left_advertising_imagem']);?>" alt="">
                 </div>
             </div>
 
@@ -588,9 +591,9 @@
             </div>
 
             <div class="new__products-containerHome">
-
+                <?php $middle_advertising = get_field('middle_advertising');?>
                 <div class="new__product-advertising">
-                    <img src="<?php echo get_theme_file_uri('assets/img/1530x300_e63ad3f2-5417-47ac-bbe2-8027e34d83c6.webp')?>" alt="">
+                    <img src="<?php echo esc_url($middle_advertising['middle_advertising_imagem'])?>" alt="">
                 </div>
                 <div class="new__products-header">
                     <span class="products__header-title">Melhores avaliados</span>
