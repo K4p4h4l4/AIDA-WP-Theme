@@ -73,7 +73,7 @@
 
                         <div class="register__usernames">
                             <div class="register__username-container">
-                                <span class="input_icon">
+                                <span class="input_icon toggle-password" onclick="togglePasswordVisibility()">
                                     <i class="material-icons">lock</i>
                                 </span>
                                 <input type="password" placeholder="Crie uma nova senha" required class="register__user-data" id="senha" autocomplete="off">
@@ -81,9 +81,9 @@
                             </div>
 
                             <div class="register__username-container">
-                                <!--span class="input_icon">
-                                    <i class="material-icons">cellphone</i>
-                                </span-->
+                                <span class="input_icon">
+                                    <i class="material-icons">smartphone</i>
+                                </span>
                                 <input type="number" placeholder="Insira o número de telefone" required class="register__user-data" id="telefone" autocomplete="off" min="910000000" value="910000000">
                                 <label for="telefone" class="account__label">Telefone</label>
                             </div>

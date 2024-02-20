@@ -41,6 +41,7 @@ function finishOrder(event){
                 if (response.invoice_url) {
                     // Open the generated invoice URL in a new tab
                     window.open(response.invoice_url, '_blank');
+                    alert('Encomenda feita com sucesso!');
                     window.location.href = './home/';
                 } else {
                     console.error('Error: Invalid invoice URL', response.invoice_url);

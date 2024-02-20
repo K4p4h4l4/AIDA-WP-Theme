@@ -93,3 +93,16 @@ function isPasswordValid(password) {
         // Add more conditions for additional requirements if necessary
     );
 }
+
+//Função para monstrar a password
+function togglePasswordVisibility() {
+    var passwordInput = document.getElementById("senha");
+    var toggleIcon = document.querySelector(".toggle-password i");
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        toggleIcon.textContent = "lock"; // Altera o ícone para "visibility_off"
+    } else {
+        passwordInput.type = "password";
+        toggleIcon.textContent = "visibility"; // Altera o ícone para "visibility"
+    }
+}

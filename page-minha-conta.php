@@ -28,10 +28,10 @@
                     $user_id = get_current_user_id();
                     
                     // Get orders for the current user
-                    // Get orders for the current user
                     $customer_orders = wc_get_orders(array(
                         'customer' => $user_id,
                         'limit'    => -1, // Set to -1 to retrieve all orders
+                        'status'   => array('completed', 'processing'),
                     ));
                 }
             

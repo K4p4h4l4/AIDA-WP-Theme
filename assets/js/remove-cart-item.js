@@ -282,6 +282,7 @@ function addProductToCart(title,price,image,id, itemQuantity){
     
     updateTotal();
     
+    alert('Item adicionado com sucesso, veja o seu carrinho!');
 }
 
 
