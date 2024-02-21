@@ -1710,6 +1710,23 @@ function check_for_forbidden_access() {
 }
 add_action('template_redirect', 'check_for_forbidden_access');
 
+//Filtro para ajuste de imagens
+function custom_image_srcset($sources, $size_array, $image_src, $image_meta, $attachment_id) {
+    foreach ($sources as $source_width => $source) {
+        if ($source_width != 1024 && $source_width != 768) { // Manter apenas 1024px e 768px de largura
+            unset($sources[$source_width]);
+        }
+    }
+    return $sources;
+}
+add_filter('wp_calculate_image_srcset', 'custom_image_srcset', 10, 5);
+
+function custom_image_sizes($sizes, $size, $image_src, $image_meta, $attachment_id) {
+    return '(max-width: 768px) 100vw, 768px';
+}
+add_filter('wp_calculate_image_sizes', 'custom_image_sizes', 10, 5);
+
+
 //Função para adicionar itens a lista dos favoritos
 function add_wishlist_item_callback(){
     
