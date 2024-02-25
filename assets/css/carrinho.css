@@ -218,7 +218,7 @@ td img{
 /*********************************************\
          Responsividade para telemóvel
 \*********************************************/
-@media only screen and (max-width:700px){
+@media only screen and (max-width:800px){
     /*************************\
          cart table section
     \*************************/
