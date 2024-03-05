@@ -65,7 +65,7 @@
         /*transition: width ease-in-out .7s;*/
     }
     
-    .main__options-informatic, .main__options-tvbox, .main__options-tablet, .main__options-paper, .main__options-games, .main__options-printer{
+    .main__options-streaming, .main__options-informatic, .main__options-tvbox, .main__options-tablet, .main__options-paper, .main__options-games, .main__options-printer{
         width: 100%;
         left: 0;
         position: relative;
@@ -77,8 +77,14 @@
         padding: 0;
     }
     
+    /*.informatic:hover .main__options-informatic{
+        display: none;
+    }*/
+    
     .submenu__active{
         max-height: 100rem;
+        display: flex !important;
+        
     }
     
     .expand{

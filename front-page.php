@@ -94,6 +94,7 @@
                                 'meta_key' => 'total_sales',
                                 'visibility' => 'catalog',
                                 'featured' => true,
+                                'status' => 'publish'
                             );
                             
                             //Execução da query
@@ -267,7 +268,8 @@
                                 'limit' => 2,
                                 'meta_key' => 'total_sales',
                                 'orderby' => 'meta_value_num',
-                                'order' => 'DESC'
+                                'order' => 'DESC',
+                                'status' => 'publish'
                             );
                             
                             //Execução da query
@@ -427,7 +429,8 @@
                             $args = array(
                                 'limit' => 8,
                                 'orderby' => 'date',
-                                'order' => 'DESC'
+                                'order' => 'DESC',
+                                'status' => 'publish'
                             );
                             
                             //Execução da query
@@ -606,7 +609,8 @@
                             'limit' => 8,
                             'meta_key' => '_wc_average_rating',
                             'orderby' => 'meta_value_num',
-                            'order' => 'DESC'
+                            'order' => 'DESC',
+                            'status' => 'publish'
                         );
 
                         //Execução da query
