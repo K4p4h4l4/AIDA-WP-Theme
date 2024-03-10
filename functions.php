@@ -247,6 +247,12 @@
             wp_enqueue_script('dompurify__js');
         }
         
+        if(is_page('em-promocao')){
+            //Carrinho js 
+            wp_register_script('em-promocao_js', get_template_directory_uri().'/assets/js/em-promocao.js', array(), 1, 1, 1); //get_theme_file_uri
+            wp_enqueue_script('em-promocao_js');
+        }
+        
     }
 
     add_action('wp_enqueue_scripts', 'fn_theme_scripts');
@@ -1725,6 +1731,158 @@ function custom_image_sizes($sizes, $size, $image_src, $image_meta, $attachment_
     return '(max-width: 768px) 100vw, 768px';
 }
 add_filter('wp_calculate_image_sizes', 'custom_image_sizes', 10, 5);
+
+//Função para filtrar os produtos consoante um selecção (preço, avaliações, data)
+add_action( 'wp_ajax_filtrar_produtos', 'filtrar_produtos_callback' );
+add_action( 'wp_ajax_nopriv_filtrar_produtos', 'filtrar_produtos_callback' );
+
+function filtrar_produtos_callback() {
+    $ordenacao = isset($_POST['ordenacao']) ? $_POST['ordenacao'] : '';    
+    
+    // Adiciona critérios de ordenação baseados na seleção do usuário
+    switch ($ordenacao) {
+        case 0:
+            $args = array(
+                'status' => 'publish',
+                'limit' => -1,
+                'on_sale' => true,
+                'orderby' => 'meta_value_num',
+                'meta_key' => '_sale_price',
+            );
+            break;
+        case 1: // Preço: mais barato primeiro
+            $args = array(
+                'status' => 'publish',
+                'limit' => -1,
+                'on_sale' => true,
+                'orderby' => 'meta_value_num',
+                'meta_key' => '_sale_price',
+                'order' => 'ASC',
+            );
+            break;
+        case 2: // Preço: mais caro primeiro
+            $args = array(
+                'status' => 'publish',
+                'limit' => -1,
+                'on_sale' => true,
+                'orderby' => 'meta_value_num',
+                'meta_key' => '_sale_price',
+                'order' => 'DESC',
+            );
+            break;
+        case 3: // Data: mais recente primeiro
+            $args = array(
+                'status' => 'publish',
+                'limit' => -1,
+                'on_sale' => true,
+                'orderby' => 'date',
+                'order' => 'DESC',
+            );
+            break;
+        case 4: // Data: mais antigo primeiro
+            $args = array(
+                'status' => 'publish',
+                'limit' => -1,
+                'on_sale' => true,
+                'orderby' => 'date',
+                'order' => 'ASC',
+            );
+            break;
+        case 5: // Mais vendidos
+            $args = array(
+                'meta_key' => 'total_sales',
+                'on_sale' => true,
+                'orderby' => 'meta_value_num',
+                'order' => 'DESC',
+                'status' => 'publish'
+            );
+            break;
+        case 6: // Avaliação: melhores avaliados primeiro
+            $args = array(
+                'status' => 'publish',
+                'limit' => -1,
+                'on_sale' => true,
+                'meta_key' => '_wc_average_rating',
+                'orderby' => 'meta_value_num',
+                'order' => 'DESC',
+            );
+            break;
+        default:
+            $args = array(
+                'status' => 'publish',
+                'limit' => -1,
+                'on_sale' => true,
+                'orderby' => 'meta_value_num',
+                'meta_key' => '_sale_price',
+            );
+            break;
+        // Adicione mais casos conforme necessário
+    }
+
+    //Execução da query
+    $query = new WC_Product_Query($args);
+
+    //Vector de produtos
+    $products = $query->get_products();
+
+    if (!empty($products)) {
+        foreach ($products as $product) {
+            // Convertendo a lógica para PHP corretamente
+            $product_id = $product->get_id();
+            $product_name = $product->get_name();
+            $product_price = $product->get_price(); // Preço atual do produto
+            $product_sale_price = $product->get_sale_price();
+            $product_regular_price = $product->get_regular_price();
+            $product_img_url = wp_get_attachment_url($product->get_image_id());
+            
+            // Calcula a porcentagem de desconto se houver um preço de venda
+            $discount_percentage = $product_sale_price ? round((($product_regular_price - $product_sale_price) / $product_regular_price) * 100) : 0;
+            
+            $rating = $product->get_average_rating();
+            $rating_count = $product->get_rating_count();
+            
+            echo "<div class='product__card'>";
+            echo "<div class='product__img'><a href='".get_permalink($product_id)."'>";
+            if($discount_percentage > 0){
+                echo "<div class='product__discount'>{$discount_percentage}%</div>";
+            }
+            echo "<img src='{$product_img_url}' alt='{$product_name}' /></a></div>";
+            echo "<div class='product__details'><a href='".get_permalink($product_id)."'>";
+            echo "<span class='product__name'>{$product_name}</span><div class='rating'>";
+
+            // Lógica para exibir as estrelas de avaliação
+            for ($i = 0; $i < floor($rating); $i++) {
+                echo "<i class='material-icons'>star</i>";
+            }
+            if (floor($rating) < $rating) {
+                echo "<i class='material-icons'>star_half</i>";
+                $i++;
+            }
+            while ($i < 5) {
+                echo "<i class='material-icons'>star_outline</i>";
+                $i++;
+            }
+
+            echo "</div><div class='price__holder'>";
+            if($product_sale_price){
+                echo "<div class='product__price'>AKZ " . number_format($product_sale_price, 2, ',', '.') . "</div>";
+                echo "<div class='product__price-old'><del>AKZ " . number_format($product_regular_price, 2, ',', '.') . "</del></div>";
+            }else{
+                echo "<div class='product__price'>AKZ " . number_format($product_regular_price, 2, ',', '.') . "</div>";
+            }
+            echo "</div></a><div class='product__buttons'>";
+            echo "<button class='product__btn info' id='infoProductModal' data-name='p-{$product_id}'><i class='material-icons'>remove_red_eye</i></button>";
+            echo "<button class='product__btn addtoWishlist'><i class='material-icons'>favorite_border</i></button>";
+            echo "<button class='product__btn addToCart'><i class='material-icons'>shopping_cart</i></button>";
+            echo "</div></div><div class='product_id' id='{$product_id}'></div></div>";
+        
+        }
+    } else {
+        echo '<p>Nenhum produto encontrado.</p>';
+    }
+
+    wp_die(); // Encerra a execução do script
+}
 
 
 //Função para adicionar itens a lista dos favoritos

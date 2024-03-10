@@ -30,8 +30,8 @@
                             <option value="2">Preço: mais caro primeiro</option>
                             <option value="3">Data: mais recente primeiro</option>
                             <option value="4">Data: mais antigo primeiro</option>
-                            <option value="3">Mais vendidos</option>
-                            <option value="4">Melhores avaliados</option>
+                            <option value="5">Mais vendidos</option>
+                            <option value="6">Melhores avaliados</option>
                         </select>
                     </div>
                 </div>
@@ -46,6 +46,8 @@
                                 'status' => 'publish', // To retrieve only published products
                                 'limit' => -1, // To retrieve all products that match the criteria
                                 'on_sale' => true, // To retrieve products that are on sale
+                                'orderby' => 'meta_value_num',
+                                'meta_key' => '_sale_price',
                             );
 
                             //Execução da query
@@ -64,10 +66,10 @@
                                     $product_price = $product->get_regular_price();
                                     $product_sale_price = $product->get_sale_price();
                                     $product_img_id = $product->get_image_id();
-                                    /*echo $val;*/
                                     
                                     
-                                    if($product_sale_price){
+                                    
+                                    //if($product_sale_price){
                                     ?>
                                     <div class="product__card">
                                         <div class="product__img">
@@ -197,7 +199,7 @@
                                          <div class="product_id" id="<?php echo $product_id; ?>" ></div>
                                      </div>
                                      <?php
-                                    }
+                                    //}
                                         $i++;
                                 }
                             }   
