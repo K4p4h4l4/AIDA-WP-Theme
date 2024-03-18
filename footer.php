@@ -75,7 +75,7 @@
                     </div>
                     <div class="footer__options">
                         
-                        <a href="#" class="option"><i class="material-icons">room</i> Viana, Zango 0, Vida Pacífica, Zona II, Bloco II, prd IV</a>
+                        <a href="#" class="option"><i class="material-icons">room</i> Viana, Zango 0, Vida Pacífica, Zona II</a>
                     </div>
                 </div>
             </div>

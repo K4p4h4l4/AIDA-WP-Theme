@@ -30,7 +30,7 @@
                         </div>
                         <div class="contact__company-text">
                             <div class="company__text-title">Endereço</div>
-                            <div class="contact__text-p">Viana, Zango 0, Vida Pacífica, Zona II, Bloco II, prd IV</div>
+                            <div class="contact__text-p">Viana, Zango 0, Vida Pacífica, Zona II</div>
                         </div>
                     </div>
                     <div class="contact__company-holder">
