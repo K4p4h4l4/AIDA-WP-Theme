@@ -71,11 +71,11 @@ function ready(){
         searchTimer = setTimeout(function() {
             var searchVal = $('.search__text').val();
             var categoryVal = $('#categorias').val();
-            var nonce = ajax_object.nonce;//'<?php echo wp_create_nonce("ajax-live-search-nonce"); ?>'; // Nonce for security
+            var nonce = ajax_object.nonce;// Nonce for security
 
             $.ajax({
                 type: 'POST',
-                url: ajax_object.ajaxurl,//wc_add_to_cart_params.ajax_url,//'<?php echo admin_url('admin-ajax.php'); ?>'
+                url: ajax_object.ajaxurl,
                 data: {
                     action: 'live_search',
                     search_keyword: searchVal,
@@ -126,89 +126,6 @@ function addCartClicked(event){
     updateTotal();
 }
 
-//Função para adicionar itens a lista de desejos
-function addWishlistClicked(event){
-    let button = event.target;
-    let shopProducts = button.parentElement.parentElement.parentElement.parentElement;
-    let title = shopProducts.children[1].children[0].getElementsByClassName('product__name')[0].innerText;
-    let price = shopProducts.children[1].children[0].children[2].getElementsByClassName('product__price')[0].innerText;
-    let image = shopProducts.children[0].children[0].getElementsByClassName('attachment-thumbnail')[0].src;
-    let id = shopProducts.children[2].id;
-    let itemQuantity = 1;
-    let wishlistBox = document.createElement('div');
-    wishlistBox.classList.add('wish__list-card');
-    let wishItems = document.getElementsByClassName('wish__list-container')[0];
-    let wishItemsNames = wishItems.getElementsByClassName('item__name');
-    
-    price.toLocaleString("nl-NL", {
-            style: "currency", 
-            currency: "AKZ",                       
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-        });
-    
-    for(let i=0; i < wishItemsNames.length; i++){
-        if(wishItemsNames[i].innerText == title){
-            alert('Item já adicionado a lista de desejos');
-            return;
-        }        
-    }
-    
-    let wishBoxContent = `
-        <div class="wish__list-img">
-            <img width="150" height="150" src="${image}" alt="" class="attachment-thumbnail size-thumbnail" decoding="async">
-
-        </div>
-        <div class="wish__txt-container">
-            <div class="wish__poduct-name">
-                <span class="item__name">${title}</span>
-                
-            </div>
-            <div class="wish__product-qtde">
-                <input type="number" value="${itemQuantity}" min="1" class="product__quantity" disabled>
-            </div>
-            <div class="wish__product-price">                                        
-                <span class="product__price">
-                    ${price}
-                </span>
-            </div>   
-        </div>
-        
-        <div class="wish__close-btn" data-product-id="${id}">
-           +                         
-        </div>
-    `;
-    
-    //contador de produtos adicionados
-    wishCounter('add');
-    wishlistBox.innerHTML = wishBoxContent;
-    wishItems.append(wishlistBox);
-    wishlistBox.getElementsByClassName('wish__close-btn')[0].addEventListener('click', removeWishItem);
-    
-    jQuery.ajax({
-        type: 'POST',
-        url: wc_add_to_cart_params.ajax_url,
-        data: {
-            action: 'add_wishlist_item',
-            productID: id
-        },
-        beforeSend: function(){
-            loader.classList.remove("loader__hidden");
-        },
-        success: function (response) {
-            // Handle the response from the server, e.g., update the cart totals or display a success message.
-            console.log(response.message);
-        },
-        error: function (error) {
-            console.error('Erro ao adicionar productos a lista de desejos:', error);
-        },
-        complete: function(){
-            loader.classList.add("loader__hidden");
-        },
-    });
-    
-    
-}
 
 //Função para adicionar produto através da modal
 function modalAddCartClicked(event){
@@ -320,6 +237,88 @@ function updateCartItemQuantity(cart_item_key, new_quantity) {
     });
 }
 
+//Função para adicionar itens a lista de desejos
+function addWishlistClicked(event){
+    let button = event.target;
+    let shopProducts = button.parentElement.parentElement.parentElement.parentElement;
+    let title = shopProducts.children[1].children[0].getElementsByClassName('product__name')[0].innerText;
+    let price = shopProducts.children[1].children[0].children[2].getElementsByClassName('product__price')[0].innerText;
+    let image = shopProducts.children[0].children[0].getElementsByClassName('attachment-thumbnail')[0].src;
+    let id = shopProducts.children[2].id;
+    let itemQuantity = 1;
+    let wishlistBox = document.createElement('div');
+    wishlistBox.classList.add('wish__list-card');
+    let wishItems = document.getElementsByClassName('wish__list-container')[0];
+    let wishItemsNames = wishItems.getElementsByClassName('item__name');
+    
+    price.toLocaleString("nl-NL", {
+            style: "currency", 
+            currency: "AKZ",                       
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+        });
+    
+    for(let i=0; i < wishItemsNames.length; i++){
+        if(wishItemsNames[i].innerText == title){
+            alert('Item já adicionado a lista de desejos');
+            return;
+        }        
+    }
+    
+    let wishBoxContent = `
+        <div class="wish__list-img">
+            <img width="150" height="150" src="${image}" alt="" class="attachment-thumbnail size-thumbnail" decoding="async">
+
+        </div>
+        <div class="wish__txt-container">
+            <div class="wish__poduct-name">
+                <span class="item__name">${title}</span>
+                
+            </div>
+            <div class="wish__product-qtde">
+                <input type="number" value="${itemQuantity}" min="1" class="product__quantity" disabled>
+            </div>
+            <div class="wish__product-price">                                        
+                <span class="product__price">
+                    ${price}
+                </span>
+            </div>   
+        </div>
+        
+        <div class="wish__close-btn" data-product-id="${id}">
+           +                         
+        </div>
+    `;
+    
+    //contador de produtos adicionados
+    wishCounter('add');
+    wishlistBox.innerHTML = wishBoxContent;
+    wishItems.append(wishlistBox);
+    wishlistBox.getElementsByClassName('wish__close-btn')[0].addEventListener('click', removeWishItem);
+    console.log(id);
+    jQuery.ajax({
+        type: 'POST',
+        url: wc_add_to_cart_params.ajax_url,
+        data: {
+            action: 'add_to_wishlist',
+            productID: id
+        },
+        beforeSend: function(){
+            loader.classList.remove("loader__hidden");
+        },
+        success: function (response) {
+                console.log(response.message);           
+        },
+        error: function (error) {
+            console.error('Erro ao adicionar productos a lista de desejos:', error);
+        },
+        complete: function(){
+            loader.classList.add("loader__hidden");
+        },
+    });
+    
+    
+}
 
 //Actualiza o preço total em tempo real
 function updateTotal(){

@@ -128,6 +128,7 @@
                           Lista de produtos das compras
                     \*************************************/--> 
                     <div class="wish__list-holder">
+                        <?php print_r($_SESSION['user_wishlist']); ?>
                         <div class="wish__list-container">
                             
                         </div>

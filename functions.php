@@ -1884,29 +1884,51 @@ function filtrar_produtos_callback() {
     wp_die(); // Encerra a execução do script
 }
 
-
+add_action('wp_ajax_add_to_wishlist', 'add_to_wishlist_callback');
+add_action('wp_ajax_nopriv_add_to_wishlist', 'add_to_wishlist_callback');
 //Função para adicionar itens a lista dos favoritos
-function add_wishlist_item_callback(){
+function add_to_wishlist_callback() {
+    /*session_start();
     
     $product_id = isset($_POST['productID']) ? intval($_POST['productID']) : 0;
     // User ID for whom the product should be added to the wishlist
     $user_id = get_current_user_id(); // or specify the user ID directly
 
     if($user_id > 0 && $product_id > 0){
-        // Check if the function exists
-        if (function_exists('ti_woocommerce_add_to_wishlist')) {
-            // Add the product to the wishlist
-            ti_woocommerce_add_to_wishlist($product_id, $user_id);
-            wp_send_json(array('success' => true, 'message' => 'Producto adicionado a lista de desejos'));
-        } else {
-            // Handle the case where the function doesn't exist
-            //echo "Wishlist function not available.";
-            wp_send_json(array('success' => false, 'message' => 'Função não existe'));
+        
+        if (function_exists('YITH_WCWL')) {
+            // Supõe que $wishlist_id seja obtido corretamente
+            $wishlist_id = YITH_WCWL()->get_wishlist_token('wishlist');
+            if(!$wishlist_id) {
+                $wishlist_id = YITH_WCWL()->add_wishlist(['wishlist_name' => 'Wishlist', 'user_id' => $user_id]);
+            }
+            
+            $exists = YITH_WCWL()->is_product_in_wishlist($product_id, $wishlist_id);
+            
+            if (!$exists) {
+                YITH_WCWL()->add_to_wishlist($product_id, $wishlist_id);
+                wp_send_json_success(['message' => 'Produto adicionado à lista de desejos.']);
+            } else {
+                wp_send_json_error(['message' => 'Este produto já está na sua lista de desejos.']);
+            }
         }
+        //wp_send_json(['success' => true, 'message' => 'Aqui chegou.']);
     }else{
-        wp_send_json(array('success' => false, 'message' => 'Erro ao adicionar a lista de desejos'));
-    }
-    
+        // Para usuários não logados, armazenar a lista de desejos na sessão
+        if (!isset($_SESSION['user_wishlist'])) {
+            $_SESSION['user_wishlist'] = [];
+        }
+
+        if (!in_array($product_id, $_SESSION['user_wishlist'])) {
+            $_SESSION['user_wishlist'][] = $product_id;
+            wp_send_json_success(['message' => 'Produto adicionado à sua lista de desejos.']);
+        } else {
+            wp_send_json_error(['message' => 'Este produto já está na sua lista de desejos.']);
+        }
+        //$_SESSION['user_wishlist'][] = 501;
+        //wp_send_json(['success' => true, 'message' => 'Aqui no segundo chegou.']);
+    }*/
+    wp_send_json(['success' => true, 'message' => 'Produto adicionado à lista de desejos.']);
     wp_die();
 }
 
