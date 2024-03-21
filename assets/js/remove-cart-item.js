@@ -110,6 +110,7 @@ function removeCartItem(event){
 function removeWishItem(event){
     let removeClicked = event.target;
     wishCounter('remove');
+    removeWishItemBack(removeClicked.getAttribute('data-product-id'));
     removeClicked.parentElement.remove();      
 }
 
@@ -412,6 +413,30 @@ function removeCartItemBack(chave){
             action: 'remove_cart_item', // Action hook for the AJAX handler
             cart_item_key: cartItemKey, // The key of the cart item to remove
             //orderID: order_number,
+        },
+        beforeSend: function(){
+            loader.classList.remove("loader__hidden");
+        },
+        success: function(response) {
+            
+            console.log(response.message);
+        },
+        complete: function(){
+            loader.classList.add("loader__hidden");
+        },
+    });
+}
+
+//Remover itens da lista de desejos back
+function removeWishItemBack(chave){
+    let wishItemKey = chave;
+    
+    jQuery.ajax({
+        type: 'POST',
+        url: wc_add_to_cart_params.ajax_url, 
+        data: {
+            action: 'remove_wish_item', // Action hook for the AJAX handler
+            wish_item_key: wishItemKey            
         },
         beforeSend: function(){
             loader.classList.remove("loader__hidden");

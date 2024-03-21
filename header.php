@@ -117,7 +117,16 @@
                 \******************************/-->
                 <div class="wishes__content">
                     <div class="wishes__number">
-                        <span class="wishes__count">0</span>
+                        <span class="wishes__count">
+                            
+                            <?php
+                                if(isset($_SESSION['user_wishlist']) && !empty($_SESSION['user_wishlist'])){
+                                    echo count($_SESSION['user_wishlist']);
+                                }else{
+                                    echo '0';
+                                }
+                            ?>
+                        </span>
                     </div>
                     <a href="#" class="wishes__content-btn" id="products__wish">
                         <i class="material-icons">favorite_border</i>
@@ -128,9 +137,49 @@
                           Lista de produtos das compras
                     \*************************************/--> 
                     <div class="wish__list-holder">
-                        <?php print_r($_SESSION['user_wishlist']); ?>
                         <div class="wish__list-container">
-                            
+                            <?php
+                                if(isset($_SESSION['user_wishlist']) && !empty($_SESSION['user_wishlist'])){
+                                    foreach($_SESSION['user_wishlist'] as $wishProductID){
+                                        $wishProduct = wc_get_product($wishProductID);
+                                        ?>
+                                        <div class="wish__list-card">
+                                            <div class="wish__list-img">
+                                                <!-- img width="150" height="150" src="${image}" alt="" class="attachment-thumbnail size-thumbnail" decoding="async"-->
+                                                <?php echo wp_get_attachment_image($wishProduct->get_image_id());?>
+                                            </div>
+                                            <div class="wish__txt-container">
+                                                <div class="wish__poduct-name">
+                                                    <span class="item__name"><?php echo $wishProduct->get_name(); ?></span>
+
+                                                </div>
+                                                <div class="wish__product-qtde">
+                                                    <input type="number" value="1" min="1" class="product__quantity" disabled>
+                                                </div>
+                                                <div class="wish__product-price">                                        
+                                                    <span class="product__price">
+                                                        AKZ 
+                                                        <?php
+                                                            if($wishProduct->get_sale_price()):
+                                                                echo number_format($wishProduct->get_sale_price(),  2, ',', '.');
+                                                            else:
+                                                                echo number_format($wishProduct->get_regular_price(),  2, ',', '.');
+                                                            endif;
+
+                                                            //$total+=$values['line_subtotal'];
+                                                        ?>
+                                                    </span>
+                                                </div>   
+                                            </div>
+                                            <div class="wish__close-btn" data-product-id="<?php echo $wishProduct->get_id(); ?>">
+                                               +                         
+                                            </div>
+                                          </div>
+                                      <?php  
+                                    }
+                                }
+                                
+                            ?>
                         </div>
                         <div class="wish__btn-holder">
                             <div class="wish__btn-container">
