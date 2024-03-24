@@ -250,47 +250,75 @@
                                     </thead>
 
                                     <tbody class="cart__table-body">
-                                        <?php 
-                                            foreach($products as $product => $values){
-                                                $_product = wc_get_product($values['data']->get_id());
+                                        <?php
+                                            $user_id = get_current_user_id(); // ID do usuário atual
+
+                                            // Busca as listas de desejos do usuário atual (Você pode ajustar os critérios conforme necessário)
+                                            $wishlists = YITH_WCWL()->get_wishlists(['user_id' => $user_id]);
+
+                                            // Verifica se existem listas de desejos
+                                            if (!empty($wishlists)) {
+                                                // Percorre todas as listas de desejos (Este exemplo assume apenas uma lista por usuário)
+                                                foreach ($wishlists as $wishlist) {
+                                                    // Busca os produtos na lista de desejos
+                                                    $items = YITH_WCWL()->get_products(['wishlist_id' => $wishlist['ID']]);
+
+                                                    // Verifica se existem itens
+                                                    if (!empty($items)) {
+                                                        foreach ($items as $item) {
+                                                            // Supondo que $item['prod_id'] contenha o ID do produto
+                                                            $product_id = $item['prod_id'];
+                                                            $product = wc_get_product($product_id);
+
+                                                            // Exibe o produto (ajuste a marcação HTML conforme necessário)
+                                                            if ($product) {
+                                            
+                                            
                                         ?>
-                                        <tr class="product__cart-table">
-                                            <td data-label="Produto">
-                                                <a href="<?php echo get_permalink($_product->get_ID()); ?>">
-                                                    <?php echo wp_get_attachment_image($_product->get_image_id());?>
-                                                </a>
-                                            </td>
-                                            <td data-label="Nome">
-                                                <?php echo $_product->get_name(); ?>
-                                            </td>
-                                            <td data-label="Preço" class="cart__table-price">
-                                                AKZ
-                                                <?php 
-                                                    if($_product->get_sale_price()):
-                                                        echo number_format($_product->get_sale_price(), 2, ',', '.');
-                                                    else:
-                                                        echo number_format($_product->get_regular_price(), 2, ',', '.');
-                                                    endif
-                                                ?>                            
-                                            </td>
-                                            <td data-label="Qtde">
-                                                <input type="number" min="1" value="<?php echo $values['quantity']; ?>" class="qtde__number">
-                                            </td>
-                                            <td data-label="Subtotal" class="cart__table-subtotal">
-                                                AKZ
-                                                <?php 
-                                                    echo number_format($values['line_subtotal'],  2, ',', '.');
-                                                    $total+=$values['line_subtotal'];
-                                                ?>
-                                            </td>
-                                            <td>
-                                                <a class="action__remove" >
-                                                    <i class="material-icons" data-item-id="<?php echo $_product->get_ID();?>">delete</i>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                                                <tr class="product__cart-table">
+                                                                    <td data-label="Produto">
+                                                                        <a href="<?php echo get_permalink($product_id); ?>">
+                                                                            <?php echo wp_get_attachment_image($product->get_image_id());?>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td data-label="Nome">
+                                                                        <?php echo $product->get_name(); ?>
+                                                                    </td>
+                                                                    <td data-label="Preço" class="cart__table-price">
+                                                                        AKZ
+                                                                        <?php 
+                                                                            if($product->get_sale_price()):
+                                                                                echo number_format($product->get_sale_price(), 2, ',', '.');
+                                                                            else:
+                                                                                echo number_format($product->get_regular_price(), 2, ',', '.');
+                                                                            endif
+                                                                        ?>                            
+                                                                    </td>
+                                                                    <td data-label="Qtde">
+                                                                        <input type="number" min="1" value="1" class="qtde__number" disabled>
+                                                                    </td>
+                                                                    <td data-label="Subtotal" class="cart__table-subtotal">
+                                                                        AKZ
+                                                                        <?php 
+                                                                            if($product->get_sale_price()):
+                                                                                echo number_format($product->get_sale_price(), 2, ',', '.');
+                                                                            else:
+                                                                                echo number_format($product->get_regular_price(), 2, ',', '.');
+                                                                            endif
+                                                                        ?>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a class="action__remove wish__item" >
+                                                                            <i class="material-icons" data-product-id="<?php echo $product_id;?>">delete</i>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
                                         <?php
                                                 
+                                                            }
+                                                        }
+                                                    }
+                                                }
                                             }
                                         ?>
 

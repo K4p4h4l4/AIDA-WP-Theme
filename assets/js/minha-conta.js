@@ -1,8 +1,8 @@
 if(document.readyState == 'loading'){
-    loader.classList.remove("loader__hidden");
+    
     document.addEventListener('DOMContentLoaded', ready);
 }else{
-    loader.classList.add("loader__hidden");
+    
     ready();
 }
 
@@ -20,12 +20,21 @@ function ready(){
     const btn5 = document.getElementById('btn5');
     
     //remove Items From cart
-    let facturaButtons = document.getElementsByClassName('action__remove');
-    //console.log(removeTableButtons);
+    let facturaButtons = document.getElementsByClassName('factura');
     for(let i=0; i < facturaButtons.length; i++){
         let factura = facturaButtons[i];
         factura.addEventListener('click', imprimirFactura);
     }
+    
+    //remover itens da lista de desejos
+    let wishButtons = document.getElementsByClassName('wish__item');
+    
+    for(let i=0; i<wishButtons.length; i++){
+        let wish = wishButtons[i];
+        wish.addEventListener('click', removeWishItemFromProfile);
+    }
+    
+    console.log(wishButtons);
     
     //Actualizar o perfil
     let updateProfileButton = document.getElementById('updateProfile');
@@ -353,5 +362,36 @@ function validateAndUpdatePassword(userData) {
         complete: function(){
             loader.classList.add("loader__hidden");
         }
+    });
+}
+
+//Função para remover item no front
+function removeWishItemFromProfile(event){
+    let removeClicked = event.target;
+    wishCounter('remove');
+    removeWishItemFromProfileBack(removeClicked.getAttribute('data-product-id'));
+    removeClicked.parentElement.parentElement.parentElement.remove();      
+}
+
+//Remover itens da lista de desejos back
+function removeWishItemFromProfileBack(chave){
+    let wishItemKey = chave;
+    jQuery.ajax({
+        type: 'POST',
+        url: wc_add_to_cart_params.ajax_url, 
+        data: {
+            action: 'remove_wish_item', // Action hook for the AJAX handler
+            wish_item_key: wishItemKey            
+        },
+        beforeSend: function(){
+            loader.classList.remove("loader__hidden");
+        },
+        success: function(response) {
+            
+            console.log(response.message);
+        },
+        complete: function(){
+            loader.classList.add("loader__hidden");
+        },
     });
 }

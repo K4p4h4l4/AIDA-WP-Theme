@@ -120,10 +120,32 @@
                         <span class="wishes__count">
                             
                             <?php
-                                if(isset($_SESSION['user_wishlist']) && !empty($_SESSION['user_wishlist'])){
-                                    echo count($_SESSION['user_wishlist']);
-                                }else{
-                                    echo '0';
+                                // Verifica se o usuário está logado
+                                if (is_user_logged_in() && function_exists('YITH_WCWL')) {
+                                    $user_id = get_current_user_id(); // ID do usuário atual
+
+                                    // Busca as listas de desejos do usuário atual
+                                    $wishlists = YITH_WCWL()->get_wishlists(['user_id' => $user_id]);
+                                    $total_items = 0; // Inicializa o contador de itens
+
+                                    // Verifica se existem listas de desejos
+                                    if (!empty($wishlists)) {
+                                        // Percorre todas as listas de desejos (Este exemplo soma os itens de todas as listas)
+                                        foreach ($wishlists as $wishlist) {
+                                            // Conta os produtos na lista de desejos
+                                            $items = YITH_WCWL()->get_products(['wishlist_id' => $wishlist['ID']]);
+                                            $total_items += count($items);
+                                        }
+                                    }
+
+                                    echo $total_items;
+                                } else {
+                                    // Usuários não logados - usa sessão
+                                    if(isset($_SESSION['user_wishlist']) && !empty($_SESSION['user_wishlist'])){
+                                        echo count($_SESSION['user_wishlist']);
+                                    } else {
+                                        echo '0';
+                                    }
                                 }
                             ?>
                         </span>
@@ -176,6 +198,66 @@
                                             </div>
                                           </div>
                                       <?php  
+                                    }
+                                }
+                                
+                                // Verifica se o usuário está logado e a função do YITH Wishlist existe
+                                if (is_user_logged_in() && function_exists('YITH_WCWL')) {
+                                    $user_id = get_current_user_id(); // ID do usuário atual
+
+                                    // Busca as listas de desejos do usuário atual (Você pode ajustar os critérios conforme necessário)
+                                    $wishlists = YITH_WCWL()->get_wishlists(['user_id' => $user_id]);
+
+                                    // Verifica se existem listas de desejos
+                                    if (!empty($wishlists)) {
+                                        // Percorre todas as listas de desejos (Este exemplo assume apenas uma lista por usuário)
+                                        foreach ($wishlists as $wishlist) {
+                                            // Busca os produtos na lista de desejos
+                                            $items = YITH_WCWL()->get_products(['wishlist_id' => $wishlist['ID']]);
+
+                                            // Verifica se existem itens
+                                            if (!empty($items)) {
+                                                foreach ($items as $item) {
+                                                    // Supondo que $item['prod_id'] contenha o ID do produto
+                                                    $product_id = $item['prod_id'];
+                                                    $product = wc_get_product($product_id);
+
+                                                    // Exibe o produto (ajuste a marcação HTML conforme necessário)
+                                                    if ($product) {
+                                                        ?>
+                                                        <div class="wish__list-card">
+                                                            <div class="wish__list-img">
+                                                                <?php echo wp_get_attachment_image($product->get_image_id()); ?>
+                                                            </div>
+                                                            <div class="wish__txt-container">
+                                                                <div class="wish__product-name">
+                                                                    <span class="item__name"><?php echo $product->get_name(); ?></span>
+                                                                </div>
+                                                                <div class="wish__product-qtde">
+                                                                    <input type="number" value="1" min="1" class="product__quantity" disabled>
+                                                                </div>
+                                                                <div class="wish__product-price">
+                                                                    <span class="product__price">
+                                                                        AKZ
+                                                                        <?php
+                                                                            if($product->get_sale_price()):
+                                                                                echo number_format($product->get_sale_price(),  2, ',', '.');
+                                                                            else:
+                                                                                echo number_format($product->get_regular_price(),  2, ',', '.');
+                                                                            endif;
+                                                                        ?>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="wish__close-btn" data-product-id="<?php echo $product_id; ?>">
+                                                                +
+                                                            </div>
+                                                        </div>
+                                                        <?php
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                                 

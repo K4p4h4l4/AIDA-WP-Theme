@@ -1884,10 +1884,10 @@ function filtrar_produtos_callback() {
     wp_die(); // Encerra a execução do script
 }
 
-add_action('wp_ajax_add_to_wishlist', 'add_to_wishlist_callback');
-add_action('wp_ajax_nopriv_add_to_wishlist', 'add_to_wishlist_callback');
+add_action('wp_ajax_add_item_to_wishlist', 'add_item_to_wishlist_callback');
+add_action('wp_ajax_nopriv_add_item_to_wishlist', 'add_item_to_wishlist_callback');
 //Função para adicionar itens a lista dos favoritos
-function add_to_wishlist_callback() {
+function add_item_to_wishlist_callback() {
     // Start or resume the session
     if(!session_id()){
         session_start();
@@ -1900,20 +1900,31 @@ function add_to_wishlist_callback() {
     if($user_id > 0 && $product_id > 0){
         
         if(function_exists('YITH_WCWL')){
-            // Supõe que $wishlist_id seja obtido corretamente
-            $wishlist_id = YITH_WCWL()->get_wishlist_token('wishlist');
-            if(!$wishlist_id){
-                $wishlist_id = YITH_WCWL()->add_wishlist(['wishlist_name' => 'Wishlist', 'user_id' => $user_id]);
+            // Obtém as listas de desejos do usuário atual
+            $wishlists = YITH_WCWL()->get_wishlists(['user_id' => $user_id, 'is_default' => 1]);
+
+            if (!empty($wishlists)) {
+                // Se o usuário já tem uma ou mais listas de desejos, usa a primeira como padrão
+                $wishlist_id = reset($wishlists)['ID'];
+            } else {
+                // Se não houver nenhuma lista de desejos, cria uma nova lista de desejos padrão
+                $wishlist_id = YITH_WCWL()->generate_default_wishlist($user_id);
             }
-            
+
             $exists = YITH_WCWL()->is_product_in_wishlist($product_id, $wishlist_id);
-            
-            if(!$exists){
-                YITH_WCWL()->add_to_wishlist($product_id, $wishlist_id);
-                wp_send_json(['success' => true, 'message' => 'Produto adicionado à lista de desejos.']);
-            }else{
-                wp_send_json(['success' => false,'message' => 'Este produto já está na sua lista de desejos.']);
+
+            if (!$exists) {
+                YITH_WCWL()->details = array('add_to_wishlist' => $product_id, 'user_id' => $user_id, 'wishlist_id' => $wishlist_id);
+                $add = YITH_WCWL()->add();
+                if ($add === "true") {
+                    wp_send_json(['success' => true, 'message' => 'Produto adicionado à lista de desejos.']);
+                } else {
+                    wp_send_json(['success' => false, 'message' => 'Erro ao adicionar produto à lista de desejos.']);
+                }
+            } else {
+                wp_send_json(['success' => false, 'message' => 'Este produto já está na sua lista de desejos.']);
             }
+            //wp_send_json(['success' => true, 'message' => 'Chegou aqui']);
         }
         
    }else{
@@ -1938,39 +1949,51 @@ add_action('wp_ajax_remove_wish_item', 'remove_wish_item_callback');
 add_action('wp_ajax_nopriv_remove_wish_item', 'remove_wish_item_callback');
 
 function remove_wish_item_callback() {
+    if (!isset($_POST['wish_item_key'])) {
+        wp_send_json(['success' => false, 'message' => 'ID do produto não especificado.']);
+        wp_die();
+    }
+    
+    $product_id_to_remove = intval($_POST['wish_item_key']);
+    
     // Verifica se o item a ser removido foi passado corretamente
-    if (isset($_POST['wish_item_key'])) {
-        // Inicia a sessão se ainda não tiver sido iniciada
+    if (is_user_logged_in()) {
+        $user_id = get_current_user_id();
+        $wishlists = YITH_WCWL()->get_wishlists(['user_id' => $user_id, 'is_default' => 1]);
+
+        if (!empty($wishlists)) {
+            $wishlist_id = reset($wishlists)['ID'];
+        } else {
+            wp_send_json(['success' => false, 'message' => 'Nenhuma lista de desejos encontrada.']);
+            wp_die();
+        }
+
+        $exists = YITH_WCWL()->is_product_in_wishlist($product_id_to_remove, $wishlist_id);
+
+        if ($exists) {
+            YITH_WCWL()->details = array('remove_from_wishlist' => $product_id_to_remove, 'user_id' => $user_id, 'wishlist_id' => $wishlist_id);
+            $remove = YITH_WCWL()->remove();
+            wp_send_json(['success' => true, 'message' => 'Item removido com sucesso da lista de desejos.']);
+        } else {
+            wp_send_json(['success' => false, 'message' => 'Produto não encontrado na lista de desejos.']);
+        }
+    }else {
+        // Para usuários não logados, remover da sessão como antes
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
 
-        // O ID do produto a ser removido
-        $product_id_to_remove = intval($_POST['wish_item_key']);
-
-        // Verifica se existe uma lista de desejos na sessão
-        if (isset($_SESSION['user_wishlist'])) {
-            // Procura o ID do produto na lista de desejos e remove se encontrado
-            if (($key = array_search($product_id_to_remove, $_SESSION['user_wishlist'])) !== false) {
-                unset($_SESSION['user_wishlist'][$key]);
-                // Reindexa o array após a remoção para evitar índices faltando
-                $_SESSION['user_wishlist'] = array_values($_SESSION['user_wishlist']);
-                
-                wp_send_json(['success' => true, 'message' => 'Item removido com sucesso da lista de desejos.']);
-            } else {
-                // Se o ID do produto não for encontrado na lista de desejos
-                wp_send_json(['success' => false, 'message' => 'Item não encontrado na lista de desejos.']);
-            }
+        if (isset($_SESSION['user_wishlist']) && ($key = array_search($product_id_to_remove, $_SESSION['user_wishlist'])) !== false) {
+            unset($_SESSION['user_wishlist'][$key]);
+            $_SESSION['user_wishlist'] = array_values($_SESSION['user_wishlist']);
+            wp_send_json(['success' => true, 'message' => 'Item removido com sucesso da lista de desejos.']);
         } else {
-            // Se não houver uma lista de desejos na sessão
-            wp_send_json(['success' => false, 'message' => 'Lista de desejos não encontrada.']);
+            wp_send_json(['success' => false, 'message' => 'Item não encontrado na lista de desejos.']);
         }
-    } else {
-        // Se o ID do produto a ser removido não foi passado corretamente
-        wp_send_json(['success' => false, 'message' => 'ID do produto não especificado.']);
+        
     }
 
-    wp_die(); // Finaliza a execução para evitar que mais scripts sejam executados
+    wp_die();
 }
 
 

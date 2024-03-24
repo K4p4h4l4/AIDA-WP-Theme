@@ -59,6 +59,7 @@ function ready(){
     
     document.getElementById('cart__view').addEventListener('click', callCart);
     document.getElementById('checkout__view').addEventListener('click', callCheckout);
+    document.getElementById('wish__view').addEventListener('click', addToCartFromWishItem);
     
     let logoutBtn = document.getElementById('logout');
     if(logoutBtn){
@@ -110,6 +111,7 @@ function removeCartItem(event){
 function removeWishItem(event){
     let removeClicked = event.target;
     wishCounter('remove');
+    console.log('chegou');
     removeWishItemBack(removeClicked.getAttribute('data-product-id'));
     removeClicked.parentElement.remove();      
 }
@@ -238,89 +240,6 @@ function updateCartItemQuantity(cart_item_key, new_quantity) {
     });
 }
 
-//Função para adicionar itens a lista de desejos
-function addWishlistClicked(event){
-    let button = event.target;
-    let shopProducts = button.parentElement.parentElement.parentElement.parentElement;
-    let title = shopProducts.children[1].children[0].getElementsByClassName('product__name')[0].innerText;
-    let price = shopProducts.children[1].children[0].children[2].getElementsByClassName('product__price')[0].innerText;
-    let image = shopProducts.children[0].children[0].getElementsByClassName('attachment-thumbnail')[0].src;
-    let id = shopProducts.children[2].id;
-    let itemQuantity = 1;
-    let wishlistBox = document.createElement('div');
-    wishlistBox.classList.add('wish__list-card');
-    let wishItems = document.getElementsByClassName('wish__list-container')[0];
-    let wishItemsNames = wishItems.getElementsByClassName('item__name');
-    
-    price.toLocaleString("nl-NL", {
-            style: "currency", 
-            currency: "AKZ",                       
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-        });
-    
-    for(let i=0; i < wishItemsNames.length; i++){
-        if(wishItemsNames[i].innerText == title){
-            alert('Item já adicionado a lista de desejos');
-            return;
-        }        
-    }
-    
-    let wishBoxContent = `
-        <div class="wish__list-img">
-            <img width="150" height="150" src="${image}" alt="" class="attachment-thumbnail size-thumbnail" decoding="async">
-
-        </div>
-        <div class="wish__txt-container">
-            <div class="wish__poduct-name">
-                <span class="item__name">${title}</span>
-                
-            </div>
-            <div class="wish__product-qtde">
-                <input type="number" value="${itemQuantity}" min="1" class="product__quantity" disabled>
-            </div>
-            <div class="wish__product-price">                                        
-                <span class="product__price">
-                    ${price}
-                </span>
-            </div>   
-        </div>
-        
-        <div class="wish__close-btn" data-product-id="${id}">
-           +                         
-        </div>
-    `;
-    
-    //contador de produtos adicionados
-    wishCounter('add');
-    wishlistBox.innerHTML = wishBoxContent;
-    wishItems.append(wishlistBox);
-    wishlistBox.getElementsByClassName('wish__close-btn')[0].addEventListener('click', removeWishItem);
-    console.log(id);
-    jQuery.ajax({
-        type: 'POST',
-        url: wc_add_to_cart_params.ajax_url,
-        data: {
-            action: 'add_to_wishlist',
-            productID: id
-        },
-        beforeSend: function(){
-            loader.classList.remove("loader__hidden");
-        },
-        success: function (response) {
-                console.log(response.message);           
-        },
-        error: function (error) {
-            console.error('Erro ao adicionar productos a lista de desejos:', error);
-        },
-        complete: function(){
-            loader.classList.add("loader__hidden");
-        },
-    });
-    
-    
-}
-
 //Actualiza o preço total em tempo real
 function updateTotal(){
     let cartContent = document.getElementsByClassName('cart__list-container')[0];
@@ -413,30 +332,6 @@ function removeCartItemBack(chave){
             action: 'remove_cart_item', // Action hook for the AJAX handler
             cart_item_key: cartItemKey, // The key of the cart item to remove
             //orderID: order_number,
-        },
-        beforeSend: function(){
-            loader.classList.remove("loader__hidden");
-        },
-        success: function(response) {
-            
-            console.log(response.message);
-        },
-        complete: function(){
-            loader.classList.add("loader__hidden");
-        },
-    });
-}
-
-//Remover itens da lista de desejos back
-function removeWishItemBack(chave){
-    let wishItemKey = chave;
-    
-    jQuery.ajax({
-        type: 'POST',
-        url: wc_add_to_cart_params.ajax_url, 
-        data: {
-            action: 'remove_wish_item', // Action hook for the AJAX handler
-            wish_item_key: wishItemKey            
         },
         beforeSend: function(){
             loader.classList.remove("loader__hidden");
@@ -713,4 +608,127 @@ function logoutUser(){
             loader.classList.add("loader__hidden");
         }
     });
+}
+
+//Função para adicionar itens a lista de desejos
+function addWishlistClicked(event){
+    let button = event.target;
+    let shopProducts = button.parentElement.parentElement.parentElement.parentElement;
+    let title = shopProducts.children[1].children[0].getElementsByClassName('product__name')[0].innerText;
+    let price = shopProducts.children[1].children[0].children[2].getElementsByClassName('product__price')[0].innerText;
+    let image = shopProducts.children[0].children[0].getElementsByClassName('attachment-thumbnail')[0].src;
+    let id = shopProducts.children[2].id;
+    let itemQuantity = 1;
+    let wishlistBox = document.createElement('div');
+    wishlistBox.classList.add('wish__list-card');
+    let wishItems = document.getElementsByClassName('wish__list-container')[0];
+    let wishItemsNames = wishItems.getElementsByClassName('item__name');
+    
+    price.toLocaleString("nl-NL", {
+            style: "currency", 
+            currency: "AKZ",                       
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+        });
+    
+    for(let i=0; i < wishItemsNames.length; i++){
+        if(wishItemsNames[i].innerText == title){
+            alert('Item já adicionado a lista de desejos');
+            return;
+        }        
+    }
+    
+    let wishBoxContent = `
+        <div class="wish__list-img">
+            <img width="150" height="150" src="${image}" alt="" class="attachment-thumbnail size-thumbnail" decoding="async">
+
+        </div>
+        <div class="wish__txt-container">
+            <div class="wish__poduct-name">
+                <span class="item__name">${title}</span>
+                
+            </div>
+            <div class="wish__product-qtde">
+                <input type="number" value="${itemQuantity}" min="1" class="product__quantity" disabled>
+            </div>
+            <div class="wish__product-price">                                        
+                <span class="product__price">
+                    ${price}
+                </span>
+            </div>   
+        </div>
+        
+        <div class="wish__close-btn" data-product-id="${id}">
+           +                         
+        </div>
+    `;
+    
+    //contador de produtos adicionados
+    wishCounter('add');
+    wishlistBox.innerHTML = wishBoxContent;
+    wishItems.append(wishlistBox);
+    wishlistBox.getElementsByClassName('wish__close-btn')[0].addEventListener('click', removeWishItem);
+    console.log(id);
+    jQuery.ajax({
+        type: 'POST',
+        url: wc_add_to_cart_params.ajax_url,
+        data: {
+            action: 'add_item_to_wishlist',
+            productID: id
+        },
+        beforeSend: function(){
+            loader.classList.remove("loader__hidden");
+        },
+        success: function (response) {
+                console.log(response.message);           
+        },
+        error: function (error) {
+            console.error('Erro ao adicionar productos a lista de desejos:', error);
+        },
+        complete: function(){
+            loader.classList.add("loader__hidden");
+        },
+    });
+    
+    
+}
+
+//Remover itens da lista de desejos back
+function removeWishItemBack(chave){
+    let wishItemKey = chave;
+    jQuery.ajax({
+        type: 'POST',
+        url: wc_add_to_cart_params.ajax_url, 
+        data: {
+            action: 'remove_wish_item', // Action hook for the AJAX handler
+            wish_item_key: wishItemKey            
+        },
+        beforeSend: function(){
+            loader.classList.remove("loader__hidden");
+        },
+        success: function(response) {
+            
+            console.log(response.message);
+        },
+        complete: function(){
+            loader.classList.add("loader__hidden");
+        },
+    });
+}
+
+//Adicionar itens ao carrinho a partir da lista de desejos
+function addToCartFromWishItem(){
+    let wish__products = document.getElementsByClassName('wish__list-card');
+    
+    for(let i =0; i< wish__products.length; i++){
+        let image = wish__products[i].children[0].getElementsByClassName('attachment-thumbnail')[0].src;
+        let name = wish__products[i].children[1].children[0].getElementsByClassName('item__name')[0].innerText;
+        let price = wish__products[i].children[1].children[2].getElementsByClassName('product__price')[0].innerText;
+        let id = wish__products[i].children[2].getAttribute('data-product-id');
+        addProductToCart(name,price,image,id, 1);
+        wishCounter('remove');
+        removeWishItemBack(id);
+        wish__products[i].remove();
+    }
+    
 }
