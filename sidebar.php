@@ -1014,6 +1014,88 @@
                                     }
                                 ?>
                             </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Rolo de papel térmico' ))  {
+                                ?>
+                                <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                    Rolo de papel térmico<!--Rolo de papel térmico-->
+                                </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="main__category-holder">
+                    <?php
+                        // Loop through product categories and display them as links
+                        foreach ($product_categories as $category) {
+                            $category_link = get_term_link($category);
+
+                            if ((!is_wp_error($category_link)) && ($category->name == 'Cartões' ))  {
+                    ?>
+                    <a href="" class="main__category">Cartões<!--Tudo relacionado com cartões--></a>
+                    <?php
+                            }
+                        }
+                    ?>
+                    <div class="main__category-submenu">
+                        <ul class="category__submenu-product">
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'PVC' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                PVC<!--PVC-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Magnéticos' ))  {
+                                ?>
+                                <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                    Magnéticos<!--Magnéticos-->
+                                </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'RFID' ))  {
+                                ?>
+                                <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                    RFID<!--RFID-->
+                                </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
                         </ul>
                     </div>
                 </li>
@@ -1490,6 +1572,199 @@
                                 ?>
                                             <a href="<?php echo esc_url($category_link); ?>" class="product__type">
                                                 Fujitsu<!--Fujitsu-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li class="main__options printer">
+            <?php
+                // Loop through product categories and display them as links
+                foreach ($product_categories as $category) {
+                    $category_link = get_term_link($category);
+
+                    if ((!is_wp_error($category_link)) && ($category->name == 'Imagem e Som' ))  {
+            ?>
+                        <a href="<?php echo esc_url($category_link); ?>" class="main__category-link">
+                            <i class="material-icons">settings_voice</i>
+                            Imagem e Som<!--Imagem e Som-->
+                        </a>
+            <?php
+                    }
+                }
+            ?>
+
+            <i class="material-icons expand">expand_more</i>
+            <ul class="main__options-printer">
+                <li class="main__category-holder printer-submenu">
+                    <?php
+                        // Loop through product categories and display them as links
+                        foreach ($product_categories as $category) {
+                            $category_link = get_term_link($category);
+
+                            if ((!is_wp_error($category_link)) && ($category->name == 'Colunas' ))  {
+                    ?>
+                                <a href="<?php echo esc_url($category_link); ?>" class="main__category">
+                                    Colunas<!--Colunas-->
+                                </a>
+                    <?php
+                            }
+                        }
+                    ?>
+                    <div class="main__category-submenu">
+                        <ul class="category__submenu-product">
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Colunas JBL' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                Colunas JBL<!--Colunas JBL-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Colunas XIAOMI' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                Colunas XIAOMI<!--Colunas XIAOMI-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>                            
+                        </ul>
+                    </div>
+                </li>
+                <li class="main__category-holder">
+                    <?php
+                        // Loop through product categories and display them as links
+                        foreach ($product_categories as $category) {
+                            $category_link = get_term_link($category);
+
+                            if ((!is_wp_error($category_link)) && ($category->name == 'Segurança Electrónica' ))  {
+                    ?>
+                                <a href="<?php echo esc_url($category_link); ?>" class="main__category">
+                                    Segurança Electrónica<!--Segurança Electrónica-->
+                                </a>
+                    <?php
+                            }
+                        }
+                    ?>
+                    <div class="main__category-submenu">
+                        <ul class="category__submenu-product">
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Gravadores DVR e NVR' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                Gravadores DVR e NVR<!--Gravadores DVR e NVR-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Câmaras de Vigilância' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                Câmaras de Vigilância<!--Câmaras de Vigilância-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="main__category-holder">
+                    <?php
+                        // Loop through product categories and display them as links
+                        foreach ($product_categories as $category) {
+                            $category_link = get_term_link($category);
+
+                            if ((!is_wp_error($category_link)) && ($category->name == 'Televisões' ))  {
+                    ?>
+                                <a href="<?php echo esc_url($category_link); ?>" class="main__category">
+                                    Televisões<!--Televisões-->
+                                </a>
+                    <?php
+                            }
+                        }
+                    ?>
+                    <div class="main__category-submenu">
+                        <ul class="category__submenu-product">
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'TCL' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                TCL<!--TCL-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'INOVIA' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                INOVIA<!--INOVIA-->
+                                            </a>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </li>
+                            <li class="poduct__submenu">
+                                <?php
+                                    // Loop through product categories and display them as links
+                                    foreach ($product_categories as $category) {
+                                        $category_link = get_term_link($category);
+
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'LG' ))  {
+                                ?>
+                                            <a href="<?php echo esc_url($category_link); ?>" class="product__type">
+                                                LG<!--LG-->
                                             </a>
                                 <?php
                                         }

@@ -427,7 +427,7 @@
                             
                             //configurando os argumentos
                             $args = array(
-                                'limit' => 8,
+                                'limit' => 12,
                                 'orderby' => 'date',
                                 'order' => 'DESC',
                                 'status' => 'publish'
