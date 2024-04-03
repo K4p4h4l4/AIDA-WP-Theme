@@ -141,7 +141,7 @@
                     ?>
                             <div class="checkout__product-card">
                                 <div class="product__card-img">
-                                    <?php echo wp_get_attachment_image($_product->get_image_id());?>
+                                    <?php echo wp_get_attachment_image($_product->get_image_id(), 'woocommerce_single');?>
                                     <div class="checkout__product-qtde">
                                         <span><?php echo $values['quantity']; ?></span>
                                     </div>                            

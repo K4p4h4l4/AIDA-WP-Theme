@@ -190,7 +190,7 @@ function submitReview(){
 function addToCart(event){
     let button = event.target;
     let productDetails = button.parentElement.parentElement.parentElement;
-    let produtctImage = productDetails.children[0].children[0].getElementsByClassName('attachment-thumbnail')[0].src;
+    let produtctImage = productDetails.children[0].children[0].getElementsByClassName('attachment-woocommerce_single')[0].src;
     let productName = productDetails.children[1].children[0].children[0].innerText;
     let productPrice = productDetails.children[1].children[2].children[0].children[0].innerText;
     let productElement = document.getElementsByClassName('single__product-id');

@@ -122,7 +122,7 @@ function addCartClicked(event){
     let shopProducts = button.parentElement.parentElement.parentElement.parentElement;
     let title = shopProducts.children[1].children[0].getElementsByClassName('product__name')[0].innerText;
     let price = shopProducts.children[1].children[0].children[2].getElementsByClassName('product__price')[0].innerText;
-    let image = shopProducts.children[0].children[0].getElementsByClassName('attachment-thumbnail')[0].src;
+    let image = shopProducts.children[0].children[0].getElementsByClassName('attachment-woocommerce_single')[0].src;
     let id = shopProducts.children[2].id;
     let itemQuantity = 1;
     addProductToCart(title,price,image,id, itemQuantity);

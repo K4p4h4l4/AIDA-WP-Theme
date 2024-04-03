@@ -23,7 +23,7 @@
                 <div class="product__sumary-info">
                     <div class="product__imgs">
                         <div class="main__img">
-                            <?php echo wp_get_attachment_image($product->get_image_id());?>
+                            <?php echo wp_get_attachment_image($product->get_image_id(), 'woocommerce_single');?>
                         </div>
                         <div class="other__imgs">
                             <?php
@@ -35,7 +35,7 @@
                                 
                             ?>
                                     <div class="other__img">
-                                        <?php echo wp_get_attachment_image($images[$i]); ?>
+                                        <?php echo wp_get_attachment_image($images[$i], 'woocommerce_single'); ?>
                                     </div>
                             <?php
                                     $i++;
@@ -263,7 +263,7 @@
                                         <div class="bestsold__product-card">
                                             <div class="bestsold__product-img">
                                                 <a href="<?php echo get_permalink($product_id); ?>" class="product__link1">
-                                                    <?php echo wp_get_attachment_image($product_img_id);?>
+                                                    <?php echo wp_get_attachment_image($product_img_id, 'woocommerce_single');?>
                                                 </a>                                            
                                             </div>
                                             <div class="bestsold__product-details">
@@ -787,7 +787,7 @@
                                                     <?php echo round((1-($upsell_product->get_sale_price()/$upsell_product->get_regular_price()))*100); ?>%
                                                 </div>
                                                 <?php endif?>
-                                                <?php echo wp_get_attachment_image($upsell_product->get_image_id());?> 
+                                                <?php echo wp_get_attachment_image($upsell_product->get_image_id(), 'woocommerce_single');?> 
 
                                             </a>
                                         </div>

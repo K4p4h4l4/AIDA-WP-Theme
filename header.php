@@ -168,7 +168,7 @@
                                         <div class="wish__list-card">
                                             <div class="wish__list-img">
                                                 <!-- img width="150" height="150" src="${image}" alt="" class="attachment-thumbnail size-thumbnail" decoding="async"-->
-                                                <?php echo wp_get_attachment_image($wishProduct->get_image_id());?>
+                                                <?php echo wp_get_attachment_image($wishProduct->get_image_id(), 'woocommerce_single');?>
                                             </div>
                                             <div class="wish__txt-container">
                                                 <div class="wish__poduct-name">
@@ -227,7 +227,7 @@
                                                         ?>
                                                         <div class="wish__list-card">
                                                             <div class="wish__list-img">
-                                                                <?php echo wp_get_attachment_image($product->get_image_id()); ?>
+                                                                <?php echo wp_get_attachment_image($product->get_image_id(), 'woocommerce_single'); ?>
                                                             </div>
                                                             <div class="wish__txt-container">
                                                                 <div class="wish__product-name">
@@ -301,7 +301,7 @@
                             ?>
                             <div class="cart__list-card">
                                 <div class="cart__list-img">
-                                    <?php echo wp_get_attachment_image($_product->get_image_id());?>
+                                    <?php echo wp_get_attachment_image($_product->get_image_id(), 'woocommerce_single');?>
                                     
                                 </div>
                                 <div class="cart__txt-container">

@@ -48,7 +48,7 @@
                     <tr class="product__cart-table">
                         <td data-label="Produto">
                             <a href="<?php echo get_permalink($_product->get_ID()); ?>">
-                                <?php echo wp_get_attachment_image($_product->get_image_id());?>
+                                <?php echo wp_get_attachment_image($_product->get_image_id(), 'woocommerce_single');?>
                             </a>
                         </td>
                         <td data-label="Nome" id="<?php echo $_product->get_ID();?>">

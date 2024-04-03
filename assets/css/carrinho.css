@@ -65,6 +65,7 @@ tbody th, td {
 td img{
     width: 5rem;
     height: 5rem;
+    object-fit: contain;
 }
 
 .qtde__number{

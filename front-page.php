@@ -120,7 +120,7 @@
                                     <div class="popular__product-card">
                                         <div class="popular__product-img">
                                             <a href="<?php echo get_permalink($product_id); ?>" class="product__link1">
-                                                <?php echo wp_get_attachment_image($product_img_id);?>
+                                                <?php echo wp_get_attachment_image($product_img_id, 'woocommerce_single');?>
                                             </a>
                                         </div>
                                         <div class="popular__product-details">
@@ -295,7 +295,7 @@
                                     <div class="bestsold__product-card">
                                         <div class="bestsold__product-img">
                                             <a href="<?php echo get_permalink($product_id); ?>" class="product__link1">
-                                                <?php echo wp_get_attachment_image($product_img_id);?>
+                                                <?php echo wp_get_attachment_image($product_img_id, 'woocommerce_single');?>
                                             </a>                                            
                                         </div>
                                         <div class="bestsold__product-details">
@@ -462,7 +462,7 @@
                                                     <?php echo round((1-($product_sale_price/$product_price))*100); ?>%
                                                 </div>
                                                 <?php endif?>
-                                                <?php echo wp_get_attachment_image($product_img_id);?> 
+                                                <?php echo wp_get_attachment_image($product_img_id, 'woocommerce_single');?> 
 
                                             </a>
 
@@ -642,7 +642,7 @@
                                                 <?php echo round((1-($product_sale_price/$product_price))*100); ?>%
                                             </div>
                                             <?php endif?>
-                                            <?php echo wp_get_attachment_image($product_img_id);?> 
+                                            <?php echo wp_get_attachment_image($product_img_id, 'woocommerce_single');?> 
 
                                         </a>
 
