@@ -1054,7 +1054,7 @@
                                     foreach ($product_categories as $category) {
                                         $category_link = get_term_link($category);
 
-                                        if ((!is_wp_error($category_link)) && ($category->name == 'PVC' ))  {
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Cartões PVC' ))  {
                                 ?>
                                             <a href="<?php echo esc_url($category_link); ?>" class="product__type">
                                                 PVC<!--PVC-->
@@ -1070,7 +1070,7 @@
                                     foreach ($product_categories as $category) {
                                         $category_link = get_term_link($category);
 
-                                        if ((!is_wp_error($category_link)) && ($category->name == 'Magnéticos' ))  {
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Cartões Magnéticos' ))  {
                                 ?>
                                 <a href="<?php echo esc_url($category_link); ?>" class="product__type">
                                     Magnéticos<!--Magnéticos-->
@@ -1086,7 +1086,7 @@
                                     foreach ($product_categories as $category) {
                                         $category_link = get_term_link($category);
 
-                                        if ((!is_wp_error($category_link)) && ($category->name == 'RFID' ))  {
+                                        if ((!is_wp_error($category_link)) && ($category->name == 'Cartões RFID' ))  {
                                 ?>
                                 <a href="<?php echo esc_url($category_link); ?>" class="product__type">
                                     RFID<!--RFID-->

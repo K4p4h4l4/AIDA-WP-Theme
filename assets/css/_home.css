@@ -334,6 +334,16 @@
     font-size: var(--font-size14);
 }
 
+.product__name {
+    white-space: nowrap; /* Garante que o texto fique em uma única linha */
+    overflow: hidden; /* Esconde o texto que exceder o espaço disponível */
+    text-overflow: ellipsis; /* Adiciona reticências ao final do texto truncado */
+    display: block; /* ou inline-block, dependendo do seu layout */
+    width: 100%; /* ou um valor específico, conforme necessário */
+    max-width: 200px; /* Defina um máximo de largura conforme necessário */
+}
+
+
 .rating{
     margin: .5rem 0;
 }
