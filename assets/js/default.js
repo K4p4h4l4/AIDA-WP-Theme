@@ -1,5 +1,4 @@
-
-window.addEventListener("load", () =>{
+document.addEventListener('DOMContentLoaded', function () {
     const loader = document.querySelector(".loader__container");
     loader.classList.add("loader__hidden");
     
@@ -7,76 +6,47 @@ window.addEventListener("load", () =>{
         //document.body.removeChild(loader);
         loader.classList.add("loader__hidden");
     });
+    
+    document.getElementById('products__cart').addEventListener('click', function () {
+        document.querySelector('.cart__list-holder').classList.toggle("cart__list-active");
+    } );
+
+    document.getElementById('products__wish').addEventListener('click', function () {
+        document.querySelector('.wish__list-holder').classList.toggle("wish__list-active");
+    });
+
+    let user__profile = document.getElementById('user__profile')
+    if(user__profile){
+        user__profile.addEventListener('click', function () {
+            document.querySelector('.user__profile-holder').classList.toggle("user__menu-active");
+        });
+    }
+    
+    const menuOptions = document.querySelectorAll('.main__options'); // Seleciona todos os elementos principais que têm submenus
+    menuOptions.forEach(option => {
+        const expandIcon = option.querySelector('.expand'); // O ícone que expande o submenu
+        const submenu = option.querySelector('.main__options-streaming, .main__options-informatic, .main__options-tvbox, .main__options-tablet, .main__options-paper, .main__options-games, .main__options-printer'); // Submenu específico
+
+        expandIcon.addEventListener('click', function (e) {
+            e.preventDefault(); // Previne ação padrão, se houver alguma (não essencial, mas pode ajudar em certos casos)
+            e.stopPropagation(); // Evita que o evento se propague para elementos acima
+            submenu.classList.toggle('submenu__active'); // Ativa ou desativa a visibilidade do submenu
+
+            // Alterna o ícone de expansão para indicar o estado aberto/fechado
+            if (submenu.classList.contains('submenu__active')) {
+                this.innerHTML = 'expand_less'; // Mudar ícone para "expand_less" quando aberto
+            } else {
+                this.innerHTML = 'expand_more'; // Mudar ícone para "expand_more" quando fechado
+            }
+        });
+    });
+
+    // Tratamento do botão de menu em telas menores
+    const menuButton = document.querySelector('.menu__button');
+    if (menuButton) {
+        menuButton.addEventListener('click', function () {
+            document.querySelector('.main__menu').classList.toggle('show__menu');
+            this.classList.toggle('is-active'); // Adiciona uma classe para mudar o ícone/menu visualmente se necessário
+        });
+    }
 });
-
-document.getElementById('products__cart').addEventListener('click', function () {
-    document.querySelector('.cart__list-holder').classList.toggle("cart__list-active");
-} );
-
-document.getElementById('products__wish').addEventListener('click', function () {
-    document.querySelector('.wish__list-holder').classList.toggle("wish__list-active");
-});
-
-let user__profile = document.getElementById('user__profile')
-if(user__profile){
-    user__profile.addEventListener('click', function () {
-        document.querySelector('.user__profile-holder').classList.toggle("user__menu-active");
-    });
-}
-
-const informatic = document.querySelector('.informatic');
-if(informatic){
-    informatic.addEventListener('click', function(){
-        document.querySelector('.main__options-informatic').classList.toggle("submenu__active");
-    });
-}
-
-const streaming = document.querySelector('.streaming');
-if(streaming){
-    streaming.addEventListener('click', function(){
-        document.querySelector('.main__options-streaming').classList.toggle("submenu__active");
-    });
-}
-
-const tvbox = document.querySelector('.tvbox');
-if(tvbox){
-    tvbox.addEventListener('click', function(){
-        document.querySelector('.main__options-tvbox').classList.toggle("submenu__active");
-    });
-}
-
-const tablet = document.querySelector('.tablet');
-if(tablet){
-    tablet.addEventListener('click', function(){
-        document.querySelector('.main__options-tablet').classList.toggle("submenu__active");
-    });
-}
-
-const paper = document.querySelector('.paper');
-if(paper){
-    paper.addEventListener('click', function(){
-        document.querySelector('.main__options-paper').classList.toggle("submenu__active");
-    });
-}
-
-const games = document.querySelector('.games');
-if(games){
-    games.addEventListener('click', function(){
-        document.querySelector('.main__options-games').classList.toggle("submenu__active");
-    });
-}
-
-const printer = document.querySelector('.printer');
-if(printer){
-    printer.addEventListener('click', function(){
-        document.querySelector('.main__options-printer').classList.toggle("submenu__active");
-    });
-}
-
-const menu = document.querySelector('.menu__button');
-if(menu){
-    menu.addEventListener('click', function(e){
-        console.log(e);
-       document.querySelector('.main__menu').classList.toggle("show__menu"); 
-    });
-}

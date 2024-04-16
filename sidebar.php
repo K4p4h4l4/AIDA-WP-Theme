@@ -1,26 +1,13 @@
 <?php
             
-            //$orderby = 'name';
-            //$order = 'asc';
-            //$hide_empty = false ;
+            
             $args = array(
-                //'orderby'    => 'name',
-                //'order'      => 'DESC',
+                
                 'taxonomy'    => 'product_cat'
             );
 
             $product_categories = get_terms( $args );
            
-            //print_r($product_categories);
-        
-            // Loop through product categories and display them as links
-            /*foreach ($product_categories as $category) {
-                $category_link = get_term_link($category);
-
-                if (!is_wp_error($category_link)) {
-                    echo '<li><a href="' . esc_url($category_link) . '">' . $category->name . '</a></li>';
-                }
-            }*/
         ?>
    
 

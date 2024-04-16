@@ -59,17 +59,22 @@
         position: absolute;
         z-index: 2;
         left: -100%;
-        top:15%;
+        top:-1%;
         position: fixed;
         opacity: 1;
         /*transition: width ease-in-out .7s;*/
+    }
+    
+    .menu__options{
+        height: 100vh;
+        overflow-y: scroll;
     }
     
     .main__options-streaming, .main__options-informatic, .main__options-tvbox, .main__options-tablet, .main__options-paper, .main__options-games, .main__options-printer{
         width: 100%;
         left: 0;
         position: relative;
-        max-height: 0;
+        /*max-height: 0;*/
         overflow-y: hidden;
         -webkit-transition: all .5s ease;
         -o-transition: all .5s ease;
@@ -81,11 +86,17 @@
         display: none;
     }*/
     
-    .submenu__active{
+    /*.submenu__active{
         max-height: 100rem;
         display: flex !important;
         
+    }*/
+    
+    .submenu__active {
+        display: block; /* ou 'flex', dependendo de sua estrutura */
+        max-height: none; /* se você estiver usando 'max-height' para animações */
     }
+
     
     .expand{
         position:relative;

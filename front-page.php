@@ -12,13 +12,6 @@
                      Menu Principal
             \******************************/-->
         
-        
-        <!-- ?php if (is_active_sidebar('custom-sidebar')) : ?>
-            <div id="custom-sidebar" class="widget-area">
-                < ?php dynamic_sidebar('custom-sidebar'); ?>
-            </div>
-        < ?php endif; ?-->
-        
         <?php get_sidebar(); ?>
 
 
