@@ -1,29 +1,9 @@
- 
+//const loader2 = document.getElementById('loader__container');
 let modal = document.querySelector('.bg-modal');
 let infoPreview;
 if(modal){
     infoPreview = modal.querySelectorAll('.modal__container-info');
 }
-
-
-/*document.querySelectorAll('.product__buttons .info').forEach(product =>{
-    product.onclick = () =>{
-        modal.style.display = 'flex';
-        
-        //document.querySelectorAll('.new__products-list .product__card').forEach(product_card =>{
-            let name = product.getAttribute('data-name');
-            
-            infoPreview.forEach(preview =>{
-                let target = preview.getAttribute('data-target');
-                if(name == target){
-                    preview.classList.add('modalactive');
-                }else{
-                    preview.classList.remove('modalactive');
-                }
-            });
-        //});
-    }
-});*/
 
 document.addEventListener('DOMContentLoaded', function() {
     var infoButtons = document.querySelectorAll('.product__btn.info');
@@ -38,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function fetchProductInfo(productId) {
-    console.log(productId);
+    
     let infoPreview = modal.querySelectorAll('.modal__container-info');
     let productInfoModal = document.querySelector('.bg-modal');
     let productImage = document.querySelector('.img');

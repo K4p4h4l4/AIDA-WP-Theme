@@ -1,15 +1,9 @@
-
+const loader = document.getElementById('loader__container');
 if(document.readyState == 'loading'){
     document.addEventListener('DOMContentLoaded', ready);
 }else{
     ready();
 }
-
-//Vector para armazenar os produtos do carrinho
-var cartItemsArray = [];
-//Vector para armazenar os produtos da lista de desejos
-var wishlistArray = [];
-const loader = document.getElementById('loader__container');
 
 //Function ready
 function ready(){
@@ -111,7 +105,6 @@ function removeCartItem(event){
 function removeWishItem(event){
     let removeClicked = event.target;
     wishCounter('remove');
-    console.log('chegou');
     removeWishItemBack(removeClicked.getAttribute('data-product-id'));
     removeClicked.parentElement.remove();      
 }
@@ -167,7 +160,7 @@ function addProductToCart(title,price,image,id, itemQuantity){
     
     let cartBoxContent = `
         <div class="cart__list-img">
-            <img width="150" height="150" src="${image}" alt="" class="attachment-thumbnail size-thumbnail" decoding="async">
+            <img width="150" height="150" src="${image}" alt="" class="attachment-woocommerce_single size-woocommerce_single" decoding="async">
 
         </div>
         <div class="cart__txt-container">
@@ -470,7 +463,6 @@ function callCheckout(){
 
 // JavaScript para criar uma encomenda e adicionar os produto a mesma
 function createOrderAndAddProduct(productID, quantity) {
-    //console.log(productID, quantity);
     
     jQuery.ajax({
       type: 'POST',
@@ -502,7 +494,6 @@ function createOrderAndAddProduct(productID, quantity) {
 
 //Javascript para actualizar os produtos da encomenda
 function updateOrderItemQuantity(orderId, productId, newQuantity) {
-    //console.log(orderId, productId, newQuantity);
     // Send the Ajax request to the server
     jQuery.ajax({
         type: 'POST',
@@ -517,9 +508,7 @@ function updateOrderItemQuantity(orderId, productId, newQuantity) {
             loader.classList.remove("loader__hidden");
         },
         success: function (data) {
-            // Handle the server's response (e.g., success or error message)
-            //let message = data.message;
-            //console.log(data.order_number, data.message);
+
         },
         error: function(error) {
             // Handle errors (e.g., display an error message)
@@ -541,8 +530,7 @@ function updateInvoice(order_id) {
             order_id: order_id,
         },
         success: function (data) {
-            // Handle the server's response (e.g., success or error message)
-            //console.log(data.message);
+            
         },
         error: function (error) {
             // Handle errors (e.g., display an error message)
@@ -568,9 +556,7 @@ function removeProductFromOrder(orderId, productId) {
             loader.classList.remove("loader__hidden");
         },
         success: function(data) {
-            // Handle the server's response (e.g., success or error message)
             
-            //console.log(data.message);
                 
         },
         error: function(error) {
@@ -616,7 +602,7 @@ function addWishlistClicked(event){
     let shopProducts = button.parentElement.parentElement.parentElement.parentElement;
     let title = shopProducts.children[1].children[0].getElementsByClassName('product__name')[0].innerText;
     let price = shopProducts.children[1].children[0].children[2].getElementsByClassName('product__price')[0].innerText;
-    let image = shopProducts.children[0].children[0].getElementsByClassName('attachment-thumbnail')[0].src;
+    let image = shopProducts.children[0].children[0].getElementsByClassName('attachment-woocommerce_single')[0].src;
     let id = shopProducts.children[2].id;
     let itemQuantity = 1;
     let wishlistBox = document.createElement('div');
@@ -640,7 +626,7 @@ function addWishlistClicked(event){
     
     let wishBoxContent = `
         <div class="wish__list-img">
-            <img width="150" height="150" src="${image}" alt="" class="attachment-thumbnail size-thumbnail" decoding="async">
+            <img width="150" height="150" src="${image}" alt="" class="attachment-woocommerce_single size-woocommerce_single" decoding="async">
 
         </div>
         <div class="wish__txt-container">
@@ -668,7 +654,7 @@ function addWishlistClicked(event){
     wishlistBox.innerHTML = wishBoxContent;
     wishItems.append(wishlistBox);
     wishlistBox.getElementsByClassName('wish__close-btn')[0].addEventListener('click', removeWishItem);
-    console.log(id);
+    
     jQuery.ajax({
         type: 'POST',
         url: wc_add_to_cart_params.ajax_url,
@@ -677,7 +663,10 @@ function addWishlistClicked(event){
             productID: id
         },
         beforeSend: function(){
-            loader.classList.remove("loader__hidden");
+            if(loader){
+                loader.classList.remove("loader__hidden");
+            }
+            
         },
         success: function (response) {
                 console.log(response.message);           
@@ -704,7 +693,10 @@ function removeWishItemBack(chave){
             wish_item_key: wishItemKey            
         },
         beforeSend: function(){
-            loader.classList.remove("loader__hidden");
+            
+            if(loader){
+               loader.classList.remove("loader__hidden");
+            }
         },
         success: function(response) {
             
@@ -721,7 +713,7 @@ function addToCartFromWishItem(){
     let wish__products = document.getElementsByClassName('wish__list-card');
     
     for(let i =0; i< wish__products.length; i++){
-        let image = wish__products[i].children[0].getElementsByClassName('attachment-thumbnail')[0].src;
+        let image = wish__products[i].children[0].getElementsByClassName('attachment-woocommerce_single')[0].src;
         let name = wish__products[i].children[1].children[0].getElementsByClassName('item__name')[0].innerText;
         let price = wish__products[i].children[1].children[2].getElementsByClassName('product__price')[0].innerText;
         let id = wish__products[i].children[2].getAttribute('data-product-id');
