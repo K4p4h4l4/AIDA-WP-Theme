@@ -29,16 +29,16 @@
                 </div>
                 <div class="footer__card-content">
                     <div class="footer__options">
-                        <a href="./sobre-nos/" class="option">Sobre nós</a>
+                        <a href="<?php echo get_permalink( get_page_by_path( 'sobre-nos' ) ); ?>" class="option">Sobre nós</a>
                     </div>
                     <div class="footer__options">
-                        <a href="./contacte-nos/" class="option">Contacte-nos</a>
+                        <a href="<?php echo get_permalink( get_page_by_path( 'contacte-nos' ) ); ?>" class="option">Contacte-nos</a>
                     </div>
                     <!--div class="footer__options">
                         <a href="#" class="option">Política de Privacidade</a>
                     </div-->
                     <div class="footer__options">
-                        <a href="./termos-e-condicoes/" class="option">Termos & Condições</a>
+                        <a href="<?php echo get_permalink( get_page_by_path( 'termos-e-condicoes' ) ); ?>" class="option">Termos & Condições</a>
                     </div>
                 </div>
             </div>
@@ -52,10 +52,10 @@
                         <a href="#" class="option">Minha conta</a>
                     </div>
                     <div class="footer__options">
-                        <a href="./carrinho/" class="option">Carrinho</a>
+                        <a href="<?php echo get_permalink( get_page_by_path( 'carrinho' ) ); ?>" class="option">Carrinho</a>
                     </div>
                     <div class="footer__options">
-                        <a href="./favoritos/" class="option">Lista de desejos</a>
+                        <a href="<?php echo get_permalink( get_page_by_path( 'favoritos' ) ); ?>" class="option">Lista de desejos</a>
                     </div>
                 </div>
             </div>
