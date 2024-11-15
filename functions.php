@@ -1996,6 +1996,20 @@ function remove_wish_item_callback() {
     wp_die();
 }
 
+function custom_search_results_per_page($query) {
+    if (!is_admin() && $query->is_main_query() && $query->is_search()) {
+        $query->set('posts_per_page', -1); // Use -1 para exibir todos os resultados ou defina um número específico
+    }
+}
+add_action('pre_get_posts', 'custom_search_results_per_page');
+
+function custom_product_archive_posts_per_page($query) {
+    if (is_post_type_archive('product') || is_tax('product_cat')) {
+        $query->set('posts_per_page', -1); // Exibe todos os produtos, substitua -1 pelo número desejado se quiser limitar
+    }
+}
+add_action('pre_get_posts', 'custom_product_archive_posts_per_page');
+
 
 
 ?>
