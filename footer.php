@@ -34,9 +34,9 @@
                     <div class="footer__options">
                         <a href="<?php echo get_permalink( get_page_by_path( 'contacte-nos' ) ); ?>" class="option">Contacte-nos</a>
                     </div>
-                    <!--div class="footer__options">
-                        <a href="#" class="option">Política de Privacidade</a>
-                    </div-->
+                    <div class="footer__options">
+                        <a href="<?php echo get_permalink( get_page_by_path( 'politica-de-privacidade' ) ); ?>" class="option">Política de Privacidade</a>
+                    </div>
                     <div class="footer__options">
                         <a href="<?php echo get_permalink( get_page_by_path( 'termos-e-condicoes' ) ); ?>" class="option">Termos & Condições</a>
                     </div>
