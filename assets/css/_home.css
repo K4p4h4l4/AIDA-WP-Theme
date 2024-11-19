@@ -425,6 +425,51 @@
     background-color: var(--default-yellow);
 }
 
+/************************\
+        Paginação
+\************************/
+.pagination__holder {
+    margin-top: 40px; /* Adiciona um espaço entre os produtos e a paginação */
+    text-align: center; /* Centraliza a paginação */
+}
+
+.pagination {
+    display: inline-block; /* Garante que os links fiquem lado a lado */
+    margin-top: 2.5rem;
+}
+
+.pagination .page-numbers {
+    padding: 10px 15px;
+    margin: 5px;
+    border: 1px solid #ddd;
+    color: #333;
+    text-decoration: none;
+    font-size: var(--font-size13);
+}
+
+.nav-links{
+    width: 100%;
+    display: inline-block;
+}
+
+.nav-links .prev, .nav-links .next{
+    position: relative;
+    top: 0%;
+    
+}
+
+.pagination .current {
+    background-color: var(--less-black);
+    color: #fff;
+    border-color: var(--less-black);
+}
+
+.pagination .page-numbers:hover {
+    background-color: var(--default-red);
+    color: white;
+    border-color: var(--default-red);
+}
+
 /*************************\
          Modal
 \*************************/

@@ -176,8 +176,20 @@
                             </div>
                             <div class="product_id" id="<?php the_ID(); ?>" ></div>
                         </div>
-                    <?php endwhile; else: ?>
-                        <p style="font-size:var(--font-size15);">Sem resultados encontrados para: '<?php echo get_search_query(); ?>'</p>
+                    <?php endwhile; 
+                    
+                    // Função de paginação
+                    the_posts_pagination(array(
+                        'mid_size'  => 2,
+                        'prev_text' => __('&laquo; Anterior', 'text-domain'),
+                        'next_text' => __('Próximo &raquo;', 'text-domain'),
+                    ));
+                    
+                    else: ?>
+                        <p style="font-size:var(--font-size15);">Sem resultados encontrados para: '<?php if ( is_tax( 'product_cat' ) ) {
+                                    // Exibe o nome da categoria de produto atual
+                                    echo single_term_title( '', false );
+                                } ?>'</p>
                     <?php endif; ?>
                 </div>
             </div>
