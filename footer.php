@@ -9,16 +9,28 @@
                 </div>
                 <div class="footer__card-content">
                     <div class="footer__options">
-                        <a href="#" class="option">Informática</a>
+                        <a href="<?php echo esc_url(get_term_link(get_term_by('name', 'Streaming e Gift Cards', 'product_cat'))); ?>" class="option">Streaming e Gift Cards</a>
                     </div>
                     <div class="footer__options">
-                        <a href="#" class="option">TV Box</a>
+                        <a href="<?php echo esc_url(get_term_link(get_term_by('name', 'Informática', 'product_cat'))); ?>" class="option">Informática</a>
                     </div>
                     <div class="footer__options">
-                        <a href="#" class="option">Smarthphones e Tablets</a>
+                        <a href="<?php echo esc_url(get_term_link(get_term_by('name', 'TV Box', 'product_cat'))); ?>" class="option">TV Box</a>
                     </div>
                     <div class="footer__options">
-                        <a href="#" class="option">Consumíveis e Papel</a>
+                        <a href="<?php echo esc_url(get_term_link(get_term_by('name', 'Smartphones e Tablets', 'product_cat'))); ?>" class="option">Smarthphones e Tablets</a>
+                    </div>
+                    <div class="footer__options">
+                        <a href="<?php echo esc_url(get_term_link(get_term_by('name', 'Consumíveis e Papel', 'product_cat'))); ?>" class="option">Consumíveis e Papel</a>
+                    </div>
+                    <div class="footer__options">
+                        <a href="<?php echo esc_url(get_term_link(get_term_by('name', 'Jogos e Consola', 'product_cat'))); ?>" class="option">Jogos e Consola</a>
+                    </div>
+                    <div class="footer__options">
+                        <a href="<?php echo esc_url(get_term_link(get_term_by('name', 'Impressoras e Scanners', 'product_cat'))); ?>" class="option">Impressoras e Scanners</a>
+                    </div>
+                    <div class="footer__options">
+                        <a href="<?php echo esc_url(get_term_link(get_term_by('name', 'Imagem e Som', 'product_cat'))); ?>" class="option">Imagem e Som</a>
                     </div>
                 </div>
             </div>
