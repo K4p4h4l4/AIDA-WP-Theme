@@ -59,7 +59,7 @@
                                                 <?php echo round((1-($product_sale_price/$product_price))*100); ?>%
                                             </div>
                                         <?php endif?>
-                                        <?php echo wp_get_attachment_image($product_img_id);?>
+                                        <?php echo wp_get_attachment_image($product_img_id, 'woocommerce_single');?>
                                     </a>
                                 <?php endif; ?>
                             </div>
