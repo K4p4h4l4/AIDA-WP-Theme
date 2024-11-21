@@ -27,7 +27,7 @@
                 </div>
                 <div class="other__options">
                     <div class="other__option">
-                        <p>Lembra da senha? <a href="./login/">Voltar ao login</a></p>
+                        <p>Lembra da senha? <a href="<?php echo get_permalink( get_page_by_path( 'login' ) ); ?>">Voltar ao login</a></p>
                     </div>
                     
                 </div>

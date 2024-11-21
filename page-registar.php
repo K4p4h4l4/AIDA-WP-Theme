@@ -98,7 +98,7 @@
                 
                 <div class="other__options">
                     <div class="other__option">
-                        <p>Já tem conta? <a href="./login/">Entre aqui!</a></p>
+                        <p>Já tem conta? <a href="<?php echo get_permalink( get_page_by_path( 'login' ) ); ?>">Entre aqui!</a></p>
                     </div>
                     
                 </div>

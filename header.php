@@ -57,7 +57,7 @@
                         echo '<a href="#" class="user__profile" id="user__profile"><i class="material-icons">account_circle</i> Olá, ' . $nome . ' ' . $sobrenome.'</a>'; ?>
                         <div class="user__profile-holder">
                             <div class="profile__btn-holder">
-                                <a href="./minha-conta/" class="user__profile">
+                                <a href="<?php echo get_permalink( get_page_by_path( 'minha-conta' ) ); ?>" class="user__profile">
                                     <i class="material-icons">person</i>
                                     <span>Perfil</span>
                                 </a>
@@ -71,7 +71,7 @@
                         </div>
                         <?php 
                     }else{
-                        echo '<span><a href="./registar/">Registar</a></span><span><a href="./login/">Login</a></span>';
+                        echo '<span><a href="' . get_permalink( get_page_by_path( 'registar' ) ) . '">Registar</a></span><span><a href="' . get_permalink( get_page_by_path( 'login' ) ) . '">Login</a></span>';
                     }
                 ?>
                 
@@ -83,7 +83,7 @@
              Meus interesses
     \******************************/-->
     <div class="my__interests">
-        <a href="index.php" class="my__logo">
+        <a href="<?php echo home_url(); ?>" class="my__logo">
             <img src="<?php bloginfo('template_directory');?>/assets/img/logo/aid_logo.png'" alt="AIDA">
             
         </a>
